@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Thème Material */
+/* TODO: Personnaliser les couleurs */
+/* TODO: Définir la typographie */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background: #f5f7fa;
+}
+
+.page-title {
+  margin: 1rem 0;
+  color: #00695c;
+}
