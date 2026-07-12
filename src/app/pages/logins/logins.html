@@ -1,1 +1,27 @@
-<p>logins works!</p>
+<form [formGroup]="forms" class="m-t-30">
+  <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Login</mat-label>
+  <mat-form-field appearance="outline" class="w-100" color="primary">
+    <input formControlName="name" matInput type="email" />
+  </mat-form-field>
+  <!-- password -->
+  <mat-label class="f-s-14 f-w-600 m-b-12 d-block">Mot de passe</mat-label>
+  <mat-form-field appearance="outline" class="w-100" color="primary">
+    <input formControlName="password" matInput type="password" />
+  </mat-form-field>
+
+  <div class="d-flex align-items-center m-b-12">
+    <mat-checkbox color="primary">Se rappeler de moi</mat-checkbox>
+    <a
+      [routerLink]="['/']"
+      class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14"
+      >Mot de passe oublié ?</a
+    >
+  </div>
+  @if(isLoading) {
+  <mat-progress-bar mode="query"></mat-progress-bar>
+  } @else {
+  <button (click)="login()" mat-flat-button color="primary" class="w-100">
+    Connexion
+  </button>
+  }
+</form>
