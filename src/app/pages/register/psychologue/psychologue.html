@@ -1,0 +1,91 @@
+<div class="page">
+  
+  <!-- CÔTÉ GAUCHE : FORMULAIRE -->
+  <div class="cote-gauche">
+    
+    <div class="entete">
+      <h2>Inscription</h2>
+       <div class="illustration3">
+      <img src="iconInscription.png" alt="Illustration">
+    </div>
+      <p>Développez votre pratique en quelques clics</p>
+    </div>
+
+    <form class="mon-formulaire">
+
+      <!-- Email -->
+      <div class="champ-groupe">
+        <input type="email" placeholder="Adresse email" class="input-arrondi">
+        <mat-icon class="icone-champ">email</mat-icon>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="champ-groupe">
+        <input [type]="cacheMotDePasse ? 'password' : 'text'" placeholder="Mot de passe" class="input-arrondi">
+        <mat-icon class="icone-champ cliquable" (click)="cacheMotDePasse = !cacheMotDePasse">
+          {{ cacheMotDePasse ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+      </div>
+      <small class="indication">Votre mot de passe doit contenir au moins 8 caracteres</small>
+
+      <!-- Prénom et Nom côte à côte -->
+      <div class="ligne-double">
+        <div class="champ-groupe">
+          <input type="text" placeholder="Prenom" class="input-arrondi">
+          <mat-icon class="icone-champ">person</mat-icon>
+        </div>
+
+        <div class="champ-groupe">
+          <input type="text" placeholder="Nom" class="input-arrondi">
+          <mat-icon class="icone-champ">person</mat-icon>
+        </div>
+      </div>
+
+      <!-- Téléphone avec drapeau -->
+      <div class="champ-groupe champ-telephone">
+        <img src="logoDrapeauMali.png" alt="Mali" class="drapeau-icon">
+        <input type="tel" placeholder="Telephone" class="input-arrondi avec-drapeau">
+        <mat-icon class="icone-champ">phone</mat-icon>
+      </div>
+
+      <!-- CV et Diplôme côte à côte -->
+      <div class="ligne-double">
+        <div class="champ-groupe">
+          <input type="text" placeholder="CV" class="input-arrondi">
+          <mat-icon class="icone-champ">article</mat-icon>
+        </div>
+
+        <div class="champ-groupe">
+          <input type="text" placeholder="Diplôme" class="input-arrondi">
+          <mat-icon class="icone-champ">workspace_premium</mat-icon>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="champ-groupe">
+        <input type="text" placeholder="Description" class="input-arrondi">
+        <mat-icon class="icone-champ">description</mat-icon>
+      </div>
+
+      <!-- Bouton -->
+      <button mat-raised-button class="bouton-valider" type="submit">
+        S'inscrire
+      </button>
+
+    </form>
+  </div>
+
+  <!-- CÔTÉ DROIT : IMAGE ET TEXTE -->
+  <div class="cote-droit">
+    <div class="illustration">
+      <img src="logoPsychoHelp.png" alt="Illustration">
+    </div>
+
+    <div class="illustration2">
+      <img src="iconInscriptionPsy.png" alt="Illustration">
+    </div>
+
+    <h2>Avec PsychoHelp, simplifiez et développez votre pratique.</h2>
+  </div>
+
+</div>
