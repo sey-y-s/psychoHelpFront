@@ -1,6 +1,6 @@
 ﻿# Dependency directories
+# Dependency directories
 node_modules/
-
 
 # Angular build outputs and cache
 /dist/
@@ -12,22 +12,18 @@ node_modules/
 /.angular-cli.json
 /.ng/
 
-
 # Environment files
 .env
 .env.*
 
-
 # TypeScript cache
 *.tsbuildinfo
-
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
 
 # IDEs and editors
 .idea/

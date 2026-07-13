@@ -110,8 +110,8 @@ export class LoginComponent {
     this.chargement = true;
     this.auth.login(this.formulaire.value).subscribe({
       next: () => {
-        this.notif.succes("Connecté avec succès");
-        this.router.navigate(["/psychologues"]);
+        this.notif.succes('Connecté avec succès');
+        this.router.navigate(['/accueil']);
       },
       error: () => (this.chargement = false),
     });
