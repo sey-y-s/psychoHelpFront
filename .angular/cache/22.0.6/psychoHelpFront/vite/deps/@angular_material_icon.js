@@ -7,11 +7,11 @@ import {
 import "./chunk-ACFWFEY7.js";
 import "./chunk-NUXUVRE6.js";
 import {
-  BidiModule
-} from "./chunk-VLOZ7OFG.js";
-import {
   HttpClient
 } from "./chunk-O2KFBVAP.js";
+import {
+  BidiModule
+} from "./chunk-VLOZ7OFG.js";
 import "./chunk-4GZMD3TV.js";
 import "./chunk-APCXLJHM.js";
 import {

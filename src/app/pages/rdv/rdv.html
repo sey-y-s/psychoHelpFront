@@ -1,0 +1,37 @@
+<form  [formGroup]="form" >
+       @if (message) {
+           <span style="color: red;"> {{message}}  </span>
+       }@else{
+                   <span style="color: green;"> {{message}}  </span>
+
+       }
+       
+  <div>
+    <label for="dateRdv">Date du rendez-vous</label>
+    <input
+      type="date"
+      id="dateRdv"
+      formControlName="dateRdv">
+  </div>
+  <div>
+    <label for="citoyenId">Citoyen</label>
+    <input
+      type="number"
+      id="citoyenId"
+      formControlName="citoyenId">
+  </div>
+
+  <div>
+    <label for="creneauId">Créneau</label>
+    <select id="creneauId" formControlName="creneauId">
+        @for (creneau of crenaux; track creneau.id) {
+            <option [value]="creneau.id">
+                {{creneau.jours}}
+            </option>
+        }
+    </select>
+  </div>
+
+  <button (click)="onSubmit()" type="submit">Prendre rendez-vous</button>
+
+</form>

@@ -7,12 +7,11 @@ export interface Creneau {
   heureFin: string;
   disponible: boolean;
 }
-
-export interface Seance {
-  id?: number;
-  citoyenId: number;
-  creneauId: number;
-  psychologueId: number;
-  date: string;
-  statut: 'CONFIRME' | 'ANNULE' | 'TERMINE';
+export interface CreneauInterfaceResponse {
+    id:number;
+    jours:string;
+    heureDebut:string;
+    heureFin:string;
+    statut:boolean;
+    nomPsychologue:string;
 }

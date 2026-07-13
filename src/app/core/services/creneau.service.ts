@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Creneau } from '../../models/creneau.model';
+import { Creneau, CreneauInterfaceResponse } from '../../models/creneau.model';
 
 @Injectable({ providedIn: 'root' })
 export class CreneauService {
@@ -21,5 +21,9 @@ export class CreneauService {
 
   supprimer(id: number): Observable<any> {
     return this.http.delete(`${this.api}/${id}`);
+  }
+  listerDesCreneaux(): Observable<CreneauInterfaceResponse[]> {
+    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
+    return this.http.get<CreneauInterfaceResponse[]>(`${this.api}`);
   }
 }

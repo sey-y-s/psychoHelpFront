@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
+import { Rdv } from './pages/rdv/rdv';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
@@ -44,12 +45,18 @@ export const routes: Routes = [
   },
 
   // Rendez-vous (connecté)
+  /*
   {
     path: 'rendezvous/prise',
     loadComponent: () => import('./pages/rdv/rdv.component').then(m => m.PriseRendezvousComponent),
     canActivate: [authGuard]
   },
-
+  */
+ 
+ {
+       path:"rdv",component:Rdv
+ }
+,
   // Administration (admin)
   {
     path: 'admin/psychologues',

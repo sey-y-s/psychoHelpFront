@@ -6,7 +6,7 @@ import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisa
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   // TODO: Remplacer par l'URL réelle de l'API Spring Boot
-  private api = 'http://localhost:8080/api/auth';
+  private api = 'http://localhost:8080/api/utilisateurs';
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
@@ -51,5 +51,8 @@ export class AuthService {
 
   getUtilisateurId(): number | undefined {
     return this.currentUserSubject.value?.id;
+  }
+  getUserConnecté(): string | null {
+    return localStorage.getItem('utilisateur');
   }
 }
