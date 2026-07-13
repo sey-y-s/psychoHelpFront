@@ -18,13 +18,7 @@ export class AuthService {
 
   login(data: LoginRequest): Observable<Utilisateur> {
     // TODO: Adapter la requête et la réponse au format de l'API
-    return this.http.post<Utilisateur>(`${this.api}/login`, data).pipe(
-      tap(utilisateur => {
-        localStorage.setItem('utilisateur', JSON.stringify(utilisateur));
-        localStorage.setItem('token', utilisateur.token!);
-        this.currentUserSubject.next(utilisateur);
-      })
-    );
+   return this.http.post<Utilisateur>(`${this.api}/login`, data);
   }
 
   register(data: RegisterRequest): Observable<Utilisateur> {

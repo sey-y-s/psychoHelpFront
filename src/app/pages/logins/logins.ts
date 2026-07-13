@@ -8,14 +8,27 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { RouterModule, Router, ActivatedRoute } from "@angular/router";
-import { MaterialModule } from "src/app/material.module";
 import { AuthService } from "../../core/services/auth.service";
 import { N } from "@angular/cdk/keycodes";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
+import { MatProgressBar } from "@angular/material/progress-bar";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @Component({
   selector: "app-logins",
   standalone: true,
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    RouterModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatButton,
+    MatProgressBar,
+    MatCheckboxModule,
+  ],
   templateUrl: "./logins.html",
   styleUrl: "./logins.css",
 })
@@ -37,9 +50,16 @@ export class Logins {
     if (this.forms.invalid) return;
     this.isLoading = true;
     this.auth.login(this.forms.value).subscribe({
-      next: () => {
+      next: (res) => {
         alert("vous êtes connectez avec succes");
-        this.router.navigate(["/dashboard"]);
+        console.log(res);
+        if (res.role == "ADMIN") {
+          this.router.navigate(["/dashboardAdmin"]);
+        } else if (res.role == "CITOYEN") {
+          this.router.navigate(["/dashboardCitoyen"]);
+        } else {
+          this.router.navigate(["/dashboardPsychologue"]);
+        }
       },
       error: () => (this.isLoading = false),
     });

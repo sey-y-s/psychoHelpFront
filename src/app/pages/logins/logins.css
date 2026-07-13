@@ -1,0 +1,212 @@
+.page-login {
+  min-height: 100vh;
+  background: white;
+  font-family: Arial, sans-serif;
+}
+
+/* le header(entête) */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 40px;
+
+  background: #f5f5f5;
+}
+
+/* partie logo */
+
+.logo img {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+}
+
+/* Bouton à gauche en haut de l'entête */
+
+.btn-top {
+  background: #dca98e;
+
+  color: white;
+
+  border: none;
+
+  padding: 15px 25px;
+
+  border-radius: 15px;
+
+  font-size: 16px;
+
+  font-weight: bold;
+}
+
+/* le titre(se connecter et accueil) */
+
+.title {
+  text-align: center;
+
+  padding: 50px 0;
+
+  background: linear-gradient(to right, #f4eeee, #efd6c9, #f4eeee);
+}
+
+.title h1 {
+  font-size: 35px;
+
+  color: #263c55;
+
+  margin-bottom: 20px;
+}
+
+.title p {
+  font-size: 20px;
+
+  color: #263c55;
+}
+
+/*container principal */
+
+.container {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  padding: 40px;
+
+  margin-top: -20px;
+}
+
+/*les deux cards côte à côte*/
+
+.card {
+  width: 330px;
+
+  min-height: 330px;
+
+  border: 1px solid #dfa98e;
+
+  border-radius: 15px;
+
+  padding: 25px;
+
+  background: white;
+}
+
+.card h2 {
+  color: #263c55;
+
+  font-size: 25px;
+
+  margin-bottom: 25px;
+}
+
+.card p {
+  color: #34495e;
+
+  font-size: 15px;
+
+  margin-bottom: 25px;
+}
+
+/* formulaire de connection */
+
+input {
+  width: 90%;
+
+  padding: 15px;
+
+  margin-bottom: 20px;
+
+  border-radius: 15px;
+
+  border: 1px solid #8392a5;
+
+  font-size: 16px;
+}
+
+input::placeholder {
+  color: #c5c5c5;
+}
+
+.btn-login {
+  width: 100%;
+
+  padding: 15px;
+
+  border-radius: 15px;
+
+  border: none;
+
+  background: #dca98e;
+
+  color: #263c55;
+
+  font-size: 17px;
+
+  font-weight: bold;
+}
+
+/*l'inscription partie*/
+
+.inscription {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.bloc {
+  margin-bottom: 20px;
+}
+
+.bloc h3 {
+  color: #263c55;
+
+  font-size: 16px;
+}
+
+.bloc button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background: #dca98e;
+
+  color: #263c55;
+
+  font-size: 16px;
+
+  font-weight: bold;
+}
+
+hr {
+  width: 100%;
+
+  border: 0;
+
+  border-top: 1px solid #eeeeee;
+
+  margin: 15px 0;
+}
+
+/*Partie responsivite*/
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+
+    align-items: center;
+  }
+
+  .header {
+    padding: 20px;
+  }
+}
