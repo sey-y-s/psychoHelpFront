@@ -1,12 +1,17 @@
 import {
+  _DisposeViewRepeaterStrategy
+} from "./chunk-NGEWAEJP.js";
+import {
   CDK_VIRTUAL_SCROLL_VIEWPORT,
-  DataSource,
   ScrollingModule,
-  ViewportRuler,
+  ViewportRuler
+} from "./chunk-7IMBPGZY.js";
+import {
+  DataSource,
   _RecycleViewRepeaterStrategy,
   _ViewRepeaterOperation,
   isDataSource
-} from "./chunk-SFJPFOQ7.js";
+} from "./chunk-EMZ5E5WN.js";
 import "./chunk-PLJ2QXBA.js";
 import "./chunk-N4DOILP3.js";
 import "./chunk-GUGIMSVJ.js";
@@ -16,12 +21,12 @@ import {
 import {
   Platform
 } from "./chunk-Y5FFNXWF.js";
+import "./chunk-4GZMD3TV.js";
+import "./chunk-APCXLJHM.js";
 import {
   BidiModule,
   Directionality
 } from "./chunk-VLOZ7OFG.js";
-import "./chunk-4GZMD3TV.js";
-import "./chunk-APCXLJHM.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -39,7 +44,6 @@ import {
   IterableDiffers,
   NgModule,
   Output,
-  Service,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -60,7 +64,6 @@ import {
   ɵɵdefineDirective,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
-  ɵɵdefineService,
   ɵɵelementContainer,
   ɵɵelementContainerEnd,
   ɵɵelementContainerStart,
@@ -91,37 +94,6 @@ import {
   of,
   takeUntil
 } from "./chunk-PJVWDKLX.js";
-
-// node_modules/@angular/cdk/fesm2022/_dispose-view-repeater-strategy-chunk.mjs
-var _DisposeViewRepeaterStrategy = class {
-  applyChanges(changes, viewContainerRef, itemContextFactory, itemValueResolver, itemViewChanged) {
-    changes.forEachOperation((record, adjustedPreviousIndex, currentIndex) => {
-      let view;
-      let operation;
-      if (record.previousIndex == null) {
-        const insertContext = itemContextFactory(record, adjustedPreviousIndex, currentIndex);
-        view = viewContainerRef.createEmbeddedView(insertContext.templateRef, insertContext.context, insertContext.index);
-        operation = _ViewRepeaterOperation.INSERTED;
-      } else if (currentIndex == null) {
-        viewContainerRef.remove(adjustedPreviousIndex);
-        operation = _ViewRepeaterOperation.REMOVED;
-      } else {
-        view = viewContainerRef.get(adjustedPreviousIndex);
-        viewContainerRef.move(view, currentIndex);
-        operation = _ViewRepeaterOperation.MOVED;
-      }
-      if (itemViewChanged) {
-        itemViewChanged({
-          context: view?.context,
-          operation,
-          record
-        });
-      }
-    });
-  }
-  detach() {
-  }
-};
 
 // node_modules/@angular/cdk/fesm2022/table.mjs
 var _c0 = [[["caption"]], [["colgroup"], ["col"]], "*"];
@@ -2335,39 +2307,6 @@ var CdkTableModule = class _CdkTableModule {
       exports: EXPORTED_DECLARATIONS,
       imports: [ScrollingModule, ...EXPORTED_DECLARATIONS]
     }]
-  }], null, null);
-})();
-
-// node_modules/@angular/cdk/fesm2022/_unique-selection-dispatcher-chunk.mjs
-var UniqueSelectionDispatcher = class _UniqueSelectionDispatcher {
-  _listeners = [];
-  notify(id, name) {
-    for (let listener of this._listeners) {
-      listener(id, name);
-    }
-  }
-  listen(listener) {
-    this._listeners.push(listener);
-    return () => {
-      this._listeners = this._listeners.filter((registered) => {
-        return listener !== registered;
-      });
-    };
-  }
-  ngOnDestroy() {
-    this._listeners = [];
-  }
-  static ɵfac = function UniqueSelectionDispatcher_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _UniqueSelectionDispatcher)();
-  };
-  static ɵprov = ɵɵdefineService({
-    token: _UniqueSelectionDispatcher,
-    factory: _UniqueSelectionDispatcher.ɵfac
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(UniqueSelectionDispatcher, [{
-    type: Service
   }], null, null);
 })();
 

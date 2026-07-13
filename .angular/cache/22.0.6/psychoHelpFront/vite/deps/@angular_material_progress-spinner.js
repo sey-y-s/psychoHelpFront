@@ -4,12 +4,12 @@ import {
 import "./chunk-N4DOILP3.js";
 import "./chunk-Y5FFNXWF.js";
 import {
-  BidiModule
-} from "./chunk-VLOZ7OFG.js";
-import {
   NgTemplateOutlet
 } from "./chunk-4GZMD3TV.js";
 import "./chunk-APCXLJHM.js";
+import {
+  BidiModule
+} from "./chunk-VLOZ7OFG.js";
 import {
   Component,
   ElementRef,

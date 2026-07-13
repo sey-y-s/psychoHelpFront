@@ -1,0 +1,70 @@
+<div class="accueil">
+  
+  <!-- Message de bienvenue -->
+  <div class="bienvenue">
+    <h1>Bonjour, {{ prenom }} 👋</h1>
+    <p>Que souhaitez-vous faire aujourd'hui ?</p>
+  </div>
+
+  <!-- Actions rapides selon rôle -->
+  <div class="actions-rapides">
+    
+    @if (role === 'CITOYEN') {
+      <mat-card class="carte-action" routerLink="/psychologues">
+        <mat-icon>people</mat-icon>
+        <span>Consulter les psychologues</span>
+      </mat-card>
+      <!-- TODO : Passer un test d'auto-évaluation -->
+      <!-- TODO : Mes rendez-vous -->
+    }
+
+    @if (role === 'PSYCHOLOGUE') {
+      <mat-card class="carte-action" routerLink="/psy/creneaux">
+        <mat-icon>schedule</mat-icon>
+        <span>Gérer mes créneaux</span>
+      </mat-card>
+      <mat-card class="carte-action" routerLink="/psy/conseils">
+        <mat-icon>article</mat-icon>
+        <span>Publier un conseil</span>
+      </mat-card>
+      <!-- TODO : Voir mon dashboard -->
+    }
+
+    @if (role === 'ADMIN') {
+      <mat-card class="carte-action" routerLink="/admin/psychologues">
+        <mat-icon>verified_user</mat-icon>
+        <span>Valider les psychologues</span>
+      </mat-card>
+      <mat-card class="carte-action" routerLink="/admin/conseils">
+        <mat-icon>rate_review</mat-icon>
+        <span>Valider les conseils</span>
+      </mat-card>
+      <!-- TODO : Voir les statistiques -->
+    }
+
+  </div>
+
+  <!-- Résumé -->
+  <div class="resume">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Résumé</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        @if (role === 'CITOYEN') {
+          <p>Bienvenue sur PsychoHelp. Prenez soin de votre santé mentale.</p>
+          <!-- TODO : Prochain RDV, dernier score de test -->
+        }
+        @if (role === 'PSYCHOLOGUE') {
+          <p>Gérez vos consultations et partagez vos conseils.</p>
+          <!-- TODO : Nombre de RDV aujourd'hui, conseils en attente -->
+        }
+        @if (role === 'ADMIN') {
+          <p>Supervisez la plateforme et validez les contenus.</p>
+          <!-- TODO : Compteurs psy en attente, conseils en attente -->
+        }
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

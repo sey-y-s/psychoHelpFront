@@ -3,17 +3,16 @@ import {
 } from "./chunk-SWNHQA6C.js";
 import {
   DomSanitizer
-} from "./chunk-HFGTBIS4.js";
-import "./chunk-ACFWFEY7.js";
+} from "./chunk-4ZXTGEAX.js";
 import "./chunk-NUXUVRE6.js";
-import {
-  BidiModule
-} from "./chunk-VLOZ7OFG.js";
 import {
   HttpClient
 } from "./chunk-O2KFBVAP.js";
 import "./chunk-4GZMD3TV.js";
 import "./chunk-APCXLJHM.js";
+import {
+  BidiModule
+} from "./chunk-VLOZ7OFG.js";
 import {
   Component,
   DOCUMENT,

@@ -68,7 +68,7 @@ export class LoginComponent {
     this.auth.login(this.formulaire.value).subscribe({
       next: () => {
         this.notif.succes('Connecté avec succès');
-        this.router.navigate(['/psychologues']);
+        this.router.navigate(['/accueil']);
       },
       error: () => this.chargement = false
     });
