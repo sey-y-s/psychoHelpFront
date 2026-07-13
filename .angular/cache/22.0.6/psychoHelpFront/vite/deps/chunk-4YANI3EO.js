@@ -1,7 +1,7 @@
 import {
   isFakeMousedownFromScreenReader,
   isFakeTouchstartFromScreenReader
-} from "./chunk-66SSPDA3.js";
+} from "./chunk-S5AE2QAN.js";
 import {
   _getEventTarget,
   normalizePassiveListenerOptions
@@ -19,25 +19,19 @@ import {
   Platform
 } from "./chunk-Y5FFNXWF.js";
 import {
-  BidiModule
-} from "./chunk-VLOZ7OFG.js";
-import {
   Component,
   Directive,
   ElementRef,
   InjectionToken,
   Injector,
   Input,
-  NgModule,
   NgZone,
   ViewEncapsulation,
   inject,
   setClassMetadata,
   ɵɵclassProp,
   ɵɵdefineComponent,
-  ɵɵdefineDirective,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule
+  ɵɵdefineDirective
 } from "./chunk-75XUJ6ME.js";
 import {
   __spreadValues
@@ -556,30 +550,6 @@ var _StructuralStylesLoader = class __StructuralStylesLoader {
   }], null, null);
 })();
 
-// node_modules/@angular/material/fesm2022/_ripple-module-chunk.mjs
-var MatRippleModule = class _MatRippleModule {
-  static ɵfac = function MatRippleModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _MatRippleModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _MatRippleModule,
-    imports: [MatRipple],
-    exports: [MatRipple, BidiModule]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    imports: [BidiModule]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatRippleModule, [{
-    type: NgModule,
-    args: [{
-      imports: [MatRipple],
-      exports: [MatRipple, BidiModule]
-    }]
-  }], null, null);
-})();
-
 export {
   RippleState,
   RippleRef,
@@ -587,7 +557,6 @@ export {
   RippleRenderer,
   MAT_RIPPLE_GLOBAL_OPTIONS,
   MatRipple,
-  _StructuralStylesLoader,
-  MatRippleModule
+  _StructuralStylesLoader
 };
-//# sourceMappingURL=chunk-5TWCVJKY.js.map
+//# sourceMappingURL=chunk-4YANI3EO.js.map

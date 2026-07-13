@@ -5,15 +5,15 @@ import {
   normalizePassiveListenerOptions
 } from "./chunk-PYFY3RZF.js";
 import {
+  BreakpointObserver
+} from "./chunk-YDFXKWXA.js";
+import {
   _VisuallyHiddenLoader,
   _setInnerHtml
 } from "./chunk-SWNHQA6C.js";
 import {
   DomSanitizer
 } from "./chunk-HFGTBIS4.js";
-import {
-  BreakpointObserver
-} from "./chunk-YDFXKWXA.js";
 import {
   _CdkPrivateStyleLoader
 } from "./chunk-NUXUVRE6.js";
@@ -2365,4 +2365,4 @@ export {
   _IdGenerator,
   AriaDescriber
 };
-//# sourceMappingURL=chunk-66SSPDA3.js.map
+//# sourceMappingURL=chunk-S5AE2QAN.js.map

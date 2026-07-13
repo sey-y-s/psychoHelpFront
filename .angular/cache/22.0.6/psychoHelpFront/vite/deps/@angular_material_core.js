@@ -10,45 +10,50 @@ import {
 } from "./chunk-QQB5ANMA.js";
 import {
   MatRippleLoader
-} from "./chunk-YCCS6BIV.js";
+} from "./chunk-7NUQ73YF.js";
+import {
+  MatRippleModule
+} from "./chunk-7ZZJP4ZI.js";
+import {
+  _MatInternalFormField
+} from "./chunk-37ERAK7F.js";
 import {
   MAT_RIPPLE_GLOBAL_OPTIONS,
   MatRipple,
-  MatRippleModule,
   RippleRef,
   RippleRenderer,
   RippleState,
   _StructuralStylesLoader,
   defaultRippleAnimationConfig
-} from "./chunk-5TWCVJKY.js";
+} from "./chunk-4YANI3EO.js";
 import {
   ENTER,
   SPACE,
   _IdGenerator,
   hasModifierKey
-} from "./chunk-66SSPDA3.js";
+} from "./chunk-S5AE2QAN.js";
 import "./chunk-PYFY3RZF.js";
-import {
-  _VisuallyHiddenLoader
-} from "./chunk-SWNHQA6C.js";
-import "./chunk-HFGTBIS4.js";
-import "./chunk-ACFWFEY7.js";
 import {
   MATERIAL_ANIMATIONS,
   _animationsDisabled,
   _getAnimationsState
 } from "./chunk-YDFXKWXA.js";
+import {
+  _VisuallyHiddenLoader
+} from "./chunk-SWNHQA6C.js";
+import "./chunk-HFGTBIS4.js";
+import "./chunk-ACFWFEY7.js";
 import "./chunk-PLJ2QXBA.js";
 import "./chunk-N4DOILP3.js";
-import {
-  _CdkPrivateStyleLoader
-} from "./chunk-NUXUVRE6.js";
 import "./chunk-GUGIMSVJ.js";
-import "./chunk-BCXCEJQ5.js";
-import "./chunk-Y5FFNXWF.js";
 import {
   BidiModule
 } from "./chunk-VLOZ7OFG.js";
+import {
+  _CdkPrivateStyleLoader
+} from "./chunk-NUXUVRE6.js";
+import "./chunk-BCXCEJQ5.js";
+import "./chunk-Y5FFNXWF.js";
 import "./chunk-O2KFBVAP.js";
 import "./chunk-4GZMD3TV.js";
 import "./chunk-APCXLJHM.js";
@@ -715,62 +720,6 @@ var MatOptionModule = class _MatOptionModule {
       exports: [MatOption, MatOptgroup, BidiModule]
     }]
   }], null, null);
-})();
-
-// node_modules/@angular/material/fesm2022/_internal-form-field-chunk.mjs
-var _c02 = ["*"];
-var _MatInternalFormField = class __MatInternalFormField {
-  labelPosition = "after";
-  static ɵfac = function _MatInternalFormField_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || __MatInternalFormField)();
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: __MatInternalFormField,
-    selectors: [["div", "mat-internal-form-field", ""]],
-    hostAttrs: [1, "mdc-form-field", "mat-internal-form-field"],
-    hostVars: 2,
-    hostBindings: function _MatInternalFormField_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵclassProp("mdc-form-field--align-end", ctx.labelPosition === "before");
-      }
-    },
-    inputs: {
-      labelPosition: "labelPosition"
-    },
-    ngContentSelectors: _c02,
-    decls: 1,
-    vars: 0,
-    template: function _MatInternalFormField_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵprojectionDef();
-        ɵɵprojection(0);
-      }
-    },
-    styles: [".mat-internal-form-field {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  display: inline-flex;\n  align-items: center;\n  vertical-align: middle;\n}\n.mat-internal-form-field > label {\n  margin-left: 0;\n  margin-right: auto;\n  padding-left: 4px;\n  padding-right: 0;\n  order: 0;\n}\n[dir=rtl] .mat-internal-form-field > label {\n  margin-left: auto;\n  margin-right: 0;\n  padding-left: 0;\n  padding-right: 4px;\n}\n\n.mdc-form-field--align-end > label {\n  margin-left: auto;\n  margin-right: 0;\n  padding-left: 0;\n  padding-right: 4px;\n  order: -1;\n}\n[dir=rtl] .mdc-form-field--align-end .mdc-form-field--align-end label {\n  margin-left: 0;\n  margin-right: auto;\n  padding-left: 4px;\n  padding-right: 0;\n}\n"],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_MatInternalFormField, [{
-    type: Component,
-    args: [{
-      selector: "div[mat-internal-form-field]",
-      template: "<ng-content></ng-content>",
-      encapsulation: ViewEncapsulation.None,
-      host: {
-        "class": "mdc-form-field mat-internal-form-field",
-        "[class.mdc-form-field--align-end]": 'labelPosition === "before"'
-      },
-      styles: [".mat-internal-form-field {\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  display: inline-flex;\n  align-items: center;\n  vertical-align: middle;\n}\n.mat-internal-form-field > label {\n  margin-left: 0;\n  margin-right: auto;\n  padding-left: 4px;\n  padding-right: 0;\n  order: 0;\n}\n[dir=rtl] .mat-internal-form-field > label {\n  margin-left: auto;\n  margin-right: 0;\n  padding-left: 0;\n  padding-right: 4px;\n}\n\n.mdc-form-field--align-end > label {\n  margin-left: auto;\n  margin-right: 0;\n  padding-left: 0;\n  padding-right: 4px;\n  order: -1;\n}\n[dir=rtl] .mdc-form-field--align-end .mdc-form-field--align-end label {\n  margin-left: 0;\n  margin-right: auto;\n  padding-left: 4px;\n  padding-right: 0;\n}\n"]
-    }]
-  }], null, {
-    labelPosition: [{
-      type: Input,
-      args: [{
-        required: true
-      }]
-    }]
-  });
 })();
 
 // node_modules/@angular/material/fesm2022/core.mjs
