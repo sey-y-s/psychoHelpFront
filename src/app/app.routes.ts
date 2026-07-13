@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
+import {
+  ListeConseilAdminComponent
+} from "./shared/components/liste-conseil-admin-component/liste-conseil-admin-component";
 
 export const routes: Routes = [
   { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
@@ -13,6 +16,11 @@ export const routes: Routes = [
   {
     path: 'register',
     loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+  },
+
+  {
+    path: 'test',
+    loadComponent: () => import('./shared/components/liste-conseil-admin-component/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent)
   },
 
   // Psychologues (public)

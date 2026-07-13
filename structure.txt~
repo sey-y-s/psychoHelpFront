@@ -1,0 +1,176 @@
+psychoHelpFront/
+├── src/
+│   ├── app/
+│   │   ├── core/                                    # Fondations transversales de l'application
+│   │   │   ├── guards/
+│   │   │   │   ├── auth.guard.ts                    # Bloque l'accès auns
+│   │   │   │   └── role.guard.ts                    # Bloque l'accès selon le rôle (ADMIN, PSYCHOLOGUE)
+│   │   │   ├── interceptors/
+│   │   │   │   ├── auth.interceptor.ts              # Injecte le token JWT dans chaque requête HTTP
+│   │   │   │   └── erreur.interceptor.ts            # Capture toutes les erreurs HTTP et les affiche
+│   │   │   └── services/
+│   │   │       ├── auth.service.ts                  # Gère connexion, inscription, déconnexion, stockage token
+│   │   │       ├── notification.service.ts          # Affiche des messages (succès, erreur, info)
+│   │   │       ├── psychologue.service.ts           # Appels API pour lister et détailler les psychologues
+│   │   │       ├── seance.service.ts                # Appel API pour prendre un rendez-vous
+│   │   │       ├── psychologue-admin.service.ts     # Appels API admin pour valider/rejeter psychologues
+│   │   │       ├── conseil-admin.service.ts         # Appels API admin pour valider/rejeter conseils
+│   │   │       ├── conseil.service.ts               # CRUD des conseils par le psychologue
+│   │   │       └── creneau.service.ts               # CRUD des créneaux par le psychologue
+│   │   │
+│   │   ├── shared/                                  # Composants réutilisables dans toute l'application
+│   │   │   └── components/
+│   │   │       ├── navbar.component.ts              # Barre de navigation (menu selon rôle)
+│   │   │       ├── spinner.component.ts             # Indicateur de chargement
+│   │   │       ├── etat-vide.component.ts           # Message quand une liste est vide
+│   │   │       └── dialogue-confirm...              # Popup de confirmation (suppression, validation)
+│   │   │
+│   │   ├── models/                                  # Structures de données (interfaces TypeScript)
+│   │   │   ├── utilisateur.model.ts                 # Utilisateur, LoginRequest, RegisterRequest
+│   │   │   ├── psychologue.model.ts                 # Psychologue
+│   │   │   ├── creneau.model.ts                     # Creneau, Seance
+│   │   │   └── conseil.model.ts                     # Conseil
+│   │   │
+│   │   ├── pages/                                   # Toutes les pages de l'application
+│   │   │   ├── login/                               # Page connexion (email + mot de passe)
+│   │   │   ├── register/                            # Page inscription (nom, prénom, email, mot de passe)
+│   │   │   ├── psychologue-list/                    # Liste des psychologues (cartes)
+│   │   │   ├── psychologue-detail/                  # Détail d'un psychologue + ses créneaux
+│   │   │   ├── rdv/                                 # Confirmation de réservation d'un créneau
+│   │   │   ├── admin-psychologue-validation/        # Tableau de validation des psychologues (admin)
+│   │   │   ├── admin-conseil-validation/            # Tableau de validation des conseils (admin)
+│   │   │   ├── psy-mes-conseils/                    # Gestion des conseils du psychologue connecté
+│   │   │   └── psy-mes-creneaux/                    # Gestion des créneaux du psychologue connecté
+│   │   │
+│   │   ├── app.routes.ts                            # Routes racine avec lazy loading
+│   │   ├── app.config.ts                            # Providers globaux (router, HTTP, animations)
+│   │   └── app.component.ts                         # Composant racine (navbar + router-outlet)
+│   │
+│   ├── styles.css                                   # Styles globaux et thème Material
+│   ├── index.html                                   # Point d'entrée HTML
+│   └── main.ts                                      # Bootstrap de l'application
+│
+├── angular.json                                     # Configuration Angular CLI
+├── package.json                                     # Dépendances npm
+├── tsconfig.json                                    # Configuration TypeScript
+└── README.md                                        # Documentation du projet
+
+
+
+
+
+
+
+
+NB : N'oublions pas les fichiers qui vont avec... et soyons curieux. Un meet possible demain ou dimanche
+
+
+## RÉPARTITION : 
+
+
+---
+
+### Authentification  --> Maman Nationale & DC
+- `models/utilisateur.model.ts`
+- `core/services/auth.service.ts`
+- `core/interceptors/auth.interceptor.ts`
+- `pages/login/login.component.ts`
+- `core/services/notification.service.ts`
+- `core/interceptors/erreur.interceptor.ts`
+- `pages/register/register.component.ts`
+
+
+### Psychologue (partie publique)  --> Big Demboy
+- `models/psychologue.model.ts`
+- `core/services/psychologue.service.ts`
+- `pages/psychologue-list/psychologue-list.component.ts`
+
+
+### Psychologue (partie détail)  --> Adama Assimi Diarra
+- `pages/psychologue-detail/psychologue-detail.component.ts`
+
+
+### Rendez-vous  --> Expert Moussa
+- `models/creneau.model.ts`
+- `core/services/seance.service.ts`
+- `pages/rdv/rdv.component.ts`
+
+
+### Admin (validation psychologues) --> Imam Koita(big H)
+- `core/services/psychologue-admin.service.ts`
+- `pages/admin-psychologue-validation/admin-psychologue-validation.component.ts`
+
+
+### Admin (validation conseils) --> Mohamed
+- `models/conseil.model.ts`
+- `core/services/conseil-admin.service.ts`
+- `pages/admin-conseil-validation/admin-conseil-validation.component.ts`
+
+### Espace psychologue --> Koro Gass(°°
+- `core/services/conseil.service.ts`
+- `core/services/creneau.service.ts`
+- `pages/psy-mes-conseils/psy-mes-conseils.component.ts`
+- `pages/psy-mes-creneaux/psy-mes-creneaux.component.ts`
+
+### Socle commun................
+- `core/guards/auth.guard.ts`
+- `core/guards/role.guard.ts`
+- `shared/components/navbar.component.ts`
+- `shared/components/spinner.component.ts`
+- `shared/components/etat-vide.component.ts`
+- `shared/components/dialogue-confirmation.component.ts`
+- `app.routes.ts`
+- `app.config.ts`
+- `app.component.ts`
+- `styles.css`
+-  etc
+
+
+---
+
+
+
+## FONCTIONNALITÉS COMPLÉMENTAIRES ----- si on y arrive :')
+
+---
+
+### Test d'auto-évaluation
+
+| Page            | Rôle           | Description 
+|-----          - |------          |-------------
+| `test-list`     | Public/Citoyen | Liste des tests disponibles par catégorie 
+| `test-passage`  | Citoyen        | Passer un test (stepper question par question) 
+| `test-resultat` | Citoyen        | Résultat du test + score + conseils + psy recommandés 
+
+Nouvelles entités : CategorieTest, Test, QuestionTest, ChoixMultiple, ResultatTest
+
+---
+
+### Gestion du profil
+
+| Page                 | Rôle        | Description 
+|-------         ------|-------------|-------------------------------
+| `profil-citoyen`     | Citoyen     | Voir/modifier son profil, historique des tests, historique des RDV
+| `profil-psychologue` | Psychologue | Voir/modifier son profil, photo, biographie, spécialités
+
+---
+
+### Dashboard et statistiques
+
+| Page                   | Rôle        | Description 
+|------                  |------       |-------------
+| `dashboard-admin`      | Admin       | Statistiques globales (nombre RDV, tests passés, psy actifs), graphiques |
+| `dashboard-psy`        | Psychologue | Stats personnelles (RDV effectués, conseils publiés, patients) |
+| `tableau-bord-citoyen` | Citoyen     | Suivi personnel (évolution scores, prochains RDV, conseils reçus) |
+
+---
+
+### Fonctionnalités transversales
+
+| Page/Composant              | Rôle        | Description |
+|------                       |------       |-------------|
+| `recherche-avancee`         | Public      | Recherche psy par nom, spécialité, disponibilité, note |
+| `messagerie`                | Citoyen/Psy | Chat simple entre patient et psychologue |
+| `notifications`             | Tous        | Centre de notifications (rappel RDV, nouveau conseil, validation) |
+| `admin-gestion-specialites` | Admin       | CRUD des spécialités |
+| `admin-gestion-categories`  | Admin       | CRUD des catégories de test |
