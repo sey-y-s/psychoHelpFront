@@ -64,5 +64,9 @@ getUtilisateurId():number | undefined{
 
   }
 
+  aRole(role: string): boolean {
+    return this.currentUserSubject.value?.role === role;
+  }
+
 
 }
