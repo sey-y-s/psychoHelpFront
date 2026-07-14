@@ -6,14 +6,14 @@ import {
 } from "./chunk-HFGTBIS4.js";
 import "./chunk-ACFWFEY7.js";
 import "./chunk-NUXUVRE6.js";
+import "./chunk-4GZMD3TV.js";
 import {
   HttpClient
 } from "./chunk-O2KFBVAP.js";
+import "./chunk-APCXLJHM.js";
 import {
   BidiModule
 } from "./chunk-VLOZ7OFG.js";
-import "./chunk-4GZMD3TV.js";
-import "./chunk-APCXLJHM.js";
 import {
   Component,
   DOCUMENT,

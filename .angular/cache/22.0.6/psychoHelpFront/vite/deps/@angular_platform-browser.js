@@ -33,8 +33,8 @@ import {
   platformBrowser,
   provideProtractorTestingSupport
 } from "./chunk-ACFWFEY7.js";
-import "./chunk-O2KFBVAP.js";
 import "./chunk-4GZMD3TV.js";
+import "./chunk-O2KFBVAP.js";
 import {
   getDOM
 } from "./chunk-APCXLJHM.js";

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { seanceInterfaceRequest, SeanceInterfaceResponse } from '../../models/seance.model';
+import { seanceInterfaceRequest, seanceInterfaceRequest2, SeanceInterfaceResponse } from '../../models/seance.model';
 
 @Injectable({ providedIn: 'root' })
 export class SeanceService {
@@ -12,6 +12,11 @@ export class SeanceService {
   constructor() {}
        prendreRdv(seanceInterfaceRequest:seanceInterfaceRequest):Observable<SeanceInterfaceResponse>{
           return this.http.post<SeanceInterfaceResponse>(`${this.api}`,seanceInterfaceRequest)
+       }
+       prendreRdv2(seanceInterfaceRequest:seanceInterfaceRequest):Observable<SeanceInterfaceResponse>{
+          return this.http.post<SeanceInterfaceResponse>(`${this.api}`,seanceInterfaceRequest,{
+            withCredentials:true
+          })
        }
        
 }

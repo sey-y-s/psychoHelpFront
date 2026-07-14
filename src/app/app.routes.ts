@@ -54,7 +54,7 @@ export const routes: Routes = [
   */
  
  {
-       path:"rdv",component:Rdv
+       path:"prendrerdv",component:Rdv
  }
 ,
   // Administration (admin)

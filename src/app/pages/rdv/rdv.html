@@ -1,37 +1,22 @@
-<form  [formGroup]="form" >
-       @if (message) {
-           <span style="color: red;"> {{message}}  </span>
-       }@else{
-                   <span style="color: green;"> {{message}}  </span>
+<h1>prendre un rdv</h1>
+<form [formGroup]="form2">
+<div class="rdv">
+@if (creneauDisponiblePourcitoyen.length>0) {
+        @for (creneau of creneauDisponiblePourcitoyen; track $index) {
 
-       }
-       
-  <div>
-    <label for="dateRdv">Date du rendez-vous</label>
-    <input
-      type="date"
-      id="dateRdv"
-      formControlName="dateRdv">
-  </div>
-  <div>
-    <label for="citoyenId">Citoyen</label>
-    <input
-      type="number"
-      id="citoyenId"
-      formControlName="citoyenId">
-  </div>
-
-  <div>
-    <label for="creneauId">Créneau</label>
-    <select id="creneauId" formControlName="creneauId">
-        @for (creneau of crenaux; track creneau.id) {
-            <option [value]="creneau.id">
-                {{creneau.jours}}
-            </option>
+                <div class="card">
+                        <p>Jours : {{creneau.jours}}</p>
+                        <p>Date : {{creneau.date}}</p>
+                        <p>
+                                Heure : {{creneau.heureDebut}} - {{creneau.heureFin}}
+                        </p>
+                        <button type="button"(click)="onSubmit2(creneau)">
+                            Prendre ce rendez-vous
+                        </button>
+            </div>
         }
-    </select>
-  </div>
-
-  <button (click)="onSubmit()" type="submit">Prendre rendez-vous</button>
-
+}@else{
+                <div style="color: green;">Aucun creneau disponible pour le moment</div>
+    }
+</div>
 </form>

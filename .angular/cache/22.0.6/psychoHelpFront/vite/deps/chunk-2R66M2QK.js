@@ -1,12 +1,13 @@
 import {
+  ScrollDispatcher,
+  ScrollingModule,
+  ViewportRuler
+} from "./chunk-SFJPFOQ7.js";
+import {
   ESCAPE,
   _IdGenerator,
   hasModifierKey
-} from "./chunk-66SSPDA3.js";
-import {
-  _getEventTarget,
-  _isTestEnvironment
-} from "./chunk-PYFY3RZF.js";
+} from "./chunk-GC62TQSL.js";
 import {
   coerceCssPixelValue
 } from "./chunk-PLJ2QXBA.js";
@@ -14,10 +15,9 @@ import {
   coerceArray
 } from "./chunk-N4DOILP3.js";
 import {
-  ScrollDispatcher,
-  ScrollingModule,
-  ViewportRuler
-} from "./chunk-SFJPFOQ7.js";
+  _getEventTarget,
+  _isTestEnvironment
+} from "./chunk-PYFY3RZF.js";
 import {
   supportsScrollBehavior
 } from "./chunk-GUGIMSVJ.js";
@@ -28,12 +28,12 @@ import {
   Platform
 } from "./chunk-Y5FFNXWF.js";
 import {
+  Location
+} from "./chunk-4GZMD3TV.js";
+import {
   BidiModule,
   Directionality
 } from "./chunk-VLOZ7OFG.js";
-import {
-  Location
-} from "./chunk-4GZMD3TV.js";
 import {
   ANIMATION_MODULE_TYPE,
   ApplicationRef,
@@ -3013,4 +3013,4 @@ export {
   createOverlayRef,
   OverlayModule
 };
-//# sourceMappingURL=chunk-D6QB73UN.js.map
+//# sourceMappingURL=chunk-2R66M2QK.js.map

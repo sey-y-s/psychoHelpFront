@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Creneau, CreneauInterfaceResponse } from '../../models/creneau.model';
+import { Creneau, CreneauInterfaceResponse, CreneauInterfaceResponse2 } from '../../models/creneau.model';
 
 @Injectable({ providedIn: 'root' })
 export class CreneauService {
   // TODO: Remplacer par l'URL réelle
   private api = 'http://localhost:8080/api/creneaux';
+
 
   constructor(private http: HttpClient) {}
 
@@ -25,5 +26,9 @@ export class CreneauService {
   listerDesCreneaux(): Observable<CreneauInterfaceResponse[]> {
     // TODO: Filtrer par psychologue connecté (l'API doit gérer)
     return this.http.get<CreneauInterfaceResponse[]>(`${this.api}`);
+  }
+  listerDesCreneauxDisponiblePourCitoyen(): Observable<CreneauInterfaceResponse2[]> {
+    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
+    return this.http.get<CreneauInterfaceResponse2[]>(`${this.api}/${5}/disponiblePourCitoyen`);
   }
 }

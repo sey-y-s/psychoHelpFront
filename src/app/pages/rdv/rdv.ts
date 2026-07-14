@@ -1,9 +1,9 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, inject, OnInit,} from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CreneauService } from "../../core/services/creneau.service";
-import { CreneauInterfaceResponse } from "../../models/creneau.model";
+import { CreneauInterfaceResponse, CreneauInterfaceResponse2 } from "../../models/creneau.model";
 import { SeanceService } from "../../core/services/seance.service";
-import { seanceInterfaceRequest } from "../../models/seance.model";
+import { seanceInterfaceRequest, seanceInterfaceRequest2 } from "../../models/seance.model";
 import { AuthService } from "../../core/services/auth.service";
 import { Utilisateur } from "../../models/utilisateur.model";
 
@@ -18,49 +18,73 @@ export class Rdv implements OnInit {
    seanceService=inject(SeanceService)
    authService=inject(AuthService)
     crenaux : CreneauInterfaceResponse[]=[]
+    creneauDisponiblePourcitoyen:CreneauInterfaceResponse2[]=[]
     private formeBulder=inject(FormBuilder)
     message:null|string=null
-    private utilisateurConnecter:null|Utilisateur=null
-    
+     utilisateurConnecter:null|Utilisateur=null
+   
     ngOnInit(){
-
-          this.creneauService.listerDesCreneaux()
-            .subscribe(donnees => {
-              this.crenaux = donnees;
-              console.log(this.crenaux)
-              
-            });
             this.authService.currentUser$.subscribe(
                   utilisateur=>{
                     this.utilisateurConnecter=utilisateur
                   }
               )
        //console.log(this.utilisateurConnecter)
+       this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe({
+            next:(donnees)=>{
+                   this.creneauDisponiblePourcitoyen=donnees
+            },
+            error:(error)=>{
+                console.log(error)
+            }
+       })
     }
-            
-    form = this.formeBulder.group({
+    form2 = this.formeBulder.group({
         citoyenId: this.formeBulder.control<number | null>(null, Validators.required),
         creneauId: this.formeBulder.control<number | null>(null, Validators.required),
         dateRdv: this.formeBulder.control<string | null>(null, Validators.required)
       });
-    onSubmit(){
-          console.log(this.form.value)
-          this.seanceService.prendreRdv(this.form.value as seanceInterfaceRequest).subscribe(
-            {
-              
-              next:  (response)=>{ 
-                console.log(response)
-                 this.message="rdv pris avec succes!"
-              },
-              error:({error})=>{ 
-                console.log(error) 
-                this.message=error.message
-                 
+        onSubmit2(creneau:any){
+            if(!this.utilisateurConnecter){
+                       console.log("Aucun utilisateur connecté");
+                  return;
               }
-            }
 
-          );
-    }
+            this.form2.patchValue({
+              citoyenId: this.utilisateurConnecter.id,
+              creneauId: creneau.creneauId,
+              dateRdv: creneau.date
+            });
 
+
+           console.log(this.form2.value);
+
+
+            this.seanceService.prendreRdv2(
+              this.form2.value as seanceInterfaceRequest
+            ).subscribe({
+
+              next:(response)=>{
+                this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe(
+                  {
+                    next:(donnees)=>{
+                             this.creneauDisponiblePourcitoyen=donnees.filter((donnee)=>donnee.date===this.form2.value.dateRdv)
+                    }
+                  }
+                )
+                console.log(response);
+                this.message="rdv pris avec succes!";
+
+              },
+
+              error:({error})=>{
+                console.log(error);
+                this.message=error.message;
+              }
+
+  });
 
 }
+}
+
+

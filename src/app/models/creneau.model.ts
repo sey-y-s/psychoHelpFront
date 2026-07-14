@@ -15,3 +15,12 @@ export interface CreneauInterfaceResponse {
     statut:boolean;
     nomPsychologue:string;
 }
+export interface CreneauInterfaceResponse2 {
+  jours:string
+  heureDebut:string
+  heureFin:string
+  creneauId: number;
+  psyId: number;
+  date: string;
+  nomPsychologue:string
+}

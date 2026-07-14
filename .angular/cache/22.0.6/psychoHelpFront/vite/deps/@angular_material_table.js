@@ -1,5 +1,3 @@
-import "./chunk-PLJ2QXBA.js";
-import "./chunk-N4DOILP3.js";
 import {
   CDK_VIRTUAL_SCROLL_VIEWPORT,
   DataSource,
@@ -9,6 +7,8 @@ import {
   _ViewRepeaterOperation,
   isDataSource
 } from "./chunk-SFJPFOQ7.js";
+import "./chunk-PLJ2QXBA.js";
+import "./chunk-N4DOILP3.js";
 import "./chunk-GUGIMSVJ.js";
 import {
   _isNumberValue
@@ -16,12 +16,12 @@ import {
 import {
   Platform
 } from "./chunk-Y5FFNXWF.js";
+import "./chunk-4GZMD3TV.js";
+import "./chunk-APCXLJHM.js";
 import {
   BidiModule,
   Directionality
 } from "./chunk-VLOZ7OFG.js";
-import "./chunk-4GZMD3TV.js";
-import "./chunk-APCXLJHM.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,

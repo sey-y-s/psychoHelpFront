@@ -3,11 +3,11 @@ import "./chunk-GUGIMSVJ.js";
 import {
   Platform
 } from "./chunk-Y5FFNXWF.js";
+import "./chunk-4GZMD3TV.js";
+import "./chunk-APCXLJHM.js";
 import {
   BidiModule
 } from "./chunk-VLOZ7OFG.js";
-import "./chunk-4GZMD3TV.js";
-import "./chunk-APCXLJHM.js";
 import {
   Component,
   ContentChildren,
