@@ -1,12 +1,12 @@
 // TODO: Vérifier la correspondance avec l'entité Psychologue du backend
 export interface Psychologue {
-  id?: number;
-  nom: string;
+    id: number;
   prenom: string;
-  email: string;
-  telephone?: string;
+  nom: string;
   specialite: string;
-  biographie?: string;
-  photoUrl?: string;
-  valide: boolean;
+  description: string;
+  mail: string;
+  telephone: string;
+  dateCreation: string;
+
 }

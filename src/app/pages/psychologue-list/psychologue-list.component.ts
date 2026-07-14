@@ -29,7 +29,7 @@ import { EtatVideComponent } from '../../shared/components/etat-vide.component';
               <mat-card-subtitle>{{ psy.specialite }}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-              <p>{{ psy.biographie || 'Aucune biographie' }}</p>
+          
             </mat-card-content>
             <mat-card-actions align="end">
               <button mat-button color="primary">Voir les créneaux</button>

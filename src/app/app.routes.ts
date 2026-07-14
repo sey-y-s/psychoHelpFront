@@ -21,10 +21,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
   },
   {
-    path: 'psychologues/:id',
-    loadComponent: () => import('./pages/psychologue-detail/psychologue-detail.component').then(m => m.PsychologueDetailComponent)
+    path: 'psychologue-detail/:id',
+    loadComponent: () => import('./pages/psychologue-detail/psychologue-detail').then(m => m.PsychologueDetail)
   },
 
+  
   // Rendez-vous (connecté)
   {
     path: 'rendezvous/prise',
