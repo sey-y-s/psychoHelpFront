@@ -176,3 +176,14 @@ font-family: 'Poppins', sans-serif ;
   max-width: 150px;
   width: 100%;
 }
+.message-erreur{
+    width: 100%;
+    text-align: center;
+    color: #d25e5e;
+    background: #fdeaea;
+    border: 1px solid #f5c2c2;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 12px;
+}

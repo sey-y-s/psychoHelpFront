@@ -2,10 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisateur.model';
+import { Citoyen } from '../../models/citoyen.model';
+import { Psychologue } from '../../models/psychologue.model';
+import { Admin } from '../../models/admin.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private api = 'http://localhost:8080/api/utilisateurs';
+    private apis = 'http://localhost:8080/api';
+
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
