@@ -2,71 +2,84 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisateur.model';
+import { Citoyen } from '../../models/citoyen.model';
+import { Psychologue } from '../../models/psychologue.model';
+import { Admin } from '../../models/admin.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  // TODO: Remplacer par l'URL réelle de l'API Spring Boot
   private api = 'http://localhost:8080/api/utilisateurs';
+    private apis = 'http://localhost:8080/api';
+
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    // Restaurer la session si un utilisateur est stocké
-   // const stored = localStorage.getItem('utilisateur');
-   // if (stored) this.currentUserSubject.next(JSON.parse(stored));
+    // Vérifier si une session existe déjà
+    this.verifierSession();
   }
 
-  login(data: LoginRequest): Observable<Utilisateur> {
-    // TODO: Adapter la requête et la réponse au format de l'API
-   return this.http.post<Utilisateur>(`${this.api}/login`, data,{
-    withCredentials:true
-   });
+
+  private verifierSession(): void {
+    // Avec les sessions, le cookie est envoyé automatiquement
+    this.http.get<Utilisateur>(`${this.api}/session`).subscribe({
+      next: utilisateur => this.currentUserSubject.next(utilisateur),
+      error: () => this.currentUserSubject.next(null) // Pas de session active
+    });
   }
+// Methode pour l'inscription du Citoyen
+  inscrireCitoyen(citoyen: Citoyen): Observable<any> {
 
-  register(data: RegisterRequest): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.api}/register`, data,);
+    return this.http.post(
+      `${this.apis}/citoyens`,
+      citoyen
+    );
+}
+
+   // Methode pour l'inscription du Psychologue
+    inscrirePsychologue(psychologue: Psychologue): Observable<any> {
+
+    return this.http.post(
+      `${this.api}/psychologues`,
+      psychologue
+    );
+
   }
+    // Methode pour l'inscription du Admin
+      inscrireAdmin(admin: Admin): Observable<any> {
 
- 
-
-  sauvegarderUtilisateur(user:any){
-
-    sessionStorage.setItem(
-      "utilisateur",
-      JSON.stringify(user)
+    return this.http.post(
+      `${this.api}/admins`,
+      admin
     );
 
   }
 
-
- recupererUtilisateur(): Utilisateur | null {
-
-  const user = sessionStorage.getItem("utilisateur");
-
-  return user ? JSON.parse(user) : null;
-
-}
-
-getUtilisateurId():number | undefined{
-  return this.recupererUtilisateur()?.id;
-}
-  estConnecte(){
-
-    return sessionStorage.getItem("utilisateur") !== null;
-
+  login(data: LoginRequest): Observable<Utilisateur> {
+    return this.http.post<Utilisateur>(`${this.api}/login`, data, { withCredentials: true }).pipe(
+      tap(utilisateur => this.currentUserSubject.next(utilisateur))
+    );
   }
 
+  register(data: RegisterRequest): Observable<Utilisateur> {
+    return this.http.post<Utilisateur>(`${this.api}/register`, data);
+  }
 
-  logout(){
+  logout(): Observable<any> {
+    return this.http.post(`${this.api}/logout`, {}, { withCredentials: true }).pipe(
+      tap(() => this.currentUserSubject.next(null))
+    );
+  }
 
-    sessionStorage.removeItem("utilisateur");
-    
-
+  estConnecte(): boolean {
+    return this.currentUserSubject.value !== null;
   }
 
   aRole(role: string): boolean {
     return this.currentUserSubject.value?.role === role;
   }
 
-
+  getUtilisateurId(): number | undefined {
+    return this.currentUserSubject.value?.id;
+  }
 }

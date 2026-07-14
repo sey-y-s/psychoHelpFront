@@ -56,7 +56,7 @@ export class Logins {
     this.auth.login(this.forms.value).subscribe({
       next: (res) => {
         this.notif.succes("vous êtes connectez avec succes");
-        this.auth.sauvegarderUtilisateur(res);
+        // this.auth.sauvegarderUtilisateur(res);
       console.log(res);
         if (res.role == "ADMIN") {
           this.router.navigate(["/dashboardAdmin"]);

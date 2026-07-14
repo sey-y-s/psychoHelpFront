@@ -32,9 +32,7 @@
           "skipTests": true
         },
         "@schematics/angular:service": {
-          "skipTests": true,
-          "standalone": true
-
+          "skipTests": true
         }
       },
       "root": "",

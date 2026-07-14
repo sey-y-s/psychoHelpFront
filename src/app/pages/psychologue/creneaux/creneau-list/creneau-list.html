@@ -1,0 +1,36 @@
+<div class="jours">
+    @for (jour of jours; track jour) {
+        <button
+                type="button"
+                [class.active]="jourSelectionne === jour"
+                (click)="jourSelectionne = jour"
+        >
+            {{ jour }}
+        </button>
+    }
+</div>
+
+@if (chargement) {
+    <div class="loading">
+        <mat-spinner diameter="40"></mat-spinner>
+        <span>Chargement...</span>
+    </div>
+} @else {
+
+    @if (creneauxFiltres.length > 0) {
+        <div class="liste">
+            @for (creneau of creneauxFiltres; track creneau.id) {
+                <app-creneau-card
+                        [creneau]="creneau"
+                        (modifier)="modifier.emit($event)"
+                        (supprimer)="supprimer.emit($event)"
+                />
+            }
+        </div>
+    } @else {
+        <div class="empty-state">
+            <h3>Aucun créneau pour {{ jourSelectionne }}</h3>
+            <p>Aucune disponibilité n’a encore été enregistrée.</p>
+        </div>
+    }
+}
