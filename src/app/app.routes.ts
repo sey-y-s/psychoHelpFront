@@ -37,22 +37,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
   },
 
-  // Psychologues (public)
-  {
-    path: "psychologues",
-    loadComponent: () =>
-      import("./pages/psychologue-list/psychologue-list.component").then(
-        (m) => m.PsychologueListComponent,
-      ),
-  },
-  {
-    path: "psychologues/:id",
-    loadComponent: () =>
-      import("./pages/psychologue-detail/psychologue-detail.component").then(
-        (m) => m.PsychologueDetailComponent,
-      ),
-  },
-
   // Rendez-vous (connecté)
   {
     path: "rendezvous/prise",
@@ -63,16 +47,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  // Administration (admin)
-  {
-    path: "admin/psychologues",
-    loadComponent: () =>
-      import("./pages/admin-psychologue-validation/admin-psychologue-validation.component").then(
-        (m) => m.AdminPsychologueValidationComponent,
-      ),
-    canActivate: [authGuard, roleGuard],
-    data: { role: "ADMIN" },
-  },
+
   {
     path: "admin/conseils",
     loadComponent: () =>
