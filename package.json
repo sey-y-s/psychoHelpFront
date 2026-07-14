@@ -20,6 +20,9 @@
     "@angular/material": "^22.0.4",
     "@angular/platform-browser": "^22.0.0",
     "@angular/router": "^22.0.0",
+    "@fortawesome/fontawesome-free": "^7.3.0",
+    "ngx-pagination": "^6.0.3",
+    "ngx-spinner": "^21.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

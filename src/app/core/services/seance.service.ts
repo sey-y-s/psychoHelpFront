@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { inject, Injectable } from '@angular/core';
+=======
+
+import { Injectable } from '@angular/core';
+>>>>>>> 7d0e306bcc9646b4c6c81d333f0c23d50e65cda1
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { seanceInterfaceRequest, seanceInterfaceRequest2, SeanceInterfaceResponse } from '../../models/seance.model';
