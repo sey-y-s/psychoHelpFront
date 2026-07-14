@@ -1,12 +1,9 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
-<<<<<<< HEAD
 import { Rdv } from './pages/rdv/rdv';
-=======
 //import {Psychologue} from "./pages/register/psychologue/psychologue";
 import {PsychologyLayout} from "./layout/psychologue-layout/psychologue-layout";
->>>>>>> 7d0e306bcc9646b4c6c81d333f0c23d50e65cda1
 
 export const routes: Routes = [
  //  { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
@@ -138,8 +135,7 @@ export const routes: Routes = [
     path: '**',
     redirectTo: 'psychologue/dashboard'
   }
-
-<<<<<<< HEAD
+,
    //chemin pour acceder a la page d´inscription d´un citoyen
   {
     path: 'register/citoyen',
@@ -152,15 +148,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
   },
 
-  // Psychologues (public)
-  {
-    path: 'psychologues',
-    loadComponent: () => import('./pages/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
-  },
-  {
-    path: 'psychologues/:id',
-    loadComponent: () => import('./pages/psychologue-detail/psychologue-detail.component').then(m => m.PsychologueDetailComponent)
-  },
 
   // Rendez-vous (connecté)
   /*
@@ -172,9 +159,12 @@ export const routes: Routes = [
   */
  
  {
-       path:"prendrerdv",component:Rdv
+       path:"prendrerdv",
+        loadComponent: () => import('./pages/rdv/rdv').then(m => m.Rdv),
+
  }
 ,
+/*
   // Administration (admin)
   {
     path: 'admin/psychologues',
@@ -182,6 +172,7 @@ export const routes: Routes = [
     canActivate: [authGuard, roleGuard],
     data: { role: 'ADMIN' }
   },
+  */
   {
     path: 'admin/conseils',
     loadComponent: () => import('./pages/admin-conseil-validation/admin-conseil-validation.component').then(m => m.AdminConseilValidationComponent),
@@ -197,15 +188,8 @@ export const routes: Routes = [
     canActivate: [authGuard, roleGuard],
     data: { role: 'PSYCHOLOGUE' }
   },
-  {
-    path: 'psy/creneaux',
-    loadComponent: () => import('./pages/psy-mes-creneaux/psy-mes-creneaux.component').then(m => m.PsyMesCreneauxComponent),
-    canActivate: [authGuard, roleGuard],
-    data: { role: 'PSYCHOLOGUE' }
-  },
+  
   { path: 'psy', redirectTo: '/psy/conseils', pathMatch: 'full' },
 
   { path: '**', redirectTo: '/psychologues' }
-=======
->>>>>>> 7d0e306bcc9646b4c6c81d333f0c23d50e65cda1
 ];

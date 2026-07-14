@@ -8,14 +8,9 @@ import { Admin } from '../../models/admin.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-<<<<<<< HEAD
-  // TODO: Remplacer par l'URL réelle de l'API Spring Boot
-  private api = 'http://localhost:8080/api/utilisateurs';
-=======
   private api = 'http://localhost:8080/api/utilisateurs';
     private apis = 'http://localhost:8080/api';
 
->>>>>>> 7d0e306bcc9646b4c6c81d333f0c23d50e65cda1
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
