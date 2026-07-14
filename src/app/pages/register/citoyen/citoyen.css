@@ -10,7 +10,6 @@ body {
 .page {
   display: flex;
   min-height: 100vh;
-  height: 100%;
   width: 100%;
   font-family:'Poppins', sans-serif;
 }
@@ -193,6 +192,8 @@ font-family: 'Poppins', sans-serif ;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    margin-top : -40px;
+
 }
 
 .btn-retour{

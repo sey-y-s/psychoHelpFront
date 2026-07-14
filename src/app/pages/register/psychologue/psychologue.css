@@ -65,10 +65,10 @@ font-family: 'Poppins', sans-serif ;
   cursor: pointer !important;
   background-color: #fff; /* ou la couleur de fond de vos inputs */
 }
-.custom-file-input::placeholder {
-  color: #888888; /* Modifiez la teinte de gris selon votre thème */
-  opacity: 1; /* Garantit la bonne couleur sur Safari/Firefox */
-}
+/*.custom-file-input::placeholder {
+  /*color: #888888; /* Modifiez la teinte de gris selon votre thème */
+/*opacity: 1; /* Garantit la bonne couleur sur Safari/Firefox */
+/*}*/
 
 .input-arrondi {
   width: 100%;
@@ -210,6 +210,7 @@ select:valid {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    margin-top : -40px;
 }
 
 .btn-retour{
@@ -225,3 +226,4 @@ select:valid {
     background-color: #c88d73;
     transform: scale(1.05);
 }
+
