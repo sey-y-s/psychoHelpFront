@@ -5,68 +5,48 @@ import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisa
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  // TODO: Remplacer par l'URL réelle de l'API Spring Boot
   private api = 'http://localhost:8080/api/utilisateurs';
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    // Restaurer la session si un utilisateur est stocké
-   // const stored = localStorage.getItem('utilisateur');
-   // if (stored) this.currentUserSubject.next(JSON.parse(stored));
+    // Vérifier si une session existe déjà
+    this.verifierSession();
+  }
+
+  private verifierSession(): void {
+    // Avec les sessions, le cookie est envoyé automatiquement
+    this.http.get<Utilisateur>(`${this.api}/session`).subscribe({
+      next: utilisateur => this.currentUserSubject.next(utilisateur),
+      error: () => this.currentUserSubject.next(null) // Pas de session active
+    });
   }
 
   login(data: LoginRequest): Observable<Utilisateur> {
-    // TODO: Adapter la requête et la réponse au format de l'API
-   return this.http.post<Utilisateur>(`${this.api}/login`, data,{
-    withCredentials:true
-   });
+    return this.http.post<Utilisateur>(`${this.api}/login`, data, { withCredentials: true }).pipe(
+      tap(utilisateur => this.currentUserSubject.next(utilisateur))
+    );
   }
 
   register(data: RegisterRequest): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.api}/register`, data,);
+    return this.http.post<Utilisateur>(`${this.api}/register`, data);
   }
 
- 
-
-  sauvegarderUtilisateur(user:any){
-
-    sessionStorage.setItem(
-      "utilisateur",
-      JSON.stringify(user)
+  logout(): Observable<any> {
+    return this.http.post(`${this.api}/logout`, {}, { withCredentials: true }).pipe(
+      tap(() => this.currentUserSubject.next(null))
     );
-
   }
 
-
- recupererUtilisateur(): Utilisateur | null {
-
-  const user = sessionStorage.getItem("utilisateur");
-
-  return user ? JSON.parse(user) : null;
-
-}
-
-getUtilisateurId():number | undefined{
-  return this.recupererUtilisateur()?.id;
-}
-  estConnecte(){
-
-    return sessionStorage.getItem("utilisateur") !== null;
-
-  }
-
-
-  logout(){
-
-    sessionStorage.removeItem("utilisateur");
-    
-
+  estConnecte(): boolean {
+    return this.currentUserSubject.value !== null;
   }
 
   aRole(role: string): boolean {
     return this.currentUserSubject.value?.role === role;
   }
 
-
+  getUtilisateurId(): number | undefined {
+    return this.currentUserSubject.value?.id;
+  }
 }

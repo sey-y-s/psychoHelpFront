@@ -34,12 +34,12 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Sidebar } from './shared/components/sidebar/sidebar';
 import { AuthService } from './core/services/auth.service';
-import { Footer } from './shared/components/footer/footer'
+// import { Footer } from './shared/components/footer/footer'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, Sidebar, Footer],
+  imports: [RouterOutlet, CommonModule, Sidebar],
   templateUrl: './app.html'
 })
 export class App {
