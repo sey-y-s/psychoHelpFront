@@ -1,0 +1,33 @@
+<article class="creneau-card">
+
+    <div>
+        <strong>
+            {{ formaterHeure(creneau.heureDebut) }}
+            -
+            {{ formaterHeure(creneau.heureFin) }}
+        </strong>
+
+        <span [class.disponible]="creneau.statut">
+      {{ creneau.statut ? 'Disponible' : 'Indisponible' }}
+    </span>
+    </div>
+
+    <div class="actions">
+        <button
+                type="button"
+                title="Modifier"
+                (click)="modifier.emit(creneau)"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+                type="button"
+                title="Supprimer"
+                (click)="supprimer.emit(creneau)"
+        >
+            <mat-icon>delete_outline</mat-icon>
+        </button>
+    </div>
+
+</article>
