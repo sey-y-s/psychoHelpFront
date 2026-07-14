@@ -187,3 +187,24 @@ font-family: 'Poppins', sans-serif ;
     margin: 15px 0;
     font-size: 12px;
 }
+
+.entete-droit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.btn-retour{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #D8A58A;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-retour:hover{
+    background-color: #c88d73;
+    transform: scale(1.05);
+}
