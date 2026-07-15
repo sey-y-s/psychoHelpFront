@@ -11,28 +11,24 @@
             @for (rdv of rendezVousPagines; track rdv.id) {
                 <app-rendez-vous-card
                         [rendezVous]="rdv"
-                        (voirDetails)="voirDetails.emit($event)"
-                />
+                        (voirDetails)="voirDetails.emit($event)"/>
             }
 
         </div>
 
         @if (nombrePages > 1) {
             <div class="pagination">
-
                 <button
                         type="button"
                         (click)="changerPage(1)"
-                        [disabled]="pageActuelle === 1"
-                >
+                        [disabled]="pageActuelle === 1">
                     «
                 </button>
 
                 <button
                         type="button"
                         (click)="changerPage(pageActuelle - 1)"
-                        [disabled]="pageActuelle === 1"
-                >
+                        [disabled]="pageActuelle === 1">
                     ‹
                 </button>
 
@@ -40,8 +36,7 @@
                     <button
                             type="button"
                             [class.active]="pageActuelle === page"
-                            (click)="changerPage(page)"
-                    >
+                            (click)="changerPage(page)">
                         {{ page }}
                     </button>
                 }
@@ -49,16 +44,14 @@
                 <button
                         type="button"
                         (click)="changerPage(pageActuelle + 1)"
-                        [disabled]="pageActuelle === nombrePages"
-                >
+                        [disabled]="pageActuelle === nombrePages">
                     ›
                 </button>
 
                 <button
                         type="button"
                         (click)="changerPage(nombrePages)"
-                        [disabled]="pageActuelle === nombrePages"
-                >
+                        [disabled]="pageActuelle === nombrePages">
                     »
                 </button>
 
@@ -67,7 +60,6 @@
     } @else {
         <div class="empty-state">
             <h2>Aucun rendez-vous</h2>
-
             <p>
                 Aucun rendez-vous ne correspond au filtre sélectionné.
             </p>

@@ -162,12 +162,39 @@
     transform: scale(1.03);
 }
 
-.session-loading {
+.session-loading,
+.session-empty {
     flex: 1;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
     color: #777;
     font-size: 13px;
+    text-align: center;
+}
+
+.session-spinner {
+    width: 25px;
+    height: 25px;
+    border: 3px solid #eadfd9;
+    border-top-color: #7c4c35;
+    border-radius: 50%;
+    animation: session-rotation 0.7s linear infinite;
+}
+
+.session-empty mat-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+    color: #999;
+}
+
+@keyframes session-rotation {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 900px) {

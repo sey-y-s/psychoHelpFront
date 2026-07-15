@@ -3,6 +3,15 @@
         <img src="/images/logo-psychohelp.png" alt="Logo PsychoHelp">
     </div>
 
+    @if (sessionLoading$ | async) {
+
+        <div class="session-loading">
+            <div class="session-spinner"></div>
+            <span>Chargement...</span>
+        </div>
+
+    } @else {
+
     @if (currentUser$ | async; as utilisateur) {
 
         <nav class="menu">
@@ -134,10 +143,9 @@
                     <mat-icon>notifications</mat-icon>
                     <span>Notifications</span>
                 </a>
-
             }
-
         </nav>
+
 
         <div class="sidebar-bottom">
             <div class="profile">
@@ -165,9 +173,10 @@
         </div>
 
     } @else {
-        <div class="session-loading">
-            Chargement...
+        <div class="session-empty">
+            <mat-icon>person_off</mat-icon>
+            <span>Aucune session active</span>
         </div>
+     }
     }
-
 </aside>
