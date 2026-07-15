@@ -16,7 +16,7 @@ import { MatButton } from "@angular/material/button";
 import { MatProgressBar } from "@angular/material/progress-bar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { NotificationService } from "../../core/services/notification.service";
-
+import { MatIconModule } from "@angular/material/icon"; 
 @Component({
   selector: "app-logins",
   standalone: true,
@@ -29,6 +29,7 @@ import { NotificationService } from "../../core/services/notification.service";
     // MatButton,
     MatProgressBar,
     MatCheckboxModule,
+    MatIconModule
   ],
   templateUrl: "./logins.html",
   styleUrl: "./logins.css",
@@ -36,6 +37,8 @@ import { NotificationService } from "../../core/services/notification.service";
 export class Logins {
   isLoading = false;
   forms: FormGroup;
+      motdepassecache = true;
+
   constructor(
     private auth: AuthService,
     private router: Router,
