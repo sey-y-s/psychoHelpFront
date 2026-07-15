@@ -83,7 +83,7 @@ export class Admin {
 
        error: (err) => {
     // Affiche TOUT le détail de l'erreur renvoyée par Java
-    let messageErreur = "Administrateur inscrit avec succès !";
+    let messageErreur = "erreur lors de l'inscription !";
 
     //pour vider les champs du formulaire
     this.formulaire.reset();
@@ -106,7 +106,7 @@ export class Admin {
 
 }
 retour(): void {
-  this.router.navigate(['/login']);
+  this.router.navigate(['/psychologue/dashboard']);
 }
 
 

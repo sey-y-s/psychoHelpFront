@@ -1,16 +1,16 @@
 <header class="navbar">
-
     <div class="title-zone">
-        <h1>Dashboard</h1>
-
-        <div class="breadcrum">
-            <span class="homme">Accueil</span>
-            <span class="sperator"> > </span>
-            <span>Dashboard</span>
+        <h1>{{ titre }}</h1>
+        <div class="breadcrumb">
+            <span class="home">Accueil</span>
+            <span class="separator"> › </span>
+            <span>{{ titre }}</span>
         </div>
     </div>
-
-    <button class="notification-button">
+    <button
+            type="button"
+            class="notification-button"
+            aria-label="Notifications">
         <mat-icon>notifications_none</mat-icon>
         <span class="notification-dot"></span>
     </button>

@@ -2,38 +2,42 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
 //import {Psychologue} from "./pages/register/psychologue/psychologue";
-import {PsychologyLayout} from "./layout/psychologue-layout/psychologue-layout";
+import {MainLayout} from "./layout/main-layout/main-layout";
 
 export const routes: Routes = [
  //  { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
  //
  //  // Pages publiques
- {
+  {
+    path: '',
+     loadComponent: () => import('./pages/accueil/accueil').then(m => m.Accueil)
+  },
+  {
     path: 'login',
      loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
- //  {
- //    path: 'register',
- //    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
- //  },
- //
- //  //chemin pour acceder a la page d´inscription d´un psy
- //  {
- //    path: 'register/psychologue',
- //    loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
- //  },
- //
- //   //chemin pour acceder a la page d´inscription d´un citoyen
- //  {
- //    path: 'register/citoyen',
- //    loadComponent: () => import('./pages/register/citoyen/citoyen').then(m => m.Citoyen)
- //  },
- //
- //   //chemin pour acceder a la page d´inscription d´un admin
- //  {
- //    path: 'register/admin',
- //    loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
- //  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+  },
+ 
+  //chemin pour acceder a la page d´inscription d´un psy
+  {
+    path: 'register/psychologue',
+    loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
+  },
+ 
+   //chemin pour acceder a la page d´inscription d´un citoyen
+  {
+    path: 'register/citoyen',
+    loadComponent: () => import('./pages/register/citoyen/citoyen').then(m => m.Citoyen)
+  },
+ 
+   //chemin pour acceder a la page d´inscription d´un admin
+  {
+    path: 'register/admin',
+    loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
+  },
  //
  //  // Psychologues (public)
  //  {
@@ -86,44 +90,60 @@ export const routes: Routes = [
 
   {
     path: 'psychologue',
-    component: PsychologyLayout,
+    component: MainLayout,
     children: [
       {
         path: 'dashboard',
         loadComponent: () =>
             import('./pages/psychologue/dashboard/dashboard')
-                .then(m => m.Dashboard)
+                .then(m => m.Dashboard),
+          data: {
+              title: 'Dashboard'
+          }
       },
       {
         path: 'rendez-vous',
         loadComponent: () =>
             import('./pages/psychologue/rendez-vous/rendez-vous')
-                .then(m => m.RendezVous)
+                .then(m => m.RendezVousComponent),
+          data: {
+              title: 'Mes rendez-vous'
+          }
       },
       {
         path: 'creneaux',
         loadComponent: () =>
             import('./pages/psychologue/creneaux/creneaux')
-                .then(m => m.Creneaux)
+                .then(m => m.Creneaux),
+          data: {
+              title: 'Mes Creneaux'
+          }
       },
       {
         path: 'notifications',
         loadComponent: () =>
             import('./pages/psychologue/notifications/notifications')
-                .then(m => m.Notifications)
+                .then(m => m.Notifications),
+          data: {
+              title: 'Notifications'
+          }
       },
       {
         path: 'conseils',
         loadComponent: () =>
             import('./pages/psychologue/conseils/conseils')
-                .then(m => m.Conseils)
+                .then(m => m.Conseils),
+          data: {
+              title: 'Conseils'
+          }
       },
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      }
+        {
+            path: '',
+            redirectTo: 'psychologue/dashboard',
+            pathMatch: 'full'
+        },
     ]
+<<<<<<< HEAD
   },
   {
   path: 'psychologue-validation',
@@ -140,6 +160,7 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'psychologue/dashboard'
+=======
+>>>>>>> d61b30a8b4b5a7f6d427cf30ffd5f392582c7e75
   }
-
 ];
