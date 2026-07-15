@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import {BehaviorSubject, finalize, Observable, tap} from 'rxjs';
 import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisateur.model';
 import { Citoyen } from '../../models/citoyen.model';
 import { Psychologue } from '../../models/psychologue.model';
@@ -14,6 +14,10 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
+  private readonly sessionLoadingSubject = new BehaviorSubject<boolean>(true);
+
+  readonly sessionLoading$ = this.sessionLoadingSubject.asObservable()
+
   get currentUser(): Utilisateur | null {
     return this.currentUserSubject.value;
   }
@@ -26,7 +30,14 @@ export class AuthService {
 
   private verifierSession(): void {
     // Avec les sessions, le cookie est envoyé automatiquement
-    this.http.get<Utilisateur>(`${this.api}/session`).subscribe({
+    this.http.get<Utilisateur>(`${this.api}/session`,  {
+      withCredentials: true
+    })
+        .pipe(
+            finalize(() => {
+              this.sessionLoadingSubject.next(false);
+            })
+        ).subscribe({
       next: utilisateur => this.currentUserSubject.next(utilisateur),
       error: () => this.currentUserSubject.next(null) // Pas de session active
     });

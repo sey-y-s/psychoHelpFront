@@ -16,6 +16,7 @@ export class SidebarLayout {
   private readonly router = inject(Router);
 
   readonly currentUser$ = this.authService.currentUser$;
+  readonly sessionLoading$ = this.authService.sessionLoading$;
 
   deconnexionEnCours = false;
 

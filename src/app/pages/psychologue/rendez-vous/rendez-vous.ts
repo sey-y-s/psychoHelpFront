@@ -1,10 +1,11 @@
-import {Component, inject, OnInit} from "@angular/core";
+import {ChangeDetectorRef, Component, inject, OnInit} from "@angular/core";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {RendezVousListe} from "./rendez-vous-liste/rendez-vous-liste";
 import {RendezVousDetail} from "./rendez-vous-detail/rendez-vous-detail";
 import {RendezVousFiltres} from "./rendez-vous-filtres/rendez-vous-filtres";
 import {SeanceService} from "../../../core/services/seance.service";
 import {FiltreRendezVous, RendezVous} from "../../../models/rendez-vous.model";
+import {finalize} from "rxjs";
 
 @Component({
   selector: "app-rendez-vous",
@@ -15,6 +16,7 @@ import {FiltreRendezVous, RendezVous} from "../../../models/rendez-vous.model";
 export class RendezVousComponent implements OnInit {
 
   private readonly seanceService = inject(SeanceService);
+  private readonly cdr = inject(ChangeDetectorRef);
   private readonly snackBar = inject(MatSnackBar);
 
   rendezVous: RendezVous[] = [];
@@ -170,23 +172,34 @@ export class RendezVousComponent implements OnInit {
   private chargerRendezVous(): void {
     this.chargement = true;
 
-    this.seanceService.getMesRendezVous().subscribe({
-      next: (data: RendezVous[]) => {
-        this.rendezVous = data;
-        this.chargement = false;
-      },
-      error: error => {
-        console.error(error);
-        this.chargement = false;
+    this.seanceService.getMesRendezVous()
+        .pipe(
+            finalize(() => {
+              this.chargement = false;
+              this.cdr.detectChanges();
+            })
+        )
+        .subscribe({
+          next: (data: RendezVous[]) => {
+            this.rendezVous = data ?? [];
+          },
 
-        this.afficherMessage(
-            this.extraireMessageErreur(
-                error,
-                'Impossible de charger les rendez-vous.'
-            )
-        );
-      }
-    });
+          error: error => {
+            console.error(
+                'Erreur lors du chargement des rendez-vous :',
+                error
+            );
+
+            this.rendezVous = [];
+
+            this.afficherMessage(
+                this.extraireMessageErreur(
+                    error,
+                    'Impossible de charger les rendez-vous.'
+                )
+            );
+          }
+        });
   }
 
   private mettreAJourStatut(
