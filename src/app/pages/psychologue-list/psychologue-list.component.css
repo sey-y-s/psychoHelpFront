@@ -1,0 +1,10 @@
+.profil-btn {
+    color: #D7A790;
+    border: 1px solid #D7A790;
+    background-color: transparent;
+}
+
+.profil-btn:hover {
+    background-color: #D7A790;
+    color: white;
+}

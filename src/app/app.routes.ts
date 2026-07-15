@@ -11,6 +11,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import("./pages/logins/logins").then((m) => m.Logins),
   },
+
+  {
+    path: 'psychologues',
+
+    loadComponent: () => import('./pages/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
+  },
   {
     path: "register",
     loadComponent: () =>
@@ -25,13 +31,13 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
   },
 
-   //chemin pour acceder a la page d´inscription d´un citoyen
+  //chemin pour acceder a la page d´inscription d´un citoyen
   {
     path: 'register/citoyen',
     loadComponent: () => import('./pages/register/citoyen/citoyen').then(m => m.Citoyen)
   },
 
-   //chemin pour acceder a la page d´inscription d´un admin
+  //chemin pour acceder a la page d´inscription d´un admin
   {
     path: 'register/admin',
     loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)

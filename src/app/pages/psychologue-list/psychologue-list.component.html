@@ -1,0 +1,55 @@
+<div class="container-fluid py-4">
+    <h2 class="fw-bold">Psychologues</h2>
+    <p class="text-muted">Accueil > Psychologues</p>
+
+    <!-- Zone de recherche -->
+    <div class="card p-4 shadow-sm mb-4">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control bg-light" placeholder="Rechercher par nom, spécialité...">
+            </div>
+            <!-- Tes dropdowns de filtres ici -->
+            <div class="col-md-2"><select class="form-select">
+                    <option>Spécialité</option>
+                </select></div>
+            <div class="col-md-2"><button class="btn btn-success w-100">Modifier ma recherche</button></div>
+        </div>
+    </div>
+
+    <!-- Liste dynamique -->
+    <div class="row">
+        @for (p of psychologues(); track p.id) {
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="https://placehold.co/300x200?text=Psychologue" class="card-img-top"
+                    alt="Photo du psychologue">
+                <div class="card-body">
+                    <span class="badge bg-success mb-2">Disponible</span>
+                    <h5 class="card-title fw-bold">Dr. {{ p.nom }} {{ p.prenom }}</h5>
+                    <span class="badge bg-light text-primary border">
+                        Psychologue
+                    </span>
+                    <div class="mt-2 text-muted small">
+                        <p>4.8 (58 avis) | 1 heure</p>
+                    </div>
+                    <button class="btn w-100 mt-2 profil-btn">Voir le profil</button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+<style>
+    .profil-btn {
+        color: #D7A790;
+        border: 1px solid #D7A790;
+        background-color: transparent;
+    }
+
+    .profil-btn:hover {
+        background-color: #D7A790;
+        color: white;
+        font-weight: bold;
+    }
+</style>
