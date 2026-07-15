@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 /* Organisation de la page globale en 2 colonnes */
-body {
+/* body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-}
+} */
 
 .page {
   display: flex;
   min-height: 100vh;
-  /* height: 100%; */
   width: 100%;
   font-family:'Poppins', sans-serif;
 }
@@ -46,7 +45,7 @@ font-family: 'Poppins', sans-serif ;
 }
 .mon-formulaire {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
 
@@ -86,7 +85,7 @@ font-family: 'Poppins', sans-serif ;
 }
 
 .input-arrondi::placeholder {
-  color: #c4cbd4;                  /* Texte d'exemple gris très clair */
+  color: #c4cbd4;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -140,7 +139,7 @@ font-family: 'Poppins', sans-serif ;
 }
 
 .bouton-valider {
-  background-color: #d8a789 !important; /* Couleur marron/rose du bouton */
+  background-color: #d8a789 !important; 
   color: white !important;
   padding: 10px;
   border-radius: 10px;
@@ -149,7 +148,6 @@ font-family: 'Poppins', sans-serif ;
   margin-top: 10px;
 }
 
-/* Côté Droit */
 .cote-droit {
   flex: 1;
   background-color: #ffffff;
@@ -187,13 +185,13 @@ font-family: 'Poppins', sans-serif ;
   width: 100%;
 }
 
-select {
+/* select {
   color: #9e9e9e; 
-}
+} */
 
-select:valid {
-  color: #000; /* noir lorsqu'une spécialité est choisie */
-}
+/* select:valid {
+  color: #000; /* noir lorsqu'une spécialité est choisie 
+} */
 .message-erreur{
     width: 100%;
     text-align: center;
