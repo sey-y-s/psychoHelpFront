@@ -8,32 +8,36 @@ export const routes: Routes = [
  //  { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
  //
  //  // Pages publiques
- {
+  {
+    path: '',
+     loadComponent: () => import('./pages/accueil/accueil').then(m => m.Accueil)
+  },
+  {
     path: 'login',
      loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
- //  {
- //    path: 'register',
- //    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
- //  },
- //
- //  //chemin pour acceder a la page d´inscription d´un psy
- //  {
- //    path: 'register/psychologue',
- //    loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
- //  },
- //
- //   //chemin pour acceder a la page d´inscription d´un citoyen
- //  {
- //    path: 'register/citoyen',
- //    loadComponent: () => import('./pages/register/citoyen/citoyen').then(m => m.Citoyen)
- //  },
- //
- //   //chemin pour acceder a la page d´inscription d´un admin
- //  {
- //    path: 'register/admin',
- //    loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
- //  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+  },
+ 
+  //chemin pour acceder a la page d´inscription d´un psy
+  {
+    path: 'register/psychologue',
+    loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
+  },
+ 
+   //chemin pour acceder a la page d´inscription d´un citoyen
+  {
+    path: 'register/citoyen',
+    loadComponent: () => import('./pages/register/citoyen/citoyen').then(m => m.Citoyen)
+  },
+ 
+   //chemin pour acceder a la page d´inscription d´un admin
+  {
+    path: 'register/admin',
+    loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
+  },
  //
  //  // Psychologues (public)
  //  {
