@@ -1,66 +1,182 @@
 <aside class="sidebar">
-
-    <div class="logo-box">
-        <img
-                src="/images/logo-psychohelp.png"
-                alt="Logo PsychoHelp">
+    <div class="logo-box" routerLink="/psychologue/dashboard">
+        <img src="/images/logo-psychohelp.png" alt="Logo PsychoHelp">
     </div>
 
-    <nav class="menu">
-        <a routerLink="/psychologue/dashboard"
-           routerLinkActive="active"
-           class="menu-item">
-            <mat-icon>dashboard</mat-icon>
-            <span>Dashboard</span>
-        </a>
+    @if (sessionLoading$ | async) {
 
-        <a routerLink="/psychologue/rendez-vouq"
-           routerLinkActive="active"
-           class="menu-item">
-            <mat-icon>event</mat-icon>
-            <span>Mes rendez-vous</span>
-        </a>
-
-        <a routerLink="/psychologue/creneaux"
-           routerLinkActive="active"
-           class="menu-item">
-            <mat-icon>calendar_month</mat-icon>
-            <span>Créneaux</span>
-        </a>
-
-        <a routerLink="/psychologue/notifications"
-           routerLinkActive="active"
-           class="menu-item">
-            <mat-icon>notifications</mat-icon>
-            <span>Notifications</span>
-        </a>
-
-        <a routerLink="/psychologue/conseils"
-           routerLinkActive="active"
-           class="menu-item">
-            <mat-icon>help_outline</mat-icon>
-            <span>Conseils</span>
-        </a>
-    </nav>
-
-    <div class="sidebar-bottom">
-
-        <div class="profile">
-            <div class="avatar">
-                AS
-            </div>
-
-            <div class="profile-info">
-                <strong>Ali SISSOKO</strong>
-                <span>Psychologue</span>
-            </div>
+        <div class="session-loading">
+            <div class="session-spinner"></div>
+            <span>Chargement...</span>
         </div>
 
-        <button type="button" class="logout-button"
-                [disabled]="deconnexionEnCours"
-                (click)="logout()">
-            <mat-icon>logout</mat-icon>
-            <span>{{ deconnexionEnCours ? 'Déconnexion...' : 'Déconnexion' }}</span>
-        </button>
-    </div>
+    } @else {
+
+    @if (currentUser$ | async; as utilisateur) {
+
+        <nav class="menu">
+
+            @if (utilisateur.role === 'PSYCHOLOGUE') {
+                <a class="menu-item"
+                   routerLink="/psychologue/dashboard"
+                   routerLinkActive="active">
+                    <mat-icon>dashboard</mat-icon>
+                    <span>Dashboard</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/psychologue/rendez-vous"
+                   routerLinkActive="active">
+                    <mat-icon>event</mat-icon>
+                    <span>Mes rendez-vous</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/psychologue/creneaux"
+                   routerLinkActive="active">
+                    <mat-icon>calendar_month</mat-icon>
+                    <span>Mes créneaux</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/psychologue/notifications"
+                   routerLinkActive="active">
+                    <mat-icon>notifications</mat-icon>
+                    <span>Notifications</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/psychologue/conseils"
+                   routerLinkActive="active">
+                    <mat-icon>lightbulb</mat-icon>
+                    <span>Conseils</span>
+                </a>
+
+            }
+
+            @if (utilisateur.role === 'CITOYEN') {
+
+                <a class="menu-item"
+                   routerLink="/citoyen/dashboard"
+                   routerLinkActive="active">
+                    <mat-icon>dashboard</mat-icon>
+                    <span>Dashboard</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/citoyen/psychologues"
+                   routerLinkActive="active">
+                    <mat-icon>medical_services</mat-icon>
+                    <span>Psychologues</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/citoyen/rendez-vous"
+                   routerLinkActive="active">
+                    <mat-icon>event</mat-icon>
+                    <span>Mes rendez-vous</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/citoyen/conseils"
+                   routerLinkActive="active">
+                    <mat-icon>lightbulb</mat-icon>
+                    <span>Conseils</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/citoyen/tests"
+                   routerLinkActive="active">
+                    <mat-icon>quiz</mat-icon>
+                    <span>Tests</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/citoyen/notifications"
+                   routerLinkActive="active">
+                    <mat-icon>notifications</mat-icon>
+                    <span>Notifications</span>
+                </a>
+
+            }
+
+            @if (utilisateur.role === 'ADMIN') {
+
+                <a class="menu-item"
+                   routerLink="/admin/dashboard"
+                   routerLinkActive="active">
+                    <mat-icon>dashboard</mat-icon>
+                    <span>Dashboard</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/admin/citoyen"
+                   routerLinkActive="active">
+                    <mat-icon>people</mat-icon>
+                    <span>Citoyens</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/admin/psychologues"
+                   routerLinkActive="active">
+                    <mat-icon>medical_services</mat-icon>
+                    <span>Psychologues</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/admin/tests-diagnostics"
+                   routerLinkActive="active">
+                    <mat-icon>quiz</mat-icon>
+                    <span>Test & diagnostics</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/admin/conseils"
+                   routerLinkActive="active">
+                    <mat-icon>tips_and_updates</mat-icon>
+                    <span>Conseils</span>
+                </a>
+
+                <a class="menu-item"
+                   routerLink="/admin/notifications"
+                   routerLinkActive="active">
+                    <mat-icon>notifications</mat-icon>
+                    <span>Notifications</span>
+                </a>
+            }
+        </nav>
+
+
+        <div class="sidebar-bottom">
+            <div class="profile">
+                <div class="avatar">
+                    {{obtenirInitiales(utilisateur.prenom, utilisateur.nom) }}
+                </div>
+                <div class="profile-info">
+                    <strong>
+                        {{ utilisateur.prenom }}
+                        {{ utilisateur.nom }}
+                    </strong>
+                    <span>{{ obtenirRole(utilisateur.role) }}</span>
+                </div>
+            </div>
+
+            <button
+                    type="button"
+                    class="logout-button"
+                    [disabled]="deconnexionEnCours"
+                    (click)="logout()"
+            >
+                <mat-icon>logout</mat-icon>
+                <span>{{deconnexionEnCours ? 'Déconnexion...' : 'Déconnexion' }}</span>
+            </button>
+        </div>
+
+    } @else {
+        <div class="session-empty">
+            <mat-icon>person_off</mat-icon>
+            <span>Aucune session active</span>
+        </div>
+     }
+    }
 </aside>

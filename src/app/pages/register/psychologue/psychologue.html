@@ -1,13 +1,13 @@
 <div class="page">
-  
+
   <!-- CÔTÉ GAUCHE : FORMULAIRE -->
   <div class="cote-gauche">
-    
+
     <div class="entete">
       <h2>Inscription</h2>
-       <div class="illustration3">
-      <img src="iconInscription.png" alt="Illustration">
-    </div>
+      <div class="illustration3">
+        <img src="iconInscription.png" alt="Illustration">
+      </div>
       <p>Développez votre pratique en quelques clics</p>
     </div>
 
@@ -17,13 +17,14 @@
       <div class="champ-groupe">
         <input type="email" placeholder="Adresse email" class="input-arrondi" formControlName="mail">
         <mat-icon class="icone-champ">email</mat-icon>
-    
+
       </div>
 
       <!-- Mot de passe -->
 
       <div class="champ-groupe">
-        <input [type]="cacheMotDePasse ? 'password' : 'text'" placeholder="Mot de passe" class="input-arrondi" formControlName="motDePasse">
+        <input [type]="cacheMotDePasse ? 'password' : 'text'" placeholder="Mot de passe" class="input-arrondi"
+          formControlName="motDePasse">
         <mat-icon class="icone-champ cliquable" (click)="cacheMotDePasse = !cacheMotDePasse">
           {{ cacheMotDePasse ? 'visibility_off' : 'visibility' }}
         </mat-icon>
@@ -31,27 +32,27 @@
 
       <small class="indication">Votre mot de passe doit contenir au moins 8 caracteres</small>
       <!-- Prénom et Nom côte à côte -->
-                     
+
 
       <div class="ligne-double">
         <div class="champ-groupe">
           <input type="text" placeholder="Prenom" class="input-arrondi" formControlName="prenom">
           <mat-icon class="icone-champ">person</mat-icon>
-</div>
- 
+        </div>
 
-         
-            <div class="champ-groupe">
+
+
+        <div class="champ-groupe">
           <input type="text" placeholder="Nom" class="input-arrondi" formControlName="nom">
           <mat-icon class="icone-champ">person</mat-icon>
-        
+
         </div>
-          
+
       </div>
 
-        
 
-          
+
+
 
       <!-- Téléphone avec drapeau -->
 
@@ -59,85 +60,68 @@
         <img src="logoDrapeauMali.png" alt="Mali" class="drapeau-icon">
         <input type="tel" placeholder="Telephone" class="input-arrondi avec-drapeau" formControlName="telephone">
         <mat-icon class="icone-champ">phone</mat-icon>
-        
-         </div>
-        
+
+      </div>
+
 
 
       <!-- CV et Diplôme côte à côte -->
       <div class="ligne-double">
         <div class="bloc-champ">
-   <div class="champ-groupe" (click)="cvInput.click()">
-    <input 
-      #cvInput 
-      type="file" 
-      style="display: none;" 
-      (change)="onCvSelected($event)" 
-      accept=".pdf,.doc,.docx">
-    
-    <input 
-      type="text" 
-      readonly 
-      placeholder="Téléverser votre CV"
-      [value]="cvFileName" 
-      class="input-arrondi custom-file-input">
-    
-    <mat-icon class="icone-champ">article</mat-icon>
-</div>
-  </div>
-  
+          <div class="champ-groupe" (click)="cvInput.click()">
+            <input #cvInput type="file" style="display: none;" (change)="onCvSelected($event)" accept=".pdf,.doc,.docx">
 
-  <!-- CHAMP DIPLÔME -->
+            <input type="text" readonly placeholder="Téléverser votre CV" [value]="cvFileName"
+              class="input-arrondi custom-file-input">
 
-  <div class="champ-groupe" (click)="diplomeInput.click()">
-    <input 
-      #diplomeInput 
-      type="file" 
-      style="display: none;" 
-      (change)="onDiplomeSelected($event)" 
-      accept=".pdf,.png,.jpg,.jpeg">
-    
-    <input 
-      type="text" 
-      readonly 
-      placeholder="Téléverser votre diplôme"
-      [value]="diplomeFileName" 
-      class="input-arrondi custom-file-input">
-    
-    <mat-icon class="icone-champ">workspace_premium</mat-icon>
-    
-  </div>
-   </div>
-  
-  
+            <mat-icon class="icone-champ">article</mat-icon>
+          </div>
+        </div>
+
+
+        <!-- CHAMP DIPLÔME -->
+
+        <div class="champ-groupe" (click)="diplomeInput.click()">
+          <input #diplomeInput type="file" style="display: none;" (change)="onDiplomeSelected($event)"
+            accept=".pdf,.png,.jpg,.jpeg">
+
+          <input type="text" readonly placeholder="Téléverser votre diplôme" [value]="diplomeFileName"
+            class="input-arrondi custom-file-input">
+
+          <mat-icon class="icone-champ">workspace_premium</mat-icon>
+
+        </div>
+      </div>
+
+
       <div class="champ-groupe">
-  <select formControlName="idSpecialite" class="input-arrondi">
-  <option value="" disabled selected>
-    Choisir une spécialité
-  </option>
+        <select formControlName="idSpecialite" class="input-arrondi">
+          <option value="" disabled selected>
+            Choisir une spécialité
+          </option>
 
-  <option *ngFor="let specialite of specialites" [value]="specialite.id">
-    {{ specialite.nom }}
-  </option>
-</select>
-  <mat-icon class="icone-champ">
-    psychology
-  </mat-icon>
- </div>
+          <option *ngFor="let specialite of specialites" [value]="specialite.id">
+            {{ specialite.nom }}
+          </option>
+        </select>
+        <mat-icon class="icone-champ">
+          psychology
+        </mat-icon>
+      </div>
 
- 
+
 
       <!-- Description -->
       <div class="champ-groupe">
         <input type="text" placeholder="Description" class="input-arrondi" formControlName="description">
         <mat-icon class="icone-champ">description</mat-icon>
-       
+
       </div>
 
-  
-<div class="message-erreur" *ngIf="messageErreur">
-  {{ messageErreur }}
-</div>
+
+      <div class="message-erreur" *ngIf="messageErreur">
+        {{ messageErreur }}
+      </div>
       <!-- Bouton -->
       <button mat-raised-button class="bouton-valider" type="submit">
         S'inscrire
@@ -148,15 +132,15 @@
 
   <!-- CÔTÉ DROIT : IMAGE ET TEXTE -->
   <div class="cote-droit">
-  <div class="entete-droit">
+    <div class="entete-droit">
 
-    <div class="illustration">
-      <img src="logoPsychoHelp.png" alt="Illustration">
-    </div>
+      <div class="illustration">
+        <img src="logoPsychoHelp.png" alt="Illustration">
+      </div>
 
-     <button mat-icon-button class="btn-retour" (click)="retour() ">
-      <mat-icon>arrow_back_ios_new</mat-icon>
-    </button>
+      <button mat-icon-button class="btn-retour" (click)="retour() ">
+        <mat-icon>arrow_back_ios_new</mat-icon>
+      </button>
     </div>
 
 
