@@ -5,7 +5,7 @@ export interface Conseil {
   titre: string;
   description: string;
   datePublication?: string;
-  status: boolean;
+  status: string;
   auteur: string
 
   psyNom: string

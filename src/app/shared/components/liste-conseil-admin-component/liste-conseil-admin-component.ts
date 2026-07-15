@@ -2,42 +2,59 @@ import {Component, OnInit} from "@angular/core";
 import {ConseilAdminService} from "../../../core/services/conseil-admin.service";
 import {CommonModule} from "@angular/common";
 import {Conseil} from "../../../models/conseil.model";
+import {CardVaidationConseil} from "../card-vaidation-conseil/card-vaidation-conseil";
 
 
 
 @Component({
   selector: "app-liste-conseil-admin-component",
   standalone: true,
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        CardVaidationConseil
+    ],
   templateUrl: "./liste-conseil-admin-component.html",
   styleUrl: "./liste-conseil-admin-component.css",
 })
 export class ListeConseilAdminComponent implements OnInit {
-
+  tousLesConseils: Conseil[] = [];
   listConseils: Conseil[] = [];
 
   constructor(private conseilAdminService: ConseilAdminService) {
   }
 
-  // chargerConseilEnattente():void {
-  //   this.conseilAdminService.listerEnAttente()
-  // }
-  //listConseils = this.conseilAdminService.listerEnAttente()
+  filtreActif: string = 'tous';
+  isLoading: boolean = false;
 
   ngOnInit(): void {
-    this.chargerConseilEnattente()
+    this.chargerConseils()
+  }
+  changerFiltre(newfiltre: string): void {
+    this.filtreActif = newfiltre;
+    if (newfiltre==='tous'){
+      this.listConseils = [...this.tousLesConseils]
+    } else if (newfiltre === 'attente'){
+      this.listConseils = this.tousLesConseils.filter(c => c.status === "ENATTENTE")
+    }else if (newfiltre === 'valider'){
+      this.listConseils = this.tousLesConseils.filter(c => c.status === "VALIDER")
+    }else if(newfiltre === 'refuser'){
+      this.listConseils = this.tousLesConseils.filter(c => c.status === "REFUSER")
+    }
+
   }
 
-  chargerConseilEnattente(): void {
-    this.conseilAdminService.listerEnAttente().subscribe({
+  chargerConseils(): void {
+    this.isLoading = true;
+    this.conseilAdminService.listTousConseils().subscribe({
       next: (donnees: Conseil[]) => {
-        this.listConseils = donnees;
+        this.tousLesConseils = donnees;
+        //this.listConseils = donnees;
+        this.isLoading = false;
         console.log("Données reçues du serveur :", this.listConseils);
       },
       error: (err) => {
         console.error("Erreur lors de la récupération des conseils :", err);
+        this.isLoading = false;
       }
     });
   }
@@ -46,17 +63,14 @@ export class ListeConseilAdminComponent implements OnInit {
       console.error("Impossible de valider : l'ID du conseil est manquant.");
       return;
     }
-
-
     this.conseilAdminService.valider(id).subscribe({
       next: () => {
         console.log("Conseil validé avec succès");
-        this.chargerConseilEnattente();
+        this.chargerConseils();
       },
       error: (err) => {
         console.error("Erreur lors de la validation :", err);
       }
     });
   }
-
 }

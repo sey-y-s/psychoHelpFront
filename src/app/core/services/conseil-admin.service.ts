@@ -10,8 +10,12 @@ export class ConseilAdminService {
 
   constructor(private http: HttpClient) {}
 
-  listerEnAttente(): Observable<Conseil[]> {
-    return this.http.get<Conseil[]>(`${this.api}/conseils/read?status=false`);
+  listTousConseils(): Observable<Conseil[]> {
+    return this.http.get<Conseil[]>(`${this.api}/conseils/read`);
+  }
+
+  conseilParId(id: number): Observable<Conseil> {
+    return this.http.get<Conseil>(`${this.api}/conseils/${id}`);
   }
 
   valider(id: number): Observable<any> {

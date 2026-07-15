@@ -22,6 +22,10 @@ export const routes: Routes = [
     path: 'test',
     loadComponent: () => import('./shared/components/liste-conseil-admin-component/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent)
   },
+  {
+    path: 'conseil',
+    loadComponent: () => import('./shared/components/admin-show-conseil/admin-show-conseil').then(m => m.AdminShowConseil)
+  },
 
   // Psychologues (public)
   {
