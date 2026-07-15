@@ -36,7 +36,8 @@ export class AuthService {
 
     return this.http.post(
       `${this.apis}/citoyens`,
-      citoyen
+      citoyen,
+       { responseType: 'text' }
     );
 }
 
@@ -44,7 +45,7 @@ export class AuthService {
     inscrirePsychologue(psychologue: Psychologue): Observable<any> {
 
     return this.http.post(
-      `${this.api}/psychologues`,
+      `${this.apis}/psychologues`,
       psychologue
     );
 
@@ -53,7 +54,7 @@ export class AuthService {
       inscrireAdmin(admin: Admin): Observable<any> {
 
     return this.http.post(
-      `${this.api}/admins`,
+      `${this.apis}/admins`,
       admin
     );
 
