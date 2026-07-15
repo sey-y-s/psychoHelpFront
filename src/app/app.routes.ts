@@ -143,5 +143,21 @@ export const routes: Routes = [
             pathMatch: 'full'
         },
     ]
+  },
+  {
+  path: 'psychologue-validation',
+  loadComponent: () =>
+    import('./pages/admin-psychologue-validation/admin-psychologue-validation.component')
+      .then(m => m.AdminPsychologueValidationComponent)
+},
+  
+  {
+    path: '',
+    redirectTo: 'psychologue/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'psychologue/dashboard'
   }
 ];
