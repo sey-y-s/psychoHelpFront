@@ -14,7 +14,7 @@ export class SeanceService {
        prendreRdv(seanceInterfaceRequest:seanceInterfaceRequest):Observable<SeanceInterfaceResponse>{
           return this.http.post<SeanceInterfaceResponse>(`${this.api}`,seanceInterfaceRequest)
        }
-       prendreRdv2(seanceInterfaceRequest:seanceInterfaceRequest):Observable<SeanceInterfaceResponse>{
+       prendreRdv2(seanceInterfaceRequest:seanceInterfaceRequest2):Observable<SeanceInterfaceResponse>{
           return this.http.post<SeanceInterfaceResponse>(`${this.api}`,seanceInterfaceRequest,{
             withCredentials:true
           })

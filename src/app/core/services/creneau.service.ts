@@ -34,7 +34,7 @@ export class CreneauService {
   }
   listerDesCreneauxDisponiblePourCitoyen(): Observable<CreneauInterfaceResponse2[]> {
     // TODO: Filtrer par psychologue connecté (l'API doit gérer)
-    return this.http.get<CreneauInterfaceResponse2[]>(`${environments.apiUrl}/crenaux/${5}/disponiblePourCitoyen`);
+    return this.http.get<CreneauInterfaceResponse2[]>(`${environments.apiUrl}/creneaux/${1}/disponiblePourCitoyen`, {withCredentials:true});
   }
 
   modifier(id: number, creneau: CreneauRequest): Observable<Creneau>{

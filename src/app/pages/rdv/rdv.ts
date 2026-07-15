@@ -3,9 +3,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CreneauService } from "../../core/services/creneau.service";
 import { CreneauInterfaceResponse, CreneauInterfaceResponse2 } from "../../models/creneau.model";
 import { SeanceService } from "../../core/services/seance.service";
-import { seanceInterfaceRequest, seanceInterfaceRequest2 } from "../../models/seance.model";
 import { AuthService } from "../../core/services/auth.service";
 import { Utilisateur } from "../../models/utilisateur.model";
+import { seanceInterfaceRequest2 } from "../../models/seance.model";
 
 @Component({
   selector: "app-rdv",
@@ -14,6 +14,7 @@ import { Utilisateur } from "../../models/utilisateur.model";
   styleUrl: "./rdv.css",
 })
 export class Rdv implements OnInit {
+  cdr = inject(ChangeDetectorRef);
    creneauService=inject(CreneauService)
    seanceService=inject(SeanceService)
    authService=inject(AuthService)
@@ -24,15 +25,11 @@ export class Rdv implements OnInit {
      utilisateurConnecter:null|Utilisateur=null
    
     ngOnInit(){
-            this.authService.currentUser$.subscribe(
-                  utilisateur=>{
-                    this.utilisateurConnecter=utilisateur
-                  }
-              )
-       //console.log(this.utilisateurConnecter)
        this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe({
             next:(donnees)=>{
                    this.creneauDisponiblePourcitoyen=donnees
+                       this.cdr.detectChanges();
+
             },
             error:(error)=>{
                 console.log(error)
@@ -40,30 +37,20 @@ export class Rdv implements OnInit {
        })
     }
     form2 = this.formeBulder.group({
-        citoyenId: this.formeBulder.control<number | null>(null, Validators.required),
+        //citoyenId: this.formeBulder.control<number | null>(null, Validators.required),
         creneauId: this.formeBulder.control<number | null>(null, Validators.required),
         dateRdv: this.formeBulder.control<string | null>(null, Validators.required)
       });
         onSubmit2(creneau:any){
-            if(!this.utilisateurConnecter){
-                       console.log("Aucun utilisateur connecté");
-                  return;
-              }
-
             this.form2.patchValue({
-              citoyenId: this.utilisateurConnecter.id,
+              //citoyenId: this.utilisateurConnecter.id,
               creneauId: creneau.creneauId,
               dateRdv: creneau.date
             });
-
-
            console.log(this.form2.value);
-
-
             this.seanceService.prendreRdv2(
-              this.form2.value as seanceInterfaceRequest
+              this.form2.value as seanceInterfaceRequest2
             ).subscribe({
-
               next:(response)=>{
                 this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe(
                   {
