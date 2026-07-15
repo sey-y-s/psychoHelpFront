@@ -1,0 +1,103 @@
+:host {
+    display: block;
+}
+
+.filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.filters {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(90px, 1fr));
+    gap: 28px;
+}
+
+.filter-button {
+    min-height: 34px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #302a27;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.filter-button:hover {
+    background: #f8f1ed;
+    transform: translateY(-1px);
+}
+
+.filter-button.active {
+    background: #6b4533;
+    color: #ffffff;
+}
+
+.export-button {
+    min-height: 34px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #302a27;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+            background-color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.export-button:hover {
+    background: #f8f1ed;
+    transform: translateY(-1px);
+}
+
+.export-button mat-icon {
+    width: 17px;
+    height: 17px;
+    font-size: 17px;
+}
+
+@media (max-width: 1000px) {
+    .filters {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 850px) {
+    .filters-container {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .filters {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .export-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    .filters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
