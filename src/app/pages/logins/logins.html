@@ -1,26 +1,25 @@
-<div class="page-login">
 
-
-  <!-- En-tête de la page -->
-  <header class="header">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <main class="container_main">
+   <header class="header">
 
     <div class="logo">
-      <img src="#" alt="Logo PsychoHelp">
+      <img routerLink="/" src="logoPsychoHelp.png" alt="Logo PsychoHelp">
     </div>
 
     <button class="btn-top">
-      S'inscrire ou se connecter
+      S'inscrire <br> ou se connecter
     </button>
 
   </header>
-
-
-
-  <!-- Contenu principal -->
-  <main>
-
-
-    <!-- Titre de la page -->
+  
     <section class="title">
 
       <h1>Se connecter</h1>
@@ -29,22 +28,21 @@
         Accueil > Se connecter
       </p>
 
+    
     </section>
+  </main>
+  <aside>
 
-
-
-
-    <!-- Section connexion et inscription -->
     <section class="container">
 
 
-      <!-- Carte connexion -->
-      <article class="card">
+      <section class="card">
 
 
-        <h2>
-          Se connecter 📱
-        </h2>
+       <div class="card-title">
+  <h2>Se connecter
+  <img src="icon1.png" alt="Icône Connexion"></h2>
+</div>
 
 
         <p>
@@ -95,20 +93,22 @@
         </form>
 
 
-      </article>
+      </section>
 
 
 
 
 
-      <!-- Carte inscription -->
-      <article class="card inscription">
+      <section class="card">
 
 
-        <h2>
-          S'inscrire 📱
+        
+  <div class="card-title">
+  <h2 class="title">
+          S'inscrire 
+          <img src="iconInscription.png" alt="Icone Inscription">
         </h2>
-
+</div>
 
 
 
@@ -164,15 +164,12 @@
 
 
 
-      </article>
+      </section>
 
 
 
     </section>
 
-
-
-  </main>
-
-
-</div>
+  </aside>
+</body>
+</html>

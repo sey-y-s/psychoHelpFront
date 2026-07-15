@@ -6,6 +6,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { AuthService } from "../../../core/services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-admin",
@@ -32,7 +33,8 @@ export class Admin {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router : Router
   ) {
 
     this.formulaire = this.fb.group({
@@ -103,5 +105,9 @@ export class Admin {
       });
 
 }
+retour(): void {
+  this.router.navigate(['/login']);
+}
+
 
 }
