@@ -1,0 +1,64 @@
+.navbar {
+    min-height: 76px;
+    margin-right: 14px;
+    padding: 14px 22px;
+    background: #f1e2dc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-zone h1 {
+    margin: 0;
+    color: #252525;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.breadcrumb {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #777;
+}
+
+.breadcrumb .home {
+    color: #6550d9;
+}
+
+.separator {
+    color: #aaa;
+}
+
+.notification-button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    position: relative;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.notification-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.notification-button mat-icon {
+    color: #242424;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    border: 2px solid #f1e2dc;
+    border-radius: 50%;
+    background: #e63e3e;
+}

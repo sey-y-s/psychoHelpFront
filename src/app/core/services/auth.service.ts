@@ -2,10 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisateur.model';
+import { Citoyen } from '../../models/citoyen.model';
+import { Psychologue } from '../../models/psychologue.model';
+import { Admin } from '../../models/admin.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private api = 'http://localhost:8080/api/utilisateurs';
+    private apis = 'http://localhost:8080/api';
+
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
@@ -14,12 +19,40 @@ export class AuthService {
     this.verifierSession();
   }
 
+
   private verifierSession(): void {
     // Avec les sessions, le cookie est envoyé automatiquement
     this.http.get<Utilisateur>(`${this.api}/session`).subscribe({
       next: utilisateur => this.currentUserSubject.next(utilisateur),
       error: () => this.currentUserSubject.next(null) // Pas de session active
     });
+  }
+// Methode pour l'inscription du Citoyen
+  inscrireCitoyen(citoyen: Citoyen): Observable<any> {
+
+    return this.http.post(
+      `${this.apis}/citoyens`,
+      citoyen
+    );
+}
+
+   // Methode pour l'inscription du Psychologue
+    inscrirePsychologue(psychologue: Psychologue): Observable<any> {
+
+    return this.http.post(
+      `${this.api}/psychologues`,
+      psychologue
+    );
+
+  }
+    // Methode pour l'inscription du Admin
+      inscrireAdmin(admin: Admin): Observable<any> {
+
+    return this.http.post(
+      `${this.api}/admins`,
+      admin
+    );
+
   }
 
   login(data: LoginRequest): Observable<Utilisateur> {

@@ -1,0 +1,89 @@
+:host {
+    display: block;
+}
+
+.jours {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(85px, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.jours button {
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid #e3ddda;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #544b47;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.jours button:hover {
+    background: #f6eeea;
+    border-color: #d5c4bc;
+}
+
+.jours button.active {
+    border-color: #6c4634;
+    background: #6c4634;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.liste {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 18px;
+}
+
+.loading {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    color: #756e6a;
+}
+
+.empty-state {
+    min-height: 260px;
+    padding: 30px;
+    border: 1px dashed #d8cfca;
+    border-radius: 12px;
+    background: #ffffff;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
+.empty-state h3 {
+    margin: 0 0 7px;
+    color: #3b3532;
+    font-size: 18px;
+}
+
+.empty-state p {
+    margin: 0;
+    color: #817a76;
+    font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+    .jours {
+        grid-template-columns: repeat(4, minmax(90px, 1fr));
+    }
+
+    .liste {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .jours {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+}

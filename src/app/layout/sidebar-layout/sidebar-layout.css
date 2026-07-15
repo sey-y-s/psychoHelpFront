@@ -1,0 +1,168 @@
+.sidebar {
+    width: 230px;
+    min-height: calc(100vh - 28px);
+    margin: 14px;
+    padding: 22px 14px 16px;
+    background: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 10px rgba(40, 40, 40, 0.08);
+    position: sticky;
+    top: 14px;
+}
+
+.logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 115px;
+    margin-bottom: 28px;
+}
+
+.logo-box img {
+    width: 105px;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #53565a;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.menu-item mat-icon {
+    width: 21px;
+    height: 21px;
+    font-size: 21px;
+    color: #8c9095;
+}
+
+.menu-item:hover {
+    background: #f6f2f0;
+    color: #2b2b2b;
+}
+
+.menu-item.active {
+    background: #f3ebe7;
+    color: #2d2927;
+    font-weight: 600;
+}
+
+.menu-item.active mat-icon {
+    color: #7f4bff;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.profile {
+    padding: 14px 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #eadcfb;
+    color: #7140da;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.profile-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info strong {
+    font-size: 13px;
+    color: #2e2e2e;
+}
+
+.profile-info span {
+    margin-top: 2px;
+    font-size: 11px;
+    color: #8154dc;
+}
+
+.logout-button {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #d7524f;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.logout-button:hover:not(:disabled) {
+    background: #fff1ef;
+}
+
+.logout-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.logout-button mat-icon {
+    width: 21px;
+    height: 21px;
+    font-size: 21px;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 76px;
+        padding-inline: 10px;
+    }
+
+    .logo-box img {
+        width: 55px;
+    }
+
+    .menu-item {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .menu-item span,
+    .profile-info,
+    .logout-button span {
+        display: none;
+    }
+
+    .profile {
+        justify-content: center;
+    }
+
+    .logout-button {
+        justify-content: center;
+    }
+}

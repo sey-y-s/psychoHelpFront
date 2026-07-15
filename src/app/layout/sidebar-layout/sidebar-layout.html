@@ -1,0 +1,66 @@
+<aside class="sidebar">
+
+    <div class="logo-box">
+        <img
+                src="/images/logo-psychohelp.png"
+                alt="Logo PsychoHelp">
+    </div>
+
+    <nav class="menu">
+        <a routerLink="/psychologue/dashboard"
+           routerLinkActive="active"
+           class="menu-item">
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+        </a>
+
+        <a routerLink="/psychologue/rendez-vouq"
+           routerLinkActive="active"
+           class="menu-item">
+            <mat-icon>event</mat-icon>
+            <span>Mes rendez-vous</span>
+        </a>
+
+        <a routerLink="/psychologue/creneaux"
+           routerLinkActive="active"
+           class="menu-item">
+            <mat-icon>calendar_month</mat-icon>
+            <span>Créneaux</span>
+        </a>
+
+        <a routerLink="/psychologue/notifications"
+           routerLinkActive="active"
+           class="menu-item">
+            <mat-icon>notifications</mat-icon>
+            <span>Notifications</span>
+        </a>
+
+        <a routerLink="/psychologue/conseils"
+           routerLinkActive="active"
+           class="menu-item">
+            <mat-icon>help_outline</mat-icon>
+            <span>Conseils</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <div class="profile">
+            <div class="avatar">
+                AS
+            </div>
+
+            <div class="profile-info">
+                <strong>Ali SISSOKO</strong>
+                <span>Psychologue</span>
+            </div>
+        </div>
+
+        <button type="button" class="logout-button"
+                [disabled]="deconnexionEnCours"
+                (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>{{ deconnexionEnCours ? 'Déconnexion...' : 'Déconnexion' }}</span>
+        </button>
+    </div>
+</aside>

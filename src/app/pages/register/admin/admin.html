@@ -1,27 +1,28 @@
 <div class="page">
-  
+
   <!-- CÔTÉ GAUCHE : FORMULAIRE -->
   <div class="cote-gauche">
-    
+
     <div class="entete">
       <h2>Inscription</h2>
-       <div class="illustration3">
-      <img src="iconInscription.png" alt="Illustration">
-    </div>
+      <div class="illustration3">
+        <img src="iconInscription.png" alt="Illustration">
+      </div>
       <p>Un soutien fiable, en quelques clics</p>
     </div>
 
-    <form class="mon-formulaire">
+    <form class="mon-formulaire" [formGroup]="formulaire" (ngSubmit)="inscrire()">
 
       <!-- Email -->
       <div class="champ-groupe">
-        <input type="email" placeholder="Adresse email" class="input-arrondi">
+        <input type="email" placeholder="Adresse email" class="input-arrondi" formControlName="mail">
         <mat-icon class="icone-champ">email</mat-icon>
       </div>
 
       <!-- Mot de passe -->
       <div class="champ-groupe">
-        <input [type]="cacheMotDePasse ? 'password' : 'text'" placeholder="Mot de passe" class="input-arrondi">
+        <input [type]="cacheMotDePasse ? 'password' : 'text'" placeholder="Mot de passe" class="input-arrondi"
+          formControlName="motDePasse">
         <mat-icon class="icone-champ cliquable" (click)="cacheMotDePasse = !cacheMotDePasse">
           {{ cacheMotDePasse ? 'visibility_off' : 'visibility' }}
         </mat-icon>
@@ -31,12 +32,12 @@
       <!-- Prénom et Nom côte à côte -->
       <div class="ligne-double">
         <div class="champ-groupe">
-          <input type="text" placeholder="Prenom" class="input-arrondi">
+          <input type="text" placeholder="Prenom" class="input-arrondi" formControlName="prenom">
           <mat-icon class="icone-champ">person</mat-icon>
         </div>
 
         <div class="champ-groupe">
-          <input type="text" placeholder="Nom" class="input-arrondi">
+          <input type="text" placeholder="Nom" class="input-arrondi" formControlName="nom">
           <mat-icon class="icone-champ">person</mat-icon>
         </div>
       </div>
@@ -44,10 +45,13 @@
       <!-- Téléphone avec drapeau -->
       <div class="champ-groupe champ-telephone">
         <img src="logoDrapeauMali.png" alt="Mali" class="drapeau-icon">
-        <input type="tel" placeholder="Telephone" class="input-arrondi avec-drapeau">
+        <input type="tel" placeholder="Telephone" class="input-arrondi avec-drapeau" formControlName="telephone">
         <mat-icon class="icone-champ">phone</mat-icon>
       </div>
 
+      <div class="message-erreur" *ngIf="messageErreur">
+        {{ messageErreur }}
+      </div>
       <!-- Bouton -->
       <button mat-raised-button class="bouton-valider" type="submit">
         S'inscrire
@@ -58,8 +62,13 @@
 
   <!-- CÔTÉ DROIT : IMAGE ET TEXTE -->
   <div class="cote-droit">
-    <div class="illustration">
-      <img src="logoPsychoHelp.png" alt="Illustration">
+    <div class="entete-droit">
+      <div class="illustration">
+        <img src="logoPsychoHelp.png" alt="Illustration">
+      </div>
+      <button mat-icon-button class="btn-retour" (click)="retour() ">
+        <mat-icon>arrow_back_ios_new</mat-icon>
+      </button>
     </div>
 
     <div class="illustration2">

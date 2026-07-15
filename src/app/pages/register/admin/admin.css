@@ -10,7 +10,6 @@ body {
 .page {
   display: flex;
   min-height: 100vh;
-  height: 100%;
   width: 100%;
   font-family:'Poppins', sans-serif;
 }
@@ -175,4 +174,37 @@ font-family: 'Poppins', sans-serif ;
 .illustration3 img {
   max-width: 150px;
   width: 100%;
+}
+.message-erreur{
+    width: 100%;
+    text-align: center;
+    color: #d25e5e;
+    background: #fdeaea;
+    border: 1px solid #f5c2c2;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 12px;
+}
+.entete-droit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-top : -40px;
+
+}
+
+.btn-retour{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #D8A58A;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-retour:hover{
+    background-color: #c88d73;
+    transform: scale(1.05);
 }

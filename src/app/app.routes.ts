@@ -1,15 +1,16 @@
-import { Routes } from "@angular/router";
-import { authGuard } from "./core/guards/auth.guard";
-import { roleGuard } from "./core/guards/role.guard";
+import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
+import { roleGuard } from './core/guards/role.guard';
+//import {Psychologue} from "./pages/register/psychologue/psychologue";
+import { PsychologyLayout } from "./layout/psychologue-layout/psychologue-layout";
 
 export const routes: Routes = [
-  { path: "", redirectTo: "/psychologues", pathMatch: "full" },
-
-  // Pages publiques
+  //  { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
+  //
+  //  // Pages publiques
   {
-    path: "login",
-    loadComponent: () =>
-      import("./pages/logins/logins").then((m) => m.Logins),
+    path: 'login',
+    loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
 
   {
@@ -101,15 +102,13 @@ export const routes: Routes = [
     data: { role: "PSYCHOLOGUE" },
   },
   {
-    path: "psy/creneaux",
-    loadComponent: () =>
-      import("./pages/psy-mes-creneaux/psy-mes-creneaux.component").then(
-        (m) => m.PsyMesCreneauxComponent,
-      ),
-    canActivate: [authGuard, roleGuard],
-    data: { role: "PSYCHOLOGUE" },
+    path: '',
+    redirectTo: 'psychologue/dashboard',
+    pathMatch: 'full'
   },
-  { path: "psy", redirectTo: "/psy/conseils", pathMatch: "full" },
+  {
+    path: '**',
+    redirectTo: 'psychologue/dashboard'
+  }
 
-  { path: "**", redirectTo: "/psychologues" },
 ];
