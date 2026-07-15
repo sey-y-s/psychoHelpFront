@@ -1,0 +1,121 @@
+<div class="modal-overlay" (click)="fermerFormulaire()">
+
+    <section class="modal" (click)="$event.stopPropagation()">
+
+        <header class="modal-header">
+            <div>
+                <h2>
+                    {{ creneau ? 'Modifier le créneau' : 'Ajouter un créneau' }}
+                </h2>
+
+                <p>Renseignez le jour et les horaires.</p>
+            </div>
+
+            <button
+                    type="button"
+                    (click)="fermerFormulaire()"
+                    aria-label="Fermer"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </header>
+
+        <form
+                [formGroup]="formulaire"
+                (ngSubmit)="soumettre()"
+        >
+
+            <div class="form-group">
+                <label for="jour">Jour</label>
+
+                <select
+                        id="jour"
+                        formControlName="jours"
+                >
+                    @for (jour of jours; track jour) {
+                        <option [value]="jour">
+                            {{ jour }}
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="debut">
+                        Heure de début
+                    </label>
+
+                    <input
+                            id="debut"
+                            type="time"
+                            formControlName="heureDebut"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="fin">
+                        Heure de fin
+                    </label>
+
+                    <input
+                            id="fin"
+                            type="time"
+                            formControlName="heureFin"
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Statut</label>
+
+                <div class="status-options">
+
+                    <label class="status-option">
+                        <input
+                                type="radio"
+                                formControlName="statut"
+                                [value]="true"
+                        >
+                        Disponible
+                    </label>
+
+                    <label class="status-option">
+                        <input
+                                type="radio"
+                                formControlName="statut"
+                                [value]="false"
+                        >
+                        Indisponible
+                    </label>
+
+                </div>
+            </div>
+
+            <footer class="form-actions">
+
+                <button
+                        type="button"
+                        class="cancel"
+                        (click)="fermerFormulaire()"
+                >
+                    Annuler
+                </button>
+
+                <button
+                        type="submit"
+                        class="save"
+                        [disabled]="traitement"
+                >
+                    {{ traitement ? 'Traitement...' : 'Enregistrer' }}
+                </button>
+
+            </footer>
+
+        </form>
+
+    </section>
+
+</div>

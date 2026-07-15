@@ -21,11 +21,6 @@
 
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif, Arial, Helvetica;
   background: #f5f7fa;
-}
-
-.page-title {
-  margin: 1rem 0;
-  color: #00695c;
 }

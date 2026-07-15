@@ -1,0 +1,68 @@
+@if (chargement) {
+    <div class="loading">
+        <mat-spinner diameter="42"></mat-spinner>
+        <p>Chargement des rendez-vous...</p>
+    </div>
+} @else {
+
+    @if (rendezVousPagines.length > 0) {
+        <div class="appointments-list">
+
+            @for (rdv of rendezVousPagines; track rdv.id) {
+                <app-rendez-vous-card
+                        [rendezVous]="rdv"
+                        (voirDetails)="voirDetails.emit($event)"/>
+            }
+
+        </div>
+
+        @if (nombrePages > 1) {
+            <div class="pagination">
+                <button
+                        type="button"
+                        (click)="changerPage(1)"
+                        [disabled]="pageActuelle === 1">
+                    «
+                </button>
+
+                <button
+                        type="button"
+                        (click)="changerPage(pageActuelle - 1)"
+                        [disabled]="pageActuelle === 1">
+                    ‹
+                </button>
+
+                @for (page of pages; track page) {
+                    <button
+                            type="button"
+                            [class.active]="pageActuelle === page"
+                            (click)="changerPage(page)">
+                        {{ page }}
+                    </button>
+                }
+
+                <button
+                        type="button"
+                        (click)="changerPage(pageActuelle + 1)"
+                        [disabled]="pageActuelle === nombrePages">
+                    ›
+                </button>
+
+                <button
+                        type="button"
+                        (click)="changerPage(nombrePages)"
+                        [disabled]="pageActuelle === nombrePages">
+                    »
+                </button>
+
+            </div>
+        }
+    } @else {
+        <div class="empty-state">
+            <h2>Aucun rendez-vous</h2>
+            <p>
+                Aucun rendez-vous ne correspond au filtre sélectionné.
+            </p>
+        </div>
+    }
+}

@@ -1,0 +1,107 @@
+:host {
+    display: block;
+}
+
+.creneau-card {
+    min-height: 78px;
+    padding: 15px 14px;
+    border: 1px solid #e8e1dd;
+    border-radius: 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    box-shadow: 0 2px 8px rgba(60, 43, 34, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.creneau-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(60, 43, 34, 0.08);
+}
+
+.creneau-card > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.creneau-card strong {
+    color: #2d2927;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.creneau-card span {
+    position: relative;
+    padding-left: 12px;
+    color: #88817d;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.creneau-card span::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #99918d;
+    transform: translateY(-50%);
+}
+
+.creneau-card span.disponible {
+    color: #159447;
+}
+
+.creneau-card span.disponible::before {
+    background: #159447;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.actions button {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid #ded7d3;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #514a46;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.actions button:hover {
+    background: #f6f2f0;
+}
+
+.actions button:last-child {
+    border-color: #f1d3cf;
+    color: #dc463d;
+}
+
+.actions button:last-child:hover {
+    background: #fff2f0;
+}
+
+.actions mat-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+}
+
+@media (max-width: 450px) {
+    .creneau-card {
+        align-items: flex-start;
+    }
+}

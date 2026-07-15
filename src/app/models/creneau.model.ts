@@ -1,18 +1,22 @@
-// TODO: Vérifier le format date/heure attendu par l'API
 export interface Creneau {
-  id?: number;
-  psychologueId: number;
-  date: string;
+  id: number;
+  jours: string;
   heureDebut: string;
   heureFin: string;
-  disponible: boolean;
+  statut: boolean;
+  nomPsychologue?: string;
 }
 
-export interface Seance {
-  id?: number;
-  citoyenId: number;
-  creneauId: number;
-  psychologueId: number;
-  date: string;
-  statut: 'CONFIRME' | 'ANNULE' | 'TERMINE';
+export interface CreneauRequest {
+  jours: string;
+  heureDebut: string;
+  heureFin: string;
+  statut: boolean;
+}
+export interface UpdateCreneauRequest {
+  id: number;
+  jours: string;
+  heureDebut: string;
+  heureFin: string;
+  statut: boolean;
 }

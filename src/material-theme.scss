@@ -4,6 +4,7 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use "@angular/material" as mat;
+<<<<<<< HEAD
 //@use "@angular/material" as mat;
 
 html {
@@ -43,14 +44,16 @@ body {
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 
+=======
+>>>>>>> cd10da2a4152b91b6df7b192637a1dba1b016bb2
 
 html {
   height: 100%;
   @include mat.theme(
     (
       color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
+        primary: mat.$rose-palette,
+        tertiary: mat.$red-palette,
       ),
       typography: Roboto,
       density: 0,

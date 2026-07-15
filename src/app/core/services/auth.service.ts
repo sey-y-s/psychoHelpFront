@@ -1,29 +1,79 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import {BehaviorSubject, finalize, Observable, tap} from 'rxjs';
 import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisateur.model';
+import { Citoyen } from '../../models/citoyen.model';
+import { Psychologue } from '../../models/psychologue.model';
+import { Admin } from '../../models/admin.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  // TODO: Remplacer par l'URL réelle de l'API Spring Boot
-  private api = 'http://localhost:8080/api/auth';
+  private api = 'http://localhost:8080/api/utilisateurs';
+    private apis = 'http://localhost:8080/api';
+
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
+  private readonly sessionLoadingSubject = new BehaviorSubject<boolean>(true);
+
+  readonly sessionLoading$ = this.sessionLoadingSubject.asObservable()
+
+  get currentUser(): Utilisateur | null {
+    return this.currentUserSubject.value;
+  }
+
   constructor(private http: HttpClient) {
-    // Restaurer la session si un utilisateur est stocké
-    const stored = localStorage.getItem('utilisateur');
-    if (stored) this.currentUserSubject.next(JSON.parse(stored));
+    // Vérifier si une session existe déjà
+    this.verifierSession();
+  }
+
+
+  private verifierSession(): void {
+    // Avec les sessions, le cookie est envoyé automatiquement
+    this.http.get<Utilisateur>(`${this.api}/session`,  {
+      withCredentials: true
+    })
+        .pipe(
+            finalize(() => {
+              this.sessionLoadingSubject.next(false);
+            })
+        ).subscribe({
+      next: utilisateur => this.currentUserSubject.next(utilisateur),
+      error: () => this.currentUserSubject.next(null) // Pas de session active
+    });
+  }
+// Methode pour l'inscription du Citoyen
+  inscrireCitoyen(citoyen: Citoyen): Observable<any> {
+
+    return this.http.post(
+      `${this.apis}/citoyens`,
+      citoyen,
+       { responseType: 'text' }
+    );
+}
+
+   // Methode pour l'inscription du Psychologue
+    inscrirePsychologue(psychologue: Psychologue): Observable<any> {
+
+    return this.http.post(
+      `${this.apis}/psychologues`,
+      psychologue
+    );
+
+  }
+    // Methode pour l'inscription du Admin
+      inscrireAdmin(admin: Admin): Observable<any> {
+
+    return this.http.post(
+      `${this.apis}/admins`,
+      admin
+    );
+
   }
 
   login(data: LoginRequest): Observable<Utilisateur> {
-    // TODO: Adapter la requête et la réponse au format de l'API
-    return this.http.post<Utilisateur>(`${this.api}/login`, data).pipe(
-      tap(utilisateur => {
-        localStorage.setItem('utilisateur', JSON.stringify(utilisateur));
-        localStorage.setItem('token', utilisateur.token!);
-        this.currentUserSubject.next(utilisateur);
-      })
+    return this.http.post<Utilisateur>(`${this.api}/login`, data, { withCredentials: true }).pipe(
+      tap(utilisateur => this.currentUserSubject.next(utilisateur))
     );
   }
 
@@ -31,18 +81,14 @@ export class AuthService {
     return this.http.post<Utilisateur>(`${this.api}/register`, data);
   }
 
-  logout(): void {
-    localStorage.removeItem('utilisateur');
-    localStorage.removeItem('token');
-    this.currentUserSubject.next(null);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('token');
+  logout(): Observable<any> {
+    return this.http.post(`${this.api}/logout`, {}, { withCredentials: true }).pipe(
+      tap(() => this.currentUserSubject.next(null))
+    );
   }
 
   estConnecte(): boolean {
-    return !!this.getToken();
+    return this.currentUserSubject.value !== null;
   }
 
   aRole(role: string): boolean {

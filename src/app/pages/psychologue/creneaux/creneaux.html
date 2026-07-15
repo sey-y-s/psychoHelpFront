@@ -1,0 +1,30 @@
+<section class="page-creneaux">
+
+    <div class="page-header">
+        <div>
+            <h1>Mes créneaux</h1>
+            <p>Gérez vos disponibilités.</p>
+        </div>
+
+        <button type="button" class="add-button" (click)="ouvrirAjout()">
+            Ajouter un créneau
+        </button>
+    </div>
+
+    <app-creneau-list
+            [creneaux]="creneaux"
+            [chargement]="chargement"
+            (modifier)="ouvrirModification($event)"
+            (supprimer)="supprimer($event)"
+    />
+
+</section>
+
+@if (formulaireVisible) {
+    <app-creneau-form
+            [creneau]="creneauSelectionne"
+            [traitement]="traitement"
+            (fermer)="fermerFormulaire()"
+            (enregistrer)="enregistrer($event)"
+    />
+}

@@ -6,7 +6,7 @@ psychoHelpFront/
 │   │   │   │   ├── auth.guard.ts                    # Bloque l'accès auns
 │   │   │   │   └── role.guard.ts                    # Bloque l'accès selon le rôle (ADMIN, PSYCHOLOGUE)
 │   │   │   ├── interceptors/
-│   │   │   │   ├── auth.interceptor.ts              # Injecte le token JWT dans chaque requête HTTP
+│   │   │   │   ├── session.interceptor.ts           # Injecte les cookies de session dans chaque requête HTTP
 │   │   │   │   └── erreur.interceptor.ts            # Capture toutes les erreurs HTTP et les affiche
 │   │   │   └── services/
 │   │   │       ├── auth.service.ts                  # Gère connexion, inscription, déconnexion, stockage token

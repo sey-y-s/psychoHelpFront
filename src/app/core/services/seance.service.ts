@@ -1,16 +1,36 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {environments} from "../../../environments/environments.development";
+import {RendezVous} from "../../models/rendez-vous.model";
 
 @Injectable({ providedIn: 'root' })
 export class SeanceService {
-  // TODO: Remplacer par l'URL réelle
-  private api = 'http://localhost:8080/api/seances';
+  private readonly http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly apiUrl = `${environments.apiUrl}/seances`;
 
-  prendreRendezVous(data: { creneauId: number; citoyenId: number }): Observable<any> {
-    // TODO: Adapter le payload au format attendu par l'API
-    return this.http.post(`${this.api}/prendre-rendez-vous`, data);
+  getMesRendezVous(): Observable<RendezVous[]> {
+    return this.http.get<RendezVous[]>(`${this.apiUrl}/mes-rdv`,
+        {
+          withCredentials: true
+        }
+    );
+  }
+
+  confirmer(id: number): Observable<unknown> {
+    return this.http.put(`${this.apiUrl}/${id}/confirmer`, {},
+        {
+          withCredentials: true
+        }
+    );
+  }
+
+  annuler(id: number): Observable<unknown> {
+    return this.http.put(`${this.apiUrl}/${id}/annuler`, {},
+        {
+          withCredentials: true
+        }
+    );
   }
 }
