@@ -175,6 +175,8 @@ font-family: 'Poppins', sans-serif ;
   max-width: 150px;
   width: 100%;
 }
+
+
 .message-erreur{
     width: 100%;
     text-align: center;
@@ -208,4 +210,110 @@ font-family: 'Poppins', sans-serif ;
 .btn-retour:hover{
     background-color: #c88d73;
     transform: scale(1.05);
+}
+ /* Gestion de la responsivite */
+ 
+ /* Ecran Tablettes */
+@media screen and (max-width: 992px){
+
+  .page{
+      flex-direction: column;
+  }
+
+  .cote-gauche,
+  .cote-droit{
+      width:100%;
+      padding:30px 20px;
+  }
+
+  .mon-formulaire{
+      max-width:550px;
+      margin:auto;
+  }
+
+}
+
+/* Ecran Téléphones */
+@media screen and (max-width:768px){
+
+  .page{
+      flex-direction:column;
+  }
+
+  .cote-gauche,
+  .cote-droit{
+      padding:20px 15px;
+  }
+
+  .entete h2{
+      margin-top:20px;
+      font-size:24px;
+      text-align:center;
+  }
+
+  .ligne-double{
+      flex-direction:column;
+      gap:0;
+  }
+
+  .champ-groupe{
+      margin-bottom:15px;
+  }
+
+  .input-arrondi{
+      height:45px;
+      font-size:14px;
+  }
+
+  .bouton-valider{
+      width:100%;
+      font-size:15px;
+  }
+
+  .entete-droit{
+      padding:0;
+      margin-top:0;
+  }
+
+  .btn-retour{
+      width:38px;
+      height:38px;
+  }
+
+  .illustration2 img{
+      max-width:220px;
+  }
+
+  .illustration3 img{
+      max-width:120px;
+  }
+    .mon-formulaire{
+      max-width:500px;
+      margin:auto;
+  }
+
+
+}
+
+/* Pour les très petits téléphones */
+@media screen and (max-width:480px){
+
+  .entete h2{
+      font-size:20px;
+  }
+
+  .input-arrondi{
+      font-size:13px;
+      padding-left:15px;
+      padding-right:40px;
+  }
+
+  .indication{
+      font-size:10px;
+  }
+
+  .message-erreur{
+      font-size:11px;
+  }
+
 }
