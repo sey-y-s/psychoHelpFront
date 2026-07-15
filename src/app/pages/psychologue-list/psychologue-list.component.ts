@@ -1,11 +1,13 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { PsychologueService } from '../../core/services/psychologue.service';
 import { PsychologueListeDto } from '../../models/psychologue-liste.model';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Specialite } from '../../models/specialite.model';
 
 @Component({
   selector: 'app-psychologue-list',
-
+  imports: [CommonModule, FormsModule],
   standalone: true,
   templateUrl: './psychologue-list.component.html'
 })

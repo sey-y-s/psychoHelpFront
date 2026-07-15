@@ -1,70 +1,52 @@
-<div class="accueil">
-  
-  <!-- Message de bienvenue -->
-  <div class="bienvenue">
-    <h1>Bonjour, {{ prenom }} 👋</h1>
-    <p>Que souhaitez-vous faire aujourd'hui ?</p>
-  </div>
+<header class="head">
+  <img routerLink="/" src="logoPsychoHelp.png" alt="logo">
+  <button routerLink="/login">S'inscrire <br> ou se connecter</button>
+</header>
+<main class="contenair_pricipal">
+  <section class="partie_gauche">
+    <h1>Votre bien-être <br> mental commence <br> ici.</h1>
+    <p>Évaluez votre état émotionnel, <br> recevez des conseils et trouvez <br>un accompagnement adapté.</p>
+    <button routerLink="/login">Prendre un rendez-vous</button>
+  </section>
+  <section class="container_principal_img">
+    <img src="image1Accueil.png" alt="photo">
+  </section>
+</main>
+<aside class="sous_principal">
+  <section>
+    <h4 class="sous_principal_h4">Comment ça marche</h4>
+    <h2 class="sous_principal_h2">Consultez un </h2>
+    <h2 class="sous_principal_h22">Psychologue en 3 etapes</h2>
+  </section>
+  <section class="etapes">
 
-  <!-- Actions rapides selon rôle -->
-  <div class="actions-rapides">
-    
-    @if (role === 'CITOYEN') {
-      <mat-card class="carte-action" routerLink="/psychologues">
-        <mat-icon>people</mat-icon>
-        <span>Consulter les psychologues</span>
-      </mat-card>
-      <!-- TODO : Passer un test d'auto-évaluation -->
-      <!-- TODO : Mes rendez-vous -->
-    }
+    <div class="carte">
+      <h3>01</h3>
+      <h4>Inscrivez-vous</h4>
+      <p>Inscrivez-vous gratuitement et laissez vous guider par notre parcours utilisateur conçu pour vos besoins..</p>
+    </div>
 
-    @if (role === 'PSYCHOLOGUE') {
-      <mat-card class="carte-action" routerLink="/psy/creneaux">
-        <mat-icon>schedule</mat-icon>
-        <span>Gérer mes créneaux</span>
-      </mat-card>
-      <mat-card class="carte-action" routerLink="/psy/conseils">
-        <mat-icon>article</mat-icon>
-        <span>Publier un conseil</span>
-      </mat-card>
-      <!-- TODO : Voir mon dashboard -->
-    }
+    <div class="carte">
+      <h3>02</h3>
+      <h4>Trouvez votre psychologue</h4>
+      <p>Une fois connecté(e),nous vous présenterons les psychologues  (spécialité, disponibilités, etc), et vous pourrez leur écrire gratuitement..</p>
+    </div>
 
-    @if (role === 'ADMIN') {
-      <mat-card class="carte-action" routerLink="/admin/psychologues">
-        <mat-icon>verified_user</mat-icon>
-        <span>Valider les psychologues</span>
-      </mat-card>
-      <mat-card class="carte-action" routerLink="/admin/conseils">
-        <mat-icon>rate_review</mat-icon>
-        <span>Valider les conseils</span>
-      </mat-card>
-      <!-- TODO : Voir les statistiques -->
-    }
+    <div class="carte">
+      <h3>03</h3>
+      <h4>Prenez rendez-vous</h4>
+      <p>Vous avez choisi votre psychologue ? Choisissez maintenant un créneau sur son agenda.</p>
+    </div>
 
-  </div>
-
-  <!-- Résumé -->
-  <div class="resume">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Résumé</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        @if (role === 'CITOYEN') {
-          <p>Bienvenue sur PsychoHelp. Prenez soin de votre santé mentale.</p>
-          <!-- TODO : Prochain RDV, dernier score de test -->
-        }
-        @if (role === 'PSYCHOLOGUE') {
-          <p>Gérez vos consultations et partagez vos conseils.</p>
-          <!-- TODO : Nombre de RDV aujourd'hui, conseils en attente -->
-        }
-        @if (role === 'ADMIN') {
-          <p>Supervisez la plateforme et validez les contenus.</p>
-          <!-- TODO : Compteurs psy en attente, conseils en attente -->
-        }
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-</div>
+  </section>
+</aside>
+<footer class="pied_page">
+  <section class="pied_page_gauche">
+    <h1>Démarrez votre <br>psychothérapie</h1>
+    <p>PsychoHelp et ses <br> psychologues à votre écoute <br>pour votre bien-être.</p>
+    <button routerLink="/login">Je m'inscris</button>
+  </section>
+  <section class="imgFooter">
+    <img src="image2Accueil.png" alt="image">
+  </section>
+</footer>

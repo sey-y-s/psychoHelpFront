@@ -40,8 +40,8 @@ export class Logins {
     private auth: AuthService,
     private router: Router,
     private fb: FormBuilder,
-        private notif: NotificationService,
-    
+    private notif: NotificationService,
+
   ) {
     this.forms = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -57,18 +57,19 @@ export class Logins {
       next: (res) => {
         this.notif.succes("vous êtes connectez avec succes");
         // this.auth.sauvegarderUtilisateur(res);
-      console.log(res);
+        console.log(res);
         if (res.role == "ADMIN") {
-          this.router.navigate(["/dashboardAdmin"]);
+          this.router.navigate(["/psychologues"]);
         } else if (res.role == "CITOYEN") {
           this.router.navigate(["/dashboardCitoyen"]);
-        } else if(res.role=="PSYCHOLOGUE") {
+        } else if (res.role == "PSYCHOLOGUE") {
           this.router.navigate(["/psychologues"]);
         }
       },
       error: () => {
         this.isLoading = false,
-      this.notif.erreur("Erreur lors de votre connection")}
+          this.notif.erreur("Erreur lors de votre connection")
+      }
 
     });
   }

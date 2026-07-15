@@ -6,7 +6,14 @@
     <div class="card p-4 shadow-sm mb-4">
         <div class="row g-3">
             <div class="col-md-6">
-                <input type="text" class="form-control bg-light" placeholder="Rechercher par nom, spécialité...">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0 text-muted">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control border-start-0 bg-white"
+                        placeholder="Rechercher par nom, spécialité1..." [ngModel]="recherche()"
+                        (ngModelChange)="recherche.set($event)">
+                </div>
             </div>
             <!-- Tes dropdowns de filtres ici -->
             <div class="col-md-2"><select class="form-select">
@@ -16,7 +23,11 @@
                     }
 
                 </select></div>
-            <div class="col-md-2"><button class="btn btn-success w-100">Modifier ma recherche</button></div>
+            <div class="col-md-2">
+                <button (click)="reinitialiserRecherche()" class="btn btn-outline-secondary w-100 py-2 rounded-2">
+                    <i class="bi bi-arrow-counterclockwise me-1"></i> Réinitialiser
+                </button>
+            </div>
         </div>
     </div>
 
