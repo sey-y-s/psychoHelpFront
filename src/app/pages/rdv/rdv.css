@@ -153,3 +153,37 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 18px rgba(0,0,0,0.12);
 }
+.filtreDate {
+    margin: 15px 0 25px;
+    padding: 10px 14px;
+
+    width: 250px;
+    max-width: 100%;
+
+    border: 1px solid #d8cfc9;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #2f2927;
+    font-size: 14px;
+
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filtreDate:focus {
+    border-color: #6c4634;
+    box-shadow: 0 0 0 3px rgba(108, 70, 52, 0.15);
+}
+.filtre {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filtre label {
+    font-weight: 600;
+    color: #2f2927;
+}

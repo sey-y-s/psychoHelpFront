@@ -1,1 +1,24 @@
-<p>rendez-vous works!</p>
+<section class="rendez-vous-page">
+    <app-rendez-vous-filtres
+            [filtreActif]="filtreActif"
+            (filtreChange)="changerFiltre($event)"
+            (exporter)="exporter()"
+    />
+
+    <app-rendez-vous-liste
+            [rendezVous]="rendezVousFiltres"
+            [chargement]="chargement"
+            (voirDetails)="afficherDetails($event)"
+    />
+
+</section>
+
+@if (rendezVousSelectionne) {
+    <app-rendez-vous-detail
+            [rendezVous]="rendezVousSelectionne"
+            [actionEnCours]="actionEnCours"
+            (fermer)="fermerDetails()"
+            (confirmer)="confirmer($event)"
+            (annuler)="annuler($event)"
+    />
+}

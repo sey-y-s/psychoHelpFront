@@ -1,111 +1,115 @@
-import { ChangeDetectorRef, Component, inject, OnInit, } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CreneauService } from "../../core/services/creneau.service";
-import { CreneauInterfaceResponse, CreneauInterfaceResponse2 } from "../../models/creneau.model";
 import { SeanceService } from "../../core/services/seance.service";
-import { AuthService } from "../../core/services/auth.service";
-import { Utilisateur } from "../../models/utilisateur.model";
+import { CreneauInterfaceResponse2 } from "../../models/creneau.model";
 import { seanceInterfaceRequest2 } from "../../models/seance.model";
-
-
+import { Sidebar } from "../../shared/components/sidebar/sidebar";
 
 @Component({
   selector: "app-rdv",
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: "./rdv.html",
   styleUrl: "./rdv.css",
 })
 export class Rdv implements OnInit {
-  cdr = inject(ChangeDetectorRef);
-  creneauService = inject(CreneauService)
-  seanceService = inject(SeanceService)
-  authService = inject(AuthService)
-  crenaux: CreneauInterfaceResponse[] = []
-  creneauDisponiblePourcitoyen: CreneauInterfaceResponse2[] = []
-  creneauDisponiblePourcitoyenfiltre: CreneauInterfaceResponse2[] = []
+  private creneauService = inject(CreneauService);
+  private seanceService = inject(SeanceService);
+  private formBuilder = inject(FormBuilder);
+  private cdr = inject(ChangeDetectorRef);
 
-  private formeBulder = inject(FormBuilder)
-  message: null | string = null
-  utilisateurConnecter: null | Utilisateur = null
+  message: string | null = null;
 
-  ngOnInit() {
+  // Toutes les disponibilités venant du backend
+  creneauDisponiblePourcitoyen: CreneauInterfaceResponse2[] = [];
+
+  // Disponibilités après filtre par date
+  creneauDisponiblePourcitoyenfiltre: CreneauInterfaceResponse2[] = [];
+
+  // Indique si le citoyen a choisi une date
+  dateSelectionnee = false;
+
+  // Garde la dernière date choisie
+  dateChoisie = "";
+
+  form2 = this.formBuilder.group({
+    creneauId: this.formBuilder.control<number | null>(null,Validators.required,),
+
+    dateRdv: this.formBuilder.control<string | null>(null, Validators.required),
+  });
+
+  ngOnInit(): void {
+    this.chargerDisponibilites();
+  }
+
+  chargerDisponibilites() {
     this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe({
       next: (donnees) => {
-        this.creneauDisponiblePourcitoyen = donnees
-        this.cdr.detectChanges();
+        // Stockage de toutes les disponibilités
+        this.creneauDisponiblePourcitoyen = donnees;
 
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
-  }
-  form2 = this.formeBulder.group({
-    //citoyenId: this.formeBulder.control<number | null>(null, Validators.required),
-    creneauId: this.formeBulder.control<number | null>(null, Validators.required),
-    dateRdv: this.formeBulder.control<string | null>(null, Validators.required)
-  });
-  // on  prend le rdv ici
-  onSubmit2(creneau: any,datepourFiltre:any) {
-    this.form2.patchValue({
-      //citoyenId: this.utilisateurConnecter.id,
-      creneauId: creneau.creneauId,
-      dateRdv: creneau.date
-    });
-    console.log(this.form2.value);
-    this.seanceService.prendreRdv2(
-      this.form2.value as seanceInterfaceRequest2
-    ).subscribe({
-      next: (response) => {
-        this.creneauDisponiblePourcitoyenfiltre=this.creneauDisponiblePourcitoyenfiltre.filter((donnee)=>donnee.date!=datepourFiltre)
-        //on enleve les dates qui ont ete prises dans la liste  echec
-        this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe({
-          next: (donnees) => {
-            this.creneauDisponiblePourcitoyen = donnees
-            this.cdr.detectChanges();
-
-          },
-          error: (error) => {
-            console.log(error)
-          }
-        })
-        console.log(response);
-        this.message = "rdv pris avec succes!";
-
-      },
-
-      error: ({ error }) => {
-        console.log(error);
-        this.message = error.message;
-      }
-
-    });
-
-  }
-  filtrerParDateComplet(date: string) {
-    console.log(date)
-    this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe(
-      {
-        next: (donnees) => {
-
-          this.creneauDisponiblePourcitoyenfiltre = this.creneauDisponiblePourcitoyen.filter(
-            (creneau) => creneau.date == date
-          )
-          console.log(this.creneauDisponiblePourcitoyenfiltre)
-          this.cdr.detectChanges();
-
-
-        },
-        error: (error) => {
-
+        // Si une date est déjà sélectionnée
+        // on refait le filtre
+        if (this.dateSelectionnee) {
+          this.filtrerParDateComplet(this.dateChoisie);
         }
-      }
-    )
 
+        // Forcer la mise à jour de l'affichage
+        this.cdr.detectChanges();
+      },
 
-
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
+  filtrerParDateComplet(date: string) {
+    this.dateSelectionnee = true;
+
+    this.dateChoisie = date;
+
+    this.creneauDisponiblePourcitoyenfiltre =
+      this.creneauDisponiblePourcitoyen.filter(
+        (creneau) => creneau.date === date,
+      );
+
+    this.cdr.detectChanges();
+  }
+
+  onSubmit2(creneau: CreneauInterfaceResponse2) {
+    this.form2.patchValue({
+      creneauId: creneau.creneauId,
+
+      dateRdv: creneau.date,
+    });
+
+    console.log("Données envoyées :", this.form2.value);
+
+    this.seanceService
+      .prendreRdv2(this.form2.value as seanceInterfaceRequest2)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+
+          this.message = "Rendez-vous pris avec succès.";
+
+          // Recharger les disponibilités
+          // pour retirer le créneau réservé
+
+          this.chargerDisponibilites();
+
+          this.cdr.detectChanges();
+        },
+
+        error: ({ error }) => {
+          console.log(error);
+
+          this.message = error.message? error.message: "Erreur lors de la prise du rendez-vous";
+
+          this.cdr.detectChanges();
+        },
+      });
+  }
 }
-
-

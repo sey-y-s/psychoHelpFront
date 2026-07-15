@@ -1,0 +1,25 @@
+<div class="filters-container">
+
+    <div class="filters">
+        @for (filtre of filtres; track filtre.valeur) {
+            <button
+                    type="button"
+                    class="filter-button"
+                    [class.active]="filtreActif === filtre.valeur"
+                    (click)="selectionner(filtre.valeur)"
+            >
+                {{ filtre.libelle }}
+            </button>
+        }
+    </div>
+
+    <button
+            type="button"
+            class="export-button"
+            (click)="exporter.emit()"
+    >
+        <mat-icon>file_download</mat-icon>
+        Exporter
+    </button>
+
+</div>

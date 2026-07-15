@@ -4,9 +4,9 @@ import {SidebarLayout} from "../sidebar-layout/sidebar-layout";
 import {NavbarLayout} from "../navbar-layout/navbar-layout";
 
 @Component({
-  selector: "app-psychologue-layout",
+  selector: "app-main-layout",
   imports: [ RouterOutlet, SidebarLayout, NavbarLayout],
-  templateUrl: "./psychologue-layout.html",
-  styleUrl: "./psychologue-layout.css",
+  templateUrl: "./main-layout.html",
+  styleUrl: "./main-layout.css",
 })
-export class PsychologyLayout {}
+export class MainLayout {}
