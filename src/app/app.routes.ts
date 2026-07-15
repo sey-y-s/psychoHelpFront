@@ -143,7 +143,6 @@ export const routes: Routes = [
             pathMatch: 'full'
         },
     ]
-<<<<<<< HEAD
   },
   {
   path: 'psychologue-validation',
@@ -160,7 +159,5 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'psychologue/dashboard'
-=======
->>>>>>> d61b30a8b4b5a7f6d427cf30ffd5f392582c7e75
   }
 ];

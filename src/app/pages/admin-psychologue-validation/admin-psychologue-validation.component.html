@@ -3,9 +3,7 @@
   <!-- ====== EN-TÊTE ====== -->
   <div class="header">
     <h2>👥 Validation des psychologues</h2>
-    <button class="btn-refresh" (click)="chargerPsychologues()">
-      Actualiser
-    </button>
+    <!-- Bouton Actualiser SUPPRIMÉ -->
   </div>
 
   <!-- ====== STATISTIQUES ====== -->
@@ -131,7 +129,7 @@
                   Refuser
                 </button>
 
-                <!-- Activer/Désactiver (uniquement si le psychologue est validé) -->
+                <!-- Activer/Désactiver (uniquement si validé) -->
                 <button
                   *ngIf="psy.etat"
                   class="btn-toggle"
@@ -143,7 +141,6 @@
                   {{ psy.status ? '🔴 Désactiver' : '🟢 Activer' }}
                 </button>
 
-                <!-- Message "Non disponible" pour les psychologues en attente -->
                 
               </div>
             </td>

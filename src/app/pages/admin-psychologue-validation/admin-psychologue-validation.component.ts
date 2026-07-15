@@ -9,7 +9,7 @@ import { PsychologueAdminService } from '../../core/services/psychologue-admin.s
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './admin-psychologue-validation.component.html',
-  styleUrls: ['./admin-psychologue-validation.component.css']  // ← Changé de styleUrl à styleUrls (pluriel)
+  styleUrls: ['./admin-psychologue-validation.component.css']
 })
 export class AdminPsychologueValidationComponent implements OnInit {
 
@@ -39,38 +39,44 @@ export class AdminPsychologueValidationComponent implements OnInit {
   modalOuvert = false;
   psychologueSelectionne: Psychologue | null = null;
 
+  // Flag pour savoir si c'est le premier chargement
+  premierChargement = true;
+
   constructor(
     private psychologueAdminService: PsychologueAdminService
   ) {}
 
   ngOnInit(): void {
-    this.chargerPsychologues();
+    // 1. D'abord charger les données mockées INSTANTANÉMENT
+    this.chargerDonneesMock();
+    
+    // 2. Puis charger les données de l'API en arrière-plan
+    this.chargerPsychologuesDepuisApi();
   }
 
   /**
-   * CHARGER LES PSYCHOLOGUES
+   * CHARGER LES PSYCHOLOGUES DEPUIS L'API (en arrière-plan)
    */
-  chargerPsychologues(): void {
-    this.chargement = true;
-
+  chargerPsychologuesDepuisApi(): void {
     this.psychologueAdminService.listerEnAttente().subscribe({
       next: (data) => {
-        this.psychologues = data;
-        this.calculerStatistiques();
-        this.appliquerFiltre();
-        this.chargement = false;
+        if (data && data.length > 0) {
+          this.psychologues = data;
+          this.calculerStatistiques();
+          this.appliquerFiltre();
+        }
+        this.premierChargement = false;
       },
       error: (error) => {
-        console.error('Erreur:', error);
-        this.chargement = false;
-        // Données mockées pour tester
-        this.chargerDonneesMock();
+        console.error('Erreur API:', error);
+        this.premierChargement = false;
+        // Si l'API échoue, on garde les données mockées
       }
     });
   }
 
   /**
-   * DONNÉES MOCKÉES POUR LE TEST
+   * DONNÉES MOCKÉES POUR LE TEST (chargement INSTANTANÉ)
    */
   chargerDonneesMock(): void {
     this.psychologues = [
@@ -162,6 +168,27 @@ export class AdminPsychologueValidationComponent implements OnInit {
     
     this.calculerStatistiques();
     this.appliquerFiltre();
+  }
+
+  /**
+   * CHARGER LES PSYCHOLOGUES (appelé après validation/refus)
+   */
+  chargerPsychologues(): void {
+    this.chargement = true;
+
+    this.psychologueAdminService.listerEnAttente().subscribe({
+      next: (data) => {
+        this.psychologues = data;
+        this.calculerStatistiques();
+        this.appliquerFiltre();
+        this.chargement = false;
+      },
+      error: (error) => {
+        console.error('Erreur:', error);
+        this.chargement = false;
+        // Garder les données mockées si l'API échoue
+      }
+    });
   }
 
   /**
@@ -257,7 +284,7 @@ export class AdminPsychologueValidationComponent implements OnInit {
    * VALIDER UN PSYCHOLOGUE
    */
   valider(id: number): void {
-    if (confirm('Valider ce psychologue ?')) {
+    if (confirm('✅ Valider ce psychologue ?')) {
       this.chargement = true;
       this.psychologueAdminService.valider(id).subscribe({
         next: () => {
@@ -385,5 +412,7 @@ export class AdminPsychologueValidationComponent implements OnInit {
       hour: '2-digit',
       minute: '2-digit'
     });
+    
   }
+  
 }
