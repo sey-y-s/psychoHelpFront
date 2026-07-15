@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
 //import {Psychologue} from "./pages/register/psychologue/psychologue";
-import {PsychologyLayout} from "./layout/psychologue-layout/psychologue-layout";
+import {MainLayout} from "./layout/main-layout/main-layout";
 
 export const routes: Routes = [
  //  { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
@@ -86,53 +86,58 @@ export const routes: Routes = [
 
   {
     path: 'psychologue',
-    component: PsychologyLayout,
+    component: MainLayout,
     children: [
       {
         path: 'dashboard',
         loadComponent: () =>
             import('./pages/psychologue/dashboard/dashboard')
-                .then(m => m.Dashboard)
+                .then(m => m.Dashboard),
+          data: {
+              title: 'Dashboard'
+          }
       },
       {
         path: 'rendez-vous',
         loadComponent: () =>
             import('./pages/psychologue/rendez-vous/rendez-vous')
-                .then(m => m.RendezVous)
+                .then(m => m.RendezVousComponent),
+          data: {
+              title: 'Mes rendez-vous'
+          }
       },
       {
         path: 'creneaux',
         loadComponent: () =>
             import('./pages/psychologue/creneaux/creneaux')
-                .then(m => m.Creneaux)
+                .then(m => m.Creneaux),
+          data: {
+              title: 'Mes Creneaux'
+          }
       },
       {
         path: 'notifications',
         loadComponent: () =>
             import('./pages/psychologue/notifications/notifications')
-                .then(m => m.Notifications)
+                .then(m => m.Notifications),
+          data: {
+              title: 'Notifications'
+          }
       },
       {
         path: 'conseils',
         loadComponent: () =>
             import('./pages/psychologue/conseils/conseils')
-                .then(m => m.Conseils)
+                .then(m => m.Conseils),
+          data: {
+              title: 'Conseils'
+          }
       },
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      }
+        {
+            path: '',
+            redirectTo: 'psychologue/dashboard',
+            pathMatch: 'full'
+        },
     ]
-  },
-  {
-    path: '',
-    redirectTo: 'psychologue/dashboard',
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: 'psychologue/dashboard'
   }
-
 ];

@@ -63,7 +63,7 @@ export class Logins {
         } else if (res.role == "CITOYEN") {
           this.router.navigate(["/dashboardCitoyen"]);
         } else if(res.role=="PSYCHOLOGUE") {
-          this.router.navigate(["/psychologues"]);
+          this.router.navigate(["/psychologue"]);
         }
       },
       error: () => {

@@ -1,0 +1,53 @@
+<article class="appointment-card">
+
+    <div class="citizen-section">
+        <div class="avatar">
+            {{ obtenirInitiales() }}
+        </div>
+
+        <div class="citizen-info">
+            <strong>
+                {{ rendezVous.prenomCitoyen }}
+                {{ rendezVous.nomCitoyen }}
+            </strong>
+
+            <span>Citoyen(ne)</span>
+        </div>
+    </div>
+
+    <div class="date-box">
+        <strong>
+            {{ rendezVous.dateRdv | date:'dd' }}
+        </strong>
+
+        <span>
+      {{ rendezVous.dateRdv | date:'MMM. yyyy' }}
+    </span>
+    </div>
+
+    <div class="appointment-info">
+        <strong>
+            {{ formaterHeure(rendezVous.heureDebut) }}
+            -
+            {{ formaterHeure(rendezVous.heureFin) }}
+        </strong>
+
+        <span>Séance individuelle</span>
+    </div>
+
+    <span
+            class="status"
+            [class]="obtenirClasseStatut(rendezVous.statut)"
+    >
+    {{ obtenirLibelleStatut(rendezVous.statut) }}
+  </span>
+
+    <button
+            type="button"
+            class="details-button"
+            (click)="voirDetails.emit(rendezVous)"
+    >
+        Détails
+    </button>
+
+</article>

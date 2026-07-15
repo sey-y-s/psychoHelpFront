@@ -14,6 +14,10 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
 
+  get currentUser(): Utilisateur | null {
+    return this.currentUserSubject.value;
+  }
+
   constructor(private http: HttpClient) {
     // Vérifier si une session existe déjà
     this.verifierSession();
