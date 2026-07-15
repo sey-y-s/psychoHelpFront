@@ -10,7 +10,11 @@
             </div>
             <!-- Tes dropdowns de filtres ici -->
             <div class="col-md-2"><select class="form-select">
-                    <option>Spécialité</option>
+                    <option value="">Toutes les spécialités</option>
+                    @for(spec of specialites(); track spec.id){
+                    <option [value]="spec.nom">{{ spec.nom }}</option>
+                    }
+
                 </select></div>
             <div class="col-md-2"><button class="btn btn-success w-100">Modifier ma recherche</button></div>
         </div>

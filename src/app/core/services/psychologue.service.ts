@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Psychologue } from '../../models/psychologue.model';
 import { map } from 'rxjs/operators';
 import { PsychologueListeDto } from '../../models/psychologue-liste.model';
+import { Specialite } from '../../models/specialite.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -16,12 +17,23 @@ export class PsychologueService {
   getAll(): Observable<PsychologueListeDto[]> {
     return this.http.get<PsychologueListeDto[]>(this.api).pipe(
       map((psychologues: PsychologueListeDto[]) =>
-        psychologues.filter(p => p.status === true )
+        psychologues.filter(p => p.status === true)
 
       )
 
     );
   }
+
+
+  // getAllActifs(): Observable<PsychologueListeDto[]>{
+  //   return this.http.get<PsychologueListeDto[]>(`${this.api}/staut===true`)
+  // }
+
+
+  getSpecialites(): Observable<Specialite[]> {
+    return this.http.get<Specialite[]>(`${this.api}/specialites`);
+  }
+
 
 
   getById(id: number): Observable<PsychologueListeDto> {

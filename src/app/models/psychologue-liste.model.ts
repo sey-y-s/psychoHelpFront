@@ -1,5 +1,7 @@
 // src/app/models/psychologue-liste.model.ts
 
+import { Specialite } from "./specialite.model";
+
 
 export interface PsychologueListeDto {
     id: number;

@@ -52,13 +52,13 @@ export const routes: Routes = [
         (m) => m.PsychologueListComponent,
       ),
   },
-  {
-    path: "psychologues/:id",
-    loadComponent: () =>
-      import("./pages/psychologue-detail/psychologue-detail.component").then(
-        (m) => m.PsychologueDetailComponent,
-      ),
-  },
+  // {
+  //   path: "psychologues/:id",
+  //   loadComponent: () =>
+  //     import("./pages/psychologue-detail/psychologue-detail.component").then(
+  //       (m) => m.PsychologueDetailComponent,
+  //     ),
+  // },
 
   // Rendez-vous (connecté)
   {
@@ -71,15 +71,15 @@ export const routes: Routes = [
   },
 
   // Administration (admin)
-  {
-    path: "admin/psychologues",
-    loadComponent: () =>
-      import("./pages/admin-psychologue-validation/admin-psychologue-validation.component").then(
-        (m) => m.AdminPsychologueValidationComponent,
-      ),
-    canActivate: [authGuard, roleGuard],
-    data: { role: "ADMIN" },
-  },
+  // {
+  //   path: "admin/psychologues",
+  //   loadComponent: () =>
+  //     import("./pages/admin-psychologue-validation/admin-psychologue-validation.component").then(
+  //       (m) => m.AdminPsychologueValidationComponent,
+  //     ),
+  //   canActivate: [authGuard, roleGuard],
+  //   data: { role: "ADMIN" },
+  // },
   {
     path: "admin/conseils",
     loadComponent: () =>
