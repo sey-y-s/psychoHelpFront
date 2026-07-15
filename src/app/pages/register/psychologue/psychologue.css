@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 /* Organisation de la page globale en 2 colonnes */
-body {
+/* body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-}
+} */
 
 .page {
   display: flex;
   min-height: 100vh;
-  /* height: 100%; */
   width: 100%;
   font-family:'Poppins', sans-serif;
 }
@@ -46,7 +45,7 @@ font-family: 'Poppins', sans-serif ;
 }
 .mon-formulaire {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
 
@@ -86,7 +85,7 @@ font-family: 'Poppins', sans-serif ;
 }
 
 .input-arrondi::placeholder {
-  color: #c4cbd4;                  /* Texte d'exemple gris très clair */
+  color: #c4cbd4;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -140,7 +139,7 @@ font-family: 'Poppins', sans-serif ;
 }
 
 .bouton-valider {
-  background-color: #d8a789 !important; /* Couleur marron/rose du bouton */
+  background-color: #d8a789 !important; 
   color: white !important;
   padding: 10px;
   border-radius: 10px;
@@ -149,7 +148,6 @@ font-family: 'Poppins', sans-serif ;
   margin-top: 10px;
 }
 
-/* Côté Droit */
 .cote-droit {
   flex: 1;
   background-color: #ffffff;
@@ -187,13 +185,13 @@ font-family: 'Poppins', sans-serif ;
   width: 100%;
 }
 
-select {
+/* select {
   color: #9e9e9e; 
-}
+} */
 
-select:valid {
-  color: #000; /* noir lorsqu'une spécialité est choisie */
-}
+/* select:valid {
+  color: #000; /* noir lorsqu'une spécialité est choisie 
+} */
 .message-erreur{
     width: 100%;
     text-align: center;
@@ -225,5 +223,113 @@ select:valid {
 .btn-retour:hover{
     background-color: #c88d73;
     transform: scale(1.05);
+}
+
+
+/* Gestion de la responsivite */
+ 
+ /* Ecran Tablettes */
+@media screen and (max-width: 992px){
+
+  .page{
+      flex-direction: column;
+  }
+
+  .cote-gauche,
+  .cote-droit{
+      width:100%;
+      padding:30px 20px;
+  }
+
+  .mon-formulaire{
+      max-width:550px;
+      margin:auto;
+  }
+
+}
+
+/* Ecran Téléphones */
+@media screen and (max-width:768px){
+
+  .page{
+      flex-direction:column;
+  }
+
+  .cote-gauche,
+  .cote-droit{
+      padding:20px 15px;
+  }
+
+  .entete h2{
+      margin-top:20px;
+      font-size:24px;
+      text-align:center;
+  }
+
+  .ligne-double{
+      flex-direction:column;
+      gap:0;
+  }
+
+  .champ-groupe{
+      margin-bottom:15px;
+  }
+
+  .input-arrondi{
+      height:45px;
+      font-size:14px;
+  }
+
+  .bouton-valider{
+      width:100%;
+      font-size:15px;
+  }
+
+  .entete-droit{
+      padding:0;
+      margin-top:0;
+  }
+
+  .btn-retour{
+      width:38px;
+      height:38px;
+  }
+
+  .illustration2 img{
+      max-width:220px;
+  }
+
+  .illustration3 img{
+      max-width:120px;
+  }
+    .mon-formulaire{
+      max-width:300px;
+      margin:auto;
+  }
+
+
+}
+
+/* Pour les très petits téléphones */
+@media screen and (max-width:480px){
+
+  .entete h2{
+      font-size:20px;
+  }
+
+  .input-arrondi{
+      font-size:13px;
+      padding-left:15px;
+      padding-right:40px;
+  }
+
+  .indication{
+      font-size:10px;
+  }
+
+  .message-erreur{
+      font-size:11px;
+  }
+
 }
 

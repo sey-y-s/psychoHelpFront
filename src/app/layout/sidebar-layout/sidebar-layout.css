@@ -1,15 +1,18 @@
 .sidebar {
     width: 230px;
-    min-height: calc(100vh - 28px);
+    height: calc(100vh - 28px);
     margin: 14px;
     padding: 22px 14px 16px;
     background: #ffffff;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     box-shadow: 0 3px 10px rgba(40, 40, 40, 0.08);
     position: sticky;
     top: 14px;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
 .logo-box {
@@ -18,18 +21,28 @@
     align-items: center;
     min-height: 115px;
     margin-bottom: 28px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
 }
 
 .logo-box img {
     width: 105px;
     max-height: 90px;
     object-fit: contain;
+    transition: transform 0.2s ease;
 }
 
 .menu {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 2px;
+    position: relative;
+    z-index: 2;
 }
 
 .menu-item {
@@ -58,17 +71,18 @@
 }
 
 .menu-item.active {
-    background: #f3ebe7;
+    background: #dca891;
     color: #2d2927;
     font-weight: 600;
 }
 
 .menu-item.active mat-icon {
-    color: #7f4bff;
+    color: #6b4633;
 }
 
 .sidebar-bottom {
     margin-top: auto;
+    flex-shrink: 0;
 }
 
 .profile {
@@ -94,6 +108,13 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
+}
+
+.profile-info strong,
+.profile-info span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .profile-info strong {
@@ -135,6 +156,18 @@
     width: 21px;
     height: 21px;
     font-size: 21px;
+}
+
+.logo-box:hover img {
+    transform: scale(1.03);
+}
+
+.session-loading {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    color: #777;
+    font-size: 13px;
 }
 
 @media (max-width: 900px) {
