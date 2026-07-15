@@ -1,22 +1,66 @@
-<h1>prendre un rdv</h1>
-<form [formGroup]="form2">
-<div class="rdv">
-@if (creneauDisponiblePourcitoyen.length>0) {
-        @for (creneau of creneauDisponiblePourcitoyen; track $index) {
+<section class="page-creneaux">
 
-                <div class="card">
-                        <p>Jours : {{creneau.jours}}</p>
-                        <p>Date : {{creneau.date}}</p>
-                        <p>
-                                Heure : {{creneau.heureDebut}} - {{creneau.heureFin}}
-                        </p>
-                        <button type="button"(click)="onSubmit2(creneau)">
-                            Prendre ce rendez-vous
-                        </button>
-            </div>
-        }
-}@else{
-                <div style="color: green;">Aucun creneau disponible pour le moment</div>
+    <div class="page-header">
+        <div>
+            <h1>Prendre un rendez-vous</h1>
+            <p>Choisissez un créneau disponible.</p>
+        </div>
+
+        <button type="button" class="add-button">
+            Ajouter un créneau
+        </button>
+    </div>
+
+    <label for="filtreDate">Choisir une date : </label>
+    <input type="date" id="filtreDate" (change)="filtrerParDateComplet($event.target.value)">
+
+
+    @if (message) {
+    <div class="message">
+        {{message}}
+    </div>
     }
-</div>
-</form>
+    <div class="rdv">
+
+
+        @if (creneauDisponiblePourcitoyenfiltre.length > 0) {
+
+        @for (creneau of creneauDisponiblePourcitoyenfiltre; track $index) {
+
+        <div class="card">
+
+            <p>
+                <strong>Jour :</strong>
+                {{ creneau.jours }}
+            </p>
+
+            <p>
+                <strong>Date :</strong>
+                {{ creneau.date }}
+            </p>
+
+            <p>
+                <strong>Heure :</strong>
+                {{ creneau.heureDebut }} - {{ creneau.heureFin }}
+            </p>
+
+
+            <button type="button" (click)="onSubmit2(creneau,creneau.date)">
+                Prendre ce rendez-vous
+            </button>
+
+        </div>
+
+        }
+
+        } @else {
+
+        <div class="vide">
+            Aucun créneau disponible pour cette date .
+        </div>
+
+        }
+
+    </div>
+
+</section>
