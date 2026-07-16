@@ -1,15 +1,16 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CreneauService } from "../../core/services/creneau.service";
-import { SeanceService } from "../../core/services/seance.service";
-import { CreneauInterfaceResponse2 } from "../../models/creneau.model";
-import { seanceInterfaceRequest2 } from "../../models/seance.model";
-import { Sidebar } from "../../shared/components/sidebar/sidebar";
+import { CreneauService } from "../../../core/services/creneau.service";
+import { SeanceService } from "../../../core/services/seance.service";
+import { CreneauInterfaceResponse2 } from "../../../models/creneau.model";
+import { seanceInterfaceRequest2 } from "../../../models/seance.model";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+
 
 @Component({
   selector: "app-rdv",
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: "./rdv.html",
   styleUrl: "./rdv.css",
 })
@@ -18,7 +19,8 @@ export class Rdv implements OnInit {
   private seanceService = inject(SeanceService);
   private formBuilder = inject(FormBuilder);
   private cdr = inject(ChangeDetectorRef);
-
+  private route=inject(ActivatedRoute)
+   psyId!:number
   message: string | null = null;
 
   // Toutes les disponibilités venant du backend
@@ -44,25 +46,29 @@ export class Rdv implements OnInit {
   }
 
   chargerDisponibilites() {
-    this.creneauService.listerDesCreneauxDisponiblePourCitoyen().subscribe({
-      next: (donnees) => {
-        // Stockage de toutes les disponibilités
-        this.creneauDisponiblePourcitoyen = donnees;
+        console.log(this.psyId)
+           this.psyId=+this.route.snapshot.paramMap.get('psydId')!
+              this.creneauService.listerDesCreneauxDisponiblePourCitoyen(this.psyId).subscribe({
+                    next: (donnees) => {
+                      // Stockage de toutes les disponibilités
+                      this.creneauDisponiblePourcitoyen = donnees;
 
-        // Si une date est déjà sélectionnée
-        // on refait le filtre
-        if (this.dateSelectionnee) {
-          this.filtrerParDateComplet(this.dateChoisie);
-        }
+                      // Si une date est déjà sélectionnée
+                      // on refait le filtre
+                      if (this.dateSelectionnee) {
+                        this.filtrerParDateComplet(this.dateChoisie);
+                      }
 
-        // Forcer la mise à jour de l'affichage
-        this.cdr.detectChanges();
-      },
+                      // Forcer la mise à jour de l'affichage
+                      this.cdr.detectChanges();
+                    },
 
-      error: (error) => {
-        console.log(error);
-      },
-    });
+                    error: (error) => {
+                      console.log(error);
+                    },
+                  });
+        
+    
   }
 
   filtrerParDateComplet(date: string) {

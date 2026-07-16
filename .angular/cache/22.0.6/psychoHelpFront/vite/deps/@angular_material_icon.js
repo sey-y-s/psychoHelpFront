@@ -3,17 +3,17 @@ import {
 } from "./chunk-G2QDSNIB.js";
 import {
   DomSanitizer
-} from "./chunk-Q2Y32WB4.js";
-import "./chunk-SVMEYEDB.js";
+} from "./chunk-IG4QURSJ.js";
+import "./chunk-TR4P2ATT.js";
+import {
+  HttpClient
+} from "./chunk-XBHXNXOH.js";
+import "./chunk-QIZIKN22.js";
+import "./chunk-TKBJ5BOW.js";
+import "./chunk-VXS7DUPZ.js";
 import {
   BidiModule
 } from "./chunk-BANBOLF5.js";
-import "./chunk-QIZIKN22.js";
-import "./chunk-SKMQ6G4B.js";
-import {
-  HttpClient
-} from "./chunk-G27CMINQ.js";
-import "./chunk-YKI4ZE6P.js";
 import {
   Component,
   ElementRef,

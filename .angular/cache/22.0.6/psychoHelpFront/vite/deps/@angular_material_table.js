@@ -1,32 +1,26 @@
 import {
-  _DisposeViewRepeaterStrategy
-} from "./chunk-UN4TF6H7.js";
-import "./chunk-42QFQP6S.js";
-import "./chunk-N4DOILP3.js";
-import {
   CDK_VIRTUAL_SCROLL_VIEWPORT,
-  ScrollingModule,
-  ViewportRuler
-} from "./chunk-CJKXELEJ.js";
-import {
   DataSource,
+  ScrollingModule,
+  ViewportRuler,
   _RecycleViewRepeaterStrategy,
   _ViewRepeaterOperation,
   isDataSource
-} from "./chunk-EMZ5E5WN.js";
-import "./chunk-GUGIMSVJ.js";
+} from "./chunk-BU6JNKPQ.js";
+import "./chunk-IV3MFEVG.js";
+import "./chunk-N4DOILP3.js";
+import {
+  _isNumberValue
+} from "./chunk-EHGJZET6.js";
+import {
+  Platform
+} from "./chunk-UYGYUX2J.js";
+import "./chunk-TKBJ5BOW.js";
+import "./chunk-VXS7DUPZ.js";
 import {
   BidiModule,
   Directionality
 } from "./chunk-BANBOLF5.js";
-import {
-  Platform
-} from "./chunk-IDGZMKQF.js";
-import {
-  _isNumberValue
-} from "./chunk-EHGJZET6.js";
-import "./chunk-SKMQ6G4B.js";
-import "./chunk-YKI4ZE6P.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -40,6 +34,7 @@ import {
   IterableDiffers,
   NgModule,
   Output,
+  Service,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -58,6 +53,7 @@ import {
   ɵɵdefineComponent,
   ɵɵdefineDirective,
   ɵɵdefineNgModule,
+  ɵɵdefineService,
   ɵɵelementContainer,
   ɵɵelementContainerEnd,
   ɵɵelementContainerStart,
@@ -96,6 +92,37 @@ import {
   of,
   takeUntil
 } from "./chunk-PJVWDKLX.js";
+
+// node_modules/@angular/cdk/fesm2022/_dispose-view-repeater-strategy-chunk.mjs
+var _DisposeViewRepeaterStrategy = class {
+  applyChanges(changes, viewContainerRef, itemContextFactory, itemValueResolver, itemViewChanged) {
+    changes.forEachOperation((record, adjustedPreviousIndex, currentIndex) => {
+      let view;
+      let operation;
+      if (record.previousIndex == null) {
+        const insertContext = itemContextFactory(record, adjustedPreviousIndex, currentIndex);
+        view = viewContainerRef.createEmbeddedView(insertContext.templateRef, insertContext.context, insertContext.index);
+        operation = _ViewRepeaterOperation.INSERTED;
+      } else if (currentIndex == null) {
+        viewContainerRef.remove(adjustedPreviousIndex);
+        operation = _ViewRepeaterOperation.REMOVED;
+      } else {
+        view = viewContainerRef.get(adjustedPreviousIndex);
+        viewContainerRef.move(view, currentIndex);
+        operation = _ViewRepeaterOperation.MOVED;
+      }
+      if (itemViewChanged) {
+        itemViewChanged({
+          context: view?.context,
+          operation,
+          record
+        });
+      }
+    });
+  }
+  detach() {
+  }
+};
 
 // node_modules/@angular/cdk/fesm2022/table.mjs
 var _c0 = [[["caption"]], [["colgroup"], ["col"]], "*"];
@@ -2309,6 +2336,39 @@ var CdkTableModule = class _CdkTableModule {
       exports: EXPORTED_DECLARATIONS,
       imports: [ScrollingModule, ...EXPORTED_DECLARATIONS]
     }]
+  }], null, null);
+})();
+
+// node_modules/@angular/cdk/fesm2022/_unique-selection-dispatcher-chunk.mjs
+var UniqueSelectionDispatcher = class _UniqueSelectionDispatcher {
+  _listeners = [];
+  notify(id, name) {
+    for (let listener of this._listeners) {
+      listener(id, name);
+    }
+  }
+  listen(listener) {
+    this._listeners.push(listener);
+    return () => {
+      this._listeners = this._listeners.filter((registered) => {
+        return listener !== registered;
+      });
+    };
+  }
+  ngOnDestroy() {
+    this._listeners = [];
+  }
+  static ɵfac = function UniqueSelectionDispatcher_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _UniqueSelectionDispatcher)();
+  };
+  static ɵprov = ɵɵdefineService({
+    token: _UniqueSelectionDispatcher,
+    factory: _UniqueSelectionDispatcher.ɵfac
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(UniqueSelectionDispatcher, [{
+    type: Service
   }], null, null);
 })();
 
