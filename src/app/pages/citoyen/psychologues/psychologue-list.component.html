@@ -1,0 +1,116 @@
+<div class="container-fluid py-4">
+    <div class="mb-4">
+
+        <h2 class="page-title fw-bold">
+            Psychologues
+        </h2>
+
+        <p class="breadcrumb-text">
+            Accueil > Psychologues
+        </p>
+
+    </div>
+
+    <div class="search-card shadow-sm mb-4">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-6">
+
+                <div class="input-group custom-search">
+
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" [ngModel]="recherche()"
+                        (ngModelChange)="recherche.set($event)" placeholder="Rechercher un psychologue...">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select custom-select" [ngModel]="specialiteSelectionnee()"
+                    (ngModelChange)="specialiteSelectionnee.set($event)">
+                    <option value="">
+                        Toutes les spécialités
+                    </option>
+                    @for(spec of specialites(); track spec.id){
+
+                    <option [value]="spec.nom">
+                        {{spec.nom}}
+                    </option>
+
+                    }
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button class="reset-btn w-100" (click)="reinitialiserRecherche()">
+                    <i class="bi bi-arrow-counterclockwise me-2"></i>
+
+                    Réinitialiser
+                </button>
+            </div>
+        </div>
+        @if(recherche().trim() || specialiteSelectionnee().trim()){
+        <div class="result-box mt-4">
+            @if(nombreResultats() > 0){
+            <i class="bi bi-check-circle-fill"></i>
+
+            <span>
+
+                <strong>
+                    {{nombreResultats()}}
+                </strong>
+
+                psychologue{{nombreResultats()>1?'s':''}}
+                trouvé{{nombreResultats()>1?'s':''}}
+
+            </span>
+
+            }
+            @else{
+            <i class="bi bi-exclamation-circle-fill text-danger"></i>
+            <span>
+                Aucun psychologue trouvé.
+            </span>
+            }
+
+        </div>
+        }
+    </div>
+    <div class="row">
+        @for(p of psychologuesList(); track p.id){
+        <div class="col-md-3 mb-4">
+            <div class="psych-card shadow-sm">
+                <div class="image-container">
+                    <img src="https://placehold.co/300x200?text=Psychologue" alt="psychologue">
+                    <span class="availability">
+                        Disponible
+                    </span>
+                </div>
+
+                <div class="card-body-custom">
+                    <h5 style="font-weight: 500">
+                        Dr. {{p.nom}} {{p.prenom}}
+                    </h5>
+                    <span class="speciality">
+
+                        {{p.specialite || 'Psychologue Clinicien'}}
+
+                    </span>
+                    <p class="info">
+                        ⭐ 4.8 (58 avis)
+                        <span>|</span>
+                        ⏱ 1 heure
+                    </p>
+                    <button class="profile-btn" routerLink="{{p.id}}">
+                        Voir le profil
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+        }
+    </div>
+</div>
+
+<style>
+
+</style>

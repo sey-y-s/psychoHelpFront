@@ -1,10 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  overflow-x: hidden;
+}
 .head{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: white;
   padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+     /* permet de mettre l'header  au-dessus des autres contenus */
+    z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+      
 }
+
 .head button{
     background: #dca98e;
     color: white;
@@ -13,7 +31,9 @@
       border:none;
 
 
-}
+
+    }
+    
 .head img {
   width: 70px;
   height: 70px;
@@ -104,23 +124,21 @@ button:hover{
   display: flex;
   justify-content: space-between;
       background: linear-gradient(to bottom, #D7A790 42%, #DBC3B9 55%, #DFE0E3 68%);
-      padding: 30px;
-          height: 600px;
-
-
-
+          height: 500px;
 }
 .pied_page_gauche{
   display: flex;
   flex-direction: column;
-  line-height: 1;
+  line-height: 1.5;
    color: #2C3E50;
    gap: 50px;
       padding: 60px;
 
 
+
  
 }
+
 .pied_page_gauche button{
     background: #dca98e;
     color: white;
@@ -137,10 +155,12 @@ button:hover{
 
 .imgFooter{
   position: relative;
-  top: -330px;
+top: 40px;
+align-self: flex-end;
     
 
 }
+
 .head button{
     font-size: 18px;
 }
@@ -153,7 +173,7 @@ button:hover{
 
 
 .partie_gauche p{
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .sous_principal h2{
@@ -171,18 +191,18 @@ button:hover{
 }
 
 .pied_page_gauche h1{
-    font-size: 40px;
-    line-height: 1.2;
+    font-size: 45px;
     
 }
 
 .pied_page_gauche p{
-    font-size: 30px;
+    font-size: 22px;
 }
 .pied_page_gauche button:hover{
 background:#c98f73;
     cursor:pointer;
   }
+
   /* Responsivite au niveau des tablettes */
 @media screen and (max-width: 992px) {
 
@@ -252,7 +272,9 @@ background:#c98f73;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+ 
   }
+
 
 
   .head img {

@@ -1,0 +1,58 @@
+<a   routerLink="/"></a>
+<section class="page-creneaux">
+    <div class="page-header">
+        <div>
+            <h1>Prendre un rendez-vous</h1>
+            <p>Choisissez une date pour voir les créneaux disponibles.</p>
+        </div>
+    </div>
+
+    <div class="filtre">
+        <label for="filtreDate"> Choisir une date : </label>
+
+        <input id="filtreDate" type="date" class="filtreDate"
+            (change)="filtrerParDateComplet($event.target.value)" />
+    </div>
+
+    @if(message){
+    <div class="message">{{message}}</div>
+    } @if(!dateSelectionnee){
+
+    <div class="vide">Veuillez choisir une date.</div>
+
+    } @else if(creneauDisponiblePourcitoyenfiltre.length>0){
+
+    <div class="rdv">
+        @for(creneau of creneauDisponiblePourcitoyenfiltre; track
+        creneau.creneauId){
+
+        <div class="card">
+            <p>
+                <strong>Jour :</strong>
+                {{creneau.jours}}
+            </p>
+
+            <p>
+                <strong>Date :</strong>
+                {{creneau.date}}
+            </p>
+
+            <p>
+                <strong>Heure :</strong>
+                {{creneau.heureDebut}} - {{creneau.heureFin}}
+            </p>
+
+            <button type="button" (click)="onSubmit2(creneau)">
+                Prendre ce rendez-vous
+            </button>
+        </div>
+
+        }
+    </div>
+
+    } @else{
+
+    <div class="vide">Aucun créneau disponible pour cette date.</div>
+
+    }
+</section>
