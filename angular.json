@@ -4,6 +4,8 @@
   "cli": {
     "packageManager": "npm",
     "analytics": false
+    "packageManager": "npm",
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -51,13 +53,12 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/material-theme.scss",
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
-              "src/styles.css"
-            ]
+            "styles": ["src/material-theme.scss", 
+            "src/styles.css",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+           "node_modules/bootstrap-icons/font/bootstrap-icons.css"]
+            
+
           },
           "configurations": {
             "production": {

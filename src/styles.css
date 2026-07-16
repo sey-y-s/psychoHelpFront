@@ -4,6 +4,15 @@
 /* TODO: Personnaliser les couleurs */
 /* TODO: Définir la typographie */
 
+:root{
+    --primary:#2C3E50;
+    --secondary:#5D3520;
+    --beige:#D7A790;
+    --background:#f8f6f4;
+    --white:#ffffff;
+}
+
+
 * {
   margin: 0;
   padding: 0;

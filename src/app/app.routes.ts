@@ -32,6 +32,59 @@ export const routes: Routes = [
     path: 'register/admin',
     loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
   },
+<<<<<<< HEAD
+=======
+ //
+ //  // Psychologues (public)
+ //  {
+ //    path: 'psychologues',
+ //    loadComponent: () => import('./pages/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
+ //  },
+  {
+    path: 'psychologues/:id',
+    loadComponent: () => import('./pages/psychologue-detail/psychologue-detail').then(m => m.PsychologueDetail)
+  },
+ //
+ //  // Rendez-vous (connecté)
+ //  {
+ //    path: 'rendezvous/prise',
+ //    loadComponent: () => import('./pages/rdv/rdv.component').then(m => m.PriseRendezvousComponent),
+ //    canActivate: [authGuard]
+ //  },
+ //
+ //  // Administration (admin)
+ //  {
+ //    path: 'admin/psychologues',
+ //    loadComponent: () => import('./pages/admin-psychologue-validation/admin-psychologue-validation.component').then(m => m.AdminPsychologueValidationComponent),
+ //    canActivate: [authGuard, roleGuard],
+ //    data: { role: 'ADMIN' }
+ //  },
+ //  //{
+ // //   path: 'admin/conseils',
+ // //   loadComponent: () => import('./pages/admin-conseil-validation/admin-conseil-validation.component').then(m => m.AdminConseilValidationComponent),
+ // //   canActivate: [authGuard, roleGuard],
+ // //   data: { role: 'ADMIN' }
+ // // },
+ //  //{ path: 'admin', redirectTo: '/admin/psychologues', pathMatch: 'full' },
+ //
+ //  // Espace psychologue (psy)
+ //  {
+ //    path: 'psy/conseils',
+ //    loadComponent: () => import('./pages/psy-mes-conseils/psy-mes-conseils.component').then(m => m.PsyMesConseilsComponent),
+ //    canActivate: [authGuard, roleGuard],
+ //    data: { role: 'PSYCHOLOGUE' }
+ //  },
+ //  {
+ //    path: 'psy/creneaux',
+ //    loadComponent: () => import('./pages/psy-mes-creneaux/psy-mes-creneaux.component').then(m => m.PsyMesCreneauxComponent),
+ //    canActivate: [authGuard, roleGuard],
+ //    data: { role: 'PSYCHOLOGUE' }
+ //  },
+ //  //{ path: 'psy', redirectTo: '/psy/conseils', pathMatch: 'full' },
+ //
+ //  //{ path: '**', redirectTo: '/psychologues' },
+
+>>>>>>> 2e479dd1aed21ebd11d7956729995b3f7c9c8ffb
 
   // =========================================================================
   // ESPACE PSYCHOLOGUE
