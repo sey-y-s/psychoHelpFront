@@ -50,6 +50,11 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/citoyen/dashboard/dashboard').then(m => m.Dashboard),
+        data: { title: 'Dashboard' }
+      },
+      {
         path: 'psychologues',
         loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent)
       },
