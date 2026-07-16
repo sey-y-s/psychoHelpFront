@@ -137,8 +137,8 @@ export const routes: Routes = [
 
   // Redirection par défaut si la route n'existe pas
   // TODO : Page 404
-  { 
-    path: '**', 
-    redirectTo: '' 
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
