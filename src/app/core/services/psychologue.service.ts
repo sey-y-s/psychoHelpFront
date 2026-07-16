@@ -5,17 +5,19 @@ import { Psychologue } from '../../models/psychologue.model';
 import { map } from 'rxjs/operators';
 import { PsychologueListeDto } from '../../models/psychologue-liste.model';
 import { Specialite } from '../../models/specialite.model';
+import { environments } from '../../../environments/environments.development';
 
 
 @Injectable({ providedIn: 'root' })
 export class PsychologueService {
   // TODO: Remplacer par l'URL réelle
+  private readonly apiUrl = `${environments.apiUrl}`
   private api = 'http://localhost:8080/api/psychologues';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<PsychologueListeDto[]> {
-    return this.http.get<PsychologueListeDto[]>(`${this.api}`, { withCredentials: true }
+    return this.http.get<PsychologueListeDto[]>(`${this.apiUrl}/psychologues`, { withCredentials: true }
     ).pipe(
       map((psychologues: PsychologueListeDto[]) =>
         psychologues.filter(p => p.status === false)
@@ -32,13 +34,13 @@ export class PsychologueService {
 
 
   getSpecialites(): Observable<Specialite[]> {
-    return this.http.get<Specialite[]>(`${this.api}/specialites`);
+    return this.http.get<Specialite[]>(`${this.apiUrl}/specialites/public`);
   }
 
 
 
   getById(id: number): Observable<PsychologueListeDto> {
-    return this.http.get<PsychologueListeDto>(`${this.api}/${id}`, { withCredentials: true });
+    return this.http.get<PsychologueListeDto>(`${this.apiUrl}/psychologues/${id}`, { withCredentials: true });
   }
 
 
