@@ -12,7 +12,17 @@ html, body {
   justify-content: space-between;
   background-color: white;
   padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+     /* permet de mettre l'header  au-dessus des autres contenus */
+    z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+      
 }
+
 .head button{
     background: #dca98e;
     color: white;
@@ -163,7 +173,7 @@ align-self: flex-end;
 
 
 .partie_gauche p{
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .sous_principal h2{
@@ -181,14 +191,12 @@ align-self: flex-end;
 }
 
 .pied_page_gauche h1{
-    font-size: 40px;
-    line-height: 1.2;
+    font-size: 45px;
     
 }
 
 .pied_page_gauche p{
-    font-size: 30px;
-    line-height: 1.2;
+    font-size: 22px;
 }
 .pied_page_gauche button:hover{
 background:#c98f73;
@@ -264,7 +272,9 @@ background:#c98f73;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+ 
   }
+
 
 
   .head img {
