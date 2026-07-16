@@ -50,7 +50,6 @@ export class ListeConseilAdminComponent implements OnInit {
     this.conseilAdminService.listTousConseils().subscribe({
       next: (donnees: Conseil[]) => {
         this.tousLesConseils = donnees;
-        this.cdRef.detectChanges();
         //this.listConseils = donnees;
         this.isLoading = false;
         console.log("Données reçues du serveur :", this.listConseils);

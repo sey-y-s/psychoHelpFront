@@ -7,13 +7,13 @@ import { NavbarComponent } from './shared/components/navbar.component';
   standalone: true,
 
   imports: [RouterOutlet, NavbarComponent],
-  template: `
+/*  template: `
     <main style="max-width:1200px; margin:0 auto; padding:1rem">
       <router-outlet></router-outlet>
     </main>
   `
 
-  imports: [RouterOutlet],
+  imports: [RouterOutlet],*/
   templateUrl: "./app.html",
   styleUrl: "./app.css",
 
