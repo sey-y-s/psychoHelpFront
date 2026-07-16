@@ -2,17 +2,58 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Psychologue } from '../../models/psychologue.model';
+import { map } from 'rxjs/operators';
+import { PsychologueListeDto } from '../../models/psychologue-liste.model';
+import { Specialite } from '../../models/specialite.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class PsychologueService {
   // TODO: Remplacer par l'URL réelle
   private api = 'http://localhost:8080/api/psychologues';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  lister(): Observable<Psychologue[]> {
-    // TODO: Ajouter pagination et filtres
-    return this.http.get<Psychologue[]>(this.api);
+  getAll(): Observable<PsychologueListeDto[]> {
+    return this.http.get<PsychologueListeDto[]>(`${this.api}`, { withCredentials: true }
+    ).pipe(
+      map((psychologues: PsychologueListeDto[]) =>
+        psychologues.filter(p => p.status === true)
+
+      )
+
+    );
+  }
+
+
+  // getAllActifs(): Observable<PsychologueListeDto[]>{
+  //   return this.http.get<PsychologueListeDto[]>(`${this.api}/staut===true`)
+  // }
+
+
+  getSpecialites(): Observable<Specialite[]> {
+    return this.http.get<Specialite[]>(`${this.api}/specialites`);
+  }
+
+
+
+  getById(id: number): Observable<PsychologueListeDto> {
+    return this.http.get<PsychologueListeDto>(`${this.api}/${id}`, { withCredentials: true });
+  }
+
+
+  create(data: any): Observable<any> {
+    return this.http.post<any>(this.api, data, { withCredentials: true });
+  }
+
+
+  update(id: number, data: any): Observable<PsychologueListeDto> {
+    return this.http.patch<PsychologueListeDto>(`${this.api}/${id}`, data, { withCredentials: true });
+  }
+
+
+  delete(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.api}/${id}`, { withCredentials: true });
   }
 
   trouverParId(id: number): Observable<Psychologue> {
