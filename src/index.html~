@@ -26,7 +26,10 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cloudflare.com">
+=======
+>>>>>>> cd10da2a4152b91b6df7b192637a1dba1b016bb2
   </head>
   <body>
     <app-root></app-root>

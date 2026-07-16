@@ -10,6 +10,16 @@
   box-sizing: border-box;
 }
 
+:root{
+  --primary: #2C3E50;
+  --secondary: #5D3520;
+  --beige: #D7A790;
+  --background: #F8F6F4;
+  --white: #fff;
+  --black: #000;
+}
+
+
 body {
   font-family: Roboto, sans-serif, Arial, Helvetica;
   background: #f5f7fa;
