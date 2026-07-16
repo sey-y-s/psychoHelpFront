@@ -64,7 +64,7 @@ export class Logins {
         if (res.role == "ADMIN") {
           this.router.navigate(["/dashboardAdmin"]);
         } else if (res.role == "CITOYEN") {
-          this.router.navigate(["/dashboardCitoyen"]);
+          this.router.navigate(["/citoyen/dashboard"]);
         } else if(res.role=="PSYCHOLOGUE") {
           this.router.navigate(["/psychologue"]);
         }
