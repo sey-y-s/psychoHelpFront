@@ -24,9 +24,18 @@ export const routes: Routes = [
       import('./pages/logins/logins')
         .then(m => m.Logins)
   },
+
   {
-    path: 'register',
-    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+    path: 'psychologues',
+
+    loadComponent: () => import('./pages/citoyen/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
+  },
+  {
+    path: "register",
+    loadComponent: () =>
+      import("./pages/register/register.component").then(
+        (m) => m.RegisterComponent,
+      ),
   },
 
   //chemin pour acceder a la page d´inscription d´un psy
@@ -235,6 +244,15 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'psychologues',
+        loadComponent: () =>
+          import('./pages/citoyen/psychologue-list/psychologue-list.component')
+            .then(m => m.PsychologueListComponent),
+        data: {
+          title: 'PsychologueList'
+        }
+      },
+      {
         path: 'prendrerdv/:psydId',
         loadComponent: () =>
           import('./pages/citoyen/rdv/rdv')
@@ -250,8 +268,8 @@ export const routes: Routes = [
           title: 'Mes Creneaux'
         }
       },
-      
-      
+
+
     ]
   },
   // ==========================
