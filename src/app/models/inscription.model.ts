@@ -3,6 +3,6 @@ export interface InscriptionUtilisateur {
   nom: string;
   prenom: string;
   mail: string;
-  motDePasse: string;
+  motDePasse?: string;
   telephone: string;
 }
