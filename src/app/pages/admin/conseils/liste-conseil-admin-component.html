@@ -29,7 +29,7 @@
 
     <!-- 2. BLOC CARTES : Un seul conteneur propre, visible quand le chargement est fini -->
     <div *ngIf="!isLoading" class="list-card mt-3">
-        <app-card-vaidation-conseil *ngFor="let conseil of listConseils" [donnees]="conseil"></app-card-vaidation-conseil>
+        <app-card-validation-conseil *ngFor="let conseil of listConseils" [donnees]="conseil"></app-card-validation-conseil>
 
         <!-- Message d'information si la liste est vide -->
         <p *ngIf="listConseils.length === 0" class="text-center text-muted mt-4">

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core"; // Ajout de ChangeDetectorRef
-import { PsychologueService } from "../../core/services/psychologue.service";
-import { Psychologue } from "../../models/psychologue.model";
+import { PsychologueService } from "../../../core/services/psychologue.service";
+import { Psychologue } from "../../../models/psychologue.model";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { switchMap, catchError, of } from "rxjs";
 
