@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Psychologue } from '../../models/psychologue.model';
+import { Psychologue } from '../../models/psyForAdmin.model';
 import { PsychologueAdminService } from '../../core/services/psychologue-admin.service';
 
 @Component({
