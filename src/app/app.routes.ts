@@ -28,7 +28,7 @@ export const routes: Routes = [
   {
     path: 'psychologues',
 
-    loadComponent: () => import('./pages/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
+    loadComponent: () => import('./pages/citoyen/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
   },
   {
     path: "register",
@@ -241,6 +241,15 @@ export const routes: Routes = [
             .then(m => m.Dashboard),
         data: {
           title: 'Dashboard'
+        }
+      },
+      {
+        path: 'psychologues',
+        loadComponent: () =>
+          import('./pages/citoyen/psychologue-list/psychologue-list.component')
+            .then(m => m.PsychologueListComponent),
+        data: {
+          title: 'PsychologueList'
         }
       },
       {
