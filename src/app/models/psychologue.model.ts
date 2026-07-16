@@ -1,27 +1,13 @@
-export interface Psychologue {
+import { InscriptionUtilisateur } from "./inscription.model";
 
-  id: number;
-
-  nom: string;
-
-  prenom: string;
-
-  telephone: string;
-
-  mail: string;
-
-  role: string;
-
-  dateCreation: string;
-
-  status: boolean;
-
+export interface Psychologue extends InscriptionUtilisateur {
   description: string;
-
-  diplome_path: string;
-
   cv_path: string;
-
-  etat: boolean;
-
+  diplome_path: string;
+  idSpecialite?: number;
+  specialite?: string;
+  role?: string;
+  dateCreation?: string;
+  status?: boolean;
+  etat?: boolean;
 }
