@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  overflow-x: hidden;
+}
 .head{
   display: flex;
   flex-direction: row;
@@ -13,7 +21,9 @@
       border:none;
 
 
-}
+
+    }
+    
 .head img {
   width: 70px;
   height: 70px;
@@ -104,23 +114,21 @@ button:hover{
   display: flex;
   justify-content: space-between;
       background: linear-gradient(to bottom, #D7A790 42%, #DBC3B9 55%, #DFE0E3 68%);
-      padding: 30px;
-          height: 600px;
-
-
-
+          height: 500px;
 }
 .pied_page_gauche{
   display: flex;
   flex-direction: column;
-  line-height: 1;
+  line-height: 1.5;
    color: #2C3E50;
    gap: 50px;
       padding: 60px;
 
 
+
  
 }
+
 .pied_page_gauche button{
     background: #dca98e;
     color: white;
@@ -137,10 +145,12 @@ button:hover{
 
 .imgFooter{
   position: relative;
-  top: -330px;
+top: 40px;
+align-self: flex-end;
     
 
 }
+
 .head button{
     font-size: 18px;
 }
@@ -178,11 +188,13 @@ button:hover{
 
 .pied_page_gauche p{
     font-size: 30px;
+    line-height: 1.2;
 }
 .pied_page_gauche button:hover{
 background:#c98f73;
     cursor:pointer;
   }
+
   /* Responsivite au niveau des tablettes */
 @media screen and (max-width: 992px) {
 
