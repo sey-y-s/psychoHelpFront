@@ -6,17 +6,17 @@
             <button id="btn-en-attente"
                     class="btn btn-outline-info btn-filter"
                     [class.active]="filtreActif==='attente'"
-                    (click)="chargerFiltre('attente')">En attente</button>
+                    (click)="changerFiltre('attente')">En attente</button>
             <button id="btn-valider"
                     class="btn-filter" [class.active]="filtreActif==='valider'"
-                    (click)="chargerFiltre('valider')">Valider </button>
+                    (click)="changerFiltre('valider')">Valider </button>
             <button  class="btn btn-outline-secondary btn-filter"
                      [class.active]="filtreActif==='refuser'"
                      [class.active]="filtreActif==='refuser'"
-                     (click)="chargerFiltre('refuser')">Refuser</button>
+                     (click)="changerFiltre('refuser')">Refuser</button>
             <button id="btn-tous" class="btn-filter"
                     [class.active]="filtreActif==='tous'"
-                    (click)="chargerFiltre('tous')">Tous les conseils</button>
+                    (click)="changerFiltre('tous')">Tous les conseils</button>
         </p>
     </div>
 
@@ -29,7 +29,7 @@
 
     <!-- 2. BLOC CARTES : Un seul conteneur propre, visible quand le chargement est fini -->
     <div *ngIf="!isLoading" class="list-card mt-3">
-        <app-card-vaidation-conseil *ngFor="let conseil of listConseils" [donnees]="conseil"></app-card-vaidation-conseil>
+        <app-card-validation-conseil *ngFor="let conseil of listConseils" [donnees]="conseil"></app-card-validation-conseil>
 
         <!-- Message d'information si la liste est vide -->
         <p *ngIf="listConseils.length === 0" class="text-center text-muted mt-4">
