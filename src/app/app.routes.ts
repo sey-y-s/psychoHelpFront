@@ -1,16 +1,28 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
+
+import {
+  ListeConseilAdminComponent
+} from "./shared/components/liste-conseil-admin-component/liste-conseil-admin-component";
+
 //import {Psychologue} from "./pages/register/psychologue/psychologue";
 import { MainLayout } from "./layout/main-layout/main-layout";
+
 
 export const routes: Routes = [
   //  { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
   //
   //  // Pages publiques
   {
+    path: '',
+    loadComponent: () => import('./pages/accueil/accueil').then(m => m.Accueil)
+  },
+  {
     path: 'login',
-    loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
+    loadComponent: () =>
+      import('./pages/logins/logins')
+        .then(m => m.Logins)
   },
 
   {
@@ -93,10 +105,23 @@ export const routes: Routes = [
   //
   //  //{ path: '**', redirectTo: '/psychologues' },
 
+
+  {
+    path: 'test',
+    loadComponent: () => import('./shared/components/liste-conseil-admin-component/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent)
+  },
+  {
+    path: 'conseil',
+    loadComponent: () => import('./shared/components/admin-show-conseil/admin-show-conseil').then(m => m.AdminShowConseil)
+  },
+
+  // Psychologues (public)
+
   {
     path: 'psychologue',
     component: MainLayout,
     children: [
+
       {
         path: 'dashboard',
         loadComponent: () =>
@@ -106,6 +131,7 @@ export const routes: Routes = [
           title: 'Dashboard'
         }
       },
+
       {
         path: 'rendez-vous',
         loadComponent: () =>
@@ -115,6 +141,7 @@ export const routes: Routes = [
           title: 'Mes rendez-vous'
         }
       },
+
       {
         path: 'creneaux',
         loadComponent: () =>
@@ -124,6 +151,7 @@ export const routes: Routes = [
           title: 'Mes Creneaux'
         }
       },
+
       {
         path: 'notifications',
         loadComponent: () =>
@@ -133,6 +161,7 @@ export const routes: Routes = [
           title: 'Notifications'
         }
       },
+
       {
         path: 'conseils',
         loadComponent: () =>
@@ -148,5 +177,98 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
     ]
+  },
+
+
+  // Administration
+
+  {
+    path: 'admin/conseils',
+    loadComponent: () =>
+      import('./pages/admin-conseil-validation/admin-conseil-validation.component')
+        .then(m => m.AdminConseilValidationComponent),
+
+    canActivate: [authGuard, roleGuard],
+    data: {
+      role: 'ADMIN'
+    }
+  },
+
+
+  // ==========================
+  // Anciennes routes psy
+  // ==========================
+
+  {
+    path: 'psy/conseils',
+    loadComponent: () =>
+      import('./pages/psy-mes-conseils/psy-mes-conseils.component')
+        .then(m => m.PsyMesConseilsComponent),
+
+    canActivate: [authGuard, roleGuard],
+    data: {
+      role: 'PSYCHOLOGUE'
+    }
+  },
+
+
+  // ==========================
+  // Redirections
+  // ==========================
+
+  {
+    path: 'psychologue-validation',
+    loadComponent: () =>
+      import('./pages/admin-psychologue-validation/admin-psychologue-validation.component')
+        .then(m => m.AdminPsychologueValidationComponent)
+  },
+
+  {
+    path: '',
+    redirectTo: 'psychologue/dashboard',
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'citoyen',
+    component: MainLayout,
+    children: [
+
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./pages/citoyen/dashboard/dashboard')
+            .then(m => m.Dashboard),
+        data: {
+          title: 'Dashboard'
+        }
+      },
+      {
+        path: 'prendrerdv/:psydId',
+        loadComponent: () =>
+          import('./pages/citoyen/rdv/rdv')
+            .then(m => m.Rdv)
+      },
+
+      {
+        path: 'test',
+        loadComponent: () =>
+          import('./pages/psychologue/creneaux/creneaux')
+            .then(m => m.Creneaux),
+        data: {
+          title: 'Mes Creneaux'
+        }
+      },
+
+
+    ]
+  },
+  // ==========================
+  // Route inconnue (TOUJOURS EN DERNIER)
+  // ==========================
+
+  {
+    path: '**',
+    redirectTo: 'psychologue/dashboard'
   }
 ];

@@ -3,7 +3,10 @@ export interface Conseil {
   id?: number;
   psychologueId: number;
   titre: string;
-  contenu: string;
+  description: string;
   datePublication?: string;
-  valide: boolean;
+  status: string;
+  auteur: string
+
+  psyNom: string
 }
