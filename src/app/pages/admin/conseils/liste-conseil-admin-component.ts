@@ -2,7 +2,7 @@ import {Component, OnInit, ChangeDetectorRef} from "@angular/core";
 import {ConseilAdminService} from "../../../core/services/conseil-admin.service";
 import {CommonModule} from "@angular/common";
 import {Conseil} from "../../../models/conseil.model";
-import {CardVaidationConseil} from "../card-vaidation-conseil/card-vaidation-conseil";
+import {CardValidationConseil} from "./card-validation/card-validation";
 
 
 
@@ -11,7 +11,7 @@ import {CardVaidationConseil} from "../card-vaidation-conseil/card-vaidation-con
   standalone: true,
     imports: [
         CommonModule,
-        CardVaidationConseil
+        CardValidationConseil
     ],
   templateUrl: "./liste-conseil-admin-component.html",
   styleUrl: "./liste-conseil-admin-component.css",
