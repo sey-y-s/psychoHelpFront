@@ -1,0 +1,104 @@
+:host {
+    display: block;
+}
+
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.loading {
+    min-height: 340px;
+    padding: 30px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.55);
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 13px;
+    color: #716a66;
+}
+
+.loading p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.empty-state {
+    min-height: 330px;
+    padding: 30px;
+    border-radius: 10px;
+    background: #ffffff;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.empty-state h2 {
+    margin: 0 0 7px;
+    color: #302b28;
+    font-size: 20px;
+}
+
+.empty-state p {
+    max-width: 430px;
+    margin: 0;
+    color: #77716d;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.pagination {
+    margin-top: 46px;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 9px;
+    border: none;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #4f4743;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: #f7efeb;
+    transform: translateY(-1px);
+}
+
+.pagination button.active {
+    background: #674330;
+    color: #ffffff;
+}
+
+.pagination button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+    .appointments-list {
+        gap: 18px;
+    }
+
+    .pagination {
+        margin-top: 28px;
+        gap: 7px;
+    }
+}

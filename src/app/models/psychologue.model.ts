@@ -1,12 +1,13 @@
-// TODO: Vérifier la correspondance avec l'entité Psychologue du backend
-export interface Psychologue {
-    id: number;
-  prenom: string;
-  nom: string;
-  specialite: string;
-  description: string;
-  mail: string;
-  telephone: string;
-  dateCreation: string;
+import { InscriptionUtilisateur } from "./inscription.model";
 
+export interface Psychologue extends InscriptionUtilisateur {
+  description: string;
+  cv_path: string;
+  diplome_path: string;
+  idSpecialite?: number;
+  specialite?: string;
+  role?: string;
+  dateCreation?: string;
+  status?: boolean;
+  etat?: boolean;
 }

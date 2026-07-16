@@ -19,12 +19,17 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Roboto, sans-serif;
-  background: #f5f7fa;
+:root{
+  --primary: #2C3E50;
+  --secondary: #5D3520;
+  --beige: #D7A790;
+  --background: #F8F6F4;
+  --white: #fff;
+  --black: #000;
 }
 
-.page-title {
-  margin: 1rem 0;
-  color: #00695c;
+
+body {
+  font-family: Roboto, sans-serif, Arial, Helvetica;
+  background: #f5f7fa;
 }

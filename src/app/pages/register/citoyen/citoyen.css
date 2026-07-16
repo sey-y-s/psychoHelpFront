@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Organisation de la page globale en 2 colonnes */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.page {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family:'Poppins', sans-serif;
+}
+
+input, 
+button, 
+select, 
+textarea, 
+p, 
+h2, 
+small {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Côté Gauche */
+.cote-gauche {
+  flex: 1;
+background: linear-gradient(to right, #F7EDE8 50%, #EEEFF1 100%);  padding: 40px;  /* pour le fond gradien  */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entete {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.entete h2{
+  margin-bottom: 20px;
+    color: #2C3E50;
+margin-top: 50px;
+font-family: 'Poppins', sans-serif ;
+}
+.mon-formulaire {
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.champ-groupe {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.input-arrondi {
+  width: 100%;
+  height: 48px;
+  background-color: #ffffff;      /* Fond BLANC garanti */
+  border: 1px solid #2C3E50;        /* Bordure fine de l'image */
+  border-radius: 15px;              /* Effet capsule très arrondi */
+  padding: 0 45px 0 20px;           /* Espace pour l'icône à droite */
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  color: #333333;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.input-arrondi::placeholder {
+  color: #c4cbd4;                  /* Texte d'exemple gris très clair */
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-arrondi:focus {
+  border-color: #2C3E50;
+}
+
+/* Icônes positionnées à droite */
+.icone-champ {
+  position: absolute;
+  right: 16px;
+  color: #2C3E50;
+  user-select: none;
+}
+
+.icone-champ.cliquable {
+  cursor: pointer;
+}
+
+/* Cas particulier : Téléphone avec drapeau */
+.champ-telephone .input-arrondi.avec-drapeau {
+  padding-left: 55px;
+}
+
+.drapeau-icon {
+  position: absolute;
+  left: 16px;
+  width: 26px;
+  height: auto;
+  border-radius: 3px;
+}
+
+
+/* Pour mettre deux champs sur la même ligne */
+.ligne-double {
+  display: flex;
+  gap: 10px;
+}
+
+.ligne-double mat-form-field {
+  flex: 1;
+}
+
+.indication {
+  font-size: 11px;
+  color: #2C3E50;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.bouton-valider {
+  background-color: #d8a789 !important; /* Couleur marron/rose du bouton */
+  color: white !important;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif !important;
+  margin-top: 10px;
+}
+
+/* Côté Droit */
+.cote-droit {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color : #2C3E50;
+
+}
+
+.illustration {
+  text-align: auto;
+}
+
+.illustration img {
+  max-width: 100px;
+  width: 100%;
+}
+.illustration2 {
+  text-align: center;
+}
+.illustration3 {
+  text-align: center;
+}
+
+.illustration2 img {
+  max-width: 300px;
+  width: 100%;
+}
+.illustration3 img {
+  max-width: 150px;
+  width: 100%;
+}
+
+
+.message-erreur{
+    width: 100%;
+    text-align: center;
+    color: #d25e5e;
+    background: #fdeaea;
+    border: 1px solid #f5c2c2;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 12px;
+}
+
+.entete-droit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-top : -40px;
+
+}
+
+.btn-retour{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #D8A58A;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-retour:hover{
+    background-color: #c88d73;
+    transform: scale(1.05);
+}
+ /* Gestion de la responsivite */
+ 
+ /* Ecran Tablettes */
+@media screen and (max-width: 992px){
+
+  .page{
+      flex-direction: column;
+  }
+
+  .cote-gauche,
+  .cote-droit{
+      width:100%;
+      padding:30px 20px;
+  }
+
+  .mon-formulaire{
+      max-width:550px;
+      margin:auto;
+  }
+
+}
+
+/* Ecran Téléphones */
+@media screen and (max-width:768px){
+
+  .page{
+      flex-direction:column;
+  }
+
+  .cote-gauche,
+  .cote-droit{
+      padding:20px 15px;
+  }
+
+  .entete h2{
+      margin-top:20px;
+      font-size:24px;
+      text-align:center;
+  }
+
+  .ligne-double{
+      flex-direction:column;
+      gap:0;
+  }
+
+  .champ-groupe{
+      margin-bottom:15px;
+  }
+
+  .input-arrondi{
+      height:45px;
+      font-size:14px;
+  }
+
+  .bouton-valider{
+      width:100%;
+      font-size:15px;
+  }
+
+  .entete-droit{
+      padding:0;
+      margin-top:0;
+  }
+
+  .btn-retour{
+      width:38px;
+      height:38px;
+  }
+
+  .illustration2 img{
+      max-width:220px;
+  }
+
+  .illustration3 img{
+      max-width:120px;
+  }
+    .mon-formulaire{
+      max-width:500px;
+      margin:auto;
+  }
+
+
+}
+
+/* Pour les très petits téléphones */
+@media screen and (max-width:480px){
+
+  .entete h2{
+      font-size:20px;
+  }
+
+  .input-arrondi{
+      font-size:13px;
+      padding-left:15px;
+      padding-right:40px;
+  }
+
+  .indication{
+      font-size:10px;
+  }
+
+  .message-erreur{
+      font-size:11px;
+  }
+
+}

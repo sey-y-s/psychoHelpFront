@@ -3,10 +3,10 @@ psychoHelpFront/
 │   ├── app/
 │   │   ├── core/                                    # Fondations transversales de l'application
 │   │   │   ├── guards/
-│   │   │   │   ├── auth.guard.ts                    # Bloque l'accès aux non-connectés
+│   │   │   │   ├── auth.guard.ts                    # Bloque l'accès auns
 │   │   │   │   └── role.guard.ts                    # Bloque l'accès selon le rôle (ADMIN, PSYCHOLOGUE)
 │   │   │   ├── interceptors/
-│   │   │   │   ├── auth.interceptor.ts              # Injecte le token JWT dans chaque requête HTTP
+│   │   │   │   ├── session.interceptor.ts           # Injecte les cookies de session dans chaque requête HTTP
 │   │   │   │   └── erreur.interceptor.ts            # Capture toutes les erreurs HTTP et les affiche
 │   │   │   └── services/
 │   │   │       ├── auth.service.ts                  # Gère connexion, inscription, déconnexion, stockage token
@@ -70,7 +70,7 @@ NB : N'oublions pas les fichiers qui vont avec... et soyons curieux. Un meet pos
 
 ---
 
-### Authentification  --> Maman Nationale & Dialla
+### Authentification  --> Maman Nationale & DC (°_°) (°_°)
 - `models/utilisateur.model.ts`
 - `core/services/auth.service.ts`
 - `core/interceptors/auth.interceptor.ts`
@@ -80,39 +80,39 @@ NB : N'oublions pas les fichiers qui vont avec... et soyons curieux. Un meet pos
 - `pages/register/register.component.ts`
 
 
-### Psychologue (partie publique)  --> Big Demboy
+### Psychologue (partie publique)  --> Big Demboy (°_°)
 - `models/psychologue.model.ts`
 - `core/services/psychologue.service.ts`
 - `pages/psychologue-list/psychologue-list.component.ts`
 
 
-### Psychologue (partie détail)  --> Adama Assimi Diarra
+### Psychologue (partie détail)  --> Adama Assimi Diarra (°_°)
 - `pages/psychologue-detail/psychologue-detail.component.ts`
 
 
-### Rendez-vous  --> Expert Moussa
+### Rendez-vous  --> Expert Moussa (°_°)
 - `models/creneau.model.ts`
 - `core/services/seance.service.ts`
 - `pages/rdv/rdv.component.ts`
 
 
-### Admin (validation psychologues) --> Imam Koita
+### Admin (validation psychologues) --> Imam Koita(big H) (°_°)
 - `core/services/psychologue-admin.service.ts`
 - `pages/admin-psychologue-validation/admin-psychologue-validation.component.ts`
 
 
-### Admin (validation conseils) --> Mohamed Big Angular
+### Admin (validation conseils) --> Mohamed
 - `models/conseil.model.ts`
 - `core/services/conseil-admin.service.ts`
 - `pages/admin-conseil-validation/admin-conseil-validation.component.ts`
 
-### Espace psychologue --> Koro Gass
+### Espace psychologue --> Koro Gass (°_°)
 - `core/services/conseil.service.ts`
 - `core/services/creneau.service.ts`
 - `pages/psy-mes-conseils/psy-mes-conseils.component.ts`
 - `pages/psy-mes-creneaux/psy-mes-creneaux.component.ts`
 
-### Socle commun................
+### Socle commun................  oustaz karamoko cherif seyba
 - `core/guards/auth.guard.ts`
 - `core/guards/role.guard.ts`
 - `shared/components/navbar.component.ts`

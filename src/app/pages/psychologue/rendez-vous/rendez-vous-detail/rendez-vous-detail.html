@@ -1,0 +1,73 @@
+<div class="modal-overlay" (click)="fermer.emit()">
+    <section class="detail-modal" (click)="$event.stopPropagation()">
+        <header>
+            <h2>Détail du rendez-vous</h2>
+            <button type="button" (click)="fermer.emit()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </header>
+
+        <div class="detail-content">
+
+            <div>
+                <span>Citoyen</span>
+                <strong>
+                    {{ rendezVous.prenomCitoyen }}
+                    {{ rendezVous.nomCitoyen }}
+                </strong>
+            </div>
+
+            <div>
+                <span>Date</span>
+                <strong>{{ rendezVous.dateRdv | date:'dd/MM/yyyy' }}</strong>
+            </div>
+
+            <div>
+                <span>Jour du créneau</span>
+                <strong>{{ rendezVous.jour }}</strong>
+            </div>
+
+            <div>
+                <span>Horaire</span>
+                <strong>{{ formaterHeure(rendezVous.heureDebut) }} - {{ formaterHeure(rendezVous.heureFin) }}
+                </strong>
+            </div>
+
+            <div>
+                <span>Statut</span>
+                <strong>{{ rendezVous.statut }}</strong>
+            </div>
+
+        </div>
+
+        <footer>
+            <button
+                    type="button"
+                    class="close-action"
+                    (click)="fermer.emit()">
+                Fermer
+            </button>
+
+            @if (peutAnnuler) {
+                <button
+                        type="button"
+                        class="cancel-action"
+                        [disabled]="actionEnCours"
+                        (click)="annuler.emit(rendezVous)">
+                    Annuler
+                </button>
+            }
+
+            @if (peutConfirmer) {
+                <button
+                        type="button"
+                        class="confirm-action"
+                        [disabled]="actionEnCours"
+                        (click)="confirmer.emit(rendezVous)">
+                    {{actionEnCours ? 'Traitement...' : 'Confirmer' }}
+                </button>
+            }
+        </footer>
+
+    </section>
+</div>

@@ -1,25 +1,44 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Creneau } from '../../models/creneau.model';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Creneau, CreneauRequest, UpdateCreneauRequest} from "../../models/creneau.model";
+import {environments} from "../../../environments/environments.development";
+
 
 @Injectable({ providedIn: 'root' })
 export class CreneauService {
-  // TODO: Remplacer par l'URL réelle
-  private api = 'http://localhost:8080/api/creneaux';
 
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = `${environments.apiUrl}/creneaux`;
 
-  listerMesCreneaux(): Observable<Creneau[]> {
-    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
-    return this.http.get<Creneau[]>(`${this.api}/mes-creneaux`);
+  getMesCreneaux(): Observable<Creneau[]>{
+    return this.http.get<Creneau[]>(`${this.apiUrl}/mes-creneaux`, {
+      withCredentials: true
+    });
   }
 
-  creer(creneau: Creneau): Observable<Creneau> {
-    return this.http.post<Creneau>(this.api, creneau);
+  getById(id: number):Observable<Creneau> {
+    return this.http.get<Creneau>(`${this.apiUrl}/${id}`, {
+      withCredentials: true
+    })
   }
 
-  supprimer(id: number): Observable<any> {
-    return this.http.delete(`${this.api}/${id}`);
+  creer(creneau: CreneauRequest): Observable<Creneau> {
+    return this.http.post<Creneau>(`${this.apiUrl}`, creneau, {
+      withCredentials:true
+    })
   }
+
+  modifier(id: number, creneau: CreneauRequest): Observable<Creneau>{
+    return this.http.put<Creneau>(`${this.apiUrl}/${id}`,creneau, {
+      withCredentials:true
+    })
+  }
+
+  supprimer(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
+      withCredentials: true
+    })
+  }
+
 }

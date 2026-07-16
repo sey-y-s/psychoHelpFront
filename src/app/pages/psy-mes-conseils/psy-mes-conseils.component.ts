@@ -49,11 +49,11 @@ import { EtatVideComponent } from '../../shared/components/etat-vide.component';
           <mat-card-title>{{ c.titre }}</mat-card-title>
           <mat-card-subtitle>
             {{ c.datePublication || 'En attente de validation' }}
-            @if (!c.valide) { <span class="badge-attente">(En attente)</span> }
-            @if (c.valide) { <span class="badge-valide">(Validé)</span> }
+            @if (!c.status) { <span class="badge-attente">(En attente)</span> }
+            @if (c.status) { <span class="badge-valide">(Validé)</span> }
           </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content><p>{{ c.contenu }}</p></mat-card-content>
+        <mat-card-content><p>{{c.description }}</p></mat-card-content>
         <mat-card-actions align="end">
           <button mat-icon-button color="warn" (click)="supprimer(c.id!)" title="Supprimer">
             <mat-icon>delete</mat-icon>
