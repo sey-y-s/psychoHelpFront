@@ -1,8 +1,14 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
+
+import {
+  ListeConseilAdminComponent
+} from "./shared/components/liste-conseil-admin-component/liste-conseil-admin-component";
+
 //import {Psychologue} from "./pages/register/psychologue/psychologue";
 import { MainLayout } from "./layout/main-layout/main-layout";
+
 
 export const routes: Routes = [
   //  { path: '', redirectTo: '/psychologues', pathMatch: 'full' },
@@ -89,6 +95,18 @@ export const routes: Routes = [
   //  //{ path: 'psy', redirectTo: '/psy/conseils', pathMatch: 'full' },
   //
   //  //{ path: '**', redirectTo: '/psychologues' },
+
+
+  {
+    path: 'test',
+    loadComponent: () => import('./shared/components/liste-conseil-admin-component/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent)
+  },
+  {
+    path: 'conseil',
+    loadComponent: () => import('./shared/components/admin-show-conseil/admin-show-conseil').then(m => m.AdminShowConseil)
+  },
+
+  // Psychologues (public)
 
   {
     path: 'psychologue',

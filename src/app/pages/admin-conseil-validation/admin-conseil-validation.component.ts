@@ -55,7 +55,7 @@ export class AdminConseilValidationComponent implements OnInit {
   constructor(private service: ConseilAdminService, private notif: NotificationService) {}
 
   ngOnInit(): void {
-    this.service.listerEnAttente().subscribe({
+    this.service.listTousConseils().subscribe({
       next: data => { this.liste = data; this.chargement = false; },
       error: () => this.chargement = false
     });
