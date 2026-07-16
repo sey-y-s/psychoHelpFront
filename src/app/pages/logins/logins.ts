@@ -16,7 +16,7 @@ import { MatButton } from "@angular/material/button";
 import { MatProgressBar } from "@angular/material/progress-bar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { NotificationService } from "../../core/services/notification.service";
-import { MatIconModule } from "@angular/material/icon"; 
+import { MatIconModule } from "@angular/material/icon";
 @Component({
   selector: "app-logins",
   standalone: true,
@@ -37,14 +37,14 @@ import { MatIconModule } from "@angular/material/icon";
 export class Logins {
   isLoading = false;
   forms: FormGroup;
-      motdepassecache = true;
+  motdepassecache = true;
 
   constructor(
     private auth: AuthService,
     private router: Router,
     private fb: FormBuilder,
-        private notif: NotificationService,
-    
+    private notif: NotificationService,
+
   ) {
     this.forms = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
@@ -60,18 +60,19 @@ export class Logins {
       next: (res) => {
         this.notif.succes("vous êtes connectez avec succes");
         // this.auth.sauvegarderUtilisateur(res);
-      console.log(res);
+        console.log(res);
         if (res.role == "ADMIN") {
-          this.router.navigate(["/dashboardAdmin"]);
+          this.router.navigate(["/psychologues"]);
         } else if (res.role == "CITOYEN") {
           this.router.navigate(["/dashboardCitoyen"]);
-        } else if(res.role=="PSYCHOLOGUE") {
+        } else if (res.role == "PSYCHOLOGUE") {
           this.router.navigate(["/psychologue"]);
         }
       },
       error: () => {
         this.isLoading = false,
-      this.notif.erreur("Erreur lors de votre connection")}
+          this.notif.erreur("Erreur lors de votre connection")
+      }
 
     });
   }

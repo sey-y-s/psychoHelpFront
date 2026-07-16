@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environments} from "../../../environments/environments.development";
 import {RendezVous} from "../../models/rendez-vous.model";
+import { seanceInterfaceRequest2, SeanceInterfaceResponse } from '../../models/seance.model';
 
 @Injectable({ providedIn: 'root' })
 export class SeanceService {
@@ -33,4 +34,9 @@ export class SeanceService {
         }
     );
   }
+  prendreRdv2(seanceInterfaceRequest:seanceInterfaceRequest2):Observable<SeanceInterfaceResponse>{
+          return this.http.post<SeanceInterfaceResponse>(`${this.apiUrl}`,seanceInterfaceRequest,{
+            withCredentials:true
+          })
+       }
 }

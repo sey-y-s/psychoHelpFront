@@ -98,4 +98,7 @@ export class AuthService {
   getUtilisateurId(): number | undefined {
     return this.currentUserSubject.value?.id;
   }
+  getUserConnecté(): string | null {
+    return localStorage.getItem('utilisateur');
+  }
 }
