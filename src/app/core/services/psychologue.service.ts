@@ -20,7 +20,7 @@ export class PsychologueService {
     return this.http.get<PsychologueListeDto[]>(`${this.apiUrl}/psychologues`, { withCredentials: true }
     ).pipe(
       map((psychologues: PsychologueListeDto[]) =>
-        psychologues.filter(p => p.status === false)
+        psychologues.filter(p => p.status === true)
 
       )
 

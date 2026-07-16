@@ -23,13 +23,13 @@ export class Rdv implements OnInit {
    psyId!:number
   message: string | null = null;
 
-  // Toutes les disponibilités venant du backend
+  // Toutes les disponibilités qui viennent du backend
   creneauDisponiblePourcitoyen: CreneauInterfaceResponse2[] = [];
 
   // Disponibilités après filtre par date
   creneauDisponiblePourcitoyenfiltre: CreneauInterfaceResponse2[] = [];
 
-  // Indique si le citoyen a choisi une date
+  //  si le citoyen a choisi une date
   dateSelectionnee = false;
 
   // Garde la dernière date choisie
