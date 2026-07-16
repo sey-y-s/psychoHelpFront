@@ -1,10 +1,255 @@
-.profil-btn {
-    color: #D7A790;
-    border: 1px solid #D7A790;
-    background-color: transparent;
-}
+ /* TITRES */
 
-.profil-btn:hover {
-    background-color: #D7A790;
-    color: white;
-}
+ .page-title {
+
+     color: #2C3E50;
+     font-weight: 600;
+
+ }
+
+
+ .breadcrumb-text {
+
+     color: #7a5a4a;
+
+ }
+
+
+
+ /* RECHERCHE */
+
+
+ .search-card {
+
+     background: white;
+     border-radius: 18px;
+     padding: 25px;
+
+ }
+
+
+
+ .custom-search .input-group-text {
+
+     background: white;
+     color: #D7A790;
+     border-right: none;
+
+ }
+
+
+ .custom-search input {
+
+     border-left: none;
+
+ }
+
+
+ .custom-search input:focus,
+ .custom-select:focus {
+
+     border-color: #D7A790;
+     box-shadow: 0 0 0 .15rem rgba(215, 167, 144, .25);
+
+ }
+
+
+
+
+
+ /* SELECT */
+
+
+ .custom-select {
+
+     color: #2C3E50;
+
+ }
+
+
+
+
+ /* RESET */
+
+
+ .reset-btn {
+
+     border: 1px solid #D7A790;
+     background: white;
+     color: #7a5a4a;
+     padding: 10px;
+     border-radius: 10px;
+     transition: .3s;
+
+ }
+
+
+ .reset-btn:hover {
+
+     background: #D7A790;
+     color: white;
+
+ }
+
+
+
+
+
+ /* RESULTAT */
+
+
+ .result-box {
+
+     background: #fff8f4;
+     border-left: 5px solid #D7A790;
+     padding: 14px;
+     border-radius: 10px;
+     color: #7a5a4a;
+
+ }
+
+
+ .result-box i {
+
+     color: #D7A790;
+     margin-right: 10px;
+
+ }
+
+
+
+
+
+ /* CARD PSYCHOLOGUE */
+
+
+ .psych-card {
+
+     background: white;
+     border-radius: 18px;
+     overflow: hidden;
+     transition: .3s;
+
+ }
+
+
+ .psych-card:hover {
+
+     transform: translateY(-5px);
+
+ }
+
+
+
+
+ .image-container {
+
+     position: relative;
+
+ }
+
+
+ .image-container img {
+
+     width: 100%;
+     height: 200px;
+     object-fit: cover;
+
+ }
+
+
+
+ .availability {
+
+     position: absolute;
+     top: 15px;
+     left: 15px;
+
+     background: #D7A790;
+     color: white;
+
+     padding: 6px 12px;
+
+     border-radius: 20px;
+
+     font-size: 13px;
+
+ }
+
+
+
+
+
+ .card-body-custom {
+
+     padding: 20px;
+
+ }
+
+
+ .card-body-custom h5 {
+
+     color: #2C3E50;
+     font-weight: 700;
+
+ }
+
+
+
+
+ .speciality {
+
+     display: inline-block;
+
+     background: #f8eee9;
+
+     color: #7a5a4a;
+
+     padding: 7px 14px;
+
+     border-radius: 20px;
+
+     font-size: 14px;
+
+ }
+
+
+
+ .info {
+
+     color: #7a5a4a;
+     margin-top: 15px;
+
+ }
+
+
+
+
+
+ .profile-btn {
+
+     width: 100%;
+
+     background: white;
+
+     color: #D7A790;
+
+     border: 1px solid #D7A790;
+
+     padding: 10px;
+
+     border-radius: 10px;
+
+     transition: .3s;
+
+ }
+
+
+
+ .profile-btn:hover {
+
+     background: #D7A790;
+
+     color: white;
+
+ }

@@ -9,99 +9,88 @@ import { Specialite } from '../../models/specialite.model';
   selector: 'app-psychologue-list',
   imports: [CommonModule, FormsModule],
   standalone: true,
-  templateUrl: './psychologue-list.component.html'
+  templateUrl: './psychologue-list.component.html',
+  styleUrl: './psychologue-list.component.css'
 })
 export class PsychologueListComponent implements OnInit {
+
   private psychologueService = inject(PsychologueService);
 
   recherche = signal<string>('');
   specialiteSelectionnee = signal<string>('');
 
-
   psychologues = signal<PsychologueListeDto[]>([]);
   specialites = signal<Specialite[]>([]);
   errorMessage = signal<string>('');
 
+  // Liste filtrée
   psychologuesList = computed(() => {
 
     let liste = this.psychologues();
-    const rech = this.recherche().toLocaleLowerCase().trim();
-    const spec = this.specialiteSelectionnee().trim();
+
+    const rech = this.recherche().toLowerCase().trim();
+    const spec = this.specialiteSelectionnee().toLowerCase().trim();
 
     if (rech) {
       liste = liste.filter(p =>
-        p.nom?.toLocaleLowerCase().includes(rech) ||
-        p.prenom?.toLocaleLowerCase().includes(rech) ||
+        p.nom?.toLowerCase().includes(rech) ||
+        p.prenom?.toLowerCase().includes(rech) ||
         p.specialite?.toLowerCase().includes(rech)
-
       );
     }
 
     if (spec) {
       liste = liste.filter(p =>
-        p.specialite?.toLocaleLowerCase() === spec
+        p.specialite?.toLowerCase() === spec
       );
     }
 
-
     return liste;
-
-
-
-
-
   });
 
+  // Nombre de résultats
+  nombreResultats = computed(() => this.psychologuesList().length);
 
   ngOnInit(): void {
     this.chargerPsychologues();
     this.chargerSpecialites();
   }
 
-
-
   chargerPsychologues(): void {
     this.psychologueService.getAll().subscribe({
       next: (data) => {
-        console.log('Données reçues :', data); // Affiche les données proprement
-        this.psychologues.set(data);            // Met à jour le signal
+        this.psychologues.set(data);
 
         if (this.specialites().length === 0) {
           const uniqueSpec: Specialite[] = Array.from(
             new Set(data.map(p => p.specialite).filter((s): s is string => !!s))
           ).map((nom, index) => ({ id: index + 1, nom }));
+
           this.specialites.set(uniqueSpec);
         }
       },
-      error: (err) => {
-        console.error('Erreur :', err);         // Affiche l'erreur en console
+      error: () => {
         this.errorMessage.set("Erreur lors du chargement des psychologues.");
       }
     });
   }
 
-
   chargerSpecialites(): void {
-    this.psychologueService.getSpecialites().subscribe(
-      {
-        next: (specs) => {
-
-          if (specs && specs.length > 0) {
-            this.specialites.set(specs);
-          }
-
-        },
-        error: (err) => {
-          console.error('Erreur :', err);         // Affiche l'erreur en console
-          this.errorMessage.set("Erreur lors du chargement des psychologues.");
+    this.psychologueService.getSpecialites().subscribe({
+      next: (specs) => {
+        if (specs.length > 0) {
+          this.specialites.set(specs);
         }
+      },
+      error: () => {
+        this.errorMessage.set("Erreur lors du chargement des spécialités.");
       }
-    )
+    });
   }
-
 
   reinitialiserRecherche(): void {
     this.recherche.set('');
     this.specialiteSelectionnee.set('');
   }
+
 }

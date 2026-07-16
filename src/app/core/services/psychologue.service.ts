@@ -15,9 +15,10 @@ export class PsychologueService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<PsychologueListeDto[]> {
-    return this.http.get<PsychologueListeDto[]>(this.api).pipe(
+    return this.http.get<PsychologueListeDto[]>(`${this.api}`, { withCredentials: true }
+    ).pipe(
       map((psychologues: PsychologueListeDto[]) =>
-        psychologues.filter(p => p.status === true)
+        psychologues.filter(p => p.status === false)
 
       )
 
