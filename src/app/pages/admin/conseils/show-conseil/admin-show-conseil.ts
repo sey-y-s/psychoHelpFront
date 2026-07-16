@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import {Conseil} from "../../../models/conseil.model";
-import {ConseilAdminService} from "../../../core/services/conseil-admin.service";
+import {Conseil} from "../../../../models/conseil.model";
+import {ConseilAdminService} from "../../../../core/services/conseil-admin.service";
 
 @Component({
   selector: "app-admin-show-conseil",
