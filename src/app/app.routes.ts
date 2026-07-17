@@ -37,11 +37,11 @@ export const routes: Routes = [
 
   {
     path: 'test',
-    loadComponent: () => import('./shared/components/liste-conseil-admin-component/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent)
+    loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent)
   },
   {
     path: 'admin/conseil/:id',
-    loadComponent: () => import('./shared/components/admin-show-conseil/admin-show-conseil').then(m => m.AdminShowConseil)
+    loadComponent: () => import('./pages/admin/conseils/show-conseil/admin-show-conseil').then(m => m.AdminShowConseil)
   },
 
   // Psychologues (public)

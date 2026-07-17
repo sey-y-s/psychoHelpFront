@@ -1,6 +1,6 @@
 import {Component, ChangeDetectorRef, OnInit} from "@angular/core";
-import {Conseil} from "../../../models/conseil.model";
-import {ConseilAdminService} from "../../../core/services/conseil-admin.service";
+import {Conseil} from "../../../../models/conseil.model";
+import {ConseilAdminService} from "../../../../core/services/conseil-admin.service";
 import { ActivatedRoute } from "@angular/router";
 
 
@@ -34,14 +34,14 @@ export class AdminShowConseil implements OnInit{
 
   getConseil(id: number):void{
     this.conseilAdminService.conseilParId(id).subscribe({
-      next: (conseil) => {
+      next: (conseil: Conseil) => {
         this.conseil = conseil;
         //this.estValide = conseil.status === "VALIDER";
         this.statutActuel = conseil.status;
 
         this.cdRef.markForCheck();
       },
-      error: err => console.error(err)
+      error: (err: any) => console.error(err)
     });
   }
 
@@ -55,7 +55,7 @@ export class AdminShowConseil implements OnInit{
         console.log(`Conseil mis à jour sur le serveur : ${statut}`);
         //this.chargerConseils();
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error("Erreur lors de la validation :", err);
         this.estValide = !this.estValide;
         this.cdRef.markForCheck();
@@ -73,7 +73,7 @@ export class AdminShowConseil implements OnInit{
         console.log(`Conseil mis à jour sur le serveur : ${statut}`);
         //this.chargerConseils();
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error("Erreur lors de la validation :", err);
         this.estValide = !this.estValide;
         this.cdRef.markForCheck();

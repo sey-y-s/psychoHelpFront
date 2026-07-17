@@ -26,11 +26,11 @@
     </div>
 
     <div *ngIf="!isLoading" class="list-card flex-grow-1 overflow-auto mt-3">
-        <app-card-vaidation-conseil
+        <app-card-validation-conseil
                 *ngFor="let conseil of listConseils" [donnees]="conseil"
                 [routerLink]="['/admin/conseil', conseil.id]"
                 style="cursor: pointer; display: block;"
-        ></app-card-vaidation-conseil>
+        ></app-card-validation-conseil>
 
         <p *ngIf="listConseils.length === 0" class="text-center text-muted mt-4">
             Aucun conseil trouvé.
