@@ -1,3 +1,7 @@
+@if (!initialise) {
+  <app-spinner></app-spinner>
+} @else if (auth.currentUser$ | async) {
+
 <div class="layout">
     <app-sidebar-layout></app-sidebar-layout>
 
@@ -9,3 +13,4 @@
         </main>
     </div>
 </div>
+}
