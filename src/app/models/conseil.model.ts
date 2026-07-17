@@ -7,7 +7,9 @@ export interface Conseil {
   id: number;
   titre: string;
   description: string;
-  auteur: string;
-  datePublication: string;
-  statut: StatutConseil;
+  datePublication?: string;
+  status: string;
+  auteur: string
+
+  psyNom: string
 }
