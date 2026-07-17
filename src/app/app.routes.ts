@@ -100,7 +100,7 @@ export const routes: Routes = [
     loadComponent: () => import('./shared/components/liste-conseil-admin-component/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent)
   },
   {
-    path: 'conseil',
+    path: 'admin/conseil/:id',
     loadComponent: () => import('./shared/components/admin-show-conseil/admin-show-conseil').then(m => m.AdminShowConseil)
   },
 
