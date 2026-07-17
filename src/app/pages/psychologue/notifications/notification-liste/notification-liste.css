@@ -1,0 +1,46 @@
+:host {
+    display: block;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.loading {
+    min-height: 340px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 12px;
+    color: #746c68;
+}
+
+.loading p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.empty-state {
+    min-height: 330px;
+    padding: 30px;
+    border-radius: 12px;
+    background: #ffffff;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
+.empty-state h2 {
+    margin: 0 0 7px;
+    font-size: 20px;
+}
+
+.empty-state p {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}

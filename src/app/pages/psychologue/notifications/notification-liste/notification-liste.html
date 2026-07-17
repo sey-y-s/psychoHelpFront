@@ -1,0 +1,30 @@
+@if (chargement) {
+    <div class="loading">
+        <mat-spinner diameter="42"></mat-spinner>
+        <p>Chargement des notifications...</p>
+    </div>
+
+} @else {
+    @if (notifications.length > 0) {
+        <div class="notification-list">
+            @for (
+                notification of notifications;
+                track notification.id
+                    ) {
+                <app-notification-card
+                        [notification]="notification"
+                        (ouvrir)="notificationCliquee.emit($event)"/>
+            }
+
+        </div>
+
+    } @else {
+        <div class="empty-state">
+            <h2>Aucune notification</h2>
+            <p>
+                Aucune notification ne correspond au filtre sélectionné.
+            </p>
+        </div>
+
+    }
+}

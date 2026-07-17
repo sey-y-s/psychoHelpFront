@@ -1,0 +1,116 @@
+:host {
+    display: block;
+}
+
+.dashboard-panel {
+    min-height: 315px;
+    padding: 16px;
+    border-radius: 11px;
+    background: #fff;
+}
+
+.dashboard-panel header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-panel h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.dashboard-panel header a {
+    color: #4d35d2;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.rdv-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rdv-item {
+    min-height: 63px;
+    padding: 8px 10px;
+    border: 1px solid #e6dfdc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.patient {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.patient-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #eaded8;
+    color: #704630;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+.patient > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.patient strong {
+    font-size: 13px;
+}
+
+.patient span {
+    color: #777;
+    font-size: 10px;
+}
+
+.rdv-time {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rdv-time strong {
+    font-size: 11px;
+}
+
+.rdv-time span {
+    padding: 3px 9px;
+    border-radius: 12px;
+    background: #dfe3ff;
+    color: #4330d8;
+    font-size: 9px;
+}
+
+.panel-footer {
+    min-height: 35px;
+    margin-top: 13px;
+    border-radius: 7px;
+    background: #eceaff;
+    color: #5639df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.empty-panel {
+    min-height: 210px;
+    display: grid;
+    place-items: center;
+    color: #777;
+    font-size: 13px;
+}
