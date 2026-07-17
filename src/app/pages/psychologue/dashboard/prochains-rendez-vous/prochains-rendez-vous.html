@@ -1,0 +1,39 @@
+<section class="dashboard-panel">
+    <header>
+        <h2>Prochains rendez-vous</h2>
+        <a routerLink="/psychologue/rendez-vous">
+            Voir tout
+        </a>
+    </header>
+
+    @if (rendezVous.length > 0) {
+        <div class="rdv-list">
+            @for (rdv of rendezVous; track rdv.id) {
+                <article class="rdv-item">
+                    <div class="patient">
+                        <div class="patient-avatar">
+                            {{ initiales(rdv) }}
+                        </div>
+
+                        <div><strong>{{ rdv.prenomCitoyen }}{{ rdv.nomCitoyen }}</strong>
+                            <span>Séance individuelle</span>
+                        </div>
+                    </div>
+                    <div class="rdv-time">
+                        <strong>{{ heure(rdv.heureDebut) }}</strong>
+                        <span>À venir</span>
+                    </div>
+                </article>
+            }
+
+        </div>
+    } @else {
+        <div class="empty-panel">
+            Aucun rendez-vous à venir.
+        </div>
+    }
+
+    <a class="panel-footer" routerLink="/psychologue/rendez-vous">
+        Voir tous mes rendez-vous
+    </a>
+</section>

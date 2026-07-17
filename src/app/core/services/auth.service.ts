@@ -9,7 +9,7 @@ import { Admin } from '../../models/admin.model';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private api = 'http://localhost:8080/api/utilisateurs';
-    private apis = 'http://localhost:8080/api';
+  private apis = 'http://localhost:8080/api';
 
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();

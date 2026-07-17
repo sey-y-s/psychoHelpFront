@@ -1,1 +1,14 @@
-<p>notifications works!</p>
+<section class="notifications-page">
+    <app-notification-filtres
+            [filtreActif]="filtreActif"
+            [traitement]="traitement"
+            [possedeNotificationsNonLues]="
+      notifications.some(notification => !notification.lu)"
+            (filtreChange)="changerFiltre($event)"
+            (toutMarquerLu)="toutMarquerCommeLu()"/>
+
+    <app-notification-liste
+            [notifications]="notificationsFiltrees"
+            [chargement]="chargement"
+            (notificationCliquee)="marquerCommeLue($event)"/>
+</section>
