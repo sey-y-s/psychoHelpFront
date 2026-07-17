@@ -17,27 +17,27 @@
     <nav class="menu">
 
         @if (utilisateur.role === 'PSYCHOLOGUE') {
-        <a class="menu-item" routerLink="/psychologue/dashboard" routerLinkActive="active">
+        <a class="menu-item" routerLink="/psy/dashboard" routerLinkActive="active">
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </a>
 
-        <a class="menu-item" routerLink="/psychologue/rendez-vous" routerLinkActive="active">
+        <a class="menu-item" routerLink="/psy/rendez-vous" routerLinkActive="active">
             <mat-icon>event</mat-icon>
             <span>Mes rendez-vous</span>
         </a>
 
-        <a class="menu-item" routerLink="/psychologue/creneaux" routerLinkActive="active">
+        <a class="menu-item" routerLink="/psy/creneaux" routerLinkActive="active">
             <mat-icon>calendar_month</mat-icon>
             <span>Mes créneaux</span>
         </a>
 
-        <a class="menu-item" routerLink="/psychologue/notifications" routerLinkActive="active">
+        <a class="menu-item" routerLink="/psy/notifications" routerLinkActive="active">
             <mat-icon>notifications</mat-icon>
             <span>Notifications</span>
         </a>
 
-        <a class="menu-item" routerLink="/psychologue/conseils" routerLinkActive="active">
+        <a class="menu-item" routerLink="/psy/conseils" routerLinkActive="active">
             <mat-icon>lightbulb</mat-icon>
             <span>Conseils</span>
         </a>
@@ -46,32 +46,32 @@
 
         @if (utilisateur.role === 'CITOYEN') {
 
-        <a class="menu-item" routerLink="/citoyen/dashboard" routerLinkActive="active">
+        <a class="menu-item" routerLink="/me/dashboard" routerLinkActive="active">
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </a>
 
-        <a class="menu-item" routerLink="/citoyen/psychologues" routerLinkActive="active">
+        <a class="menu-item" routerLink="/me/psychologues" routerLinkActive="active">
             <mat-icon>medical_services</mat-icon>
             <span>Psychologues</span>
         </a>
 
-        <a class="menu-item" routerLink="/citoyen/rendez-vous" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>event</mat-icon>
             <span>Mes rendez-vous</span>
         </a>
 
-        <a class="menu-item" routerLink="/citoyen/conseils" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>lightbulb</mat-icon>
             <span>Conseils</span>
         </a>
 
-        <a class="menu-item" routerLink="/citoyen/tests" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>quiz</mat-icon>
             <span>Tests</span>
         </a>
 
-        <a class="menu-item" routerLink="/citoyen/notifications" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>notifications</mat-icon>
             <span>Notifications</span>
         </a>
@@ -80,12 +80,12 @@
 
         @if (utilisateur.role === 'ADMIN') {
 
-        <a class="menu-item" routerLink="/admin/dashboard" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </a>
 
-        <a class="menu-item" routerLink="/admin/citoyen" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>people</mat-icon>
             <span>Citoyens</span>
         </a>
@@ -95,7 +95,7 @@
             <span>Psychologues</span>
         </a>
 
-        <a class="menu-item" routerLink="/admin/tests-diagnostics" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>quiz</mat-icon>
             <span>Test & diagnostics</span>
         </a>
@@ -105,7 +105,7 @@
             <span>Conseils</span>
         </a>
 
-        <a class="menu-item" routerLink="/admin/notifications" routerLinkActive="active">
+        <a class="menu-item" >
             <mat-icon>notifications</mat-icon>
             <span>Notifications</span>
         </a>

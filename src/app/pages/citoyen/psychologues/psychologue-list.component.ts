@@ -4,10 +4,11 @@ import { PsychologueListeDto } from '../../../models/psychologue-liste.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Specialite } from '../../../models/specialite.model';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-psychologue-list',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   standalone: true,
   templateUrl: './psychologue-list.component.html',
   styleUrl: './psychologue-list.component.css'

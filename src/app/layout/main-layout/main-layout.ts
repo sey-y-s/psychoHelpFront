@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { AsyncPipe } from "@angular/common";
-import { AuthService } from "../../core/services/auth.service";
+import {Component, DestroyRef, inject, OnInit} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
 import {SidebarLayout} from "../sidebar-layout/sidebar-layout";
 import {NavbarLayout} from "../navbar-layout/navbar-layout";
-import { SpinnerComponent } from "../../shared/components/spinner.component";
+import {AuthService} from "../../core/services/auth.service";
+import {NotificationWebsocketService} from "../../core/services/notification-websocket";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: "app-main-layout",
@@ -12,16 +12,22 @@ import { SpinnerComponent } from "../../shared/components/spinner.component";
   templateUrl: "./main-layout.html",
   styleUrl: "./main-layout.css",
 })
-
 export class MainLayout implements OnInit {
-  initialise = false;
 
-  constructor(public auth: AuthService) {}
+  private readonly authService = inject(AuthService);
+  private readonly notificationWebsocketService = inject(NotificationWebsocketService);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    // Attendre que la vérification de session soit terminée
-    this.auth.currentUser$.subscribe(() => {
-      this.initialise = this.auth.estInitialise();
-    });
+    this.authService.currentUser$
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(utilisateur => {
+          const utilisateurId = utilisateur?.id;
+          if (utilisateurId != null) {
+            this.notificationWebsocketService.connecter(utilisateurId);
+          } else {
+            this.notificationWebsocketService.deconnecter();
+          }
+        });
   }
 }

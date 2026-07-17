@@ -1,0 +1,27 @@
+<div class="filters-container">
+    <div class="filters">
+        @for (filtre of filtres; track filtre.valeur) {
+            <button
+                    type="button"
+                    class="filter-button"
+                    [class.active]="filtreActif === filtre.valeur"
+                    (click)="selectionner(filtre.valeur)">
+                {{ filtre.libelle }}
+            </button>
+        }
+    </div>
+
+    <button
+            type="button"
+            class="read-all-button"
+            [disabled]="traitement ||!possedeNotificationsNonLues"
+            (click)="toutMarquerLu.emit()">
+        <mat-icon>done_all</mat-icon>
+        <span>{{
+                traitement
+                    ? 'Traitement...'
+                    : 'Tout marquer comme lu'
+            }}
+    </span>
+    </button>
+</div>
