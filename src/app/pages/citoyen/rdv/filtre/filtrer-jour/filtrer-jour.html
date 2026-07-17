@@ -1,0 +1,14 @@
+<div class="jours-container">
+
+    @for (jour of jours; track jour) {
+
+        <button 
+            class="jour-button"
+            type="button"
+            (click)="filter(jour)"  >
+            {{ jour }}
+        </button>
+
+    }
+
+</div>

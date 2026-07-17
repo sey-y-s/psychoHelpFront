@@ -1,12 +1,12 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Creneau, CreneauRequest, UpdateCreneauRequest} from "../../models/creneau.model";
-import {environments} from "../../../environments/environments.development";
-
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Creneau, CreneauInterfaceResponse, CreneauInterfaceResponse2, CreneauRequest } from '../../models/creneau.model';
+import { environments } from '../../../environments/environments.development';
 
 @Injectable({ providedIn: 'root' })
 export class CreneauService {
+  private api = 'http://localhost:8080/api/seances';
 
   private readonly http = inject(HttpClient);
   private readonly apiUrl = `${environments.apiUrl}/creneaux`;
@@ -27,6 +27,14 @@ export class CreneauService {
     return this.http.post<Creneau>(`${this.apiUrl}`, creneau, {
       withCredentials:true
     })
+  }
+  listerDesCreneaux(): Observable<CreneauInterfaceResponse[]> {
+    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
+    return this.http.get<CreneauInterfaceResponse[]>(`${this.api}`);
+  }
+  listerDesCreneauxDisponiblePourCitoyen(psyid:number): Observable<CreneauInterfaceResponse2[]> {
+    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
+    return this.http.get<CreneauInterfaceResponse2[]>(`${environments.apiUrl}/creneaux/${psyid}/disponiblePourCitoyen`, {withCredentials:true});
   }
 
   modifier(id: number, creneau: CreneauRequest): Observable<Creneau>{

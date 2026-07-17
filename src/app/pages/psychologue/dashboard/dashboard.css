@@ -1,0 +1,146 @@
+:host {
+    display: block;
+    min-height: 100%;
+}
+
+.dashboard-page {
+    min-height: 100%;
+    padding: 18px;
+    background: #d9beb3;
+}
+
+.welcome-text {
+    margin: 0 0 12px;
+    color: #5d5652;
+    font-size: 12px;
+}
+
+.welcome-text strong {
+    color: #2d2825;
+}
+
+.welcome-banner {
+    min-height: 115px;
+    padding: 20px 28px;
+    border-radius: 16px;
+    background: #eee9ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.banner-message {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.banner-icon {
+    font-size: 45px;
+}
+
+.banner-message strong {
+    color: #2f2926;
+    font-size: 14px;
+}
+
+.banner-message p {
+    margin: 6px 0 0;
+    color: #5e5753;
+    font-size: 12px;
+}
+
+.banner-date {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #312c29;
+    font-size: 11px;
+    text-transform: capitalize;
+}
+
+.banner-date span {
+    font-size: 23px;
+}
+
+.dashboard-details {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.dashboard-loading {
+    min-height: 430px;
+    margin-top: 20px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.6);
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 12px;
+    color: #716966;
+}
+
+.dashboard-empty {
+    min-height: 350px;
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: 14px;
+    background: #fff;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.dashboard-empty h2 {
+    margin: 0;
+}
+
+.dashboard-empty p {
+    margin: 8px 0 18px;
+    color: #777;
+}
+
+.banner-message p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.heart-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    color: #8154dc;
+}
+
+.dashboard-empty button {
+    min-height: 40px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 8px;
+    background: #71452f;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .dashboard-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .dashboard-page {
+        padding: 12px;
+    }
+
+    .welcome-banner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
