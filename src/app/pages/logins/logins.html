@@ -8,7 +8,8 @@
 </head>
 <body>
   <main class="container_main">
-   <header class="header">
+
+  <header class="header">
 
     <div class="logo">
       <img routerLink="/" src="logoPsychoHelp.png" alt="Logo PsychoHelp">
@@ -19,90 +20,162 @@
     </button>
 
   </header>
-  
-    <section class="title">
 
-      <h1>Se connecter</h1>
 
-      <p>
-            <button routerLink="/">Accueil</button>
- > Se connecter
+  <section class="title">
+
+    <h1>Se connecter</h1>
+
+    <p>
+      <button routerLink="/">Accueil</button>
+      > Se connecter
+    </p>
+
+  </section>
+
+</main>
+
+
+
+<aside>
+
+  <section class="container">
+
+
+    <!-- Carte connexion -->
+    <section class="card">
+
+
+      <div class="card-title1">
+
+        <h2>Se connecter</h2>
+
+        <img src="icon1.png" alt="Icône Connexion">
+
+      </div>
+
+
+
+      <p class="text">
+        Indiquez votre adresse email et mot de passe.
       </p>
 
-    
+
+
+      <form 
+        [formGroup]="forms" 
+        (ngSubmit)="login()"
+      >
+
+
+        <div class="input-group">
+
+          <mat-icon class="email">
+            email
+          </mat-icon>
+
+          <input id="inputEmail"
+            type="email"
+            placeholder="Adresse email"
+            formControlName="email">
+
+        </div>
+
+
+
+        <div class="input-group">
+
+
+          <mat-icon 
+            class="eye"
+            (click)="motdepassecache = !motdepassecache">
+
+            {{ motdepassecache ? 'visibility_off' : 'visibility' }}
+
+          </mat-icon>
+
+
+
+          <input
+          id="inputMotDePasse"
+            [type]="motdepassecache ? 'password' : 'text'"
+            placeholder="Mot de passe"
+            formControlName="motDePasse">
+
+
+        </div>
+
+
+
+
+        @if(isLoading){
+
+          <mat-progress-bar mode="query">
+            Chargement ..........
+          </mat-progress-bar>
+
+        }
+
+        @else {
+
+          <button 
+            type="submit"
+            class="btn-login">
+
+            Se connecter
+
+          </button>
+
+        }
+
+
+      </form>
+
+
     </section>
-  </main>
-  <aside>
-
-    <section class="container">
 
 
-      <section class="card">
 
 
-       <div class="card-title1">
-  <h2>Se connecter </h2>
-  <img src="icon1.png" alt="Icône Connexion">
-</div>
+
+    <!-- Carte inscription -->
+    <section class="card">
 
 
-        <p class="text">
-          Indiquez votre adresse email et mot de passe.
+      <div class="card-title">
+
+        <h2 class="titleh2">
+          S'inscrire
+        </h2>
+
+        <img 
+          src="iconInscription.png" 
+          alt="Icone Inscription">
+
+      </div>
+
+
+
+
+      <section class="bloc">
+
+
+        <h3>
+          Vous êtes citoyen(ne) ?
+        </h3>
+
+
+        <p>
+          Commencez votre thérapie dès aujourd'hui.
         </p>
 
 
 
-        <form 
-          [formGroup]="forms" 
-          (ngSubmit)="login()"
-        >
+        <button routerLink="/register/citoyen">
 
+          S'inscrire
 
-         <div class="input-group">
-  <mat-icon class="email">email</mat-icon>
-  <input
-    type="email"
-    placeholder="Adresse email"
-    formControlName="email">
-</div>
-
-<div class="input-group">
-
-  
-
-  <mat-icon 
-    class="eye"
-    (click)="motdepassecache = !motdepassecache">
-    {{ motdepassecache ? 'visibility_off' : 'visibility' }}
-  </mat-icon>
-  <input
-    [type]="motdepassecache ? 'password' : 'text'"
-    placeholder="Mot de passe"
-    formControlName="motDePasse">
-
-</div>
-           
-
-
-
-          @if(isLoading){
-
-            <mat-progress-bar mode="query">Chargement ..........</mat-progress-bar>
-
-          }
-          @else {
-
-            <button 
-              type="submit"
-              class="btn-login"
-            >
-              Se connecter
-            </button>
-
-          }
-
-
-        </form>
+        </button>
 
 
       </section>
@@ -111,77 +184,43 @@
 
 
 
-      <section class="card">
-
-
-        
-  <div class="card-title">
-  <h2 class="titleh2">
-          S'inscrire </h2>
-          <img src="iconInscription.png" alt="Icone Inscription">
-        
-</div>
-
-
-
-        <section class="bloc">
-
-
-          <h3>
-            Vous êtes citoyen(ne) ?
-          </h3>
-
-
-          <p>
-            Commencez votre thérapie dès aujourd'hui.
-          </p>
-
-
-          <button>
-            S'inscrire
-          </button>
-
-
-        </section>
+      <hr>
 
 
 
 
 
-        <hr>
+      <section class="bloc">
+
+
+        <h3>
+          Vous êtes psychologue ?
+        </h3>
+
+
+        <p>
+          Rejoignez la plateforme et développez votre activité.
+        </p>
 
 
 
+        <button routerLink="/register/psychologue">
 
+          S'inscrire
 
-        <section class="bloc">
-
-
-          <h3>
-            Vous êtes psychologues ?
-          </h3>
-
-
-          <p>
-            Rejoignez la plateforme et développez votre activité.
-          </p>
-
-
-          <button>
-            S'inscrire
-          </button>
-
-
-        </section>
+        </button>
 
 
 
       </section>
-
 
 
     </section>
 
-  </aside>
+
+  </section>
+
+
+</aside>
 </body>
 </html>

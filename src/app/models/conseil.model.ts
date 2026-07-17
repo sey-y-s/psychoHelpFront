@@ -1,13 +1,12 @@
-export type StatutConseil =
-    | 'EN_ATTENTE'
-    | 'VALIDER'
-    | 'REFUSER';
-
+// TODO: Vérifier si c'est correct
 export interface Conseil {
-  id: number;
+  id?: number;
+  psychologueId: number;
   titre: string;
   description: string;
-  auteur: string;
-  datePublication: string;
-  statut: StatutConseil;
+  datePublication?: string;
+  status: string;
+  auteur: string
+
+  psyNom: string
 }

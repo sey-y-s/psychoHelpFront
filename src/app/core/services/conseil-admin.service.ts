@@ -6,16 +6,21 @@ import { Conseil } from '../../models/conseil.model';
 @Injectable({ providedIn: 'root' })
 export class ConseilAdminService {
   // TODO: Remplacer par l'URL réelle
-  private api = 'http://localhost:8080/api/admin/conseils';
+  private api = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
-  listerEnAttente(): Observable<Conseil[]> {
-    return this.http.get<Conseil[]>(`${this.api}/en-attente`);
+  listTousConseils(): Observable<Conseil[]> {
+    return this.http.get<Conseil[]>(`${this.api}/conseils/read`);
+  }
+
+  conseilParId(id: number): Observable<Conseil> {
+    return this.http.get<Conseil>(`${this.api}/conseils/${id}`);
   }
 
   valider(id: number): Observable<any> {
-    return this.http.put(`${this.api}/${id}/valider`, {});
+    ///psychologues/{id}/valider
+    return this.http.put(`${this.api}/admins/conseils/${id}/valider`, {});
   }
 
   rejeter(id: number): Observable<any> {
