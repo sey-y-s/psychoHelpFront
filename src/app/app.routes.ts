@@ -15,6 +15,11 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
+        {
+        path: 'test',
+        loadComponent: () => import('./pages/admin-psy-en-attente/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
+        data: { title: 'Validation Psychologues' }
+      },
 
   {
     path: 'register',
@@ -127,11 +132,11 @@ export const routes: Routes = [
         redirectTo: 'psychologues',
         pathMatch: 'full'
       },
-      {
-        path: 'psychologues',
-        loadComponent: () => import('./pages/admin/psychologues/admin-psychologue-validation.component').then(m => m.AdminPsychologueValidationComponent),
-        data: { title: 'Validation Psychologues' }
-      },
+      // {
+      //   path: 'psychologues',
+      //   loadComponent: () => import('./pages/admin/psychologues/admin-psychologue-validation.component').then(m => m.AdminPsychologueValidationComponent),
+      //   data: { title: 'Validation Psychologues' }
+      // },
       {
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
