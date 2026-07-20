@@ -1,1 +1,46 @@
-<p>dashboard works!</p>
+<section class="dashboard-page">
+    <section class="welcome-banner">
+        <div class="banner-message">
+            <div class="banner-icon">
+                <mat-icon>favorite</mat-icon>
+            </div>
+            <div>
+                <strong>Prenez soin de vos patients.</strong>
+                <p>
+                    Chaque écoute fait une différence.
+                    <mat-icon class="heart-icon">favorite</mat-icon>
+                </p>
+            </div>
+        </div>
+
+        <div class="banner-date">
+            <strong>{{ obtenirDateFormatee() }}</strong>
+        </div>
+    </section>
+
+    @if (chargement) {
+        <div class="dashboard-loading">
+            <mat-spinner diameter="45"></mat-spinner>
+            <p>Chargement du tableau de bord...</p>
+        </div>
+    } @else {
+
+        @if (dashboard) {
+            <app-dashboard-stats [dashboard]="dashboard"/>
+            <div class="dashboard-details">
+                <app-prochains-rendez-vous [rendezVous]="dashboard.prochainsRendezVous"/>
+                <app-creneaux-du-jour [creneaux]="dashboard.creneauxDuJour"/>
+            </div>
+        } @else {
+            <div class="dashboard-empty">
+                <h2>Données indisponibles</h2>
+                <p>
+                    Le tableau de bord n’a pas pu être chargé.
+                </p>
+                <button type="button" (click)="recharger()">
+                    Réessayer
+                </button>
+            </div>
+        }
+    }
+</section>

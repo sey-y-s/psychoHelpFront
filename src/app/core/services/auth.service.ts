@@ -11,11 +11,12 @@ import { CitoyenRendezVousResponse } from '../../models/seance.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private api = 'http://localhost:8080/api/utilisateurs';
-    private apis = 'http://localhost:8080/api';
+  private api = 'http://localhost:8080/api';
 
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
+  private initialise = false;
+
 
   private readonly sessionLoadingSubject = new BehaviorSubject<boolean>(true);
 
@@ -33,7 +34,7 @@ export class AuthService {
 
   private verifierSession(): void {
     // Avec les sessions, le cookie est envoyé automatiquement
-    this.http.get<Utilisateur>(`${this.api}/session`,  {
+    this.http.get<Utilisateur>(`${this.api}/utilisateurs/session`,  {
       withCredentials: true
     })
         .pipe(
@@ -41,15 +42,21 @@ export class AuthService {
               this.sessionLoadingSubject.next(false);
             })
         ).subscribe({
-      next: utilisateur => this.currentUserSubject.next(utilisateur),
-      error: () => this.currentUserSubject.next(null) // Pas de session active
+      next: utilisateur => {
+        this.currentUserSubject.next(utilisateur); 
+        this.initialise = true;
+      },
+      error: () => {
+        this.currentUserSubject.next(null); // Pas de session active
+        this.initialise = true;
+      }
     });
   }
 // Methode pour l'inscription du Citoyen
   inscrireCitoyen(citoyen: Citoyen): Observable<any> {
 
     return this.http.post(
-      `${this.apis}/citoyens`,
+      `${this.api}/citoyens`,
       citoyen,
        { responseType: 'text' }
     );
@@ -59,7 +66,7 @@ export class AuthService {
     inscrirePsychologue(psychologue: Psychologue): Observable<any> {
 
     return this.http.post(
-      `${this.apis}/psychologues`,
+      `${this.api}/psychologues`,
       psychologue
     );
 
@@ -68,7 +75,7 @@ export class AuthService {
       inscrireAdmin(admin: Admin): Observable<any> {
 
     return this.http.post(
-      `${this.apis}/admins`,
+      `${this.api}/admins`,
       admin
     );
 
@@ -122,17 +129,17 @@ annulerRendezVous(id: number): Observable<any> {
 }
 
   login(data: LoginRequest): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.api}/login`, data, { withCredentials: true }).pipe(
+    return this.http.post<Utilisateur>(`${this.api}/utilisateurs/login`, data, { withCredentials: true }).pipe(
       tap(utilisateur => this.currentUserSubject.next(utilisateur))
     );
   }
 
   register(data: RegisterRequest): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.api}/register`, data);
+    return this.http.post<Utilisateur>(`${this.api}/utilisateurs/register`, data);
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.api}/logout`, {}, { withCredentials: true }).pipe(
+    return this.http.post(`${this.api}/utilisateurs/logout`, {}, { withCredentials: true }).pipe(
       tap(() => this.currentUserSubject.next(null))
     );
   }
@@ -150,5 +157,9 @@ annulerRendezVous(id: number): Observable<any> {
   }
   getUserConnecté(): string | null {
     return localStorage.getItem('utilisateur');
+  }
+  
+  estInitialise(): boolean {
+    return this.initialise;
   }
 }

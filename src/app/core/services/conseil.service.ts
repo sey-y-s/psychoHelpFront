@@ -1,25 +1,20 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Conseil } from '../../models/conseil.model';
+import {environments} from "../../../environments/environments.development";
 
 @Injectable({ providedIn: 'root' })
 export class ConseilService {
-  // TODO: Remplacer par l'URL réelle
-  private api = 'http://localhost:8080/api/conseils';
+  private readonly http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly apiUrl = `${environments.apiUrl}/conseils`;
 
-  listerMesConseils(): Observable<Conseil[]> {
-    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
-    return this.http.get<Conseil[]>(`${this.api}/mes-conseils`);
-  }
-
-  creer(conseil: Conseil): Observable<Conseil> {
-    return this.http.post<Conseil>(this.api, conseil);
-  }
-
-  supprimer(id: number): Observable<any> {
-    return this.http.delete(`${this.api}/${id}`);
+  getMesConseils(): Observable<Conseil[]> {
+    return this.http.get<Conseil[]>(`${this.apiUrl}/mes-conseils`,
+        {
+          withCredentials: true
+        }
+    );
   }
 }
