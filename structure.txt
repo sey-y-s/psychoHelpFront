@@ -152,3 +152,14 @@ NB : N'oublions pas les fichiers qui vont avec... et soyons curieux. Un meet pos
 Nouvelles entités : CategorieTest, Test, QuestionTest, ChoixMultiple, ResultatTest
 
 ---
+
+Nouvelles tâches :
+Hamidou & Moh : tout le workflow Dashboard Admin (ajouter les composants non encore implémentés de la sidebar Admin)
+
+Gassama & Moussa : Dashboard Psy : 
+      Gass -> Dashboard & Rdv
+      Mouss -> Conseils (liste + zone d'ajout d'un conseil)  voir figma
+
+Demba & Adama : Dashboard Citoyen :
+      Demba : categorie test (tout)
+      

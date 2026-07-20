@@ -1,0 +1,30 @@
+<section class="dashboard-panel">
+    <header>
+        <h2>Mes créneaux du jour</h2>
+        <a routerLink="/psychologue/creneaux">
+            Voir tout
+        </a>
+    </header>
+    @if (creneaux.length > 0) {
+        <div class="creneaux-list">
+            @for (creneau of creneaux; track creneau.id) {
+                <article class="creneau-item">
+                    <strong>{{ heure(creneau.heureDebut) }}-{{ heure(creneau.heureFin) }}</strong>
+                    <span
+                            [class.disponible]="creneau.statut"
+                            [class.indisponible]="!creneau.statut">
+            {{creneau.statut ? 'Disponible' : 'Indisponible' }}
+          </span>
+                </article>
+            }
+        </div>
+    } @else {
+        <div class="empty-panel">
+            Aucun créneau prévu aujourd’hui.
+        </div>
+    }
+    <a class="panel-footer"
+       routerLink="/psychologue/creneaux">
+        Gérer mes créneaux
+    </a>
+</section>
