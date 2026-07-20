@@ -5,6 +5,9 @@ import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisa
 import { Citoyen } from '../../models/citoyen.model';
 import { Psychologue } from '../../models/psychologue.model';
 import { Admin } from '../../models/admin.model';
+import { Conseil } from '../../models/conseil.model';
+import { ResultatTestResponse } from '../../models/resultatTest.model';
+import { CitoyenRendezVousResponse } from '../../models/seance.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -70,6 +73,53 @@ export class AuthService {
     );
 
   }
+  //Pour Afficher les psychologue valider
+  listerPsychologuesValides(): Observable<any[]> {
+  return this.http.get<any[]>(
+    `${this.apis}/psychologues/valide`,
+    {
+      withCredentials: true
+    }
+  );
+}
+
+ // methode pour afficher la liste des conseils
+listerConseilsValides(): Observable<Conseil[]> {
+  return this.http.get<Conseil[]>(
+    `${this.apis}/conseils/read`,
+    {
+      withCredentials: true
+    }
+  );
+}
+
+// pour afficher le test dun citoyen
+
+  obtenirResultatsParCitoyen(citoyenId: number): Observable<ResultatTestResponse[]> {
+  return this.http.get<ResultatTestResponse[]>(
+    `${this.apis}/resultats/citoyen/${citoyenId}`
+  );
+}
+
+obtenirMesRendezVous(): Observable<CitoyenRendezVousResponse[]> {
+
+  return this.http.get<CitoyenRendezVousResponse[]>(
+    `${this.apis}/seances/mes-rdv-citoyen`,
+    {
+      withCredentials: true
+    }
+  );
+
+}
+annulerRendezVous(id: number): Observable<any> {
+  return this.http.put(
+    `${this.apis}/seances/${id}/annuler`,
+    {},
+    {
+      withCredentials: true
+    }
+  );
+}
 
   login(data: LoginRequest): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(`${this.api}/login`, data, { withCredentials: true }).pipe(

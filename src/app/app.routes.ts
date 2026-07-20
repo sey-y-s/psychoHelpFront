@@ -46,13 +46,24 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'psychologues',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       },
       {
         path: 'dashboard',
         loadComponent: () => import('./pages/citoyen/dashboard/dashboard').then(m => m.Dashboard),
         data: { title: 'Dashboard' }
+      },
+
+      {
+        path: 'rendez-vous',
+        loadComponent: () => import('./pages/citoyen/rendezvous/rendezvous').then(m => m.Rendezvous),
+        data: { title: 'Mes rendez-vous' }
+      },
+      {
+        path: 'rendez-vous/:id',
+        loadComponent: () => import('./pages/citoyen/detail-rendezvous/detail-rendezvous').then(m => m.DetailRendezvous),
+        data: { title: 'Détail du rendez-vous' }
       },
       {
         path: 'psychologues',
