@@ -3,15 +3,14 @@ import {ConseilAdminService} from "../../../core/services/conseil-admin.service"
 import {CommonModule} from "@angular/common";
 import {Conseil} from "../../../models/conseil.model";
 import {CardValidationConseil} from "./card-validation/card-validation";
-
-
-
+import { RouterModule } from "@angular/router";
 @Component({
   selector: "app-liste-conseil-admin-component",
   standalone: true,
     imports: [
         CommonModule,
-        CardValidationConseil
+        CardValidationConseil,
+        RouterModule
     ],
   templateUrl: "./liste-conseil-admin-component.html",
   styleUrl: "./liste-conseil-admin-component.css",
@@ -50,9 +49,11 @@ export class ListeConseilAdminComponent implements OnInit {
     this.conseilAdminService.listTousConseils().subscribe({
       next: (donnees: Conseil[]) => {
         this.tousLesConseils = donnees;
-        this.cdRef.detectChanges();
+        this.changerFiltre(this.filtreActif);
         //this.listConseils = donnees;
+        //this.cdRef.detectChanges();
         this.isLoading = false;
+        this.cdRef.markForCheck();
         console.log("Données reçues du serveur :", this.listConseils);
       },
       error: (err) => {

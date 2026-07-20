@@ -1,0 +1,213 @@
+<div class="rdv-page-container"  *ngIf="rendezVous">
+
+  <!-- En-tête de la page -->
+  <header class="page-header">
+    <div class="header-text">
+      <h1>Mes rendez-vous</h1>
+    </div>
+  </header>
+
+
+  <!-- Filtres / Onglets -->
+  <div class="filter-tabs">
+
+    <button
+      class="tab-btn"
+      [class.active]="ongletActif === 'avenir'"
+      (click)="afficherAvenir()">
+
+      À venir ({{ rendezVousAVenir.length }})
+
+    </button>
+
+
+    <button
+      class="tab-btn"
+      [class.active]="ongletActif === 'historique'"
+      (click)="afficherHistorique()">
+
+      Historique ({{ historiqueRendezVous.length }})
+
+    </button>
+
+  </div>
+
+  <section
+    class="rdv-list"
+    *ngIf="ongletActif === 'avenir'">
+
+    <mat-card
+      class="rdv-card"
+      appearance="outlined"
+      *ngFor="let rdv of rendezVousAVenir">
+
+      <div class="rdv-card-top">
+
+        <div class="doctor-info">
+
+          <img
+            src="iconPsydoc.png"
+            alt="Psychologue"
+            class="doc-avatar">
+
+          <div class="doc-text">
+
+            <h3>
+              Dr. {{ rdv.prenomPsychologue }}
+              {{ rdv.nomPsychologue }}
+            </h3>
+
+            <span class="speciality">
+              {{ rdv.specialite }}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <span class="status-badge a-venir">
+          {{ rdv.statut }}
+        </span>
+
+      </div>
+
+
+      <hr class="card-divider">
+
+
+      <div class="datetime-strip">
+
+        <div class="info-item">
+
+          <mat-icon class="info-icon">
+            event
+          </mat-icon>
+
+          <span>
+            {{ rdv.dateRdv }}
+          </span>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <mat-icon class="info-icon">
+            schedule
+          </mat-icon>
+
+          <span>
+            {{ rdv.heureDebut }} -
+            {{ rdv.heureFin }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="rdv-card-actions">
+
+        <button
+          mat-button
+          class="btn-cancel"   (click)="annulerRendezVous(rdv)">
+
+          Annuler
+
+        </button>
+
+
+        <button
+          mat-button
+          class="btn-secondary"   [routerLink]="['/me/rendez-vous', rdv.id]">
+
+          Voir les détails
+
+        </button>
+
+      </div>
+
+    </mat-card>
+
+
+    <p
+      *ngIf="rendezVousAVenir.length === 0"
+      class="empty-message">
+
+      Aucun rendez-vous à venir.
+
+    </p>
+
+  </section>
+
+
+  <section
+    class="rdv-list"
+    *ngIf="ongletActif === 'historique'">
+
+    <mat-card
+      class="rdv-card historical-card"
+      appearance="outlined"
+      *ngFor="let rdv of historiqueRendezVous">
+
+      <div class="rdv-card-top">
+
+        <div class="doctor-info">
+
+          <img
+            src="iconPsydoc.png"
+            alt="Psychologue"
+            class="doc-avatar">
+
+          <div class="doc-text">
+
+            <h3>
+              Dr. {{ rdv.prenomPsychologue }}
+              {{ rdv.nomPsychologue }}
+            </h3>
+
+            <span class="speciality">
+              {{ rdv.specialite }}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <span class="status-badge termine">
+          {{ rdv.statut }}
+        </span>
+
+      </div>
+
+
+      <hr class="card-divider">
+
+ <div class="rdv-card-actions">
+
+
+        <button
+          mat-button
+          class="btn-secondary"  (click)="voirDetails(rdv.id)">
+
+          Voir les détails
+
+        </button>
+
+      </div>
+    </mat-card>
+
+
+    <p
+      *ngIf="historiqueRendezVous.length === 0"
+      class="empty-message">
+
+      Aucun rendez-vous dans l'historique.
+
+    </p>
+
+  </section>
+
+</div>
