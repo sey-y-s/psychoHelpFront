@@ -31,6 +31,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/citoyen/psychologue-list/psychologue-list.component').then(m => m.PsychologueListComponent)
   },
   {
+    path:"conseils" ,
+    loadComponent: () => import('./pages/list-conseil-citoyen/list-conseil-citoyen').then(m => m.ListConseilCitoyen)
+  }
+
+  ,
+    {
+    path:"conseils/show/:id" ,
+    loadComponent: () => import('./pages/show-conseil/show-conseil').then(m => m.ShowConseil)
+  },
+  {
     path: "register",
     loadComponent: () =>
       import("./pages/register/register.component").then(
