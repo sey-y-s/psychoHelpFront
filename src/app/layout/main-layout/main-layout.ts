@@ -3,7 +3,7 @@ import {RouterOutlet} from "@angular/router";
 import {SidebarLayout} from "../sidebar-layout/sidebar-layout";
 import {NavbarLayout} from "../navbar-layout/navbar-layout";
 import {AuthService} from "../../core/services/auth.service";
-import {NotificationWebsocketService} from "../../core/services/notification-websocket";
+import {NotificationWebsocketService} from "../../core/services/notification-websocket.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
