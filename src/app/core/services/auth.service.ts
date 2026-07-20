@@ -83,7 +83,7 @@ export class AuthService {
   //Pour Afficher les psychologue valider
   listerPsychologuesValides(): Observable<any[]> {
   return this.http.get<any[]>(
-    `${this.apis}/psychologues/valide`,
+    `${this.api}/psychologues/valide`,
     {
       withCredentials: true
     }
@@ -93,7 +93,7 @@ export class AuthService {
  // methode pour afficher la liste des conseils
 listerConseilsValides(): Observable<Conseil[]> {
   return this.http.get<Conseil[]>(
-    `${this.apis}/conseils/read`,
+    `${this.api}/conseils/read`,
     {
       withCredentials: true
     }
@@ -104,14 +104,14 @@ listerConseilsValides(): Observable<Conseil[]> {
 
   obtenirResultatsParCitoyen(citoyenId: number): Observable<ResultatTestResponse[]> {
   return this.http.get<ResultatTestResponse[]>(
-    `${this.apis}/resultats/citoyen/${citoyenId}`
+    `${this.api}/resultats/citoyen/${citoyenId}`
   );
 }
 
 obtenirMesRendezVous(): Observable<CitoyenRendezVousResponse[]> {
 
   return this.http.get<CitoyenRendezVousResponse[]>(
-    `${this.apis}/seances/mes-rdv-citoyen`,
+    `${this.api}/seances/mes-rdv-citoyen`,
     {
       withCredentials: true
     }
@@ -120,7 +120,7 @@ obtenirMesRendezVous(): Observable<CitoyenRendezVousResponse[]> {
 }
 annulerRendezVous(id: number): Observable<any> {
   return this.http.put(
-    `${this.apis}/seances/${id}/annuler`,
+    `${this.api}/seances/${id}/annuler`,
     {},
     {
       withCredentials: true
