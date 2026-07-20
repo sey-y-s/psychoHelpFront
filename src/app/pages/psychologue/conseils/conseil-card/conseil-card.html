@@ -1,1 +1,29 @@
-<p>conseil-card works!</p>
+
+    <tr>
+        <td>{{conseil().titre}}</td>
+        <td>{{conseil().description}}</td>
+        @if(conseil().statusConseil=="ENATTENTE"){
+           <td><span style="color: yellow; background-color: rgb(208, 238, 89);">{{conseil().statusConseil}}</span></td>
+        }@else if(conseil().statusConseil=="VALIDER"){
+           <td><span style="color: green; background-color: rgb(146, 228, 168); border-radius: 5px;">{{conseil().statusConseil}}</span></td>
+
+        }@else {
+             <td><span style="color: red; background-color: rgb(217, 92, 99); border-radius: 5px;">{{conseil().statusConseil}}</span></td>
+
+
+        }
+
+        
+        <td>{{conseil().datePublication}}</td>
+        <td class="actions">
+                <button mat-icon-button title="Visualiser">
+                    <mat-icon class="view-icon">visibility</mat-icon>
+                </button>
+                <button mat-icon-button title="Modifier">
+                    <mat-icon class="edit-icon">edit</mat-icon>
+                </button>
+                <button mat-icon-button title="Supprimer">
+                    <mat-icon class="delete-icon">delete</mat-icon>
+                </button>
+        </td>
+    </tr>

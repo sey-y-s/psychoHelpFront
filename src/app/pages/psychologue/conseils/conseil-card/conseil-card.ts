@@ -1,9 +1,13 @@
-import { Component } from "@angular/core";
+import { Component, input } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
+import { ConseilInfaceModelForPsy } from "../../../../models/citoyenforPsy.model";
 
 @Component({
   selector: "app-conseil-card",
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: "./conseil-card.html",
   styleUrl: "./conseil-card.css",
 })
-export class ConseilCard {}
+export class ConseilCard {
+    conseil=input.required<ConseilInfaceModelForPsy>()
+}
