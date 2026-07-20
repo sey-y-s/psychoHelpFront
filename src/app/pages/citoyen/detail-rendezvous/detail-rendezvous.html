@@ -1,0 +1,57 @@
+    
+<div class="rdv-detail-container">
+  
+  <mat-card class="rdv-detail-card" >
+    
+    <!-- En-tête de la carte -->
+    <div class="card-header-custom">
+      <div class="header-title">
+        <h2>Détails du rendez-vous</h2>
+      </div>
+      <span class="badge-status">  {{ rendezVous?.statut }}</span>
+    </div>
+
+    <hr class="card-divider">
+
+    <!-- Informations du Psychologue -->
+    <div class="doctor-profile">
+      <div class="avatar-wrapper">
+        <img src="iconPsydoc.png" alt="Dr. Amadou Traoré" class="doc-avatar">
+      </div>
+      <div class="doctor-meta">
+        <span class="doc-name">Dr.  {{ rendezVous?.prenomPsychologue }}  {{ rendezVous?.nomPsychologue }} </span>
+        <span class="doc-speciality"> {{ rendezVous?.specialite }}</span>
+      </div>
+    </div>
+
+    <!-- Encadré Date & Heure -->
+    <div class="datetime-box">
+      <div class="datetime-item">
+        <img src="calendriericons.png" alt="Date" class="info-icon">
+        <div class="datetime-text">
+          <span class="label">Date</span>
+          <span class="value"> {{ rendezVous?.dateRdv }}</span>
+        </div>
+      </div>
+
+      <div class="datetime-item">
+        <img src="HorlogeIcons.png" alt="Heure" class="info-icon">
+        <div class="datetime-text">
+          <span class="label">Heure</span>
+          <span class="value">  {{ rendezVous?.heureDebut }}  -  {{ rendezVous?.heureFin }}</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="card-divider">
+
+    <!-- Actions professionnelles -->
+    <div class="rdv-actions">
+      <button mat-button class="btn-cancel"  [disabled]="rendezVous?.statut === 'ANNULER'">
+        Annuler le rendez-vous
+      </button>
+    </div>
+
+  </mat-card>
+
+</div>

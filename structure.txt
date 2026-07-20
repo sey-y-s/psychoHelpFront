@@ -62,7 +62,7 @@ psychoHelpFront/
 
 
 
-NB : N'oublions pas les fichiers qui vont avec... et soyons curieux. Un meet possible demain ou dimanche
+NB : N'oublions pas les fichiers qui vont avec...
 
 
 ## RÉPARTITION : 
@@ -162,4 +162,5 @@ Gassama & Moussa : Dashboard Psy :
 
 Demba & Adama : Dashboard Citoyen :
       Demba : categorie test (tout)
+
       

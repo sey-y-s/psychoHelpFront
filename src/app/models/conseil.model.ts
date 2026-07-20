@@ -13,3 +13,10 @@ export interface Conseil {
 
   psyNom: string
 }
+
+export interface ConseilAffiche {
+  titre: string;
+  description: string;
+  auteur: string;
+  psyNom: string;
+}
