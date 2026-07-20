@@ -46,8 +46,9 @@ export class Rdv implements OnInit {
   }
 
   chargerDisponibilites() {
-        console.log(this.psyId)
            this.psyId=+this.route.snapshot.paramMap.get('id')!
+                   console.log(this.psyId)
+
               this.creneauService.listerDesCreneauxDisponiblePourCitoyen(this.psyId).subscribe({
                     next: (donnees) => {
                       // Stockage de toutes les disponibilités

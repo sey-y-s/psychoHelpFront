@@ -1,2 +1,102 @@
-<p>dashboard works!</p>
-<a routerLink="/citoyen/prendrerdv/5">prendre rdv</a>
+<div class="dashboard-layout">
+
+  <!-- Contenu Principal -->
+  <main class="main-content">
+
+    <!-- BANNIÈRE DE BIENVENUE -->
+    <mat-card class="welcome-banner">
+      <div class="banner-text">
+        <h1>Bienvenue {{ citoyenConnecte?.prenom }} sur PsychoHelp</h1>
+        <p>Prendre soin de sa santé mentale, c'est prendre soin de soi.</p>
+      </div>
+      <div class="banner-illustration">
+        <img src="bienvenue.png" alt="Bienvenue Illustration">
+      </div>
+    </mat-card>
+
+    <!-- CARTES STATISTIQUES -->
+    <section class="stats-cards">
+
+      <mat-card class="stat-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Psychologues</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="stat-value">
+          <img src="iconPsydoc.png" alt="Psychologues" class="stat-icon-img">
+          <span class="number orange"> {{ nombrePsychologues }}</span>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Nombre de Conseils total</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="stat-value">
+          <img src="iconConseil.png" alt="Psychologues" class="stat-icon-img">
+          <span class="number green"> {{ nombreConseils }}</span>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Tests effectués</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="stat-value">
+          <img src="testIcons.png" alt="Psychologues" class="stat-icon-img">
+          <span class="number blue"> {{ nombreTestEffectues }}
+          </span>
+        </mat-card-content>
+      </mat-card>
+
+    </section>
+
+    <section class="info-grid">
+
+      <!-- CONSEILS RECOMMANDÉS -->
+      <mat-card class="section-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Conseils recommandés</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="section-content">
+
+          <div class="conseil-item" *ngFor="let conseil of conseils">
+            <div class="conseil-info">
+              <img [src]= "conseil.titre.toLowerCase().includes('dépression') ? 'iconServeaux.png' : 'iconArbres.png'" [alt]="conseil.titre" class="conseil-icon-img">
+              <span class="conseil-title">{{ conseil.titre }}</span>
+            </div>
+            <button mat-button class="btn-action"  [routerLink]="['/me/conseils', conseil.id]">Voir plus</button>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+      <!-- PROCHAIN RENDEZ-VOUS -->
+      <mat-card class="section-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Prochain rendez-vous</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="section-content">
+
+          <div class="rdv-box"  *ngIf="prochainRendezVous as rdv">
+            <div class="doctor-header">
+              <img src="iconPsydoc.png" alt="Docteur" class="doc-icon-img">
+              <div class="doctor-info">
+                <span class="doc-name">Dr. {{ rdv.prenomPsychologue }}  {{ rdv.nomPsychologue }}</span>
+                <div class="doc-speciality">{{ rdv.specialite }}</div>
+            </div>
+            <div class="rdv-footer">
+              <button mat-button class="btn-action"  [routerLink]="['/me/rendez-vous', rdv.id]">Voir le rendez-vous</button>
+            </div>
+          </div>
+          </div>
+          <div
+      *ngIf="!prochainRendezVous" class="no-rdv" > Aucun prochain rendez-vous.</div>
+
+        </mat-card-content>
+        
+      </mat-card>
+
+    </section>
+
+  </main>
+</div>
