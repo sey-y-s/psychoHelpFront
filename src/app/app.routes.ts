@@ -129,7 +129,7 @@ export const routes: Routes = [
   // =========================================================================
   {
     path: 'admin',
-    component: MainLayout, // Utilise également le MainLayout s'il est partagé
+    component: MainLayout,
     canActivate: [authGuard, roleGuard],
     data: { role: 'ADMIN' }, // Transmis au roleGuard
     children: [
