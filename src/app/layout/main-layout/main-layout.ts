@@ -8,7 +8,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: "app-main-layout",
-  imports: [ RouterOutlet, SidebarLayout, NavbarLayout, SpinnerComponent, AsyncPipe],
+  imports: [ RouterOutlet, SidebarLayout, NavbarLayout],
   templateUrl: "./main-layout.html",
   styleUrl: "./main-layout.css",
 })
