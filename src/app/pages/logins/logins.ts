@@ -58,15 +58,15 @@ export class Logins {
     this.isLoading = true;
     this.auth.login(this.forms.value).subscribe({
       next: (res) => {
-        this.notif.succes("vous êtes connectez avec succes");
+        this.notif.succes("Vous êtes connecté(e) avec succès.");
         // this.auth.sauvegarderUtilisateur(res);
         console.log(res);
         if (res.role == "ADMIN") {
-          this.router.navigate(["/psychologues"]);
+          this.router.navigate(["/admin"]);
         } else if (res.role == "CITOYEN") {
-          this.router.navigate(["/dashboardCitoyen"]);
+          this.router.navigate(["/me"]);
         } else if (res.role == "PSYCHOLOGUE") {
-          this.router.navigate(["/psychologue"]);
+          this.router.navigate(["/psy"]);
         }
       },
       error: () => {

@@ -62,7 +62,7 @@ psychoHelpFront/
 
 
 
-NB : N'oublions pas les fichiers qui vont avec... et soyons curieux. Un meet possible demain ou dimanche
+NB : N'oublions pas les fichiers qui vont avec...
 
 
 ## RÉPARTITION : 
@@ -132,12 +132,19 @@ NB : N'oublions pas les fichiers qui vont avec... et soyons curieux. Un meet pos
 
 ## FONCTIONNALITÉS COMPLÉMENTAIRES ----- si on y arrive :')
 
----
+| Pages                       | Rôle        | Description 
+|------------------------ ----|-------------|---------------------------------------------------
+| `dashboard-admin`           | Admin       | Statistiques globales (nombre RDV, tests passés, psy actifs), graphiques
+| `dashboard-psy`             | Psychologue | Stats personnelles (RDV effectués, conseils publiés, patients)
+| `tableau-bord-citoyen`      | Citoyen     | Suivi personnel (évolution scores, prochains RDV, conseils reçus)
 
-### Test d'auto-évaluation
+| `admin-gestion-specialites` | Admin       | CRUD des spécialités
+| `admin-gestion-categories`  | Admin       | CRUD des catégories de test
+| `admin-gestion-admin`       | Admin       | CRUD des admins
 
-| Page            | Rôle           | Description 
-|-----          - |------          |-------------
+| `profil-citoyen`            | Citoyen     | Voir/modifier son profil, historique des tests, historique des RDV
+| `profil-psychologue`        | Psychologue | Voir/modifier son profil, photo, biographie, spécialités
+
 | `test-list`     | Public/Citoyen | Liste des tests disponibles par catégorie 
 | `test-passage`  | Citoyen        | Passer un test (stepper question par question) 
 | `test-resultat` | Citoyen        | Résultat du test + score + conseils + psy recommandés 
@@ -146,31 +153,14 @@ Nouvelles entités : CategorieTest, Test, QuestionTest, ChoixMultiple, ResultatT
 
 ---
 
-### Gestion du profil
+Nouvelles tâches :
+Hamidou & Moh : tout le workflow Dashboard Admin (ajouter les composants non encore implémentés de la sidebar Admin)
 
-| Page                 | Rôle        | Description 
-|-------         ------|-------------|-------------------------------
-| `profil-citoyen`     | Citoyen     | Voir/modifier son profil, historique des tests, historique des RDV
-| `profil-psychologue` | Psychologue | Voir/modifier son profil, photo, biographie, spécialités
+Gassama & Moussa : Dashboard Psy : 
+      Gass -> Dashboard & Rdv
+      Mouss -> Conseils (liste + zone d'ajout d'un conseil)  voir figma
 
----
+Demba & Adama : Dashboard Citoyen :
+      Demba : categorie test (tout)
 
-### Dashboard et statistiques
-
-| Page                   | Rôle        | Description 
-|------                  |------       |-------------
-| `dashboard-admin`      | Admin       | Statistiques globales (nombre RDV, tests passés, psy actifs), graphiques |
-| `dashboard-psy`        | Psychologue | Stats personnelles (RDV effectués, conseils publiés, patients) |
-| `tableau-bord-citoyen` | Citoyen     | Suivi personnel (évolution scores, prochains RDV, conseils reçus) |
-
----
-
-### Fonctionnalités transversales
-
-| Page/Composant              | Rôle        | Description |
-|------                       |------       |-------------|
-| `recherche-avancee`         | Public      | Recherche psy par nom, spécialité, disponibilité, note |
-| `messagerie`                | Citoyen/Psy | Chat simple entre patient et psychologue |
-| `notifications`             | Tous        | Centre de notifications (rappel RDV, nouveau conseil, validation) |
-| `admin-gestion-specialites` | Admin       | CRUD des spécialités |
-| `admin-gestion-categories`  | Admin       | CRUD des catégories de test |
+      

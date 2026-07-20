@@ -1,0 +1,169 @@
+<div class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1>DÉTAILS DU <span>PSYCHOLOGUE</span></h1>
+                <p>Un accompagnement bienveillant pour votre <strong>bien-être mental.</strong></p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="image1.png" class="hero-image" alt="psychologue">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="breadcrumb-section">
+    <div class="container">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a routerLink="/">
+                        <i class="bi bi-house-door-fill"></i>
+                        Accueil
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a routerLink="/psychologues">
+                        Psychologues
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    Détails du psychologue
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <!-- On vérifie si l'objet psychologue existe -->
+    @if (psychologue) {
+    <div class="row g-4">
+
+        <!-- Carte psychologue -->
+        <div class="col-lg-5">
+            <div class="psy-card">
+                <img [src]="urlImage" class="photo" alt="Avatar">
+                <h2>
+                    {{ psychologue.prenom }}
+                    {{ psychologue.nom }}
+                </h2>
+                <h5>
+                    {{ psychologue.specialite }}
+                </h5>
+                <span
+                    class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1-5">
+                    <i class="bi bi-check-circle-fill me-1"></i>Vérifié
+                </span>
+                <!-- <hr>
+                <h4>Description</h4>
+                <p>{{ psychologue.description }}</p> -->
+                <hr>
+                <h4>Documents</h4>
+                <button class="btn-doc">📄 Voir le diplôme
+                    <i class="bi bi-box-arrow-up-right ms-2"></i>
+                </button>
+                <button class="btn-doc">📄 Voir le CV
+                    <i class="bi bi-box-arrow-up-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Informations personnelles -->
+        <div class="col-lg-7">
+            <div class="info-card">
+                <h3>Informations personnelles</h3>
+
+                <div class="info">
+                    <i class="bi bi-envelope-fill"></i>
+                    <div>
+                        <label>Email</label>
+                        <p>{{ psychologue.mail }}</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <i class="bi bi-telephone-fill"></i>
+                    <div>
+                        <label>Téléphone</label>
+                        <p>{{ psychologue.telephone }}</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <i class="bi bi-person-badge-fill"></i>
+                    <div>
+                        <label>Spécialité</label>
+                        <p>{{ psychologue.specialite }}</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <i class="bi bi-calendar-event-fill"></i>
+                    <div>
+                        <label>Date de création</label>
+                        <p>{{ psychologue.dateCreation }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="presentation mt-4">
+                <h3>Présentation</h3>
+                <p>{{ psychologue.description }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Boutons d'actions -->
+    <div class="row mt-5">
+        <!-- Voir les disponibilités -->
+        <!-- <div class="col-md-4">
+            <button class="action-btn beige d-flex align-items-center justify-content-center w-100 p-3">
+                <i class="bi bi-calendar3-event fs-4 me-3"></i>
+                <div class="text-center">
+                    <span class="d-block">Voir les disponibilités</span>
+                    <span class="small opacity-75 d-block" style="font-size: 0.8rem;">Consulter les créneaux disponibles.</span>
+                </div>
+            </button>
+        </div> -->
+
+        <!-- Prendre rendez-vous -->
+        <div class="col-md-6">
+            <button app-admin-conseil-validation routerLink="creneaux" class="action-btn blue d-flex align-items-center justify-content-center w-100 p-3">
+                <i class="bi bi-calendar-check fs-4 me-3"></i>
+                <div class="text-center">
+                    <span class="d-block">Prendre rendez-vous</span>
+                    <span class="small opacity-75 d-block" style="font-size: 0.8rem;">Réserver une séance avec ce psychologue.</span>
+                </div>
+            </button>
+        </div>
+
+        <!-- Voir les conseils -->
+        <div class="col-md-6">
+            <button class="action-btn beige d-flex align-items-center justify-content-center w-100 p-3">
+                <i class="bi bi-chat-left-quote fs-4 me-3"></i>
+                <div class="text-center">
+                    <span class="d-block">Voir les conseils</span>
+                    <span class="small opacity-75 d-block" style="font-size: 0.8rem;">Lire les conseils pour mieux comprendre.</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+
+    }
+    <!-- Si l'identifiant n'existe pas ou est en cours de traitement -->
+    @else {
+    <div class="row mt-5">
+        <div class="col-12 text-center py-5">
+            <div class="alert alert-warning d-inline-block p-4">
+                <i class="bi bi-exclamation-triangle-fill fs-3 d-block mb-2"></i>
+                <h4>Profil introuvable ou indisponible</h4>
+                <p class="text-muted mb-0">Aucun psychologue ne correspond à cet identifiant.</p>
+            </div>
+        </div>
+    </div>
+    }
+</div>

@@ -1,0 +1,40 @@
+.custom-card-style {
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.icon-box {
+    background-color: #7f56da;
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+}
+
+.dot-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #ffc107;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.link-view i {
+    font-size: 1.2rem;
+    color: #d1b9b9;
+    transition: color 0.2s;
+}
+
+.link-view:hover i {
+    color: #7f56da;
+}
+
+#conteneur{
+    transition: all 0.3s ease;
+}
+#conteneur:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+#conteneur:active {
+    transform: scale(0.98);
+}

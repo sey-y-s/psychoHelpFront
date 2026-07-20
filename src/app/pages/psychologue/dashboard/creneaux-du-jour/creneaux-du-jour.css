@@ -1,0 +1,82 @@
+:host {
+    display: block;
+}
+
+.dashboard-panel {
+    min-height: 315px;
+    padding: 16px;
+    border-radius: 11px;
+    background: #fff;
+}
+
+.dashboard-panel header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-panel h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.dashboard-panel header a {
+    color: #4d35d2;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.creneaux-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.creneau-item {
+    min-height: 47px;
+    padding: 0 14px;
+    border: 1px solid #e5dedb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.creneau-item strong {
+    font-size: 13px;
+}
+
+.creneau-item span {
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.disponible {
+    color: #0cc848;
+}
+
+.indisponible {
+    color: #999;
+}
+
+.panel-footer {
+    min-height: 35px;
+    margin-top: 13px;
+    border-radius: 7px;
+    background: #eceaff;
+    color: #5639df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 11px;
+}
+
+.empty-panel {
+    min-height: 210px;
+    display: grid;
+    place-items: center;
+    color: #777;
+    font-size: 13px;
+}

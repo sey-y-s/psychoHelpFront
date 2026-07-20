@@ -24,6 +24,6 @@ export class ConseilAdminService {
   }
 
   rejeter(id: number): Observable<any> {
-    return this.http.put(`${this.api}/${id}/rejeter`, {});
+    return this.http.put(`${this.api}/admins/conseils/${id}/annuler`, {});
   }
 }

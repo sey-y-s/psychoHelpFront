@@ -1,7 +1,10 @@
-// TODO: Vérifier si c'est correct
+export type StatutConseil =
+    | 'EN_ATTENTE'
+    | 'VALIDER'
+    | 'REFUSER';
+
 export interface Conseil {
-  id?: number;
-  psychologueId: number;
+  id: number;
   titre: string;
   description: string;
   datePublication?: string;
@@ -11,4 +14,11 @@ export interface Conseil {
 
 
   psyNom: string
+}
+
+export interface ConseilAffiche {
+  titre: string;
+  description: string;
+  auteur: string;
+  psyNom: string;
 }

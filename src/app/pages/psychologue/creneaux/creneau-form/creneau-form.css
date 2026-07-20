@@ -1,21 +1,25 @@
 :host {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     display: block;
 }
 
 .modal-overlay {
     position: fixed;
     inset: 0;
-    z-index: 1000;
     padding: 20px;
     background: rgba(29, 21, 17, 0.5);
     display: grid;
     place-items: center;
+    overflow-y: auto;
 }
 
-.modal {
-    width: min(520px, 100%);
+.creneau-modal {
+    width: min(520px, calc(100vw - 40px));
     max-height: calc(100vh - 40px);
     padding: 24px;
+    box-sizing: border-box;
     border-radius: 14px;
     background: #ffffff;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
@@ -54,6 +58,7 @@
     display: grid;
     place-items: center;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .modal-header > button:hover {
@@ -64,6 +69,11 @@
     width: 19px;
     height: 19px;
     font-size: 19px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
@@ -85,10 +95,11 @@
 }
 
 select,
-input[type="time"] {
+input[type='time'] {
     width: 100%;
     min-height: 43px;
     padding: 0 12px;
+    box-sizing: border-box;
     border: 1px solid #d8d1cd;
     border-radius: 8px;
     outline: none;
@@ -101,25 +112,34 @@ input[type="time"] {
 }
 
 select:focus,
-input[type="time"]:focus {
+input[type='time']:focus {
     border-color: #795442;
     box-shadow: 0 0 0 3px rgba(121, 84, 66, 0.11);
 }
 
-.form-group > label:not(:first-child) {
-    margin-right: 24px;
+.status-options {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.status-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     color: #57504c;
     font-size: 13px;
     cursor: pointer;
 }
 
-input[type="radio"] {
-    margin-right: 6px;
+input[type='radio'] {
+    margin: 0;
     accent-color: #6c4634;
 }
 
 .form-actions {
-    margin-top: 28px;
+    margin-top: 8px;
     padding-top: 18px;
     border-top: 1px solid #eee8e5;
     display: flex;
@@ -131,6 +151,7 @@ input[type="radio"] {
     min-height: 41px;
     padding: 0 18px;
     border-radius: 8px;
+    font-family: inherit;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -152,7 +173,7 @@ input[type="radio"] {
     color: #ffffff;
 }
 
-.save:hover {
+.save:hover:not(:disabled) {
     background: #553526;
 }
 
@@ -161,50 +182,25 @@ input[type="radio"] {
     cursor: not-allowed;
 }
 
-:host {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: block;
-}
-
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-    background: rgba(29, 21, 17, 0.5);
-}
-
-.modal {
-    width: min(520px, calc(100vw - 40px));
-    max-height: calc(100vh - 40px);
-
-    padding: 24px;
-    border-radius: 14px;
-    background: #ffffff;
-
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
-    overflow-y: auto;
-}
-
 @media (max-width: 600px) {
     .modal-overlay {
         padding: 10px;
     }
 
-    .modal {
+    .creneau-modal {
+        width: 100%;
         padding: 18px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
         gap: 0;
+    }
+
+    .status-options {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
     }
 
     .form-actions {

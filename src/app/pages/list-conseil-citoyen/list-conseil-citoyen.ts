@@ -39,6 +39,6 @@ this.conseils = data.map(c => ({
     });
   }
   show(element:Conseil){
-    this.router.navigate(["/conseils/show",element.id]);
+    this.router.navigate(["/me/conseils/show",element.id]);
   }
 }
