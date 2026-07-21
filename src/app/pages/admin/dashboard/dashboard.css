@@ -51,6 +51,16 @@
     border-radius: 10px;
     padding: 10px;
 
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+}
+.tableau::-webkit-scrollbar {
+    display: none;
 }
 .graph{
     border: #D7A790 solid 1px;
@@ -68,15 +78,28 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    margin-bottom: 4px;
+    padding-top: 5px;
 }
 
 .card-list .contenu{
 
     align-items: center;
     justify-content: center;
+
+}
+.card-list .logo{
+
+
+
 }
 .card-list .contenu h6{
     margin-bottom: 0;
+}
+
+.card-list .contenu p{
+    font-size: 12px;
+    color: #D7A790;
 }
 
 .card-list .logo{
