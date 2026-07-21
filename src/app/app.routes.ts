@@ -153,6 +153,11 @@ export const routes: Routes = [
         data: { title: 'Validation Psychologues' }
       },
       {
+        path: 'psychologues',
+        loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
+        data: { title: 'Validation Psychologues' }
+      },
+      {
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
         data: { title: 'Validation Conseils' }
