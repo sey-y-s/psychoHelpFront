@@ -10,6 +10,8 @@ export interface Conseil {
   datePublication?: string;
   status: string;
   auteur: string
+    voirplus?: boolean;
+
 
   psyNom: string
 }

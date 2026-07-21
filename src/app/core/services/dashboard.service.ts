@@ -52,7 +52,7 @@ export class DashboardService {
                 return {rendezVousAVenir: prochainsRendezVous.length,
                     creneauxDisponibles: resultat.creneaux.filter(creneau => creneau.statut).length,
                     conseilsPublies:
-                    resultat.conseils.filter(conseil => conseil.status === 'VALIDER').length,
+                    resultat.conseils.filter(conseil => conseil.statusConseil === 'VALIDER').length,
                     notificationsNonLues: resultat.notificationsNonLues,
                     prochainsRendezVous: prochainsRendezVous.slice(0, 3),
                     creneauxDuJour: creneauxDuJour.slice(0, 5)
