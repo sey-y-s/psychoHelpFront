@@ -2,13 +2,14 @@
     display: block;
 }
 
-.page-creneaux {
+.page-conseils {
     min-height: 100%;
     padding: 20px;
     background: #f8f6f5;
     border-radius: 16px;
 }
 
+/* En-tête de la page */
 .page-header {
     display: flex;
     align-items: center;
@@ -30,34 +31,84 @@
     font-size: 13px;
 }
 
+/* Bouton ajouter */
 .add-button {
     min-height: 42px;
     padding: 0 18px;
     border: none;
     border-radius: 8px;
     background: #6c4634;
-    color: #ffffff;
+    color: white;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: .2s ease;
 }
 
 .add-button:hover {
     background: #553526;
 }
 
-@media (max-width: 650px) {
-    .page-creneaux {
-        padding: 14px;
-    }
 
-    .page-header {
-        align-items: stretch;
-        flex-direction: column;
-    }
+/* ===================== */
+/* TABLEAU */
+/* ===================== */
 
-    .add-button {
-        width: 100%;
-    }
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+
+/* Header */
+.table thead th {
+    background: #6c4634;
+    color: white;
+    padding: 18px 20px;
+    font-weight: 600;
+    text-align: left;
+}
+
+
+/* Largeur des colonnes */
+.table th:nth-child(1),
+.table td:nth-child(1) {
+    width: 25%;
+}
+
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    width: 20%;
+}
+
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+    width: 30%;
+}
+
+
+/* Action */
+.table th:last-child,
+.table td:last-child {
+    width: 25%;
+    text-align: center;
+}
+
+
+/* Corps */
+.table tbody td {
+    padding: 18px 20px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+
+.table tbody tr:hover {
+    background: #faf6f3;
 }

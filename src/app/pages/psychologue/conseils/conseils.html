@@ -1,17 +1,41 @@
-<section class="page-creneaux">
+<div class="page-conseils">
 
     <div class="page-header">
         <div>
-            <h1>Mes conseils</h1>
-            <p>Gérez vos conseils.</p>
+            <h1>Conseils</h1>
+            <p>Gestion des conseils publiés</p>
         </div>
 
-        <button type="button" class="add-button" >
-            Ajouter un créneau
+        <button class="add-button" (click)="ouverFermer()">
+            Ajouter un conseil
         </button>
     </div>
 
-   
 
-</section>
+    <div class="table-container">
+        <table class="table">
 
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>statut</th>
+                    <th>Date Publication</th>
+                    <th colspan="5" style="text-align: center;">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (conseil of conseils(); track conseil.id) {
+                    <app-conseil-card [conseil]="conseil" (editOnclic)="modifier($event)"/>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+@if (formulaireVisible) {
+    <app-conseil-form (fermerClic)="annuler($event)" 
+    (ajoutReussiMisAjourClic)="AjoutEffectuer()" [conseilId]="conseilId" />
+}

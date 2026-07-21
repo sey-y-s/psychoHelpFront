@@ -5,7 +5,7 @@ import {FiltreNotification, Notification} from "../../../models/notification.mod
 import {finalize, Subject} from "rxjs";
 import {NotificationListe} from "./notification-liste/notification-liste";
 import {NotificationFiltres} from "./notification-filtres/notification-filtres";
-import {NotificationWebsocketService} from "../../../core/services/notification-websocket";
+import {NotificationWebsocketService} from "../../../core/services/notification-websocket.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
