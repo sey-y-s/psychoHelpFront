@@ -78,12 +78,12 @@ export const routes: Routes = [
       },
       {
         path:"conseils" ,
-        loadComponent: () => import('./pages/citoyen/conseils').then(m => m.ListConseilCitoyen),
+        loadComponent: () => import('./pages/citoyen/conseils/list-conseil-citoyen').then(m => m.ListConseilCitoyen),
         data: { title: 'Conseils' }
       },
       {
         path:"conseils/:id",
-        loadComponent: () => import('./pages/citoyen/conseils/show-conseil').then(m => m.ShowConseil),
+        loadComponent: () => import('./pages/citoyen/conseils/show-conseil/show-conseil').then(m => m.ShowConseil),
         data: { title: 'Conseils' }
       }
     ]
