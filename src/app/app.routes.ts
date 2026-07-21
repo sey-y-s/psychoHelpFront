@@ -15,24 +15,10 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
-
   {
     path: 'register',
     loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
   },
-
-
-  
-
-  {
-    path: "register",
-    loadComponent: () =>
-      import("./pages/register/register.component").then(
-        (m) => m.RegisterComponent,
-      ),
-  },
-
-  //chemin pour acceder a la page d´inscription d´un psy
   {
     path: 'register/psychologue',
     loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
@@ -90,23 +76,20 @@ export const routes: Routes = [
         path: 'psychologues/:id/creneaux',
         loadComponent: () => import('./pages/citoyen/rdv/rdv').then(m => m.Rdv)
       },
-        {
-    path:"conseils" ,
-    loadComponent: () => import('./pages/list-conseil-citoyen/list-conseil-citoyen').then(m => m.ListConseilCitoyen),
-            data: { title: 'Conseils' }
-
-  },
       {
-    path:"conseils/show/:id" ,
-    loadComponent: () => import('./pages/show-conseil/show-conseil').then(m => m.ShowConseil),
-                data: { title: 'Conseils' }
-
-  }
+        path:"conseils" ,
+        loadComponent: () => import('./pages/list-conseil-citoyen/list-conseil-citoyen').then(m => m.ListConseilCitoyen),
+        data: { title: 'Conseils' }
+      },
+      {
+        path:"conseils/show/:id",
+        loadComponent: () => import('./pages/show-conseil/show-conseil').then(m => m.ShowConseil),
+        data: { title: 'Conseils' }
+      }
     ]
   },
 
 
-  
 
   // =========================================================================
   // ESPACE PSYCHOLOGUE
@@ -164,11 +147,11 @@ export const routes: Routes = [
         redirectTo: 'conseils',
         pathMatch: 'full'
       },
-      // {
-      //   path: 'psychologues',
-      //   loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
-      //   data: { title: 'Validation Psychologues' }
-      // },
+      {
+        path: 'psychologues',
+        loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
+        data: { title: 'Validation Psychologues' }
+      },
       {
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
