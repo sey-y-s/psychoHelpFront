@@ -1,13 +1,15 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, Signal, signal } from "@angular/core";
 import { ConseilService } from "../../../core/services/conseil.service";
 import { ConseilCard } from "./conseil-card/conseil-card";
 import { ConseilForm } from "./conseil-form/conseil-form";
 import { ConseilInfaceModelForPsy } from "../../../models/citoyenforPsy.model";
+import { erreurInterceptor } from "../../../core/interceptors/erreur.interceptor";
+import { ConseilDetail } from "./conseil-detail/conseil-detail";
 
 @Component({
   selector: "app-conseils",
-  imports: [ConseilCard, ConseilForm],
+  imports: [ConseilCard, ConseilForm,ConseilDetail],
   templateUrl: "./conseils.html",
   styleUrl: "./conseils.css",
 })
@@ -16,7 +18,9 @@ export class Conseils {
     conseilService=inject(ConseilService)
     conseils=signal<ConseilInfaceModelForPsy[]>([])
     formulaireVisible=false
+    formulaireVisibleforDetail=false
     conseilId!:number
+    conseilRecup = signal<ConseilInfaceModelForPsy | null>(null);
     constructor(){
            this.chargerConseil()
     }
@@ -45,7 +49,31 @@ export class Conseils {
     modifier(id:number){
       this.formulaireVisible=true
       this.conseilId=id
-       // console.log(id)
+    }
+    //la suppresion d'un admin
+    supprimerConseil(id:number){
+          this.conseilService.suprrimer(id).subscribe({
+              next:(Response)=>{
+                     console.log(Response)
+                     this.chargerConseil()
+              },
+              error:(error)=>{
+                console.log(error)
+              },
+              complete:()=>{
+                   this.chargerConseil()
+              }
+          })
+
+    }
+    //detail d'un  conseil
+    showDetail(id:number){
+          this.formulaireVisibleforDetail=true
+          this.conseilService.getConseilById(id).subscribe({
+               next:(response)=>{
+                  this.conseilRecup.set(response)
+               }
+          })
     }
 
 }

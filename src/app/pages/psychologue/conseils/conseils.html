@@ -27,7 +27,8 @@
 
             <tbody>
                 @for (conseil of conseils(); track conseil.id) {
-                    <app-conseil-card [conseil]="conseil" (editOnclic)="modifier($event)"/>
+                    <app-conseil-card [conseil]="conseil" (editOnclic)="modifier($event)" 
+                    (deleteOnclic)="supprimerConseil($event)" (visaliserOnclic)="showDetail($event)"/>
                 }
             </tbody>
 
@@ -38,4 +39,7 @@
 @if (formulaireVisible) {
     <app-conseil-form (fermerClic)="annuler($event)" 
     (ajoutReussiMisAjourClic)="AjoutEffectuer()" [conseilId]="conseilId" />
+}
+@if (formulaireVisibleforDetail&&conseilRecup()) {
+    <app-conseil-detail [conseil]="conseilRecup()!" />
 }

@@ -12,8 +12,21 @@ import { RouterLink } from "@angular/router";
 export class ConseilCard {
     conseil=input.required<ConseilInfaceModelForPsy>()
     editOnclic=output<number>()
+    deleteOnclic=output<number>()
+    visaliserOnclic=output<number>()
+
     modifier(id:number){
       this.editOnclic.emit(id)
+    }
+    supprimerConseil(id:number){
+           if(confirm("voulez-vous supprimer ce conseil")){
+                 this.deleteOnclic.emit(id)
+           }
+        
+           
+    }
+    visualiser(id:number){
+         this.visaliserOnclic.emit(id)
     }
 
 }

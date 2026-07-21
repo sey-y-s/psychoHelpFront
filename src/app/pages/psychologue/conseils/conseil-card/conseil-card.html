@@ -16,13 +16,13 @@
         
         <td>{{conseil().datePublication}}</td>
         <td class="actions">
-                <button mat-icon-button title="Visualiser">
+                <button mat-icon-button title="Visualiser"  (click)="visualiser(conseil().id)">
                     <mat-icon class="view-icon">visibility</mat-icon>
                 </button>
                 <button mat-icon-button title="Modifier"  (click)="modifier(conseil().id)" >
                     <mat-icon class="edit-icon">edit</mat-icon>
                 </button>
-                <button mat-icon-button title="Supprimer">
+                <button mat-icon-button title="Supprimer" (click)="supprimerConseil(conseil().id)">
                     <mat-icon class="delete-icon">delete</mat-icon>
                 </button>
         </td>

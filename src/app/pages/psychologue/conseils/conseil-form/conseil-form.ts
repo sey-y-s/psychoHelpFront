@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, output } from "@angular/core";
+import { Component, effect, inject, input, output, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -34,6 +34,7 @@ export class ConseilForm {
  
   constructor(){
             effect(()=>{
+              
               if(this.conseilId()){
                     this.conseilService.getConseilById(this.conseilId()).subscribe({
                          next:(response)=>{
@@ -61,11 +62,16 @@ export class ConseilForm {
                 },
                 error: (error) => {
                      console.log(error);
+                },
+                complete:()=>{
+                  this.conseilId.toString
+                  this.form.reset()
                 }
           }
         )
 
     }else{
+
       this.conseilService.ajouterConseil(this.form.value as ConseilInfaceModelForPsyRequest)
       .subscribe({
         next: (response) => {
