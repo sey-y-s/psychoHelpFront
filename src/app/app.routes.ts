@@ -150,11 +150,15 @@ export const routes: Routes = [
       }
     ]
   },
-
+  {
+    path: '404',
+    loadComponent: () =>
+        import('./shared/page-not-found/page-not-found').then(m => m.PageNotFound)
+  },
   // Redirection par défaut si la route n'existe pas
   // TODO : Page 404
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '404'
   }
 ];
