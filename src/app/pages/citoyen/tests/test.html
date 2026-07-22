@@ -1,0 +1,35 @@
+<div class="container py-5">
+    <!-- Bandeau d'introduction supérieur -->
+    <div class="intro-banner text-center mb-5">
+        <p class="intro-text">
+            Explorez nos <span class="text-teal">évaluations</span> et choisissez celle qui résonne avec votre état
+            actuel.
+        </p>
+    </div>
+
+    <!-- Grille des sous-tests -->
+    <div class="row g-4 justify-content-center">
+        @for (cat of tests(); track cat.id) {
+        <div class="col-md-6 col-lg-4">
+            <div class="test-card text-center">
+
+                <!-- Image/Illustration du test (Stockée dans public/images/) -->
+                <div class="test-icon-container">
+                    <img src="images/sad.png" alt="Icone Test" class="test-card-icon" />
+                </div>
+
+                <!-- Titres et descriptions du test -->
+                <div class="test-info-block">
+                    <h3 class="test-title">{{ cat.nom_test }}</h3>
+                    <p class="test-subtitle">{{ cat.description }}</p>
+                </div>
+
+                <!-- Bouton d'action pour lancer le questionnaire -->
+                <button class="btn-start-test" [routerLink]="['/questionnaire', cat.id]">
+                    Commencer le test
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
