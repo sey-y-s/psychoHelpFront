@@ -56,22 +56,23 @@
             <span>Psychologues</span>
         </a>
 
-        <a class="menu-item" >
+
+        <a class="menu-item">
             <mat-icon>event</mat-icon>
             <span>Mes rendez-vous</span>
         </a>
 
-        <a class="menu-item" >
+        <a class="menu-item">
             <mat-icon>lightbulb</mat-icon>
             <span>Conseils</span>
         </a>
 
-        <a class="menu-item" >
+        <a class="menu-item" routerLink="/me/categories" routerLinkActive="active">
             <mat-icon>quiz</mat-icon>
             <span>Tests</span>
         </a>
 
-        <a class="menu-item" >
+        <a class="menu-item">
             <mat-icon>notifications</mat-icon>
             <span>Notifications</span>
         </a>
@@ -80,12 +81,12 @@
 
         @if (utilisateur.role === 'ADMIN') {
 
-        <a class="menu-item" >
+        <a class="menu-item">
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </a>
 
-        <a class="menu-item" >
+        <a class="menu-item">
             <mat-icon>people</mat-icon>
             <span>Citoyens</span>
         </a>
@@ -95,7 +96,7 @@
             <span>Psychologues</span>
         </a>
 
-        <a class="menu-item" >
+        <a class="menu-item">
             <mat-icon>quiz</mat-icon>
             <span>Test & diagnostics</span>
         </a>
@@ -105,7 +106,7 @@
             <span>Conseils</span>
         </a>
 
-        <a class="menu-item" >
+        <a class="menu-item">
             <mat-icon>notifications</mat-icon>
             <span>Notifications</span>
         </a>

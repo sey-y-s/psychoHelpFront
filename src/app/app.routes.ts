@@ -56,7 +56,19 @@ export const routes: Routes = [
       },
       {
         path: 'psychologues',
-        loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent)
+        loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent),
+        data: { title: 'Psychologues' }
+      },
+      {
+        path: 'categories',
+        loadComponent: () => import('./pages/citoyen/categories/categorie-test').then(m => m.CategorieTestComponent),
+        data: { title: 'Categories' }
+      },
+
+      {
+        path: 'categories/:id/tests',
+        loadComponent: () => import('./pages/citoyen/tests/test').then(m => m.TestComponent),
+        data: { title: 'Tests disponibles' }
       },
       {
         path: 'psychologues/:id',
