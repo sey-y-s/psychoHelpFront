@@ -1,37 +1,35 @@
-<div class="modal-overlay" >
+<div class="modal-overlay">
 
-    <section class="modale" >
+    <section class="modale">
 
         <header class="modal-header">
             <div>
-                <h2>
-                        La description du conseil posté
-                     
-                </h2>
-
+                <h2>Détail du conseil</h2>
+                <p>Consultez le contenu complet du conseil publié par le psychologue.</p>
             </div>
-
-            
         </header>
 
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea name="" id="description" formControlName="description" rows="20" readonly>
-                        {{conseil().description}}
-                </textarea>
-                
-            </div>
-            <footer class="form-actions">
+        <div class="form-group">
 
-                <button  (click)="retour()"
-                        type="button"
-                        class="cancel"
-                >
-                    Annuler
-                </button>
+            <label for="description">Description</label>
 
-            </footer>
+            <textarea
+                id="description"
+                rows="18"
+                readonly>{{ conseil().description }}</textarea>
 
+        </div>
+
+        <footer class="form-actions">
+
+            <button
+                type="button"
+                class="cancel"
+                (click)="retour()">
+                Fermer
+            </button>
+
+        </footer>
 
     </section>
 

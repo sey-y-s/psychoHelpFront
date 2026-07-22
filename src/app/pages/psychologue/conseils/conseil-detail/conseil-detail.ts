@@ -1,4 +1,4 @@
-import { Component, input } from "@angular/core";
+import { Component, input, output } from "@angular/core";
 import { ConseilInfaceModelForPsy } from "../../../../models/citoyenforPsy.model";
 
 @Component({
@@ -9,8 +9,9 @@ import { ConseilInfaceModelForPsy } from "../../../../models/citoyenforPsy.model
 })
 export class ConseilDetail {
   conseil=input.required<ConseilInfaceModelForPsy>()
+  retoureOclick=output<boolean>()
 
   retour(){
-
+      this.retoureOclick.emit(false)
   }
 }

@@ -38,8 +38,12 @@
 </div>
 @if (formulaireVisible) {
     <app-conseil-form (fermerClic)="annuler($event)" 
-    (ajoutReussiMisAjourClic)="AjoutEffectuer()" [conseilId]="conseilId" />
+    (ajoutReussiMisAjourClic)="AjoutEffectuer()" />
 }
 @if (formulaireVisibleforDetail&&conseilRecup()) {
-    <app-conseil-detail [conseil]="conseilRecup()!" />
+    <app-conseil-detail [conseil]="conseilRecup()!" (retoureOclick)="fermerModalDescription($event)" />
 }
+@if (formulaireVisibleforEdit) {
+    <app-conseil-form-edit [conseilEdit]="conseilRecup()!" (editReussiOclik)="FrermerApreEdit($event)" />
+}
+
