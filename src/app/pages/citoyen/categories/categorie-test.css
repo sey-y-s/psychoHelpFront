@@ -1,0 +1,190 @@
+/* --- CONFIGURATION DE LA CARTE PRINCIPALE --- */
+.main-card {
+    background-color: #f1e2dc;
+    border-radius: 32px;
+    padding: 4rem 3.5rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.main-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #22213d;
+    margin-bottom: 1.8rem;
+}
+
+.text-teal {
+    color: #4da588;
+}
+
+.main-description {
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #5c5670;
+    margin-bottom: 2.2rem;
+}
+
+.selection-prompt {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #22213d;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+}
+
+/* --- OPTIMISATION DE L'ILLUSTRATION (GRAND FORMAT) --- */
+image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* Force le conteneur à occuper toute la hauteur de la ligne */
+    min-height: 550px;
+    /* Augmentation de la hauteur minimale pour forcer l'agrandissement */
+    padding: 0;
+    position: relative;
+}
+
+.illustration-img {
+    width: 120%;
+    /* Permet à l'image de dépasser la largeur stricte de sa colonne */
+    max-width: 700px;
+    /* Limite maximale augmentée à 700px (au lieu de 550px) */
+    height: auto;
+    max-height: 580px;
+    /* Empêche l'image de devenir trop haute */
+    object-fit: contain;
+    display: block;
+    transform: scale(1.15);
+    /* Multiplicateur augmenté pour un rendu massif */
+    transform-origin: center right;
+    /* Aligne l'agrandissement vers la droite de l'écran */
+}
+
+.category-card {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.accent-line {
+    height: 6px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+    margin-top: 6px;
+}
+
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.category-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.category-icon {
+    font-size: 1.5rem;
+}
+
+.category-icon::before {
+    font-family: "bootstrap-icons" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+
+.theme-1 .accent-line {
+    background-color: #c08163;
+}
+
+.theme-1 .icon-box {
+    background-color: #fdf2f2;
+    color: #c08163
+}
+
+
+.theme-1 .category-icon::before {
+
+    /* Code universel pour le visage triste (frown) */
+}
+
+.theme-2 .accent-line {
+    background-color: #c08163;
+}
+
+.theme-2 .icon-box {
+    background-color: #f0f0ff;
+    color: #c08163;
+}
+
+.theme-2 .category-icon::before {}
+
+.theme-3 .accent-line {
+    background-color: #c08163;
+}
+
+.theme-3 .icon-box {
+    background-color: #ebf3ff;
+    color: #c08163;
+}
+
+.theme-3 .category-icon::before {}
+
+
+@media (max-width: 991.98px) {
+    .main-card {
+        padding: 3rem 2rem;
+    }
+
+    .main-title {
+        font-size: 2.2rem;
+    }
+
+    .image-container {
+        margin-top: 2rem;
+        min-height: auto;
+        justify-content: center;
+        /* Centre l'image sous le texte */
+    }
+
+    .illustration-img {
+        max-width: 320px;
+        /* Taille réduite adaptée aux petits écrans */
+        transform: scale(1);
+    }
+}

@@ -8,7 +8,7 @@ import { Psychologue } from '../../models/psyForAdmin.model';
 })
 export class PsychologueAdminService {
 
-  private api = 'http://localhost:8080/api/psychologues';
+  private api = 'http://localhost:8080/api/admins/psychologues';
 
   constructor(private http: HttpClient) {}
 
@@ -31,7 +31,7 @@ export class PsychologueAdminService {
    */
   valider(id: number): Observable<Psychologue> {
     return this.http.put<Psychologue>(
-      `${this.api}/psychologues/${id}/valider`,
+      `${this.api}/${id}/valider`,
       {}
     );
   }
@@ -41,7 +41,7 @@ export class PsychologueAdminService {
    */
   annuler(id: number): Observable<Psychologue> {
     return this.http.put<Psychologue>(
-      `${this.api}/psychologues/${id}/annuler`,
+      `${this.api}/${id}/annuler`,
       {}
     );
   }

@@ -1,0 +1,45 @@
+<div class="main-card">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h1 class="main-title">
+                Découvrez <span class="text-teal">ce que vous ressentez</span> vraiment avec notre bilan d'esprit
+            </h1>
+            <p class="main-description">
+                En moins de 2 minutes, faites le point sur votre stress, votre anxiété ou votre charge mentale grâce à
+                des questionnaires cliniques scientifiquement validés.
+            </p>
+            <p class="selection-prompt">
+                Sélectionnez une catégorie de test pour commencer :
+            </p>
+
+            <div class="row g-3">
+                @for (cat of categories(); track cat.id) {
+                <div class="col-sm-6">
+                    <!-- On applique une classe dynamique ex: theme-1, theme-2 -->
+                    <div class="category-card theme-{{ cat.id }}" (click)="selectionnerCategorie(cat.id)">
+
+                        <!-- La ligne de couleur en haut -->
+                        <div class="accent-line"></div>
+
+                        <div class="card-content">
+                            <!-- La boîte de l'icône -->
+                            <div class="icon-box">
+                                <fa-icon [icon]="getIconForCategory(cat.id)" class="category-icon"></fa-icon>
+                            </div>
+                            <!-- Le nom de la catégorie -->
+                            <span class="category-name">{{ cat.nomCategorie }}</span>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="image-container">
+                <img src="images/bilan-illustration.png" alt="Illustration Bilan d'Esprit" class="illustration-img"
+                    (error)="handleImageError($event)" />
+            </div>
+        </div>
+    </div>
+</div>
