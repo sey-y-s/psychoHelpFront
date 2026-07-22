@@ -15,7 +15,6 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
-
   {
     path: 'register',
     loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
@@ -46,13 +45,24 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'psychologues',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       },
       {
         path: 'dashboard',
         loadComponent: () => import('./pages/citoyen/dashboard/dashboard').then(m => m.Dashboard),
         data: { title: 'Dashboard' }
+      },
+
+      {
+        path: 'rendez-vous',
+        loadComponent: () => import('./pages/citoyen/rendezvous/rendezvous').then(m => m.Rendezvous),
+        data: { title: 'Mes rendez-vous' }
+      },
+      {
+        path: 'rendez-vous/:id',
+        loadComponent: () => import('./pages/citoyen/detail-rendezvous/detail-rendezvous').then(m => m.DetailRendezvous),
+        data: { title: 'Détail du rendez-vous' }
       },
       {
         path: 'psychologues',
@@ -77,6 +87,16 @@ export const routes: Routes = [
       {
         path: 'psychologues/:id/creneaux',
         loadComponent: () => import('./pages/citoyen/rdv/rdv').then(m => m.Rdv)
+      },
+      {
+        path:"conseils" ,
+        loadComponent: () => import('./pages/citoyen/conseils/list-conseil-citoyen').then(m => m.ListConseilCitoyen),
+        data: { title: 'Conseils' }
+      },
+      {
+        path:"conseils/:id",
+        loadComponent: () => import('./pages/citoyen/conseils/show-conseil/show-conseil').then(m => m.ShowConseil),
+        data: { title: 'Conseils' }
       }
     ]
   },
@@ -130,18 +150,23 @@ export const routes: Routes = [
   // =========================================================================
   {
     path: 'admin',
-    component: MainLayout, // Utilise également le MainLayout s'il est partagé
+    component: MainLayout,
     canActivate: [authGuard, roleGuard],
     data: { role: 'ADMIN' }, // Transmis au roleGuard
     children: [
       {
         path: '',
-        redirectTo: 'psychologues',
+        redirectTo: 'conseils',
         pathMatch: 'full'
       },
       {
         path: 'psychologues',
-        loadComponent: () => import('./pages/admin/psychologues/admin-psychologue-validation.component').then(m => m.AdminPsychologueValidationComponent),
+        loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
+        data: { title: 'Validation Psychologues' }
+      },
+      {
+        path: 'psychologues',
+        loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
         data: { title: 'Validation Psychologues' }
       },
       {
@@ -156,6 +181,6 @@ export const routes: Routes = [
   // TODO : Page 404
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'psy'
   }
 ];

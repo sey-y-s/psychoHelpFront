@@ -1,6 +1,5 @@
 <h2>Liste des conseils</h2>
-<div class="container-fluid" id="conteneur">
-    <!-- Barre des boutons de filtres -->
+<div class="container-fluid d-flex flex-column vh-100" id="conteneur">
     <div class="row ligne-filter mt-5">
         <p class="d-inline-flex align-items-center justify-content-around col-10 offset-1 mt-2">
             <button id="btn-en-attente"
@@ -20,18 +19,19 @@
         </p>
     </div>
 
-    <!-- 1. BLOC SPINNER : Visible uniquement pendant le chargement -->
     <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center mt-5" style="min-height: 150px;">
         <div class="spinner-grow text-info" style="width: 3rem; height: 3rem;" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 
-    <!-- 2. BLOC CARTES : Un seul conteneur propre, visible quand le chargement est fini -->
-    <div *ngIf="!isLoading" class="list-card mt-3">
-        <app-card-validation-conseil *ngFor="let conseil of listConseils" [donnees]="conseil"></app-card-validation-conseil>
+    <div *ngIf="!isLoading" class="list-card flex-grow-1 overflow-auto mt-3">
+        <app-card-validation-conseil
+                *ngFor="let conseil of listConseils" [donnees]="conseil"
+                [routerLink]="['/admin/conseil', conseil.id]"
+                style="cursor: pointer; display: block;"
+        ></app-card-validation-conseil>
 
-        <!-- Message d'information si la liste est vide -->
         <p *ngIf="listConseils.length === 0" class="text-center text-muted mt-4">
             Aucun conseil trouvé.
         </p>

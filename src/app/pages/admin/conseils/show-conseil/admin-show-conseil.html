@@ -1,4 +1,3 @@
-
 <div class="container mt-5" id="conteneur">
     <div class="d-flex justify-content-center mb-4">
         <div class="zone-illustration">
@@ -6,39 +5,47 @@
             <img src="main-serrer.png" class="icone-mains" alt="icone">
         </div>
     </div>
-    {{getConseil(1)}}
+
+    @if (conseil) {
     <div id="contenu">
-        <h2>{{conseil.titre}}</h2>
+        <h2>{{ conseil.titre }}</h2>
 
-        <div id="description">
-            <p>{{conseil.description}}</p>
-        </div>
-        <div class="align-items-end " id="auteur">
-            <p>Auteur : <strong>{{conseil.auteur}}</strong> </p>
-        </div>
-        <div class="d-flex justify-content-between" id="ligne">
-            <p>date {{conseil.datePublication}}</p>
-            <p>Psychologue : {{conseil.psyNom}}</p>
-        </div>
+            <div id="description">
+                <p>{{ conseil.description }}</p>
+            </div>
+            <div class="align-items-end " id="auteur">
+                <p>Auteur : <strong>{{ conseil.auteur }}</strong></p>
+            </div>
+            <div class="d-flex justify-content-between" id="ligne">
+                <p>Date : {{ conseil.datePublication }}</p>
+                <p>Psychologue : {{ conseil.psyNom }}</p>
+            </div>
 
-        <div class="d-flex justify-content-center my-4">
+            <div class="d-flex justify-content-center my-4">
             <div class="custom-switch"
-                 [class.bg-valide]="estValide"
-                 [class.bg-non-valide]="!estValide"
+                 [class.bg-attente]="statutActuel === 'ENATTENTE'"
+                 [class.bg-valide]="statutActuel === 'VALIDER'"
+                 [class.bg-non-valide]="statutActuel === 'REFUSER'"
                  (click)="toggleStatut()">
 
-                <div class="pastille-blanche" [class.glisse-droite]="estValide">
-                    {{ estValide ? 'validé' : 'non validé' }}
-                </div>
+                <div class="pastille-blanche"
+                     [class.glisse-droite]="statutActuel === 'VALIDER'"
+                     [class.glisse-gauche]="statutActuel === 'REFUSER'"
+                     [class.pastille-centre]="statutActuel === 'ENATTENTE'">
 
+                   <span>
+                        @if (statutActuel === 'ENATTENTE') { en attente }
+                        @if (statutActuel === 'VALIDER') { validé }
+                        @if (statutActuel === 'REFUSER') { refusé }
+                    </span>
+
+                    </div>
+                </div>
             </div>
         </div>
-
-
-
-
-
-    </div>
-
-
+    } @else {
+        <div class="text-center">
+            <p>Chargement du conseil...</p>
+        </div>
+    }
 </div>

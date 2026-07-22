@@ -1,0 +1,162 @@
+/* Conteneur principal */
+.rdv-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 82px 50px;
+  background-color: #f5eae4; 
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+
+.rdv-detail-card {
+  background: #ffffff !important;
+  border: 1px solid #cec9c9 !important;
+  border-radius: 16px !important;
+  padding: 28px !important;
+  max-width: 100%;
+  width:100%;
+  height: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+.card-header-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.2;
+}
+
+.header-title .subtitle {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+/* Badge de statut épuré */
+.badge-status {
+  background-color: #e8f8f5;
+  color: #2e7d32;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid #a3e4d7;
+}
+
+/* Séparateur discret */
+.card-divider {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 20px 0;
+  margin-top: 40px;
+}
+
+/* Profil du Praticien */
+.doctor-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.doc-avatar {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.doctor-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.doc-speciality {
+  font-size: 14px;
+  color: #34495e;
+  margin-top: 2px;
+}
+
+/* Encadré Date & Heure */
+.datetime-box {
+  background-color: #faf6f3;
+  border: 1px solid #e8ded7;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.datetime-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-icon {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+}
+
+.datetime-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.datetime-text .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #7f8c8d;
+  font-weight: 600;
+}
+
+.datetime-text .value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 1px;
+}
+
+/* Zone de Boutons */
+.rdv-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-secondary {
+  background-color: #ded1c8 !important;
+  color: #2c3e50 !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 4px 16px !important;
+}
+
+.btn-cancel {
+  color: #c0392b !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+}
+.btn-cancel:disabled {
+  color: #a0a0a0 !important; 
+  cursor: not-allowed;  
+  opacity: 0.6;
+}

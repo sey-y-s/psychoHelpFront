@@ -1,12 +1,12 @@
 // TODO: Vérifier si c'est correct
-export interface Conseil {
+export interface ConseilListeCitoyen {
   id?: number;
-  psychologueId: number;
   titre: string;
   description: string;
   datePublication?: string;
-  status: boolean;
+  status: string;
   auteur: string
 
-  psyNom: string
+  psyNom: string;
+  voirplus:boolean;
 }
