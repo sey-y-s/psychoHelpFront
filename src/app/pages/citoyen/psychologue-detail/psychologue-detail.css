@@ -13,7 +13,8 @@ body{
 }
 
 .container{
-    max-width:1200px;
+     max-width: 1140px;
+
 }
 
 .hero{
@@ -23,15 +24,15 @@ body{
             #fff,
             #f7ede6
     );
-    padding:15px;
+    padding:15px 0px;
     overflow:hidden;
 }
 
 .hero h1{
-    font-size:58px;
+    font-size:38px;
     font-weight:700;
     color:var(--primary);
-    line-height:1.1;
+    line-height:1.2;
 }
 
 .hero h1 span{
@@ -39,8 +40,8 @@ body{
 }
 
 .hero p{
-    margin-top:20px;
-    font-size:22px;
+    margin-top:10px;
+    font-size:16px;
     color:#555;
 }
 
@@ -50,21 +51,25 @@ body{
 
 .hero-image{
     width:120%;
-    max-width:520px;
-    margin-bottom:-30px;
+    max-width:380px;
+    margin-bottom:-20px;
      /* transform:translateY(-12px);  */
     animation:float 5s infinite ease-in-out;
+}
+
+.pad_left{
+    padding-left: 60px;
 }
 
 
 .breadcrumb-section{
     background:#ffffff;
-    padding:5px 0;
-    margin-top:-20px;
+    padding:4px 0;
+    margin-top:-15px;
     margin-right:50px;
     margin-left:50px;
     border-radius:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    box-shadow:0 5px 1px rgba(0,0,0,.05);
 }
 
 .breadcrumb{
@@ -78,6 +83,7 @@ body{
     font-weight:500;
     transition:.3s;
     cursor:pointer;
+    font-size:14px;
 }
 
 .breadcrumb-item a:hover{
@@ -87,46 +93,48 @@ body{
 .breadcrumb-item.active{
     color:#2C3E50;
     font-weight:600;
+    font-size:14px;
 }
 
 .psy-card{
     background-color:var(--primary);
     color:var(--white);
-    border-radius:25px;
-    padding:35px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
     height:100%;
 }
 
 .photo{
-    width:220px;
-    height:220px;
+    width:140px;
+    height:140px;
     border-radius:50%;
     object-fit:cover;
-    border:8px solid var(--beige);
+    border:5px solid var(--beige);
     display:block;
     margin:auto;
 }
 
 .psy-card h2{
-    margin-top:25px;
+    margin-top:15px;
     text-align:center;
-    font-size:36px;
+    font-size:24px;
 }
 
 .psy-card h5{
     text-align:center;
     color:var(--beige);
-    margin-bottom:20px;
+    margin-bottom:15px;
+    font-size:15px;
 }
 
 .badge{
     display:block;
     width:120px;
     margin:auto;
-    padding:8px;
+    padding:6px 12px;
     border-radius:40px;
-    font-size:15px;
+    font-size:13px;
     text-align:center;
 }
 
@@ -158,6 +166,10 @@ body{
     background:#34495e;
     color:white;
     transition:.3s;
+
+    font-size: 18px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
 }
 
 .btn-doc:hover{
@@ -185,8 +197,8 @@ body{
 }
 
 .info i{
-    width:60px;
-    height:60px;
+    width:50px;
+    height:50px;
     border-radius:50%;
     background:var(--primary);
     color:white;
@@ -228,13 +240,22 @@ body{
 
 .action-btn{
     width:100%;
-    padding:20px;
+    padding:12px;
     border:none;
     border-radius:20px;
-    font-size:18px;
+    font-size:50px;
     font-weight:600;
     transition:.3s;
     margin-bottom:20px;
+
+}
+
+.action-btn span {
+    font-size: 18px; 
+}
+
+.action-btn .small {
+    font-size: 0.75rem !important; 
 }
 
 .blue{
