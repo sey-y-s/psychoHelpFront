@@ -7,10 +7,12 @@ import { ConseilInfaceModelForPsy } from "../../../models/citoyenforPsy.model";
 import { erreurInterceptor } from "../../../core/interceptors/erreur.interceptor";
 import { ConseilDetail } from "./conseil-detail/conseil-detail";
 import { ConseilFormEdit } from "./conseil-form-edit/conseil-form-edit";
+import { BarreRecherche } from "./barre-recherche/barre-recherche";
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 @Component({
   selector: "app-conseils",
-  imports: [ConseilCard, ConseilForm,ConseilDetail,ConseilFormEdit],
+  imports: [ConseilCard, ConseilForm,ConseilDetail,ConseilFormEdit,BarreRecherche,MatPaginatorModule],
   templateUrl: "./conseils.html",
   styleUrl: "./conseils.css",
 })
@@ -23,13 +25,23 @@ export class Conseils {
     formulaireVisibleforEdit=false
     conseilRecup=signal<ConseilInfaceModelForPsy|null>(null)
     constructor(){
-           this.chargerConseil()
+           this.chargerConseil("")
     }
-    chargerConseil(){
+    chargerConseil(titre:string){
               this.conseilService.getMesConseils().subscribe(
             {
                  next:(response)=>{
-                    this.conseils.set(response)
+                    if(titre===""){
+                      console.log("lllflf")
+                         this.conseils.set(response)
+
+                    }else{
+                                            console.log("diffent")
+
+                        this.conseils.set(response.filter((conseil)=>conseil.titre.toLowerCase().includes(titre.toLowerCase())))
+
+                    }
+                    
                  }
             }
            )
@@ -44,7 +56,7 @@ export class Conseils {
     //cett fonction met à jour la lsite des conseils et ferme le modal
     AjoutEffectuer(){
       this.formulaireVisible=false
-      this.chargerConseil()
+      this.chargerConseil("")
     }
     //debut de la modification
     modifier(id:number){
@@ -71,7 +83,7 @@ export class Conseils {
                 console.log(error)
               },
               complete:()=>{
-                   this.chargerConseil()
+                   this.chargerConseil("")
               }
           })
 
@@ -79,7 +91,7 @@ export class Conseils {
     //fermer le madal de modification apres l'edit
     FrermerApreEdit(b:boolean){
        this.formulaireVisibleforEdit=b
-       this.chargerConseil()
+       this.chargerConseil("")
     }
     //detail d'un  conseil
     showDetail(id:number){
@@ -94,5 +106,23 @@ export class Conseils {
     fermerModalDescription(b:boolean){
        this.formulaireVisibleforDetail=b
     }
+    //chercher par titre
+    /*
+    cherherParTitre(titre:string){
+          this.conseilService.getMesConseils().subscribe(
+            {
+                next:(response)=>{
+                      this.conseils.set(response.filter((conseil)=>conseil.titre==titre))
+                },
+                error:(error)=>{
+
+                },
+                complete:()=>{
+                    //this.chargerConseil()
+                }
+            }
+          )
+    }
+          */
 
 }

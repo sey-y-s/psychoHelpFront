@@ -10,8 +10,7 @@
             Ajouter un conseil
         </button>
     </div>
-
-
+    <app-barre-recherche (chercherOnClick)="chargerConseil($event)"/>
     <div class="table-container">
         <table class="table">
 
@@ -26,13 +25,21 @@
             </thead>
 
             <tbody>
-                @for (conseil of conseils(); track conseil.id) {
+                @if(conseils().length>0){
+                 @for (conseil of conseils(); track conseil.id) {
                     <app-conseil-card [conseil]="conseil" (editOnclic)="modifier($event)" 
                     (deleteOnclic)="supprimerConseil($event)" (visaliserOnclic)="showDetail($event)"/>
                 }
+                }@else {
+                <tr><td colspan="7" style="align-content: center; background-color: #f1e2dc;">Aucun resultat trouvé!</td></tr>
+
+                }
+                
+
             </tbody>
 
         </table>
+        
     </div>
 
 </div>

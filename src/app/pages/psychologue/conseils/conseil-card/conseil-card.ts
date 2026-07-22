@@ -2,10 +2,11 @@ import { Component, input, output } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { ConseilInfaceModelForPsy } from "../../../../models/citoyenforPsy.model";
 import { RouterLink } from "@angular/router";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: "app-conseil-card",
-  imports: [MatIconModule],
+  imports: [MatIconModule,DatePipe],
   templateUrl: "./conseil-card.html",
   styleUrl: "./conseil-card.css",
 })
