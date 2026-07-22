@@ -1,6 +1,5 @@
 import {ChangeDetectorRef, Component, inject} from "@angular/core";
-import {AsyncPipe} from "@angular/common";
-import {RouterLink} from "@angular/router";
+
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {DashboardStats} from "./dashboard-stats/dashboard-stats";

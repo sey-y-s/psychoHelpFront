@@ -1,6 +1,3 @@
-
-
-
 .btn-filter {
     background-color: white;
     width: 10vw;
@@ -12,7 +9,6 @@
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
-
 .btn-filter:hover,
 .btn-filter.active {
     background-color: var(--secondary);
@@ -20,15 +16,12 @@
 
     transform: none;
 }
-
 .btn-filter:active {
     transform: scale(0.95);
 }
-
 #btn-tous {
     width: 12vw;
 }
-
 #conteneur{
     padding: 2vh 5vw;
     background:var(--background);
@@ -38,5 +31,13 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    overflow: hidden;
 }
-
+.list-card{
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.list-card::-webkit-scrollbar{
+    display: none;
+}

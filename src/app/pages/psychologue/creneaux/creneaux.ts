@@ -38,16 +38,19 @@ export class Creneaux implements OnInit {
   ouvrirAjout(): void {
     this.creneauSelectionne = null;
     this.formulaireVisible = true;
+    this.cdr.detectChanges();
   }
 
   ouvrirModification(creneau: Creneau): void {
-    this.creneauSelectionne = creneau;
+    this.creneauSelectionne = { ...creneau };
     this.formulaireVisible = true;
+    this.cdr.detectChanges();
   }
 
   fermerFormulaire(): void {
     this.formulaireVisible = false;
     this.creneauSelectionne = null;
+    this.cdr.detectChanges();
   }
 
   enregistrer(donnees: CreneauRequest | UpdateCreneauRequest): void {
@@ -60,26 +63,42 @@ export class Creneaux implements OnInit {
 
   supprimer(creneau: Creneau): void {
     const confirmation = window.confirm(
-        `Supprimer le créneau du ${creneau.jours} de ${creneau.heureDebut} à ${creneau.heureFin} ?`
+        `Supprimer le créneau du ${creneau.jours} ` +
+        `de ${creneau.heureDebut} à ${creneau.heureFin} ?`
     );
-
     if (!confirmation) {
       return;
     }
+    this.traitement = true;
+    this.creneauService.supprimer(creneau.id)
+        .pipe(
+            finalize(() => {
+              this.traitement = false;
+              this.cdr.detectChanges();
+            })
+        )
+        .subscribe({
+          next: () => {
+            this.creneaux = this.creneaux.filter(
+                element => element.id !== creneau.id
+            );
 
-    this.creneauService.supprimer(creneau.id).subscribe({
-      next: () => {
-        this.creneaux = this.creneaux.filter(
-            element => element.id !== creneau.id
-        );
+            this.afficherMessage(
+                'Créneau supprimé avec succès.'
+            );
+          },
 
-        this.afficherMessage('Créneau supprimé avec succès.');
-      },
-      error: error => {
-        console.error(error);
-        this.afficherMessage('La suppression a échoué.');
-      }
-    });
+          error: error => {
+            console.error(
+                'Erreur de suppression du créneau :',
+                error
+            );
+
+            this.afficherMessage(
+                'La suppression a échoué.'
+            );
+          }
+        });
   }
 
   private chargerCreneaux(): void {
@@ -114,44 +133,71 @@ export class Creneaux implements OnInit {
 
   private creer(donnees: CreneauRequest): void {
     this.traitement = true;
+    this.creneauService.creer(donnees)
+        .pipe(
+            finalize(() => {
+              this.traitement = false;
+              this.cdr.detectChanges();
+            })
+        )
+        .subscribe({
+          next: creneau => {
+            this.creneaux = [...this.creneaux, creneau];
+            this.fermerFormulaire();
 
-    this.creneauService.creer(donnees).subscribe({
-      next: creneau => {
-        this.creneaux = [...this.creneaux, creneau];
-        this.traitement = false;
-        this.fermerFormulaire();
-        this.afficherMessage('Créneau ajouté avec succès.');
-      },
-      error: error => {
-        console.error(error);
-        this.traitement = false;
-        this.afficherMessage('La création a échoué.');
-      }
-    });
+            this.afficherMessage(
+                'Créneau ajouté avec succès.'
+            );
+          },
+
+          error: error => {
+            console.error(
+                'Erreur de création du créneau :',
+                error
+            );
+
+            this.afficherMessage(
+                'La création a échoué.'
+            );
+          }
+        });
   }
 
-  private modifier(
-      id: number,
-      donnees: CreneauRequest | UpdateCreneauRequest
-  ): void {
+  private modifier(id: number, donnees: CreneauRequest | UpdateCreneauRequest): void {
     this.traitement = true;
+    this.creneauService.modifier(id, donnees)
+        .pipe(
+            finalize(() => {
+              this.traitement = false;
+              this.cdr.detectChanges();
+            })
+        )
+        .subscribe({
+          next: creneauModifie => {
+            this.creneaux = this.creneaux.map(creneau =>
+                creneau.id === id
+                    ? creneauModifie
+                    : creneau
+            );
 
-    this.creneauService.modifier(id, donnees).subscribe({
-      next: creneauModifie => {
-        this.creneaux = this.creneaux.map(creneau =>
-            creneau.id === id ? creneauModifie : creneau
-        );
+            this.fermerFormulaire();
 
-        this.traitement = false;
-        this.fermerFormulaire();
-        this.afficherMessage('Créneau modifié avec succès.');
-      },
-      error: error => {
-        console.error(error);
-        this.traitement = false;
-        this.afficherMessage('La modification a échoué.');
-      }
-    });
+            this.afficherMessage(
+                'Créneau modifié avec succès.'
+            );
+          },
+
+          error: error => {
+            console.error(
+                'Erreur de modification du créneau :',
+                error
+            );
+
+            this.afficherMessage(
+                'La modification a échoué.'
+            );
+          }
+        });
   }
 
   private afficherMessage(message: string): void {

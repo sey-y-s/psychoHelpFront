@@ -3,6 +3,9 @@
 import { Specialite } from "./specialite.model";
 
 
+//export type StatusValidationPsy = 'ENATTENTE' | 'VALIDER' | 'REFUSER';
+
+
 export interface PsychologueListeDto {
     id: number;
     nom: string;
@@ -11,7 +14,7 @@ export interface PsychologueListeDto {
     mail: string;
     role: 'PSYCHOLOGUE';
     dateCreation: Date;
-    status: boolean;
+    status: string;
     description: string;
     diplome_path: string;
     cv_path: string;

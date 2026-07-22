@@ -31,9 +31,7 @@ export class RendezVousCard {
     return `${prenom}${nom}`.toUpperCase();
   }
 
-  obtenirLibelleStatut(
-      statut: StatutRendezVous
-  ): string {
+  obtenirLibelleStatut(statut: StatutRendezVous): string {
     switch (statut) {
       case 'RESERVER':
         return 'En attente';
@@ -52,9 +50,7 @@ export class RendezVousCard {
     }
   }
 
-  obtenirClasseStatut(
-      statut: StatutRendezVous
-  ): string {
+  obtenirClasseStatut(statut: StatutRendezVous): string {
     switch (statut) {
       case 'RESERVER':
         return 'en-attente';

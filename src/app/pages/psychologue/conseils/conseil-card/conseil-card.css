@@ -1,0 +1,73 @@
+:host {
+    display: contents;
+}
+
+tr {
+    transition: .2s ease;
+}
+
+tr:hover {
+    background: #f7f2ef;
+}
+
+td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+
+.status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: #e8f5e9;
+    font-size: 12px;
+}
+
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* Voir */
+.actions button:nth-child(1) {
+    background: #e3f2fd;
+}
+
+.actions button:nth-child(1) mat-icon {
+    color: #1976d2;
+}
+
+
+/* Modifier */
+.actions button:nth-child(2) {
+    background: #fff3e0;
+}
+
+.actions button:nth-child(2) mat-icon {
+    color: #f57c00;
+}
+
+
+/* Supprimer */
+.actions button:nth-child(3) {
+    background: #ffebee;
+}
+
+.actions button:nth-child(3) mat-icon {
+    color: #d32f2f;
+}
+
+
+/* Effet hover */
+.actions button {
+    transition: .2s ease;
+}
+
+.actions button:hover {
+    transform: scale(1.12);
+}                                 

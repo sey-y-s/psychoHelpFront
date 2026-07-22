@@ -1,0 +1,274 @@
+/* Layout Global Flexbox */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5eae4; /* Arrière-plan beige doux */
+  padding: 16px;
+  gap: 20px;
+  box-sizing: border-box;
+  font-family: 'Poppins', Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Contenu Principal */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Bannière de Bienvenue */
+.welcome-banner {
+  background-color: #ded1c8 !important;
+  border-radius: 20px !important;
+  padding: 24px 32px;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-text h1 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.banner-text p {
+  color: #34495e;
+  font-size: 18px;
+  margin: 0;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+.banner-illustration img {
+  height: 150px;
+}
+
+/* Grille des cartes statistiques */
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  border: none !important;
+  padding: 16px;
+}
+
+.stat-card mat-card-header {
+  justify-content: center;
+}
+
+.stat-card mat-card-title {
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.stat-value {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin-top: 8px !important;
+}
+
+.icon-stat {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: #f39c12;
+}
+
+.green-icon { color: #2ecc71; }
+.blue-icon { color: #2980b9; }
+
+.number {
+  font-size: 22px !important;   
+  font-weight: 700 !important;
+  line-height: 1 !important;
+    margin-top: 35px;
+
+}
+
+.number.orange { color: #f39c12; }
+.number.green { color: #2ecc71; }
+.number.blue { color: #2980b9; }
+
+.stat-icon-img {
+  width: 50px !important;       
+  height: 50px !important;       
+  object-fit: contain !important; 
+  display: block !important;
+  margin-top: 35px;
+}
+/* Grille 2 colonnes (Conseils + RDV) */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.section-card {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  border: none !important;
+  padding: 16px;
+}
+
+.section-card mat-card-title {
+  font-size: 18px;
+  color: #2c3e50;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 !important;
+}
+
+/* ==========================================================================
+   SECTION CONSEILS RECOMMANDÉS
+   ========================================================================== */
+
+.conseil-item {
+  position: relative; /* Repère pour le placement absolu du bouton */
+  background-color: #ded1c8;
+  border-radius: 14px;
+  padding: 16px 20px 40px 20px; /* Padding bas pour ne pas chevaucher le bouton */
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.conseil-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.conseil-icon-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+}
+
+.conseil-title {
+  font-weight: 590;
+  color: #2c3e50;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   SECTION PROCHAIN RENDEZ-VOUS
+   ========================================================================== */
+
+.rdv-box {
+  position: relative; /* Repère pour le placement absolu du bouton */
+  background-color: #ded1c8;
+  border-radius: 14px;
+  padding: 18px 20px 45px 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  height: 250px;
+  align-items: flex-start !important; /* Force tout le contenu à coller à gauche */
+
+}
+
+.doctor-header {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 12px;
+  width: 100%;
+}
+
+.doc-icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0; /* Empêche l'image de se déformer */
+}
+
+/* Forcer l'alignement à gauche pour le nom et la spécialité */
+.doctor-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* Alignement vertical sur le bord gauche */
+  text-align: left !important;        /* Forcer le texte à démarrer à gauche */
+}
+
+.doc-name {
+  font-weight: 550;
+  font-size: 16px;
+  color: #2c3e50;
+  line-height: 1.2;
+  text-align: left !important;
+}
+
+.doc-speciality {
+  color: #34495e;
+  font-size: 16px;
+  margin-top: 50px !important;
+margin-left: 50px ; 
+ padding: 0;
+  text-align: left !important;
+  display: block !important;
+  
+  
+}
+
+.rdv-details{
+  margin: 6px 0;
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rdv-icon-img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+
+}
+
+.btn-action {
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 16px !important;
+  color: #2c3e50 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  padding: 0 !important;
+  min-width: unset !important;
+  height: auto !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+
+}
+
+/* Nettoyage des paddings internes injectés par Angular Material */
+.btn-action .mdc-button__label {
+  padding: 0 !important;
+}
+
+mat-card,
+.stat-card,
+.section-card,
+.welcome-banner {
+  border: 1px solid #dcd9d9 !important; 
+}
