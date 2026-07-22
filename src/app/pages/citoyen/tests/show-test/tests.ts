@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TestService } from '../../../core/services/test.service';
-import { TestEvaluation, Question, OptionChoix } from '../../../models/test.model';
+import { TestService } from '../../../../core/services/test.service';
+import { TestEvaluation, Question, OptionChoix } from '../../../../models/test.model';
 
 @Component({
   selector: 'app-test-anxiete',

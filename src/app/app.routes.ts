@@ -65,16 +65,6 @@ export const routes: Routes = [
         data: { title: 'Détail du rendez-vous' }
       },
       {
-        path: 'tests/:id',
-        loadComponent: () => import('./pages/citoyen/tests/tests').then(m => m.Tests),
-        data: { title: 'Test' }
-      },
-      {
-        path: 'tests/:id/resultats',
-        loadComponent: () => import('./pages/citoyen/resultat-test/resultat-test').then(m => m.ResultatTest),
-        data: { title: 'Test' }
-      },
-      {
         path: 'psychologues',
         loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent),
         data: { title: 'Psychologues' }
@@ -89,6 +79,16 @@ export const routes: Routes = [
         path: 'categories/:id/tests',
         loadComponent: () => import('./pages/citoyen/tests/test').then(m => m.TestComponent),
         data: { title: 'Tests disponibles' }
+      },
+      {
+        path: 'categories/:id/tests/:id',
+        loadComponent: () => import('./pages/citoyen/tests/show-test/tests').then(m => m.Tests),
+        data: { title: 'Test' }
+      },
+      {
+        path: 'categories/:id/tests/:id/resultats',
+        loadComponent: () => import('./pages/citoyen/resultat-test/resultat-test').then(m => m.ResultatTest),
+        data: { title: 'Test' }
       },
       {
         path: 'psychologues/:id',
