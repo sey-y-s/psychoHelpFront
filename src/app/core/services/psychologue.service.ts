@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { PsychologueListeDto } from '../../models/psychologue-liste.model';
 import { Specialite } from '../../models/specialite.model';
 import { environments } from '../../../environments/environments.development';
+import { TestEvaluation } from '../../models/test.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -61,4 +62,5 @@ export class PsychologueService {
   trouverParId(id: number): Observable<Psychologue> {
     return this.http.get<Psychologue>(`${this.api}/${id}`);
   }
+
 }

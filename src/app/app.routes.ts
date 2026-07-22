@@ -55,6 +55,16 @@ export const routes: Routes = [
         data: { title: 'Dashboard' }
       },
       {
+        path: 'tests/:id',
+        loadComponent: () => import('./pages/citoyen/tests/tests').then(m => m.Tests),
+        data: { title: 'Test' }
+      },
+      {
+        path: 'tests/:id/resultats',
+        loadComponent: () => import('./pages/citoyen/resultat-test/resultat-test').then(m => m.ResultatTest),
+        data: { title: 'Test' }
+      },
+      {
         path: 'psychologues',
         loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent)
       },
