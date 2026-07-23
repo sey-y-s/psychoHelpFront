@@ -71,13 +71,13 @@
 }
 
 .menu-item.active {
-    background: #dca891;
+    background: var(--clair);
     color: #2d2927;
     font-weight: 600;
 }
 
 .menu-item.active mat-icon {
-    color: #6b4633;
+    color: var(--secondary);
 }
 
 .sidebar-bottom {

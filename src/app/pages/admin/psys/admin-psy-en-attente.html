@@ -58,19 +58,19 @@
   <div class="table-container">
 
     <!-- LOADING -->
-    <div *ngIf="!psysEnAttente || psysEnAttente.length === 0 && !chargement" class="loading">
+    <!-- <div *ngIf="!psysEnAttente || psysEnAttente.length === 0 && !chargement" class="loading">
       <div class="spinner"></div>
       <p>Chargement des psychologues...</p>
-    </div>
+    </div> -->
 
     <!-- TABLEAU -->
-    <div *ngIf="psysEnAttente && psysEnAttente.length > 0">
+    <div *ngIf="psysEnAttente && psysListe.length > 0">
       <table>
         <thead>
           <tr>
-            <th>Photo</th>
+            <!-- <th>Photo</th> -->
             <th>Nom Complet</th>
-            <th>Email</th>
+            <!-- <th>Email</th> -->
             <th>Téléphone</th>
             <th>Spécialité</th>
             <th>Statut</th>
@@ -79,13 +79,13 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let psy of psychologuesFiltres || psysEnAttente">
+          <tr *ngFor="let psy of psysListe || psychologuesFiltres">
             <!-- Photo -->
-            <td>
+            <!-- <td>
               <div class="avatar" [style.background-color]="getColor(psy.id)">
                 {{ getInitiales(psy) }}
               </div>
-            </td>
+            </td> -->
 
             <!-- Nom Complet -->
             <td>
@@ -96,11 +96,11 @@
             </td>
 
             <!-- Email -->
-            <td>
+            <!-- <td>
               <a [href]="'mailto:' + psy.mail" class="email-link">
                 {{ psy.mail }}
               </a>
-            </td>
+            </td> -->
 
             <!-- Téléphone -->
             <td>
@@ -117,7 +117,7 @@
             <!-- Statut -->
             <td>
               <span class="status-badge" [class.status-en-attente]="!psy.etat" [class.status-valide]="psy.etat">
-                {{ psy.etat ? '✅ Validé' : '⏳ En attente' }}
+                {{ psy.etat ? 'Validé' : 'En attente' }}
               </span>
             </td>
 
@@ -171,11 +171,11 @@
     </div>
 
     <!-- Message si aucune donnée en attente -->
-    <div *ngIf="psysEnAttente && psysEnAttente.length === 0 && !chargement" class="empty">
+    <div *ngIf="psysListe && psysListe.length === 0 && !chargement" class="empty">
       <div class="empty-content">
         <span class="empty-icon">🎉</span>
-        <h3>Aucun psychologue en attente</h3>
-        <p>Tous les psychologues ont été validés !</p>
+        <h3>Aucun psychologue trouvé</h3>
+        <p>La base de données est vide !</p>
       </div>
     </div>
   </div>

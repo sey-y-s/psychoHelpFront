@@ -38,8 +38,8 @@ export class AdminPsyEnAttente {
     this.psychologueAdminService.listerEnAttenteTest().subscribe({
       next: (psy: Psychologue[]) => {
         this.psysListe = psy;
-        // Filtrer uniquement ceux en attente (etat = false)
-        this.psysEnAttente = psy.filter(c => c.etat === false);
+        // Filtrer uniquement ceux en attente
+        this.psysEnAttente = psy.filter(c => c.status == 'ENATTENTE');
         this.psychologuesFiltres = [...this.psysEnAttente];
         this.chargement = false;
         this.cdr.detectChanges();
