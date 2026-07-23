@@ -9,6 +9,7 @@ import { ConseilDetail } from "./conseil-detail/conseil-detail";
 import { ConseilFormEdit } from "./conseil-form-edit/conseil-form-edit";
 import { BarreRecherche } from "./barre-recherche/barre-recherche";
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-conseils",
@@ -24,6 +25,7 @@ export class Conseils {
     formulaireVisibleforDetail=false
     formulaireVisibleforEdit=false
     conseilRecup=signal<ConseilInfaceModelForPsy|null>(null)
+    snackBar=inject(MatSnackBar)
     constructor(){
            this.chargerConseil("")
     }
@@ -57,6 +59,7 @@ export class Conseils {
     AjoutEffectuer(){
       this.formulaireVisible=false
       this.chargerConseil("")
+      this.afficherMessage("conseil posté avec succes!")
     }
     //debut de la modification
     modifier(id:number){
@@ -69,6 +72,10 @@ export class Conseils {
              error:(error)=>{
               console.log(error)
              }
+             ,
+              complete:()=>{
+                   this.chargerConseil("")
+              }
         }
       )
     }
@@ -84,6 +91,7 @@ export class Conseils {
               },
               complete:()=>{
                    this.chargerConseil("")
+                   this.afficherMessage("suppresion effectuée avec succes!")
               }
           })
 
@@ -92,6 +100,7 @@ export class Conseils {
     FrermerApreEdit(b:boolean){
        this.formulaireVisibleforEdit=b
        this.chargerConseil("")
+       this.afficherMessage("modification effectuée avec succes!")
     }
     //detail d'un  conseil
     showDetail(id:number){
@@ -106,23 +115,13 @@ export class Conseils {
     fermerModalDescription(b:boolean){
        this.formulaireVisibleforDetail=b
     }
-    //chercher par titre
-    /*
-    cherherParTitre(titre:string){
-          this.conseilService.getMesConseils().subscribe(
-            {
-                next:(response)=>{
-                      this.conseils.set(response.filter((conseil)=>conseil.titre==titre))
-                },
-                error:(error)=>{
-
-                },
-                complete:()=>{
-                    //this.chargerConseil()
-                }
-            }
-          )
-    }
-          */
+   //le message d'operation
+   private afficherMessage(message: string): void {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
 
 }
