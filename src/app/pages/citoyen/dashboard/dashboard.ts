@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectorRef, Component } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { AuthService } from "../../../core/services/auth.service";
 import { Utilisateur } from "../../../models/utilisateur.model";
 import { RouterLink } from "@angular/router";
-import { Conseil } from "../../../models/conseil.model";
+import {  ConseilAffiche } from "../../../models/conseil.model";
 import { CitoyenRendezVousResponse } from "../../../models/seance.model";
 
 @Component({
@@ -21,14 +21,14 @@ import { CitoyenRendezVousResponse } from "../../../models/seance.model";
   templateUrl: "./dashboard.html",
   styleUrl: "./dashboard.css",
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
 
   prochainRendezVous: CitoyenRendezVousResponse  | null = null;
   citoyenConnecte: Utilisateur | null = null;
   nombrePsychologues = 0;
   nombreConseils = 0;
   nombreTestEffectues = 0;
-  conseils: Conseil[] = [];
+  conseils: ConseilAffiche[] = [];
 
   constructor(
     private authService: AuthService,
@@ -83,6 +83,8 @@ export class Dashboard {
         next: (psychologues) => {
           this.nombrePsychologues = psychologues.length; // permet de donner le nombre de psy valider
 
+           console.log('PSYCHOLOGUES RECUS :', psychologues);
+  console.log('NOMBRE :', psychologues.length);
           console.log('Valeur de la variable :', this.nombrePsychologues);
 
           console.log("Nombre de psychologues validés :", this.nombrePsychologues);
@@ -104,10 +106,8 @@ export class Dashboard {
         next: (conseils) => {
 
           console.log("Conseils reçus :", conseils);
-
-          // Nombre total de conseils validés
-
-          this.nombreConseils = conseils.length;
+ 
+    this.nombreConseils = conseils.length;
 
           this.conseils = conseils.slice(0, 2); // pour afficher les deux conseils sur le dashboard
 
@@ -130,25 +130,27 @@ export class Dashboard {
         }
       });
 
+      // Pour le rendez-vous
       this.authService
   .obtenirMesRendezVous()
   .subscribe({
     next: (rendezVous) => {
 
-      console.log(
-        "Rendez-vous reçus :",
-        rendezVous
-      );
+      console.log("Rendez-vous reçus :", rendezVous);
 
-      console.log(
-  "Rendez-vous reçus :",
-  JSON.stringify(rendezVous, null, 2)
-);
+      console.log("Rendez-vous reçus :", JSON.stringify(rendezVous, null, 2));
 
-      if (rendezVous.length > 0) {
-        this.prochainRendezVous = rendezVous[0];
+      if (rendezVous && rendezVous.length > 0) {
+          // On cherche en priorité le premier RDV actif (non annulé)
+const rdvConfirme = rendezVous.find(rdv => rdv.statut === 'CONFIRMER' || rdv.statut === 'CONFIRME');          
+// S'il existe un rendez-vous confirmé, on l'affiche, sinon on laisse null
+        this.prochainRendezVous = rdvConfirme || null; 
+       }
+       else {
+        this.prochainRendezVous = null;
       }
 
+        this.cdRef.detectChanges();
     },
 
     error: (err) => {
@@ -156,6 +158,7 @@ export class Dashboard {
         "Erreur lors de la récupération des rendez-vous :",
         err
       );
+      this.prochainRendezVous = null;
     }
   });
   }
