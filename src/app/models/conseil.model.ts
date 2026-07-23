@@ -1,5 +1,5 @@
 export type StatutConseil =
-    | 'EN_ATTENTE'
+    | 'ENATTENTE'
     | 'VALIDER'
     | 'REFUSER';
 

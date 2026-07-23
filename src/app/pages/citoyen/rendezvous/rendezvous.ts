@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
@@ -25,16 +25,22 @@ export class Rendezvous implements OnInit {
     rendezVousAVenir: CitoyenRendezVousResponse[] = [];
 
 historiqueRendezVous: CitoyenRendezVousResponse[] = [];
-ongletActif: 'avenir' | 'historique' = 'avenir';
+ongletActif: string = 'historique';
 
   constructor(
     private authService: AuthService,
+    private cdRef: ChangeDetectorRef,
       private router: Router
 
   ) {}
 
   ngOnInit(): void {
-    this.chargerMesRendezVous();
+    this.authService.currentUser$.subscribe(utilisateur => {
+      if (utilisateur) {
+        this.chargerMesRendezVous();
+      }
+    });
+
   }
   afficherAvenir(): void {
   this.ongletActif = 'avenir';
@@ -54,27 +60,22 @@ afficherHistorique(): void {
           this.rendezVous = rendezVous;
 
           // Rendez-vous à venir
-        this.rendezVousAVenir = rendezVous.filter(
-          rdv =>
-            rdv.statut === 'RESERVER' ||
-            rdv.statut === 'CONFIRMER'
-        );
+      this.rendezVousAVenir = rendezVous.filter(
+        rdv =>
+          rdv.statut === 'RESERVER' ||
+          rdv.statut === 'CONFIRMER');
 
-         // Historique
-        this.historiqueRendezVous = rendezVous.filter(
-          rdv =>
-            rdv.statut === 'ANNULER' ||
-            rdv.statut === 'TERMINER'
-        );
+        // Historique
+      this.historiqueRendezVous = rendezVous.filter(
+        rdv =>
+          rdv.statut === 'ANNULER' ||
+          rdv.statut === 'TERMINER' );
 
         console.log('À venir :', this.rendezVousAVenir);
         console.log('Historique :', this.historiqueRendezVous);
+        console.log('Mes rendez-vous :', this.rendezVous);
 
-          console.log(
-            'Mes rendez-vous :',
-            this.rendezVous
-          );
-
+        this.cdRef.detectChanges();
         },
 
         error: (error) => {
