@@ -5,14 +5,18 @@ import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisa
 import { Citoyen } from '../../models/citoyen.model';
 import { Psychologue } from '../../models/psychologue.model';
 import { Admin } from '../../models/admin.model';
+import { Conseil, ConseilAffiche } from '../../models/conseil.model';
+import { ResultatTestResponse } from '../../models/resultatTest.model';
+import { CitoyenRendezVousResponse } from '../../models/seance.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private api = 'http://localhost:8080/api/utilisateurs';
-  private apis = 'http://localhost:8080/api';
+  private api = 'http://localhost:8080/api';
 
   private currentUserSubject = new BehaviorSubject<Utilisateur | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
+  private initialise = false;
+
 
   private readonly sessionLoadingSubject = new BehaviorSubject<boolean>(true);
 
@@ -30,7 +34,7 @@ export class AuthService {
 
   private verifierSession(): void {
     // Avec les sessions, le cookie est envoyé automatiquement
-    this.http.get<Utilisateur>(`${this.api}/session`,  {
+    this.http.get<Utilisateur>(`${this.api}/utilisateurs/session`,  {
       withCredentials: true
     })
         .pipe(
@@ -38,15 +42,21 @@ export class AuthService {
               this.sessionLoadingSubject.next(false);
             })
         ).subscribe({
-      next: utilisateur => this.currentUserSubject.next(utilisateur),
-      error: () => this.currentUserSubject.next(null) // Pas de session active
+      next: utilisateur => {
+        this.currentUserSubject.next(utilisateur); 
+        this.initialise = true;
+      },
+      error: () => {
+        this.currentUserSubject.next(null); // Pas de session active
+        this.initialise = true;
+      }
     });
   }
 // Methode pour l'inscription du Citoyen
   inscrireCitoyen(citoyen: Citoyen): Observable<any> {
 
     return this.http.post(
-      `${this.apis}/citoyens`,
+      `${this.api}/citoyens`,
       citoyen,
        { responseType: 'text' }
     );
@@ -56,7 +66,7 @@ export class AuthService {
     inscrirePsychologue(psychologue: Psychologue): Observable<any> {
 
     return this.http.post(
-      `${this.apis}/psychologues`,
+      `${this.api}/psychologues`,
       psychologue
     );
 
@@ -65,24 +75,71 @@ export class AuthService {
       inscrireAdmin(admin: Admin): Observable<any> {
 
     return this.http.post(
-      `${this.apis}/admins`,
+      `${this.api}/admins`,
       admin
     );
 
   }
+  //Pour Afficher les psychologue valider
+  listerPsychologuesValides(): Observable<any[]> {
+  return this.http.get<any[]>(
+    `${this.api}/psychologues/valide`,
+    {
+      withCredentials: true
+    }
+  );
+}
+
+ // methode pour afficher la liste des conseils
+listerConseilsValides(): Observable<ConseilAffiche[]> {
+  return this.http.get<ConseilAffiche[]>(
+    `${this.api}/conseils/read?status=VALIDER`,
+    {
+      withCredentials: true
+    }
+  );
+}
+
+// pour afficher le test dun citoyen
+
+  obtenirResultatsParCitoyen(citoyenId: number): Observable<ResultatTestResponse[]> {
+  return this.http.get<ResultatTestResponse[]>(
+    `${this.api}/resultats/citoyen/${citoyenId}`
+  );
+}
+
+obtenirMesRendezVous(): Observable<CitoyenRendezVousResponse[]> {
+
+  return this.http.get<CitoyenRendezVousResponse[]>(
+    `${this.api}/seances/mes-rdv-citoyen`,
+    {
+      withCredentials: true
+    }
+  );
+
+}
+annulerRendezVous(id: number): Observable<any> {
+  return this.http.put(
+    `${this.api}/seances/${id}/annuler`,
+    {},
+    {
+      withCredentials: true
+    }
+  );
+}
 
   login(data: LoginRequest): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.api}/login`, data, { withCredentials: true }).pipe(
+    return this.http.post<Utilisateur>(`${this.api}/utilisateurs/login`, data, { withCredentials: true }).pipe(
       tap(utilisateur => this.currentUserSubject.next(utilisateur))
     );
   }
 
   register(data: RegisterRequest): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.api}/register`, data);
+    return this.http.post<Utilisateur>(`${this.api}/utilisateurs/register`, data);
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.api}/logout`, {}, { withCredentials: true }).pipe(
+    return this.http.post(`${this.api}/utilisateurs/logout`, {}, { withCredentials: true }).pipe(
       tap(() => this.currentUserSubject.next(null))
     );
   }
@@ -100,5 +157,9 @@ export class AuthService {
   }
   getUserConnecté(): string | null {
     return localStorage.getItem('utilisateur');
+  }
+  
+  estInitialise(): boolean {
+    return this.initialise;
   }
 }

@@ -1,5 +1,5 @@
 export type StatutConseil =
-    | 'EN_ATTENTE'
+    | 'ENATTENTE'
     | 'VALIDER'
     | 'REFUSER';
 
@@ -10,6 +10,15 @@ export interface Conseil {
   datePublication?: string;
   status: string;
   auteur: string
+    voirplus?: boolean;
+
 
   psyNom: string
+}
+
+export interface ConseilAffiche {
+  titre: string;
+  description: string;
+  auteur: string;
+  psyNom: string;
 }

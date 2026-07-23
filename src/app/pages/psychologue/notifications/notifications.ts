@@ -5,7 +5,7 @@ import {FiltreNotification, Notification} from "../../../models/notification.mod
 import {finalize, Subject} from "rxjs";
 import {NotificationListe} from "./notification-liste/notification-liste";
 import {NotificationFiltres} from "./notification-filtres/notification-filtres";
-import {NotificationWebsocketService} from "../../../core/services/notification-websocket";
+import {NotificationWebsocketService} from "../../../core/services/notification-websocket.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
@@ -94,8 +94,9 @@ export class Notifications implements OnInit {
                         ? notificationModifiee
                         : element
                 );
-          },
+              this.notificationWebsocketService.decrementerNombreNonLues();
 
+          },
           error: error => {
             console.error(error);
 
@@ -126,8 +127,8 @@ export class Notifications implements OnInit {
                   ...notification,
                   lu: true
                 }));
-
-            this.afficherMessage(
+            this.notificationWebsocketService.definirNombreNonLues(0);
+              this.afficherMessage(
                 'Toutes les notifications ont été marquées comme lues.'
             );
           },

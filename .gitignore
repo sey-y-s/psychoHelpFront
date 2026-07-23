@@ -1,6 +1,6 @@
 ﻿# Dependency directories
-# Dependency directories
 node_modules/
+package-lock.json
 
 # Angular build outputs and cache
 /dist/
@@ -33,5 +33,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-
-*~
