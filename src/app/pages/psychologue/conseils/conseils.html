@@ -10,8 +10,7 @@
             Ajouter un conseil
         </button>
     </div>
-
-
+    <app-barre-recherche (chercherOnClick)="chargerConseil($event)"/>
     <div class="table-container">
         <table class="table">
 
@@ -26,16 +25,32 @@
             </thead>
 
             <tbody>
-                @for (conseil of conseils(); track conseil.id) {
-                    <app-conseil-card [conseil]="conseil" (editOnclic)="modifier($event)"/>
+                @if(conseils().length>0){
+                 @for (conseil of conseils(); track conseil.id) {
+                    <app-conseil-card [conseil]="conseil" (editOnclic)="modifier($event)" 
+                    (deleteOnclic)="supprimerConseil($event)" (visaliserOnclic)="showDetail($event)"/>
                 }
+                }@else {
+                <tr><td colspan="7" style="align-content: center; background-color: rgb(245, 60, 60);">Aucun resultat trouvé!</td></tr>
+
+                }
+                
+
             </tbody>
 
         </table>
+        
     </div>
 
 </div>
 @if (formulaireVisible) {
     <app-conseil-form (fermerClic)="annuler($event)" 
-    (ajoutReussiMisAjourClic)="AjoutEffectuer()" [conseilId]="conseilId" />
+    (ajoutReussiMisAjourClic)="AjoutEffectuer()" />
 }
+@if (formulaireVisibleforDetail&&conseilRecup()) {
+    <app-conseil-detail [conseil]="conseilRecup()!" (retoureOclick)="fermerModalDescription($event)" />
+}
+@if (formulaireVisibleforEdit) {
+    <app-conseil-form-edit [conseilEdit]="conseilRecup()!" (editReussiOclik)="FrermerApreEdit($event)" />
+}
+
