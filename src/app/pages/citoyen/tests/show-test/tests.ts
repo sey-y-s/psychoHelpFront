@@ -1,13 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TestService } from '../../../../core/services/test.service';
 import { TestEvaluation, Question, OptionChoix } from '../../../../models/test.model';
+import { TestPartageService } from '../../../../core/services/tests-partage-service';
 
 @Component({
-  selector: 'app-test-anxiete',
+  selector: 'app-test',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
   templateUrl: './tests.html',
   styleUrl: './tests.css'
 })
@@ -23,22 +24,18 @@ export class Tests implements OnInit {
   // Tableau pour stocker la réponse de l'utilisateur (clé: id de la question, valeur: score de 0 à 3)
   reponsesUtilisateur: { [key: number]: number } = {};
 
-  //  Aligné avec votre interface OptionChoix (id, choix, score)
-  // options: OptionChoix[] = [
-  //   { id: 1, choix: 'Pas du tout', score: 0 },
-  //   { id: 2, choix: 'Plusieurs jours', score: 1 },
-  //   { id: 3, choix: 'Plus de la moitié du temps', score: 2 },
-  //   { id: 4, choix: 'Presque tous les jours', score: 3 }
-  // ];
 
   constructor(
     private testService: TestService,
+    private router :Router,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private testPartageService: TestPartageService  
+    
   ) {}
 
     ngOnInit() {
-    console.log("🚀 Le composant de test s'est bien initialisé !");
+    console.log("Le composant de test s'est bien initialisé !");
     
     // Identifiant fixe (ID 1) pour le test GAD-7
     const testId = Number(this.route.snapshot.paramMap.get('id')); 
@@ -46,13 +43,12 @@ export class Tests implements OnInit {
 
     this.testService.obtenirTestParId(testId).subscribe({
       next: (data) => {
-        console.log("✅ Données reçues du serveur avec succès !");
+        console.log("Données reçues du serveur avec succès !");
         console.log("Contenu brut du test :", JSON.stringify(data, null, 2));
         
         if (data) {
           this.testInfo = data;
           this.questions = data.questions || [];
-          //this.choix = data.choix || [];
           this.totalQuestions = this.questions.length;
           console.log("Nombre de questions chargées dans le tableau :", this.totalQuestions);
           
@@ -61,18 +57,18 @@ export class Tests implements OnInit {
         }
       },
       error: (err) => {
-        console.error("❌ Échec critique lors de l'appel à l'API Test :", err);
+        console.error("Échec critique lors de l'appel à l'API Test :", err);
       }
     });
 
     this.testService.obtenirCategorieParIdTest(testId).subscribe({
       next: (categorieData) => {
-        console.log("✅ Catégorie de test reçue :", JSON.stringify(categorieData, null, 2));
+        console.log("Catégorie de test reçue :", JSON.stringify(categorieData, null, 2));
         this.categorieTest = categorieData;
         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error("❌ Échec lors de la récupération de la catégorie du test :", err);
+        console.error("Échec lors de la récupération de la catégorie du test :", err);
       }
     });
   }
@@ -118,8 +114,14 @@ export class Tests implements OnInit {
       // On additionne directement le score stocké pour chaque question
       this.scoreTotal += this.reponsesUtilisateur[q.id] || 0;
     });
-    this.testTermine = true;
+     // Sauvegarde du score calculé dans la boîte mémoire
+    this.testPartageService.setScore(this.scoreTotal)
+
+    //Redirection automatique vers la page de résultats
+    this.router.navigate(['resultats'], { relativeTo: this.route });
+
     console.log("Test terminé ! Score obtenu :", this.scoreTotal);
+
   }
 
 }
