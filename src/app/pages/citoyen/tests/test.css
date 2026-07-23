@@ -1,0 +1,112 @@
+/* --- BANDEAU D'INTRODUCTION --- */
+.intro-banner {
+    background-color: #fcf6f4;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro-text {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #3f3d56;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.text-teal {
+    color: #4da588;
+    font-weight: 700;
+}
+
+/* --- CARTES DE TESTS CONTENEUR --- */
+.test-card {
+    background-color: #ffffff;
+    border: 2px solid #D7A790;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(124, 115, 230, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.test-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(124, 115, 230, 0.12);
+}
+
+/* --- ICONE ET IMAGE DE LA CARTE --- */
+.test-icon-container {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.test-card-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* --- ZONE DE TEXTE (TITRES & DESCRIPTIONS) --- */
+.test-info-block {
+    margin-bottom: 2.5rem;
+    flex-grow: 1;
+    /* Aligne automatiquement les boutons du bas */
+}
+
+.test-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #c08163;
+    margin-bottom: 0.6rem;
+}
+
+.test-subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #5c5670;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- BOUTON DE SÉLECTION --- */
+.btn-start-test {
+    background-color: #ba8f7b;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-start-test:hover {
+    background-color: #c08163;
+}
+
+/* --- RESPONSIVE ADAPTATION --- */
+@media (max-width: 767.98px) {
+    .intro-banner {
+        padding: 1.5rem 1rem;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+    }
+
+    .test-card {
+        padding: 2rem 1.5rem;
+    }
+}

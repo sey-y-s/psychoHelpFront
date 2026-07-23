@@ -8,9 +8,11 @@
     --primary:#2C3E50;
     --secondary:#5D3520;
     --beige:#D7A790;
+     --beige-dark: #e8b8a2fb;
     --background:#f8f6f4;
     --white:#ffffff;
 }
+
 
 
 * {
@@ -19,7 +21,7 @@
   box-sizing: border-box;
 }
 
-:root{
+:root {
   --primary: #2C3E50;
   --secondary: #5D3520;
   --beige: #D7A790;
