@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, input, output } from "@angular/core";
+import { ConseilInfaceModelForPsy } from "../../../../models/citoyenforPsy.model";
 
 @Component({
   selector: "app-conseil-detail",
@@ -6,4 +7,11 @@ import { Component } from "@angular/core";
   templateUrl: "./conseil-detail.html",
   styleUrl: "./conseil-detail.css",
 })
-export class ConseilDetail {}
+export class ConseilDetail {
+  conseil=input.required<ConseilInfaceModelForPsy>()
+  retoureOclick=output<boolean>()
+
+  retour(){
+      this.retoureOclick.emit(false)
+  }
+}

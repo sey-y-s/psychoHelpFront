@@ -12,7 +12,11 @@
             class="notification-button"
             aria-label="Notifications">
         <mat-icon>notifications_none</mat-icon>
-        <span class="notification-dot"></span>
+        @if (nombreNotificationsNonLues$ | async; as nb) {
+            @if (nb > 0) {
+                <span class="notification-dot">{{ nb > 99 ? '99+' : nb }}</span>
+            }
+        }
     </button>
 
 </header>

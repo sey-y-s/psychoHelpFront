@@ -5,7 +5,7 @@
         <header class="modal-header">
             <div>
                 <h2>
-                                            Formulaire d'Ajout d'un conseil
+                                             Modification d'un conseil
                 </h2>
 
                 <p>Renseignez tous les  champs.</p>
@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label for="jour">Titre</label>
-                <input type="text" formControlName="titre" >
+                <input type="text" formControlName="titre"  >
                 @if(form.get("titre")?.invalid&&form.get("titre")?.touched){
                    <small class="invalid-feedbacks"> titre est requis</small>
 
@@ -46,7 +46,7 @@
                         class="save"
                         
                 >
-                poster
+                modifier
                 </button>
 
             </footer>
