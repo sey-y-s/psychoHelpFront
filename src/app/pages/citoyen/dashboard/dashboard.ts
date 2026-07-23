@@ -6,7 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { AuthService } from "../../../core/services/auth.service";
 import { Utilisateur } from "../../../models/utilisateur.model";
 import { RouterLink } from "@angular/router";
-import { Conseil, ConseilAffiche } from "../../../models/conseil.model";
+import {  ConseilAffiche } from "../../../models/conseil.model";
 import { CitoyenRendezVousResponse } from "../../../models/seance.model";
 
 @Component({
@@ -83,6 +83,8 @@ export class Dashboard implements OnInit {
         next: (psychologues) => {
           this.nombrePsychologues = psychologues.length; // permet de donner le nombre de psy valider
 
+           console.log('PSYCHOLOGUES RECUS :', psychologues);
+  console.log('NOMBRE :', psychologues.length);
           console.log('Valeur de la variable :', this.nombrePsychologues);
 
           console.log("Nombre de psychologues validés :", this.nombrePsychologues);
