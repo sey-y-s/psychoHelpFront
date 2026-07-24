@@ -3,7 +3,7 @@ export interface Utilisateur {
   id?: number;
   nom: string;
   prenom: string;
-  email: string;
+  mail: string;
   role: 'CITOYEN' | 'PSYCHOLOGUE' | 'ADMIN';
   token?: string;
 }

@@ -1,13 +1,19 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, Signal, signal } from "@angular/core";
 import { ConseilService } from "../../../core/services/conseil.service";
 import { ConseilCard } from "./conseil-card/conseil-card";
 import { ConseilForm } from "./conseil-form/conseil-form";
 import { ConseilInfaceModelForPsy } from "../../../models/citoyenforPsy.model";
+import { erreurInterceptor } from "../../../core/interceptors/erreur.interceptor";
+import { ConseilDetail } from "./conseil-detail/conseil-detail";
+import { ConseilFormEdit } from "./conseil-form-edit/conseil-form-edit";
+import { BarreRecherche } from "./barre-recherche/barre-recherche";
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-conseils",
-  imports: [ConseilCard, ConseilForm],
+  imports: [ConseilCard, ConseilForm,ConseilDetail,ConseilFormEdit,BarreRecherche,MatPaginatorModule],
   templateUrl: "./conseils.html",
   styleUrl: "./conseils.css",
 })
@@ -16,15 +22,28 @@ export class Conseils {
     conseilService=inject(ConseilService)
     conseils=signal<ConseilInfaceModelForPsy[]>([])
     formulaireVisible=false
-    conseilId!:number
+    formulaireVisibleforDetail=false
+    formulaireVisibleforEdit=false
+    conseilRecup=signal<ConseilInfaceModelForPsy|null>(null)
+    snackBar=inject(MatSnackBar)
     constructor(){
-           this.chargerConseil()
+           this.chargerConseil("")
     }
-    chargerConseil(){
+    chargerConseil(titre:string){
               this.conseilService.getMesConseils().subscribe(
             {
                  next:(response)=>{
-                    this.conseils.set(response)
+                    if(titre===""){
+                      console.log("lllflf")
+                         this.conseils.set(response)
+
+                    }else{
+                                            console.log("diffent")
+
+                        this.conseils.set(response.filter((conseil)=>conseil.titre.toLowerCase().includes(titre.toLowerCase())))
+
+                    }
+                    
                  }
             }
            )
@@ -39,13 +58,70 @@ export class Conseils {
     //cett fonction met à jour la lsite des conseils et ferme le modal
     AjoutEffectuer(){
       this.formulaireVisible=false
-      this.chargerConseil()
+      this.chargerConseil("")
+      this.afficherMessage("conseil posté avec succes!")
     }
     //debut de la modification
     modifier(id:number){
-      this.formulaireVisible=true
-      this.conseilId=id
-       // console.log(id)
+      this.formulaireVisibleforEdit=true
+      this.conseilService.getConseilById(id).subscribe(
+        {
+             next:(response)=>{
+                  this.conseilRecup.set(response)
+             },
+             error:(error)=>{
+              console.log(error)
+             }
+             ,
+              complete:()=>{
+                   this.chargerConseil("")
+              }
+        }
+      )
     }
+    //la suppresion d'un admin
+    supprimerConseil(id:number){
+          this.conseilService.suprrimer(id).subscribe({
+              next:(Response)=>{
+                     console.log(Response)
+                     //this.chargerConseil()
+              },
+              error:(error)=>{
+                console.log(error)
+              },
+              complete:()=>{
+                   this.chargerConseil("")
+                   this.afficherMessage("suppresion effectuée avec succes!")
+              }
+          })
+
+    }
+    //fermer le madal de modification apres l'edit
+    FrermerApreEdit(b:boolean){
+       this.formulaireVisibleforEdit=b
+       this.chargerConseil("")
+       this.afficherMessage("modification effectuée avec succes!")
+    }
+    //detail d'un  conseil
+    showDetail(id:number){
+          this.formulaireVisibleforDetail=true
+          this.conseilService.getConseilById(id).subscribe({
+               next:(response)=>{
+                  this.conseilRecup.set(response)
+               }
+          })
+    }
+    //fermer le modal de description
+    fermerModalDescription(b:boolean){
+       this.formulaireVisibleforDetail=b
+    }
+   //le message d'operation
+   private afficherMessage(message: string): void {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
+    });
+  }
 
 }

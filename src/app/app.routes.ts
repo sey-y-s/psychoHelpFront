@@ -15,10 +15,10 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
-  {
-    path: 'register',
-    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
-  },
+  // {
+  //   path: 'register',
+  //   loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+  // },
   {
     path: 'register/psychologue',
     loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
@@ -187,10 +187,16 @@ export const routes: Routes = [
     ]
   },
 
+  
+  {
+    path: '404',
+    loadComponent: () => import('./shared/page-not-found/page-not-found').then(m => m.PageNotFound)
+  },
+
   // Redirection par défaut si la route n'existe pas
   // TODO : Page 404
   {
     path: '**',
-    redirectTo: 'psy'
+    redirectTo: '404'
   }
 ];

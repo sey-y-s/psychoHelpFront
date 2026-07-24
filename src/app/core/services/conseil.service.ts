@@ -31,4 +31,9 @@ export class ConseilService {
         withCredentials:true
       })
   }
+  public suprrimer(id:number){
+     return this.http.delete<string>(`${this.apiUrl}/delete/${id}`,{
+      withCredentials:true
+     })
+  }
 }

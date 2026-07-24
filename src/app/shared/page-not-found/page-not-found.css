@@ -14,11 +14,10 @@
             radial-gradient(
                     circle at center,
                     rgba(112, 63, 255, 0.035),
-                    transparent 45%
+                    transparent 5%
             ),
             #ffffff;
-    color: #0f1937;
-    font-family: "Roboto", Arial, sans-serif;
+    color: var(--beige);
     overflow: hidden;
 }
 
@@ -50,18 +49,18 @@
 }
 
 .brand-content strong {
-    color: #142550;
+    color: var(--primary);
     font-size: 22px;
     font-weight: 800;
     line-height: 1;
 }
 
 .brand-content strong span {
-    color: #ff8033;
+    color: var(--beige);
 }
 
 .brand-content small {
-    color: #27365d;
+    color: var(--secondary);
     font-size: 14px;
     font-weight: 400;
 }
@@ -69,10 +68,10 @@
 .header-home-button {
     min-height: 61px;
     padding: 0 33px;
-    border: 1px solid #ded8fc;
+    border: 1px solid var(--clair);
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.8);
-    color: #6536ff;
+    color: var(--secondary);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -95,7 +94,7 @@
 
 .header-home-button:hover {
     transform: translateY(-2px);
-    border-color: #b9a9ff;
+    border-color: var(--beige-dark);
     box-shadow: 0 9px 22px rgba(101, 54, 255, 0.09);
 }
 
@@ -111,7 +110,7 @@
 
 .error-number {
     margin: 0;
-    color: #6938f5;
+    color: var(--beige);
     font-size: clamp(90px, 10vw, 132px);
     font-weight: 800;
     line-height: 0.9;
@@ -123,7 +122,7 @@
 
 .not-found-content h1 {
     margin: 28px 0 10px;
-    color: #101a39;
+    color: var(--secondary);
     font-size: 42px;
     font-weight: 800;
     line-height: 1;
@@ -131,7 +130,7 @@
 
 .main-message {
     margin: 0;
-    color: #6b42f5;
+    color: var(--secondary);
     font-size: 22px;
     font-weight: 600;
     line-height: 1.4;
@@ -139,29 +138,10 @@
 
 .description {
     margin: 13px 0 0;
-    color: #566381;
+    color: var(--black);
     font-size: 18px;
     font-weight: 400;
     line-height: 1.55;
-}
-
-.illustration {
-    position: relative;
-    width: 450px;
-    height: 275px;
-    margin-top: 24px;
-}
-
-.illustration-shadow {
-    position: absolute;
-    left: 50%;
-    bottom: 4px;
-    width: 400px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(115, 76, 241, 0.10);
-    transform: translateX(-50%);
-    filter: blur(1px);
 }
 
 .document {
@@ -181,310 +161,6 @@
             );
     box-shadow: 0 13px 25px rgba(104, 61, 231, 0.06);
 }
-
-.document-line {
-    display: block;
-    height: 10px;
-    margin: 0 28px 17px;
-    border-radius: 12px;
-    background: rgba(161, 132, 246, 0.24);
-}
-
-.line-one {
-    width: 110px;
-}
-
-.line-two {
-    width: 92px;
-}
-
-.line-three {
-    width: 115px;
-}
-
-.line-four {
-    width: 78px;
-}
-
-.line-five {
-    width: 108px;
-}
-
-.magnifier {
-    position: absolute;
-    left: 195px;
-    bottom: 14px;
-    z-index: 4;
-    width: 230px;
-    height: 230px;
-}
-
-.magnifier-circle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 155px;
-    height: 155px;
-    border: 10px solid #7140e9;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.57);
-    box-shadow:
-            inset 0 0 28px rgba(117, 73, 232, 0.08),
-            0 12px 26px rgba(109, 65, 225, 0.13);
-}
-
-.magnifier-circle::before {
-    content: "";
-    position: absolute;
-    top: 16px;
-    left: 20px;
-    width: 52px;
-    height: 18px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.76);
-    transform: rotate(-28deg);
-}
-
-.magnifier-handle {
-    position: absolute;
-    left: 137px;
-    top: 132px;
-    width: 40px;
-    height: 104px;
-    border-radius: 15px;
-    background:
-            linear-gradient(
-                    180deg,
-                    #8063d7 0%,
-                    #5544a7 100%
-            );
-    transform: rotate(-44deg);
-    transform-origin: top center;
-    box-shadow: 0 10px 15px rgba(75, 55, 143, 0.15);
-}
-
-.face {
-    position: absolute;
-    left: 50%;
-    top: 54%;
-    width: 90px;
-    height: 90px;
-    transform: translate(-50%, -50%);
-}
-
-.eye {
-    position: absolute;
-    top: 30px;
-    width: 11px;
-    height: 17px;
-    border-radius: 50%;
-    background: #7d81a4;
-}
-
-.eye-left {
-    left: 22px;
-}
-
-.eye-right {
-    right: 22px;
-}
-
-.sad-mouth {
-    position: absolute;
-    left: 50%;
-    bottom: 18px;
-    width: 38px;
-    height: 22px;
-    border-top: 4px solid #8c91b1;
-    border-radius: 50%;
-    transform: translateX(-50%);
-}
-
-.plant {
-    position: absolute;
-    z-index: 3;
-}
-
-.plant-left {
-    left: 35px;
-    bottom: 20px;
-    width: 95px;
-    height: 135px;
-}
-
-.plant-right {
-    right: 22px;
-    bottom: 22px;
-    width: 87px;
-    height: 117px;
-    opacity: 0.44;
-}
-
-.plant-stem {
-    position: absolute;
-    left: 48%;
-    bottom: 25px;
-    width: 3px;
-    height: 75px;
-    border-radius: 4px;
-    background: #aa91f5;
-}
-
-.plant-right .plant-stem {
-    bottom: 8px;
-    height: 70px;
-    background: #bdc0d8;
-}
-
-.plant-leaf {
-    position: absolute;
-    width: 31px;
-    height: 54px;
-    border-radius: 100% 0 100% 0;
-    background:
-            linear-gradient(
-                    145deg,
-                    #e6dcff,
-                    #aa8aee
-            );
-}
-
-.plant-left .leaf-one {
-    left: 18px;
-    top: 30px;
-    transform: rotate(-38deg);
-}
-
-.plant-left .leaf-two {
-    right: 14px;
-    top: 27px;
-    transform: rotate(40deg) scaleX(-1);
-}
-
-.plant-left .leaf-three {
-    left: 33px;
-    top: 6px;
-    transform: rotate(-13deg);
-}
-
-.plant-right .leaf-one {
-    left: 6px;
-    top: 36px;
-    background: #c8cadc;
-    transform: rotate(-34deg);
-}
-
-.plant-right .leaf-two {
-    right: 8px;
-    top: 27px;
-    background: #d0d2e1;
-    transform: rotate(39deg) scaleX(-1);
-}
-
-.plant-right .leaf-three {
-    left: 32px;
-    top: 5px;
-    background: #c1c4d6;
-    transform: rotate(8deg);
-}
-
-.plant-pot {
-    position: absolute;
-    left: 24px;
-    bottom: 0;
-    width: 52px;
-    height: 34px;
-    border-radius: 4px 4px 15px 15px;
-    background:
-            linear-gradient(
-                    180deg,
-                    #b99df7,
-                    #9572eb
-            );
-}
-
-.decoration {
-    position: absolute;
-    z-index: 5;
-    color: #ad8df8;
-    font-weight: 700;
-}
-
-.decoration-one {
-    left: 42px;
-    top: 50px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #b89df9;
-}
-
-.decoration-two {
-    left: 96px;
-    top: 38px;
-    font-size: 22px;
-    opacity: 0.55;
-}
-
-.decoration-three {
-    right: 87px;
-    top: 21px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: #9c79ef;
-}
-
-.decoration-four {
-    right: 50px;
-    top: 74px;
-    font-size: 21px;
-    opacity: 0.58;
-}
-
-.main-home-button {
-    min-width: 274px;
-    min-height: 61px;
-    margin-top: 20px;
-    padding: 0 30px;
-    border-radius: 12px;
-    background:
-            linear-gradient(
-                    100deg,
-                    #5d31ec,
-                    #6937ff
-            );
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    box-shadow: 0 12px 25px rgba(91, 49, 230, 0.20);
-    transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
-}
-
-.main-home-button mat-icon {
-    width: 25px;
-    height: 25px;
-    font-size: 25px;
-}
-
-.main-home-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 30px rgba(91, 49, 230, 0.27);
-}
-
-.menu-message {
-    margin: 17px 0 0;
-    color: #5a6685;
-    font-size: 17px;
-}
-
 
 
 @media (max-width: 800px) {
@@ -516,12 +192,6 @@
 
     .description {
         font-size: 15px;
-    }
-
-    .illustration {
-        width: 390px;
-        max-width: 100%;
-        transform: scale(0.9);
     }
 }
 
@@ -560,18 +230,4 @@
         display: none;
     }
 
-    .illustration {
-        margin-top: 0;
-        transform: scale(0.74);
-    }
-
-    .main-home-button {
-        min-width: 235px;
-        margin-top: -23px;
-        font-size: 16px;
-    }
-
-    .menu-message {
-        font-size: 14px;
-    }
 }

@@ -8,7 +8,7 @@ import { Psychologue } from '../../models/psyForAdmin.model';
 })
 export class PsychologueAdminService {
 
-  private api = 'http://localhost:8080/api/admins/psychologues';
+  private api = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class PsychologueAdminService {
    * Récupérer tous les psychologues
    */
   listerEnAttenteTest(): Observable<Psychologue[]> {
-    return this.http.get<Psychologue[]>(`${this.api}`);
+    return this.http.get<Psychologue[]>(`${this.api}/psychologues`);
   }
 
   /**
@@ -31,7 +31,7 @@ export class PsychologueAdminService {
    */
   valider(id: number): Observable<Psychologue> {
     return this.http.put<Psychologue>(
-      `${this.api}/${id}/valider`,
+      `${this.api}/admins/psychologues/${id}/valider`,
       {}
     );
   }
@@ -41,7 +41,7 @@ export class PsychologueAdminService {
    */
   annuler(id: number): Observable<Psychologue> {
     return this.http.put<Psychologue>(
-      `${this.api}/${id}/annuler`,
+      `${this.api}/admins/psychologues/${id}/annuler`,
       {}
     );
   }
