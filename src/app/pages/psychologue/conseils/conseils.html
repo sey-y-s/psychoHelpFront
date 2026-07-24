@@ -1,1 +1,56 @@
-<p>conseils works!</p>
+<div class="page-conseils">
+
+    <div class="page-header">
+        <div>
+            <h1>Conseils</h1>
+            <p>Gestion des conseils publiés</p>
+        </div>
+
+        <button class="add-button" (click)="ouverFermer()">
+            Ajouter un conseil
+        </button>
+    </div>
+    <app-barre-recherche (chercherOnClick)="chargerConseil($event)"/>
+    <div class="table-container">
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>statut</th>
+                    <th>Date Publication</th>
+                    <th colspan="5" style="text-align: center;">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if(conseils().length>0){
+                 @for (conseil of conseils(); track conseil.id) {
+                    <app-conseil-card [conseil]="conseil" (editOnclic)="modifier($event)" 
+                    (deleteOnclic)="supprimerConseil($event)" (visaliserOnclic)="showDetail($event)"/>
+                }
+                }@else {
+                <tr><td colspan="7" style="align-content: center; background-color: rgb(245, 60, 60);">Aucun resultat trouvé!</td></tr>
+
+                }
+                
+
+            </tbody>
+
+        </table>
+        
+    </div>
+
+</div>
+@if (formulaireVisible) {
+    <app-conseil-form (fermerClic)="annuler($event)" 
+    (ajoutReussiMisAjourClic)="AjoutEffectuer()" />
+}
+@if (formulaireVisibleforDetail&&conseilRecup()) {
+    <app-conseil-detail [conseil]="conseilRecup()!" (retoureOclick)="fermerModalDescription($event)" />
+}
+@if (formulaireVisibleforEdit) {
+    <app-conseil-form-edit [conseilEdit]="conseilRecup()!" (editReussiOclik)="FrermerApreEdit($event)" />
+}
+

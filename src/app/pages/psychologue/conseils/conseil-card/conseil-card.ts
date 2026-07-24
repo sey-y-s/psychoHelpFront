@@ -1,9 +1,33 @@
-import { Component } from "@angular/core";
+import { Component, input, output } from "@angular/core";
+import { MatIconModule } from "@angular/material/icon";
+import { ConseilInfaceModelForPsy } from "../../../../models/citoyenforPsy.model";
+import { RouterLink } from "@angular/router";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: "app-conseil-card",
-  imports: [],
+  imports: [MatIconModule,DatePipe],
   templateUrl: "./conseil-card.html",
   styleUrl: "./conseil-card.css",
 })
-export class ConseilCard {}
+export class ConseilCard {
+    conseil=input.required<ConseilInfaceModelForPsy>()
+    editOnclic=output<number>()
+    deleteOnclic=output<number>()
+    visaliserOnclic=output<number>()
+
+    modifier(id:number){
+      this.editOnclic.emit(id)
+    }
+    supprimerConseil(id:number){
+           if(confirm("voulez-vous supprimer ce conseil")){
+                 this.deleteOnclic.emit(id)
+           }
+        
+           
+    }
+    visualiser(id:number){
+         this.visaliserOnclic.emit(id)
+    }
+
+}

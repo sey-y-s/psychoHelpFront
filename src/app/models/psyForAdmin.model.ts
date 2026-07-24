@@ -2,12 +2,16 @@ import { InscriptionUtilisateur } from "./inscription.model";
 
 export interface Psychologue extends InscriptionUtilisateur {
   id: number;
-  description: string;
-  cv_path: string;
-  diplome_path: string;
-  // specialite: string;
+  nom: string;
+  prenom: string;
+  telephone: string;
+  mail: string;
   role: string;
   dateCreation: string;
-  status: boolean;
-  etat: boolean;
+  status: string;        // true = activé, false = désactivé
+  description: string;
+  diplome_path: string;
+  cv_path: string;
+  etat: boolean;          // true = validé, false = en attente
+  specialite: string;     // ← AJOUTÉ (présent dans le DTO)
 }

@@ -1,0 +1,317 @@
+<div class="container">
+
+  <!-- ====== EN-TÊTE ====== -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Validation des psychologues</h1>
+      <p class="header-subtitle">Gérez les inscriptions des psychologues en attente de validation</p>
+    </div>
+    
+  </div>
+
+  <!-- ====== STATISTIQUES ====== -->
+  <div class="stats">
+    <div class="stat-card total">
+      <div class="stat-icon">
+        <mat-icon style="color: blue;">bar_chart</mat-icon>
+      </div>
+      <div class="stat-info">
+        <span class="stat-number">{{ psysListe.length }}</span>
+        <span class="stat-label">Total psychologues</span>
+      </div>
+    </div>
+    <div class="stat-card pending">
+      <div class="stat-icon">
+        <mat-icon style="color: orange;">pending</mat-icon>
+      </div>
+      <div class="stat-info">
+        <span class="stat-number">{{ psysEnAttente.length }}</span>
+        <span class="stat-label">En attente de validation</span>
+      </div>
+    </div>
+    <div class="stat-card validated">
+      <div class="stat-icon">
+        <mat-icon style="color: green;">check_circle</mat-icon>
+      </div>
+      <div class="stat-info">
+        <span class="stat-number">{{ psysListe.length - psysEnAttente.length }}</span>
+        <span class="stat-label">Déjà validés</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== RECHERCHE ====== -->
+  <!-- <div class="search-section">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Rechercher un psychologue par nom, email ou téléphone..."
+        #searchInput
+        (input)="filtrerPsychologues(searchInput.value)"
+      >
+      <button *ngIf="searchInput.value" class="search-clear" (click)="searchInput.value = ''; filtrerPsychologues('')">
+        ✕
+      </button>
+    </div>
+    <span class="total-elements">
+      Affichage: <strong>{{ (psychologuesFiltres || psysEnAttente).length }}</strong> / {{ psysEnAttente.length }} en attente
+    </span>
+  </div> -->
+
+  <!-- ====== TABLEAU ====== -->
+  <div class="table-container">
+
+    <!-- LOADING -->
+    <!-- <div *ngIf="!psysEnAttente || psysEnAttente.length === 0 && !chargement" class="loading">
+      <div class="spinner"></div>
+      <p>Chargement des psychologues...</p>
+    </div> -->
+
+    <!-- TABLEAU -->
+    <div *ngIf="psysEnAttente && psysListe.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <!-- <th>Photo</th> -->
+            <th>Nom Complet</th>
+            <!-- <th>Email</th> -->
+            <th>Téléphone</th>
+            <th>Spécialité</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let psy of psysListe || psychologuesFiltres">
+            <!-- Photo -->
+            <!-- <td>
+              <div class="avatar" [style.background-color]="getColor(psy.id)">
+                {{ getInitiales(psy) }}
+              </div>
+            </td> -->
+
+            <!-- Nom Complet -->
+            <td>
+              <div class="nom-complet">
+                <strong>{{ psy.prenom }} {{ psy.nom }}</strong>
+                <span class="email">{{ psy.mail }}</span>
+              </div>
+            </td>
+
+            <!-- Email -->
+            <!-- <td>
+              <a [href]="'mailto:' + psy.mail" class="email-link">
+                {{ psy.mail }}
+              </a>
+            </td> -->
+
+            <!-- Téléphone -->
+            <td>
+              <a [href]="'tel:' + psy.telephone" class="phone-link">
+                {{ psy.telephone }}
+              </a>
+            </td>
+
+            <!-- Spécialité -->
+            <td>
+              <span class="specialite-badge">{{ psy.specialite || 'Non spécifiée' }}</span>
+            </td>
+
+            <!-- Statut -->
+            <td>
+              <span class="status-badge" [class.status-en-attente]="!psy.status" [class.status-valide]="psy.status">
+                {{ psy.status ? 'Validé' : 'En attente' }}
+              </span>
+            </td>
+
+            <!-- Actions -->
+            <td>
+              <div class="actions">
+                <!-- Voir détails -->
+                <button
+                  type="button"
+                  title="Voir les détails"
+                  class="btn-action btn-details"
+                  (click)="ouvrirModal(psy)"
+                >
+                    <mat-icon>visibility</mat-icon>
+                </button>
+
+                <!-- Valider (uniquement si en attente) -->
+                 @if (psy.status == 'ENATTENTE') {
+                <button
+                  class="btn-action btn-valider"
+                  (click)="validerPsychologue(psy.id)"
+                  title="Valider ce psychologue"
+                >
+                  <mat-icon>check</mat-icon>
+                </button>
+                }
+
+                <!-- Refuser (uniquement si en attente) -->
+                @if (psy.status == 'ENATTENTE') {
+                <button
+                  class="btn-action btn-refuser"
+                  (click)="refuserPsychologue(psy.id)"
+                  title="Refuser ce psychologue"
+                >
+                  <mat-icon>block</mat-icon>
+                </button>
+                }
+              </div>
+            </td>
+          </tr>
+
+          <!-- Message si aucune donnée -->
+          <tr *ngIf="(psychologuesFiltres || psysEnAttente).length === 0 && psysEnAttente.length > 0">
+            <td colspan="7" class="empty">
+              <div class="empty-content">
+                <span class="empty-icon">🔍</span>
+                <h3>Aucun résultat trouvé</h3>
+                <p>Essayez avec d'autres mots-clés</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Message si aucune donnée en attente -->
+    <div *ngIf="psysListe && psysListe.length === 0 && !chargement" class="empty">
+      <div class="empty-content">
+        <span class="empty-icon">🎉</span>
+        <h3>Aucun psychologue trouvé</h3>
+        <p>La base de données est vide !</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- ====== MODAL DÉTAILS DU PSYCHOLOGUE ====== -->
+<!-- ============================================================ -->
+<div class="modal-overlay" *ngIf="modalOuvert" (click)="fermerModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    
+    <!-- En-tête du modal -->
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-avatar" [style.background-color]="psychologueSelectionne ? getColor(psychologueSelectionne.id) : '#2c3e50'">
+          {{ psychologueSelectionne ? getInitiales(psychologueSelectionne) : '' }}
+        </div>
+        <div>
+          <h2>{{ psychologueSelectionne?.prenom }} {{ psychologueSelectionne?.nom }}</h2>
+          <span class="modal-role">{{ psychologueSelectionne?.role || 'Psychologue' }}</span>
+        </div>
+      </div>
+      <button class="modal-close" (click)="fermerModal()">✕</button>
+    </div>
+
+    <!-- Corps du modal -->
+    <div class="modal-body" *ngIf="psychologueSelectionne">
+      
+      <!-- Informations personnelles -->
+      <div class="info-section">
+        <h3>👤 Informations personnelles</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Nom complet</label>
+            <span class="info-value">{{ psychologueSelectionne.prenom }} {{ psychologueSelectionne.nom }}</span>
+          </div>
+          <div class="info-item">
+            <label>Email</label>
+            <span class="info-value">{{ psychologueSelectionne.mail }}</span>
+          </div>
+          <div class="info-item">
+            <label>Téléphone</label>
+            <span class="info-value">{{ psychologueSelectionne.telephone }}</span>
+          </div>
+          <div class="info-item">
+            <label>Date d'inscription</label>
+            <span class="info-value">{{ formaterDate(psychologueSelectionne.dateCreation) }}</span>
+          </div>
+          <div class="info-item">
+            <label>Spécialité</label>
+            <span class="info-value">{{ psychologueSelectionne.specialite || 'Non spécifiée' }}</span>
+          </div>
+          <div class="info-item">
+            <label>Rôle</label>
+            <span class="info-value">{{ psychologueSelectionne.role }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="info-section">
+        <h3>📝 Description professionnelle</h3>
+        <div class="info-item full-width">
+          <span class="info-value description-text">{{ psychologueSelectionne.description || 'Aucune description fournie' }}</span>
+        </div>
+      </div>
+
+      <!-- Statut -->
+      <div class="info-section">
+        <h3>📊 Statut</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <label>État de validation</label>
+            <span class="info-value">
+              <span class="status-badge" [class.status-en-attente]="!psychologueSelectionne.etat" [class.status-valide]="psychologueSelectionne.etat">
+                {{ psychologueSelectionne.etat ? '✅ Validé' : '⏳ En attente de validation' }}
+              </span>
+            </span>
+          </div>
+          <div class="info-item">
+            <label>Statut du compte</label>
+            <span class="info-value">
+              <span class="status-badge" [class.status-inactif]="!psychologueSelectionne.status" [class.status-actif]="psychologueSelectionne.status">
+                {{ psychologueSelectionne.status ? '🟢 Actif' : '🔴 Inactif' }}
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents -->
+      <div class="info-section">
+        <h3>📄 Documents</h3>
+        <div class="documents">
+          <div class="document-item" *ngIf="psychologueSelectionne.diplome_path">
+            <span class="doc-icon">📜</span>
+            <div class="doc-info">
+              <span class="doc-label">Diplôme</span>
+              <span class="doc-name">diplome_{{ psychologueSelectionne.nom }}.pdf</span>
+            </div>
+            <a [href]="psychologueSelectionne.diplome_path" target="_blank" class="doc-link">
+              📥 Voir
+            </a>
+          </div>
+          <div class="document-item" *ngIf="psychologueSelectionne.cv_path">
+            <span class="doc-icon">📄</span>
+            <div class="doc-info">
+              <span class="doc-label">CV</span>
+              <span class="doc-name">cv_{{ psychologueSelectionne.nom }}.pdf</span>
+            </div>
+            <a [href]="psychologueSelectionne.cv_path" target="_blank" class="doc-link">
+              📥 Voir
+            </a>
+          </div>
+          <div *ngIf="!psychologueSelectionne.diplome_path && !psychologueSelectionne.cv_path" class="no-documents">
+            <p>Aucun document disponible</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pied du modal -->
+    <div class="modal-footer">
+      <button class="btn-modal-close" (click)="fermerModal()">Fermer</button>
+    </div>
+
+  </div>
+</div>

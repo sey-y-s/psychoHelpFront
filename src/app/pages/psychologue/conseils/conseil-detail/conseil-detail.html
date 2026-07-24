@@ -1,1 +1,36 @@
-<p>conseil-detail works!</p>
+<div class="modal-overlay">
+
+    <section class="modale">
+
+        <header class="modal-header">
+            <div>
+                <h2>Détail du conseil</h2>
+                <p>Consultez le contenu complet du conseil publié par le psychologue.</p>
+            </div>
+        </header>
+
+        <div class="form-group">
+
+            <label for="description">Description</label>
+
+            <textarea
+                id="description"
+                rows="18"
+                readonly>{{ conseil().description }}</textarea>
+
+        </div>
+
+        <footer class="form-actions">
+
+            <button
+                type="button"
+                class="cancel"
+                (click)="retour()">
+                Fermer
+            </button>
+
+        </footer>
+
+    </section>
+
+</div>

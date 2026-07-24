@@ -15,11 +15,10 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
   },
-
-  {
-    path: 'register',
-    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
-  },
+  // {
+  //   path: 'register',
+  //   loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+  // },
   {
     path: 'register/psychologue',
     loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
@@ -46,7 +45,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'psychologues',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       },
       {
@@ -54,9 +53,42 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/citoyen/dashboard/dashboard').then(m => m.Dashboard),
         data: { title: 'Dashboard' }
       },
+
+      {
+        path: 'rendez-vous',
+        loadComponent: () => import('./pages/citoyen/rendezvous/rendezvous').then(m => m.Rendezvous),
+        data: { title: 'Mes rendez-vous' }
+      },
+      {
+        path: 'rendez-vous/:id',
+        loadComponent: () => import('./pages/citoyen/detail-rendezvous/detail-rendezvous').then(m => m.DetailRendezvous),
+        data: { title: 'Détail du rendez-vous' }
+      },
       {
         path: 'psychologues',
-        loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent)
+        loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent),
+        data: { title: 'Psychologues' }
+      },
+      {
+        path: 'categories',
+        loadComponent: () => import('./pages/citoyen/categories/categorie-test').then(m => m.CategorieTestComponent),
+        data: { title: 'Categories' }
+      },
+
+      {
+        path: 'categories/:id/tests',
+        loadComponent: () => import('./pages/citoyen/tests/test').then(m => m.TestComponent),
+        data: { title: 'Tests disponibles' }
+      },
+      {
+        path: 'categories/:id/tests/:id',
+        loadComponent: () => import('./pages/citoyen/tests/show-test/tests').then(m => m.Tests),
+        data: { title: 'Test' }
+      },
+      {
+        path: 'categories/:id/tests/:id/resultats',
+        loadComponent: () => import('./pages/citoyen/resultat-test/resultat-test').then(m => m.ResultatTest),
+        data: { title: 'Test' }
       },
       {
         path: 'psychologues/:id',
@@ -65,6 +97,16 @@ export const routes: Routes = [
       {
         path: 'psychologues/:id/creneaux',
         loadComponent: () => import('./pages/citoyen/rdv/rdv').then(m => m.Rdv)
+      },
+      {
+        path:"conseils" ,
+        loadComponent: () => import('./pages/citoyen/conseils/list-conseil-citoyen').then(m => m.ListConseilCitoyen),
+        data: { title: 'Conseils' }
+      },
+      {
+        path:"conseils/:id",
+        loadComponent: () => import('./pages/citoyen/conseils/show-conseil/show-conseil').then(m => m.ShowConseil),
+        data: { title: 'Conseils' }
       }
     ]
   },
@@ -118,7 +160,7 @@ export const routes: Routes = [
   // =========================================================================
   {
     path: 'admin',
-    component: MainLayout, // Utilise également le MainLayout s'il est partagé
+    component: MainLayout,
     canActivate: [authGuard, roleGuard],
     data: { role: 'ADMIN' }, // Transmis au roleGuard
     children: [
@@ -134,7 +176,12 @@ export const routes: Routes = [
       },
       {
         path: 'psychologues',
-        loadComponent: () => import('./pages/admin/psychologues/admin-psychologue-validation.component').then(m => m.AdminPsychologueValidationComponent),
+        loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
+        data: { title: 'Validation Psychologues' }
+      },
+      {
+        path: 'psychologues',
+        loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
         data: { title: 'Validation Psychologues' }
       },
       {
@@ -145,10 +192,16 @@ export const routes: Routes = [
     ]
   },
 
+  
+  {
+    path: '404',
+    loadComponent: () => import('./shared/page-not-found/page-not-found').then(m => m.PageNotFound)
+  },
+
   // Redirection par défaut si la route n'existe pas
   // TODO : Page 404
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '404'
   }
 ];

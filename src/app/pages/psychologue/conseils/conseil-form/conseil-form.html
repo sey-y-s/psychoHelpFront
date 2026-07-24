@@ -1,1 +1,58 @@
-<p>conseil-form works!</p>
+<div class="modal-overlay" >
+
+    <section class="modale" >
+
+        <header class="modal-header">
+            <div>
+                <h2>
+                                            Formulaire d'Ajout d'un conseil
+                </h2>
+
+                <p>Renseignez tous les  champs.</p>
+            </div>
+
+            
+        </header>
+
+        <form [formGroup]="form" (ngSubmit)="soumission()" >
+
+            <div class="form-group">
+                <label for="jour">Titre</label>
+                <input type="text" formControlName="titre" >
+                @if(form.get("titre")?.invalid&&form.get("titre")?.touched){
+                   <small class="invalid-feedbacks"> titre est requis</small>
+
+                }
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="" id="description" formControlName="description" rows="8"></textarea>
+                @if(form.get("description")?.invalid&&form.get("description")?.touched){
+                   <small class="invalid-feedbacks"> la description est requise</small>
+
+                }
+            </div>
+            <footer class="form-actions">
+
+                <button  (click)="annuler()"
+                        type="button"
+                        class="cancel"
+                >
+                    Annuler
+                </button>
+
+                <button
+                        type="submit"
+                        class="save"
+                        
+                >
+                poster
+                </button>
+
+            </footer>
+
+        </form>
+
+    </section>
+
+</div>

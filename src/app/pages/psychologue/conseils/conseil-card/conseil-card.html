@@ -1,1 +1,34 @@
-<p>conseil-card works!</p>
+
+    <tr>
+        <td>{{conseil().titre}}</td>
+        <td>{{conseil().description}}</td>
+        <td>
+                @if (conseil().statusConseil == "ENATTENTE") {
+                    <span class="status en-attente">
+                    {{ conseil().statusConseil }}
+                    </span>
+                } @else if (conseil().statusConseil == "VALIDER") {
+                    <span class="status valider">
+                    {{ conseil().statusConseil }}
+                    </span>
+                } @else {
+                    <span class="status refuser">
+                    {{ conseil().statusConseil }}
+                    </span>
+                }
+        </td>
+
+        
+        <td>{{conseil().datePublication|date:'dd-MM-yyyy'}}</td>
+        <td class="actions">
+                <button mat-icon-button title="Visualiser"  (click)="visualiser(conseil().id)">
+                    <mat-icon class="view-icon">visibility</mat-icon>
+                </button>
+                <button mat-icon-button title="Modifier"  (click)="modifier(conseil().id)" >
+                    <mat-icon class="edit-icon">edit</mat-icon>
+                </button>
+                <button mat-icon-button title="Supprimer" (click)="supprimerConseil(conseil().id)">
+                    <mat-icon class="delete-icon">delete</mat-icon>
+                </button>
+        </td>
+    </tr>
