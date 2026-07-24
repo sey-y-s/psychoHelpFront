@@ -10,6 +10,7 @@ import {Creneau, CreneauRequest, UpdateCreneauRequest} from "../../../models/cre
 import {CreneauForm} from "./creneau-form/creneau-form";
 import {CreneauList} from "./creneau-list/creneau-list";
 import {finalize} from "rxjs";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
   selector: "app-creneaux",
@@ -22,6 +23,7 @@ export class Creneaux implements OnInit {
   private readonly creneauService = inject(CreneauService);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly not = inject(NotificationService)
 
   creneaux: Creneau[] = [];
 
@@ -87,15 +89,13 @@ export class Creneaux implements OnInit {
                 'Créneau supprimé avec succès.'
             );
           },
-
           error: error => {
             console.error(
                 'Erreur de suppression du créneau :',
                 error
             );
-
             this.afficherMessage(
-                'La suppression a échoué.'
+                error?.error?.message || 'La suppression a échoué.'
             );
           }
         });
@@ -149,16 +149,20 @@ export class Creneaux implements OnInit {
                 'Créneau ajouté avec succès.'
             );
           },
-
           error: error => {
-            console.error(
-                'Erreur de création du créneau :',
-                error
-            );
+            console.error('Erreur de création du créneau :', error);
+            switch (error.status) {
+              case 409:
+                this.afficherMessage(error.error.message);
+                break;
 
-            this.afficherMessage(
-                'La création a échoué.'
-            );
+              case 400:
+                this.afficherMessage(error.error.message);
+                break;
+
+              default:
+                this.afficherMessage('Une erreur est survenue. Veuillez réessayer.');
+            }
           }
         });
   }
@@ -201,10 +205,6 @@ export class Creneaux implements OnInit {
   }
 
   private afficherMessage(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
+    this.not.erreur(message);
   }
 }
