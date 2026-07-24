@@ -6,15 +6,13 @@ import {RendezVousFiltres} from "./rendez-vous-filtres/rendez-vous-filtres";
 import {SeanceService} from "../../../core/services/seance.service";
 import {FiltreRendezVous, RendezVous} from "../../../models/rendez-vous.model";
 import {finalize} from "rxjs";
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import {MatIconModule} from "@angular/material/icon";
-import {DatePipe, NgClass} from "@angular/common";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
   selector: "app-rendez-vous",
-  imports: [MatSnackBarModule, RendezVousListe, RendezVousDetail, RendezVousFiltres, MatIconModule, DatePipe,
-    NgClass],
+  imports: [MatSnackBarModule, RendezVousListe, RendezVousDetail, RendezVousFiltres, MatIconModule
+    ],
   templateUrl: "./rendez-vous.html",
   styleUrl: "./rendez-vous.css",
 })
@@ -23,6 +21,7 @@ export class RendezVousComponent implements OnInit {
   private readonly seanceService = inject(SeanceService);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly not = inject(NotificationService)
 
   rendezVous: RendezVous[] = [];
 
@@ -92,7 +91,6 @@ export class RendezVousComponent implements OnInit {
     ) {
       return;
     }
-
     this.actionEnCours = true;
     this.seanceService.confirmer(rendezVous.id).subscribe({
       next: () => {
@@ -163,11 +161,11 @@ export class RendezVousComponent implements OnInit {
     });
   }
 
-  // exporter(): void {
-  //   this.afficherMessage(
-  //       'La fonctionnalité d’export sera ajoutée plus tard.'
-  //   );
-  // }
+   exporter(): void {
+     this.afficherMessage(
+        'La fonctionnalité d’export sera ajoutée plus tard.'
+   );
+  }
 
   obtenirInitiales(rdv: RendezVous): string {
     const prenom = rdv.prenomCitoyen?.trim().charAt(0) ?? '';
@@ -222,11 +220,7 @@ export class RendezVousComponent implements OnInit {
   }
 
   private afficherMessage(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 3500,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
+    this.not.erreur(message);
   }
 
   private extraireMessageErreur(error: any, messageParDefaut: string): string {
@@ -245,78 +239,4 @@ export class RendezVousComponent implements OnInit {
     return messageParDefaut;
   }
 
-  dateExport = new Date();
-  get libelleFiltreActif(): string {
-    switch (this.filtreActif) {
-      case 'A_VENIR': return 'À venir';
-      case 'AUJOURD_HUI': return 'Aujourd’hui';
-      case 'TERMINES': return 'Terminés';
-      case 'ANNULES': return 'Annulés';
-      default: return 'Tous';
-    }
-  }
-
-  libelleStatut(statut: string): string {
-    switch (statut) {
-      case 'RESERVER':
-      case 'CONFIRMER':
-        return 'À venir';
-      case 'TERMINER':
-        return 'Terminé';
-      case 'ANNULER':
-        return 'Annulé';
-      default:
-        return statut;
-    }
-  }
-
-  classeStatut(statut: string): string {
-    switch (statut) {
-      case 'RESERVER':
-      case 'CONFIRMER':
-        return 'a-venir';
-      case 'TERMINER':
-        return 'termine';
-      case 'ANNULER':
-        return 'annule';
-      default:
-        return '';
-    }
-  }
-
-  async exporter(): Promise<void> {
-    const element = document.getElementById('zone-export-pdf');
-    if (!element) {
-      console.error('Zone export introuvable');
-      return;
-    }
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      useCORS: true,
-      backgroundColor: '#ffffff'
-    });
-    const imageData = canvas.toDataURL('image/png');
-
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    let heightLeft = imgHeight;
-    let position = 0;
-
-    pdf.addImage(imageData, 'PNG', 0, position, imgWidth, imgHeight);
-    heightLeft -= pdfHeight;
-
-    while (heightLeft > 0) {
-      position = heightLeft - imgHeight;
-      pdf.addPage();
-      pdf.addImage(imageData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pdfHeight;
-    }
-
-    pdf.save('liste-rendez-vous.pdf');
-  }
 }
