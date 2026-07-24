@@ -1,19 +1,21 @@
 
     <tr>
         <td>{{conseil().titre}}</td>
-        <td>{{conseil().description}}</td>
+        <td class="description">
+                  {{ conseil().description }}
+        </td>       
         <td>
                 @if (conseil().statusConseil == "ENATTENTE") {
                     <span class="status en-attente">
-                    {{ conseil().statusConseil }}
+                    {{ conseil().statusConseil|statutConseilPipe}}
                     </span>
                 } @else if (conseil().statusConseil == "VALIDER") {
                     <span class="status valider">
-                    {{ conseil().statusConseil }}
+                    {{ conseil().statusConseil|statutConseilPipe}}
                     </span>
                 } @else {
                     <span class="status refuser">
-                    {{ conseil().statusConseil }}
+                    {{ conseil().statusConseil|statutConseilPipe}}
                     </span>
                 }
         </td>
