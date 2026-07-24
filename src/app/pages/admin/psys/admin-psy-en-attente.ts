@@ -3,11 +3,12 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { PsychologueAdminService } from "../../../core/services/psychologue-admin.service";
 import { Psychologue } from "../../../models/psyForAdmin.model";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: "app-admin-psy-en-attente",
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: "./admin-psy-en-attente.html",
   styleUrl: "./admin-psy-en-attente.css",
 })
@@ -44,9 +45,9 @@ export class AdminPsyEnAttente {
         this.chargement = false;
         this.cdr.detectChanges();
         
-        console.log("📊 Total psychologues:", this.psysListe.length);
-        console.log("⏳ En attente:", this.psysEnAttente.length);
-        console.log("✅ Validés:", this.psysListe.length - this.psysEnAttente.length);
+        console.log("Total psychologues:", this.psysListe.length);
+        console.log("En attente:", this.psysEnAttente.length);
+        console.log("Validés:", this.psysListe.length - this.psysEnAttente.length);
       },
       error: (err) => {
         console.error('❌ Erreur:', err);
