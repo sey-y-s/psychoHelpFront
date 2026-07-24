@@ -165,8 +165,8 @@ export const routes: Routes = [
     data: { role: 'ADMIN' }, // Transmis au roleGuard
     children: [
       {
-        path: '',
-        redirectTo: 'conseils',
+        path: 'dashboard',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       },
       {
@@ -183,6 +183,16 @@ export const routes: Routes = [
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
         data: { title: 'Validation Conseils' }
+      },
+      {
+        path: 'tests',
+        loadComponent: () => import('./pages/admin/test/test').then(m => m.Test),
+        data: { title: 'Liste Test' }
+      },
+      {
+        path: 'tests/ajout',
+        loadComponent: () => import('./pages/admin/test/ajout-categorie-test/ajout-categorie-test').then(m => m.AjoutCategorieTest),
+        data: { title: 'Ajout de catégories de tests' }
       }
     ]
   },

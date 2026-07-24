@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Thème Material */
+/* TODO: Personnaliser les couleurs */
+/* TODO: Définir la typographie */
+
+:root{
+    --primary:#2C3E50;
+    --secondary:#5D3520;
+    --beige:#D7A790;
+     --beige-dark: #e8b8a2fb;
+    --background:#f8f6f4;
+    --white:#ffffff;
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2C3E50;
+  --secondary: #5D3520;
+  --beige: #D7A790;
+  --background: #F8F6F4;
+  --white: #fff;
+  --black: #000;
+}
+
+
+body {
+  font-family: Roboto, sans-serif, Arial, Helvetica;
+  background: #f5f7fa;
+}

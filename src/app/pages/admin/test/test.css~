@@ -15,7 +15,7 @@ body {
     flex-grow: 1;
     background-color: #f8f6f4;
     border-radius: 16px;
-    padding: 20px 40px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     position: relative;
