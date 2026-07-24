@@ -7,7 +7,7 @@
   max-width: 1400px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0f2f5;
+  background: var(--clair);
   min-height: 100vh;
 }
 
@@ -246,7 +246,7 @@ table {
 }
 
 thead {
-  background: var(--primary);
+  background: var(--beige);
 }
 
 table {
@@ -256,7 +256,7 @@ table {
 
 thead th:first-child,
 tbody td:first-child {
-  width: 16%;
+  width: 20%;
 }
 
 thead th:nth-child(3),
@@ -295,8 +295,11 @@ thead th {
 
 tbody td {
   padding: 14px 20px;
-  border-bottom: 1px solid #f0f0f0;
   vertical-align: middle;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--clair);
 }
 
 tbody tr:hover {
@@ -364,8 +367,8 @@ tbody tr:hover {
 .specialite-badge {
   display: inline-block;
   padding: 4px 14px;
-  background: #eff6ff;
-  color: #1e40af;
+  background: var(--clair);
+  color: var(--secondary);
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -410,7 +413,8 @@ tbody tr:hover {
 }
 
 .btn-action {
-  padding: 7px 16px;
+  padding: 4px;
+  margin: 6px 0;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -429,12 +433,12 @@ tbody tr:hover {
 }
 
 .btn-details {
-  background: #3b82f6;
+  background: var(--beige-dark);
   color: white;
 }
 
 .btn-details:hover {
-  background: #2563eb;
+  background: var(--secondary);
 }
 
 .btn-valider {

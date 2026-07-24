@@ -12,21 +12,27 @@
   <!-- ====== STATISTIQUES ====== -->
   <div class="stats">
     <div class="stat-card total">
-      <div class="stat-icon">📊</div>
+      <div class="stat-icon">
+        <mat-icon style="color: blue;">bar_chart</mat-icon>
+      </div>
       <div class="stat-info">
         <span class="stat-number">{{ psysListe.length }}</span>
         <span class="stat-label">Total psychologues</span>
       </div>
     </div>
     <div class="stat-card pending">
-      <div class="stat-icon">⏳</div>
+      <div class="stat-icon">
+        <mat-icon style="color: orange;">pending</mat-icon>
+      </div>
       <div class="stat-info">
         <span class="stat-number">{{ psysEnAttente.length }}</span>
         <span class="stat-label">En attente de validation</span>
       </div>
     </div>
     <div class="stat-card validated">
-      <div class="stat-icon">✅</div>
+      <div class="stat-icon">
+        <mat-icon style="color: green;">check_circle</mat-icon>
+      </div>
       <div class="stat-info">
         <span class="stat-number">{{ psysListe.length - psysEnAttente.length }}</span>
         <span class="stat-label">Déjà validés</span>
@@ -35,7 +41,7 @@
   </div>
 
   <!-- ====== RECHERCHE ====== -->
-  <div class="search-section">
+  <!-- <div class="search-section">
     <div class="search-box">
       <span class="search-icon">🔍</span>
       <input
@@ -52,7 +58,7 @@
     <span class="total-elements">
       Affichage: <strong>{{ (psychologuesFiltres || psysEnAttente).length }}</strong> / {{ psysEnAttente.length }} en attente
     </span>
-  </div>
+  </div> -->
 
   <!-- ====== TABLEAU ====== -->
   <div class="table-container">
@@ -116,8 +122,8 @@
 
             <!-- Statut -->
             <td>
-              <span class="status-badge" [class.status-en-attente]="!psy.etat" [class.status-valide]="psy.etat">
-                {{ psy.etat ? 'Validé' : 'En attente' }}
+              <span class="status-badge" [class.status-en-attente]="!psy.status" [class.status-valide]="psy.status">
+                {{ psy.status ? 'Validé' : 'En attente' }}
               </span>
             </td>
 
@@ -126,32 +132,35 @@
               <div class="actions">
                 <!-- Voir détails -->
                 <button
+                  type="button"
+                  title="Voir les détails"
                   class="btn-action btn-details"
                   (click)="ouvrirModal(psy)"
-                  title="Voir les détails"
                 >
-                  📋 Détails
+                    <mat-icon>visibility</mat-icon>
                 </button>
 
                 <!-- Valider (uniquement si en attente) -->
+                 @if (psy.status == 'ENATTENTE') {
                 <button
-                  *ngIf="!psy.etat"
                   class="btn-action btn-valider"
                   (click)="validerPsychologue(psy.id)"
                   title="Valider ce psychologue"
                 >
-                  ✅ Valider
+                  <mat-icon>check</mat-icon>
                 </button>
+                }
 
                 <!-- Refuser (uniquement si en attente) -->
+                @if (psy.status == 'ENATTENTE') {
                 <button
-                  *ngIf="!psy.etat"
                   class="btn-action btn-refuser"
                   (click)="refuserPsychologue(psy.id)"
                   title="Refuser ce psychologue"
                 >
-                  ❌ Refuser
+                  <mat-icon>block</mat-icon>
                 </button>
+                }
               </div>
             </td>
           </tr>
