@@ -9,11 +9,11 @@ export const routes: Routes = [
   // =========================================================================
   {
     path: '',
-    loadComponent: () => import('./pages/accueil/accueil').then(m => m.Accueil)
+    loadComponent: () => import('./pages/public/accueil/accueil').then(m => m.Accueil)
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
+    loadComponent: () => import('./pages/public/logins/logins').then(m => m.Logins)
   },
   // {
   //   path: 'register',
@@ -21,15 +21,15 @@ export const routes: Routes = [
   // },
   {
     path: 'register/psychologue',
-    loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
+    loadComponent: () => import('./pages/public/register/psychologue/psychologue').then(m => m.Psychologue)
   },
   {
     path: 'register/citoyen',
-    loadComponent: () => import('./pages/register/citoyen/citoyen').then(m => m.Citoyen)
+    loadComponent: () => import('./pages/public/register/citoyen/citoyen').then(m => m.Citoyen)
   },
   {
     path: 'register/admin',
-    loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
+    loadComponent: () => import('./pages/public/register/admin/admin').then(m => m.Admin)
   },
 
 

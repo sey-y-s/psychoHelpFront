@@ -8,10 +8,10 @@ import {
   FormBuilder,
 } from "@angular/forms";
 import { RouterModule, Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "../../core/services/auth.service";
+import { AuthService } from "../../../core/services/auth.service";
 import { MatInputModule } from "@angular/material/input";
 import { MatCheckboxModule } from "@angular/material/checkbox";
-import { NotificationService } from "../../core/services/notification.service";
+import { NotificationService } from "../../../core/services/notification.service";
 import { MatIconModule } from "@angular/material/icon";
 @Component({
   selector: "app-logins",

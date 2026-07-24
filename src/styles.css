@@ -27,3 +27,24 @@ body {
   font-family: Roboto, sans-serif, Arial, Helvetica;
   background: #f5f7fa;
 }
+
+/* Succès (Vert) */
+.snackbar-success {
+  --mat-sys-inverse-surface: #2e7d32;       /* Fond vert */
+  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
+  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+}
+
+/* Erreur (Rouge) */
+.snackbar-error {
+  --mat-sys-inverse-surface: #d32f2f;       /* Fond rouge */
+  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
+  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+}
+
+/* Info (Bleu) */
+.snackbar-info {
+  --mat-sys-inverse-surface: #0288d1;       /* Fond bleu */
+  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
+  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+}

@@ -5,9 +5,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { AuthService } from "../../../core/services/auth.service";
-import { Specialite } from '../../../models/specialite.model';
-import { SpecialiteService } from "../../../core/services/specialite-service";
+import { AuthService } from "../../../../core/services/auth.service";
+import { Specialite } from '../../../../models/specialite.model';
+import { SpecialiteService } from "../../../../core/services/specialite-service";
 import { Router } from '@angular/router';
 
 @Component({

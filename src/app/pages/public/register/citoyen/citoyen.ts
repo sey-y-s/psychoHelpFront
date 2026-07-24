@@ -5,36 +5,36 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { AuthService } from "../../../core/services/auth.service";
+import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-admin",
+  selector: "app-citoyen",
   standalone : true,
   imports: [
     CommonModule,
-     ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
-  ],
-  templateUrl: "./admin.html",
-  styleUrl: "./admin.css",
+    MatButtonModule],
+  templateUrl: "./citoyen.html",
+  styleUrl: "./citoyen.css",
 })
-export class Admin {
+export class Citoyen {
   
-      messageErreur = '';
+    messageErreur = '';
+  cacheMotDePasse = true;
 
-    cacheMotDePasse = true;
-
-    formulaire: FormGroup;
+  formulaire: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router : Router
+      
+    
   ) {
 
     this.formulaire = this.fb.group({
@@ -48,7 +48,7 @@ export class Admin {
   }
  // Methode pour inscription 
   inscrire() {
-
+    
     console.log("Le bouton fonctionne");
     console.log("Valeurs actuelles :", this.formulaire.value);
   console.log("Formulaire valide ?", this.formulaire.valid);
@@ -63,13 +63,13 @@ export class Admin {
         console.log(`Le champ '${key}' est invalide :`, control.errors);
       }
     });
-      this.messageErreur = 'Veuillez remplir tous les champs obligatoires.';
-
+    
+    this.messageErreur = 'Veuillez remplir tous les champs obligatoires.';
     return;
   }
 
   this.authService
-      .inscrireAdmin(this.formulaire.value)
+      .inscrireCitoyen(this.formulaire.value)
       .subscribe({
 
         next: (reponse) => {
@@ -83,7 +83,7 @@ export class Admin {
 
        error: (err) => {
     // Affiche TOUT le détail de l'erreur renvoyée par Java
-    let messageErreur = "erreur lors de l'inscription !";
+    let messageErreur = "Erreur lors de l'inscription !";
 
     //pour vider les champs du formulaire
     this.formulaire.reset();
@@ -106,8 +106,7 @@ export class Admin {
 
 }
 retour(): void {
-  this.router.navigate(['/psychologue/dashboard']);
+  this.router.navigate(['/login']);
 }
-
 
 }
