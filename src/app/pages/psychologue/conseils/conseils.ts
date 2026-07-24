@@ -97,10 +97,15 @@ export class Conseils {
 
     }
     //fermer le madal de modification apres l'edit
-    FrermerApreEdit(b:boolean){
+    fermerApreEdit(b:boolean){
        this.formulaireVisibleforEdit=b
        this.chargerConseil("")
        this.afficherMessage("modification effectuée avec succes!")
+    }
+    //fermer le madal de modification apres l'edit
+    fermerApreannulerEdit(b:boolean){
+       this.formulaireVisibleforEdit=b
+      
     }
     //detail d'un  conseil
     showDetail(id:number){
