@@ -8,10 +8,10 @@ export class StatutConseilPipePipe implements PipeTransform {
     if(value=="ENATTENTE"){
          return "En attente"
     }else if(value==="VALIDER"){
-      return "validé"
+      return "Validé"
     }
     else{
-      return "refusé"
+      return "Refusé"
     }
    
   }
