@@ -8,7 +8,7 @@ export interface Psychologue extends InscriptionUtilisateur {
   mail: string;
   role: string;
   dateCreation: string;
-  status: boolean;        // true = activé, false = désactivé
+  status: string;        // true = activé, false = désactivé
   description: string;
   diplome_path: string;
   cv_path: string;

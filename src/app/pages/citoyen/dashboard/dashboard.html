@@ -67,7 +67,7 @@
               <img [src]= "conseil.titre.toLowerCase().includes('Dépression') ? 'iconServeaux.png' : 'iconArbres.png'" [alt]="conseil.titre" class="conseil-icon-img">
               <span class="conseil-title">{{ conseil.titre }}</span>
             </div>
-            <button mat-button class="btn-action" >Voir plus</button>
+            <button mat-button class="btn-action"  [routerLink]="['/me/conseils', conseil.id]">Voir plus</button>
           </div>
 
         </mat-card-content>

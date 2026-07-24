@@ -1,7 +1,7 @@
 <main class="not-found-page">
     <header class="page-header">
 
-        <a routerLink="/psy/dashboard"
+        <a
                 class="brand"
                 aria-label="PsychoHelp">
             <img src="/images/logo-psychohelp.png"
@@ -14,13 +14,19 @@
                 <small>Psychologue</small>
             </div>
         </a>
-
-        <a routerLink="/psy/dashboard"
+        @if (currentUser$ | async; as user) {
+        <a routerLink="{{ obtenirRoute(user.role) }}"
+           class="header-home-button">
+            <mat-icon>home</mat-icon>
+            <span>Retour au dashboard</span>
+        </a>
+        } @else {
+        <a routerLink="/"
            class="header-home-button">
             <mat-icon>home</mat-icon>
             <span>Retour à l’accueil</span>
         </a>
-
+        }
     </header>
 
     <section class="not-found-content">
@@ -35,60 +41,6 @@
 
         <p class="description">
             La page que vous essayez d’accéder a été déplacée, supprimée ou n’existe pas.
-        </p>
-
-        <div class="illustration" aria-hidden="true">
-            <span class="decoration decoration-one"></span>
-            <span class="decoration decoration-two">×</span>
-            <span class="decoration decoration-three"></span>
-            <span class="decoration decoration-four">×</span>
-
-            <div class="plant plant-left">
-                <div class="plant-leaf leaf-one"></div>
-                <div class="plant-leaf leaf-two"></div>
-                <div class="plant-leaf leaf-three"></div>
-                <div class="plant-stem"></div>
-                <div class="plant-pot"></div>
-            </div>
-
-            <div class="document">
-                <span class="document-line line-one"></span>
-                <span class="document-line line-two"></span>
-                <span class="document-line line-three"></span>
-                <span class="document-line line-four"></span>
-                <span class="document-line line-five"></span>
-            </div>
-
-            <div class="magnifier">
-                <div class="magnifier-circle">
-                    <div class="face">
-                        <span class="eye eye-left"></span>
-                        <span class="eye eye-right"></span>
-                        <span class="sad-mouth"></span>
-                    </div>
-                </div>
-
-                <div class="magnifier-handle"></div>
-            </div>
-
-            <div class="plant plant-right">
-                <div class="plant-leaf leaf-one"></div>
-                <div class="plant-leaf leaf-two"></div>
-                <div class="plant-leaf leaf-three"></div>
-                <div class="plant-stem"></div>
-            </div>
-
-            <div class="illustration-shadow"></div>
-
-        </div>
-
-        <a routerLink="/psy/dashboard"
-                class="main-home-button">
-            <mat-icon>home</mat-icon>
-            <span>Retour à l’accueil</span></a>
-
-        <p class="menu-message">
-            ou utilisez le menu pour continuer
         </p>
     </section>
 
