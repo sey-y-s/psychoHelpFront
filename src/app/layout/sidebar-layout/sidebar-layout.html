@@ -17,7 +17,7 @@
     <nav class="menu">
 
         @if (utilisateur.role === 'PSYCHOLOGUE') {
-        <a class="menu-item" routerLink="/psy/dashboard" routerLinkActive="active">
+        <a class="menu-item" routerLink="/psy" routerLinkActive="active">
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </a>
@@ -46,7 +46,7 @@
 
         @if (utilisateur.role === 'CITOYEN') {
 
-        <a class="menu-item" routerLink="/me/dashboard" routerLinkActive="active">
+        <a class="menu-item" routerLink="/me" routerLinkActive="active">
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </a>
@@ -81,7 +81,7 @@
 
         @if (utilisateur.role === 'ADMIN') {
 
-        <a class="menu-item">
+        <a class="menu-item" routerLink="/admin" routerLinkActive="active">
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </a>
