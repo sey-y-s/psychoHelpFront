@@ -13,12 +13,14 @@ export class ConseilFormEdit {
   conseilService = inject(ConseilService);
   conseilEdit=input.required<ConseilInfaceModelForPsy>()
   editReussiOclik=output<boolean>()
+    fermereModalEditOnclik=output<boolean>()
+
 
 
 
    form = new FormGroup({
     titre: new FormControl("", { validators: [Validators.required] }),
-    description: new FormControl("", { validators: [Validators.required] }),
+    description: new FormControl("", { validators: [Validators.required,Validators.maxLength(255)] }),
   });
 constructor() {
 
@@ -53,7 +55,7 @@ constructor() {
     
   }
   annuler(){
-                  this.editReussiOclik.emit(false)
+                  this.fermereModalEditOnclik.emit(false)
 
   }
 }

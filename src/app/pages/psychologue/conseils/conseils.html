@@ -51,6 +51,6 @@
     <app-conseil-detail [conseil]="conseilRecup()!" (retoureOclick)="fermerModalDescription($event)" />
 }
 @if (formulaireVisibleforEdit) {
-    <app-conseil-form-edit [conseilEdit]="conseilRecup()!" (editReussiOclik)="FrermerApreEdit($event)" />
+    <app-conseil-form-edit [conseilEdit]="conseilRecup()!" (editReussiOclik)="fermerApreEdit($event)" (fermereModalEditOnclik)="fermerApreannulerEdit($event)" />
 }
 

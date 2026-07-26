@@ -5,36 +5,36 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from "../../../../core/services/auth.service";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-citoyen",
+  selector: "app-admin",
   standalone : true,
   imports: [
     CommonModule,
+     ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule],
-  templateUrl: "./citoyen.html",
-  styleUrl: "./citoyen.css",
+    MatButtonModule
+  ],
+  templateUrl: "./admin.html",
+  styleUrl: "./admin.css",
 })
-export class Citoyen {
+export class Admin {
   
-    messageErreur = '';
-  cacheMotDePasse = true;
+      messageErreur = '';
 
-  formulaire: FormGroup;
+    cacheMotDePasse = true;
+
+    formulaire: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router : Router
-      
-    
   ) {
 
     this.formulaire = this.fb.group({
@@ -48,7 +48,7 @@ export class Citoyen {
   }
  // Methode pour inscription 
   inscrire() {
-    
+
     console.log("Le bouton fonctionne");
     console.log("Valeurs actuelles :", this.formulaire.value);
   console.log("Formulaire valide ?", this.formulaire.valid);
@@ -63,13 +63,13 @@ export class Citoyen {
         console.log(`Le champ '${key}' est invalide :`, control.errors);
       }
     });
-    
-    this.messageErreur = 'Veuillez remplir tous les champs obligatoires.';
+      this.messageErreur = 'Veuillez remplir tous les champs obligatoires.';
+
     return;
   }
 
   this.authService
-      .inscrireCitoyen(this.formulaire.value)
+      .inscrireAdmin(this.formulaire.value)
       .subscribe({
 
         next: (reponse) => {
@@ -83,7 +83,7 @@ export class Citoyen {
 
        error: (err) => {
     // Affiche TOUT le détail de l'erreur renvoyée par Java
-    let messageErreur = "Erreur lors de l'inscription !";
+    let messageErreur = "erreur lors de l'inscription !";
 
     //pour vider les champs du formulaire
     this.formulaire.reset();
@@ -106,7 +106,8 @@ export class Citoyen {
 
 }
 retour(): void {
-  this.router.navigate(['/login']);
+  this.router.navigate(['/psychologue/dashboard']);
 }
+
 
 }

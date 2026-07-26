@@ -27,7 +27,7 @@ export class ConseilForm {
   }
   form = new FormGroup({
     titre: new FormControl("", { validators: [Validators.required] }),
-    description: new FormControl("", { validators: [Validators.required] }),
+    description: new FormControl("", { validators: [Validators.required,Validators.maxLength(255)] }),
   });
 
    soumission() {

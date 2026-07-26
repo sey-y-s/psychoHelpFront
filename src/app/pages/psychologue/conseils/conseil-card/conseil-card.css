@@ -107,3 +107,9 @@ td {
   color: #721c24;
   background-color: #f8d7da;
 }
+.description {
+    max-width: 150px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

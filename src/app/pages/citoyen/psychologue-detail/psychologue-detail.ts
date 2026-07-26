@@ -19,7 +19,6 @@ export class PsychologueDetail implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private psychologueService: PsychologueService,
-    // Injection ici
     private cdr: ChangeDetectorRef 
   ) {}
 

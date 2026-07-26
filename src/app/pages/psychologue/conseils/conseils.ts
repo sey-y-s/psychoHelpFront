@@ -9,7 +9,7 @@ import { ConseilDetail } from "./conseil-detail/conseil-detail";
 import { ConseilFormEdit } from "./conseil-form-edit/conseil-form-edit";
 import { BarreRecherche } from "./barre-recherche/barre-recherche";
 import { MatPaginatorModule } from '@angular/material/paginator'
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { NotificationService } from "../../../core/services/notification.service";
 
 @Component({
   selector: "app-conseils",
@@ -25,7 +25,7 @@ export class Conseils {
     formulaireVisibleforDetail=false
     formulaireVisibleforEdit=false
     conseilRecup=signal<ConseilInfaceModelForPsy|null>(null)
-    snackBar=inject(MatSnackBar)
+    messageSnackBar=inject(NotificationService)
     constructor(){
            this.chargerConseil("")
     }
@@ -59,7 +59,7 @@ export class Conseils {
     AjoutEffectuer(){
       this.formulaireVisible=false
       this.chargerConseil("")
-      this.afficherMessage("conseil posté avec succes!")
+      this.messageSnackBar.succes("conseil posté avec succes!")
     }
     //debut de la modification
     modifier(id:number){
@@ -91,16 +91,22 @@ export class Conseils {
               },
               complete:()=>{
                    this.chargerConseil("")
-                   this.afficherMessage("suppresion effectuée avec succes!")
+                   this.messageSnackBar.succes("suppression effectuée avec avec succes!")
               }
           })
 
     }
     //fermer le madal de modification apres l'edit
-    FrermerApreEdit(b:boolean){
+    fermerApreEdit(b:boolean){
        this.formulaireVisibleforEdit=b
        this.chargerConseil("")
-       this.afficherMessage("modification effectuée avec succes!")
+       this.messageSnackBar.succes("modification effectuée avec succes!")
+
+    }
+    //fermer le madal de modification apres l'edit
+    fermerApreannulerEdit(b:boolean){
+       this.formulaireVisibleforEdit=b
+      
     }
     //detail d'un  conseil
     showDetail(id:number){
@@ -115,13 +121,6 @@ export class Conseils {
     fermerModalDescription(b:boolean){
        this.formulaireVisibleforDetail=b
     }
-   //le message d'operation
-   private afficherMessage(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
+  
 
 }

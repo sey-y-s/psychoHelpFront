@@ -3,10 +3,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { ConseilInfaceModelForPsy } from "../../../../models/citoyenforPsy.model";
 import { RouterLink } from "@angular/router";
 import { DatePipe } from "@angular/common";
+import { StatutConseilPipePipe } from "../../../../shared/pipes/statut-conseil-pipe-pipe";
 
 @Component({
   selector: "app-conseil-card",
-  imports: [MatIconModule,DatePipe],
+  imports: [MatIconModule,DatePipe,StatutConseilPipePipe],
   templateUrl: "./conseil-card.html",
   styleUrl: "./conseil-card.css",
 })

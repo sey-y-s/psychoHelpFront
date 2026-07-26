@@ -7,6 +7,7 @@ import { seanceInterfaceRequest2 } from "../../../models/seance.model";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Filtre } from "./filtre/filtre";
+import { NotificationService } from "../../../core/services/notification.service";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class Rdv{
   private route=inject(ActivatedRoute)
    psyId!:number
   message: string | null = null;
-  snackBar=inject(MatSnackBar)
+  messageSnackBar=inject(NotificationService)
    creneauDisponiblePourcitoyenfiltre=signal<CreneauInterfaceResponse2[]>([]);
   //  si le citoyen a choisi une date
   dateSelectionnee = false;
@@ -83,20 +84,13 @@ export class Rdv{
         next: (response) => {
           console.log(response);
           this.chargerDisponibilites(creneau.date);
-          this.afficherMessage("rendez vous reservé avec succes!")
+          this.messageSnackBar.succes("rendez vous reservé avec succes!")
         },
 
         error: ({ error }) => {
-          this.afficherMessage("Erreur lors de la prise du rendez-vous!")
+          this.messageSnackBar.erreur("Erreur lors de la prise du rendez-vous!")
         },
       });
   }
-  //le message d'operation
-   private afficherMessage(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
+ 
 }
