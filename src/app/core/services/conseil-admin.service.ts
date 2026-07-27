@@ -15,7 +15,7 @@ export class ConseilAdminService {
   }
 
   conseilParId(id: number): Observable<Conseil> {
-    return this.http.get<Conseil>(`${this.api}/conseils/${id}`);
+    return this.http.get<Conseil>(`${this.api}/conseils/${id}/admin`);
   }
 
   valider(id: number): Observable<any> {

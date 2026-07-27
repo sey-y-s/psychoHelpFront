@@ -1,0 +1,47 @@
+<main class="not-found-page">
+    <header class="page-header">
+
+        <a
+                class="brand"
+                aria-label="PsychoHelp">
+            <img src="/images/logo-psychohelp.png"
+                 alt="Logo PsychoHelp"
+                 class="brand-logo">
+
+            <div class="brand-content">
+                <strong>
+                    Psycho<span>Help</span></strong>
+                <small>ECOUTER - COMPRENDRE - ACCOMPAGNER</small>
+            </div>
+        </a>
+        @if (currentUser$ | async; as user) {
+        <a routerLink="{{ obtenirRoute(user.role) }}"
+           class="header-home-button">
+            <mat-icon>home</mat-icon>
+            <span>Retour au dashboard</span>
+        </a>
+        } @else {
+        <a routerLink="/"
+           class="header-home-button">
+            <mat-icon>home</mat-icon>
+            <span>Retour à l’accueil</span>
+        </a>
+        }
+    </header>
+
+    <section class="not-found-content">
+        <div class="error-number">
+            404
+        </div>
+        <h1>Oups !</h1>
+
+        <p class="main-message">
+            La ressource que vous recherchez n’existe pas.
+        </p>
+
+        <p class="description">
+            La page que vous essayez d’accéder a été déplacée, supprimée ou n’existe pas.
+        </p>
+    </section>
+
+</main>

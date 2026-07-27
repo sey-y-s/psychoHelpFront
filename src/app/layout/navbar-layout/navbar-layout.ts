@@ -1,19 +1,27 @@
-import {Component, DestroyRef, inject, OnInit} from "@angular/core";
+import {ChangeDetectorRef, Component, DestroyRef, inject, OnInit} from "@angular/core";
 import {MatIconModule} from "@angular/material/icon";
-import {NavigationEnd, Router} from "@angular/router";
+import {ActivatedRouteSnapshot, NavigationEnd, PRIMARY_OUTLET, Router} from "@angular/router";
 import {filter} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {AsyncPipe} from "@angular/common";
+import {NotificationServices} from "../../core/services/notification-service";
+import {NotificationWebsocketService} from "../../core/services/notification-websocket.service";
 
 @Component({
   selector: "app-navbar-layout",
-  imports: [MatIconModule],
+  imports: [MatIconModule, AsyncPipe],
   templateUrl: "./navbar-layout.html",
   styleUrl: "./navbar-layout.css",
 })
 export class NavbarLayout implements OnInit{
 
   private readonly router = inject(Router);
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
+
+  private readonly notificationService = inject(NotificationServices);
+  private readonly notificationWebsocketService = inject(NotificationWebsocketService);
+  readonly nombreNotificationsNonLues$ = this.notificationWebsocketService.notificationsNonLues$;
 
   titre = '';
 
@@ -26,13 +34,25 @@ export class NavbarLayout implements OnInit{
         .subscribe(() => {
           this.mettreAJourTitre();
         });
+
+    this.notificationService.compterNonLues().subscribe(nombre => {
+      this.notificationWebsocketService.definirNombreNonLues(nombre);
+    });
   }
 
   private mettreAJourTitre(): void {
-    let route = this.router.routerState.snapshot.root;
-    while (route.firstChild) {
+    let route: ActivatedRouteSnapshot | null = this.router.routerState.snapshot.root;
+    let titreTrouve: string | undefined;
+
+    while (route) {
+      if (route.outlet === PRIMARY_OUTLET) {
+        titreTrouve = route.data['title'] ?? titreTrouve;
+      }
+
       route = route.firstChild;
     }
-    this.titre = route.data['title'] || 'Dashboard';
+
+    this.titre = titreTrouve || 'Dashboard';
+    this.changeDetectorRef.detectChanges();
   }
 }

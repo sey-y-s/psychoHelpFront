@@ -1,5 +1,5 @@
 <h2>Liste des conseils</h2>
-<div class="container-fluid d-flex flex-column vh-100" id="conteneur">
+<div class="container-fluid d-flex flex-column vh-100">
     <div class="row ligne-filter mt-5">
         <p class="d-inline-flex align-items-center justify-content-around col-10 offset-1 mt-2">
             <button id="btn-en-attente"
@@ -28,7 +28,7 @@
     <div *ngIf="!isLoading" class="list-card flex-grow-1 overflow-auto mt-3">
         <app-card-validation-conseil
                 *ngFor="let conseil of listConseils" [donnees]="conseil"
-                [routerLink]="['/admin/conseil', conseil.id]"
+                [routerLink]="['/admin/conseils', conseil.id]"
                 style="cursor: pointer; display: block;"
         ></app-card-validation-conseil>
 

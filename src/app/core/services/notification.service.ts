@@ -6,16 +6,29 @@ export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
 
   succes(message: string): void {
-    // TODO: Personnaliser la couleur du snackbar (vert)
-    this.snackBar.open(message, 'Fermer', { duration: 3000 });
+    this.snackBar.open(message, 'Fermer', {
+      duration: 5000,
+      panelClass: ['snackbar-success'],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
   }
 
   erreur(message: string): void {
-    // TODO: Personnaliser la couleur du snackbar (rouge)
-    this.snackBar.open(message, 'Fermer', { duration: 5000 });
+    this.snackBar.open(message, 'Fermer', {
+      duration: 5000,
+      panelClass: ['snackbar-error'],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
   }
 
   info(message: string): void {
-    this.snackBar.open(message, 'Fermer', { duration: 3000 });
+    this.snackBar.open(message, 'Fermer', {
+      duration: 5000,
+      panelClass: ['snackbar-info'],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
   }
 }

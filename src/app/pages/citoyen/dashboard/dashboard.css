@@ -2,7 +2,8 @@
 .dashboard-layout {
   display: flex;
   min-height: 100vh;
-  background-color: #f5eae4; /* Arrière-plan beige doux */
+  background-color: #f5eae4;
+  /* Arrière-plan beige doux */
   padding: 16px;
   gap: 20px;
   box-sizing: border-box;
@@ -51,32 +52,38 @@
 .stats-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 10px;
+
 }
 
 .stat-card {
   background: #ffffff !important;
   border-radius: 20px !important;
   border: none !important;
-  padding: 16px;
+  padding: 15px;
+
+
 }
 
 .stat-card mat-card-header {
   justify-content: center;
+  
 }
 
 .stat-card mat-card-title {
   color: #2c3e50;
   font-size: 18px;
   font-weight: 400;
+  margin-top: 10px;
+  
+
 }
 
 .stat-value {
   display: flex !important;
-  align-items: center !important;
   justify-content: center !important;
-  gap: 10px !important;
-  margin-top: 8px !important;
+  margin-top: 50px !important;
+
 }
 
 .icon-stat {
@@ -86,28 +93,55 @@
   color: #f39c12;
 }
 
-.green-icon { color: #2ecc71; }
-.blue-icon { color: #2980b9; }
+.green-icon {
+  color: #2ecc71;
+}
+
+.blue-icon {
+  color: #00243d;
+}
 
 .number {
-  font-size: 22px !important;   
-  font-weight: 700 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
   line-height: 1 !important;
-    margin-top: 35px;
+  margin-top: -50px;
+  align-items: center;
+  /* margin-left: 50px; */
 
 }
 
-.number.orange { color: #f39c12; }
-.number.green { color: #2ecc71; }
-.number.blue { color: #2980b9; }
+.number.orange {
+  color: #f39c12;
+  margin-top: -20px;
+    font-size: 30px !important;
+
+}
+
+.number.green {
+  color: #2ecc71;
+  margin-top: -20px;
+      font-size: 30px !important;
+
+}
+
+.number.blue {
+  color: #2980b9;
+  margin-top: -20px;
+      font-size: 30px !important;
+
+
+}
 
 .stat-icon-img {
-  width: 50px !important;       
-  height: 50px !important;       
-  object-fit: contain !important; 
+  width: 55px !important;
+  height: 55px !important;
+  object-fit: contain !important;
   display: block !important;
-  margin-top: 35px;
+  margin-top: -30px;
+  margin-left: -200px;
 }
+
 /* Grille 2 colonnes (Conseils + RDV) */
 .info-grid {
   display: grid;
@@ -141,10 +175,12 @@
    ========================================================================== */
 
 .conseil-item {
-  position: relative; /* Repère pour le placement absolu du bouton */
+  position: relative;
+  /* Repère pour le placement absolu du bouton */
   background-color: #ded1c8;
   border-radius: 14px;
-  padding: 16px 20px 40px 20px; /* Padding bas pour ne pas chevaucher le bouton */
+  padding: 16px 20px 40px 20px;
+  /* Padding bas pour ne pas chevaucher le bouton */
   margin-bottom: 15px;
   box-sizing: border-box;
 }
@@ -157,8 +193,8 @@
 }
 
 .conseil-icon-img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   display: block;
 }
@@ -167,6 +203,7 @@
   font-weight: 590;
   color: #2c3e50;
   font-size: 15px;
+  margin-top: 10px;
 }
 
 /* ==========================================================================
@@ -174,7 +211,8 @@
    ========================================================================== */
 
 .rdv-box {
-  position: relative; /* Repère pour le placement absolu du bouton */
+  position: relative;
+  /* Repère pour le placement absolu du bouton */
   background-color: #ded1c8;
   border-radius: 14px;
   padding: 18px 20px 45px 20px;
@@ -182,7 +220,8 @@
   flex-direction: column;
   margin-top: 20px;
   height: 250px;
-  align-items: flex-start !important; /* Force tout le contenu à coller à gauche */
+  align-items: flex-start !important;
+  /* Force tout le contenu à coller à gauche */
 
 }
 
@@ -198,15 +237,18 @@
   width: 32px;
   height: 32px;
   object-fit: contain;
-  flex-shrink: 0; /* Empêche l'image de se déformer */
+  flex-shrink: 0;
+  /* Empêche l'image de se déformer */
 }
 
 /* Forcer l'alignement à gauche pour le nom et la spécialité */
 .doctor-info {
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important; /* Alignement vertical sur le bord gauche */
-  text-align: left !important;        /* Forcer le texte à démarrer à gauche */
+  align-items: flex-start !important;
+  /* Alignement vertical sur le bord gauche */
+  text-align: left !important;
+  /* Forcer le texte à démarrer à gauche */
 }
 
 .doc-name {
@@ -221,15 +263,15 @@
   color: #34495e;
   font-size: 16px;
   margin-top: 50px !important;
-margin-left: 50px ; 
- padding: 0;
+  margin-left: 50px;
+  padding: 0;
   text-align: left !important;
   display: block !important;
-  
-  
+
+
 }
 
-.rdv-details{
+.rdv-details {
   margin: 6px 0;
   color: #2c3e50;
   font-weight: 500;
@@ -270,5 +312,16 @@ mat-card,
 .stat-card,
 .section-card,
 .welcome-banner {
-  border: 1px solid #dcd9d9 !important; 
+  border: 1px solid #dcd9d9 !important;
+}
+.stat-card mat-card-content.stat-value {
+  padding-top: 4px !important;    
+  display: flex;
+  align-items: center;
+  gap: 12px;   
+  margin-top: 25px !important; /* FAIT MONTER LE BLOC */                  
+}
+.stat-card mat-card-header {
+  padding-top: 0 !important;
+  margin-top: 20px !important;
 }

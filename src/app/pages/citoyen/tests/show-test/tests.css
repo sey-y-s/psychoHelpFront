@@ -1,0 +1,181 @@
+:root {
+    --primary: #2C3E50;
+    --secondary: #5D3520;
+    --beige-dark: #e8b8a2fb;
+    --beige-light: #F2E3DB;
+    --bg-gray: #FAFAFA;
+}
+
+body {
+    background-color: #F2E3DB;
+}
+
+.quitter{
+    color: #5D3520;
+    font-weight: bold;
+    border-color: #5D3520;
+    background-color:var(--beige-dark);
+}
+
+.col-auto.text-end.align-self-end {
+    margin-bottom: -18px;
+    margin-right: 15px;
+}
+
+.progr {
+    width: 65%;
+}
+
+.bg-secondary {
+    background-color: #5D3520 !important;
+}
+
+.quest{
+    color: #5D3520;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.question-header{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+.p-2{
+    padding: 10px !important;
+    margin-left: 10px;
+}
+
+.border-1{
+    border-width: 1px !important;
+    border-color: #5D3520 !important;
+    border-radius: 15px;
+}
+
+.btn-outline-dark{
+    color: #5D3520;
+    border: 1px solid #5D3520;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-secondary{
+    font-weight: bold;
+}
+
+.card-conseil{
+    margin: 20px 15px 20px 15px;
+    padding: 10px;
+}
+
+.col-border-droite{
+    border: 1px solid #5D3520;
+    border-radius: 10px;
+    height: 97%;
+}
+
+.carre-rep{
+    width: 15px;
+    height: 15px;
+    border: 1px solid #5D3520;
+    border-radius: 3px;
+    background-color: #5D3520;
+}
+
+.carre-non-rep{
+    width: 15px;
+    height: 15px;
+    border: 1px solid #5D3520;
+    border-radius: 3px;
+
+}
+
+.repondu{
+    margin-right:180px;
+}
+
+.non-repondu{
+    margin-right: 140px;
+}
+
+.text-muted{
+    font-size: 16px;
+}
+
+.quitter:hover{
+    color: #fff;
+    background-color: #5D3520;
+    border-color: #5D3520;
+}
+
+.text-muted-conseil{
+    color: #5D3520;
+}
+
+.border-conseil{
+    border-radius: 15px ;
+    margin-top: 22%;
+    height: 190px;
+}
+
+/* Couleurs personnalisées */
+.bg-beige-light {
+    background-color: #E2D4CC !important; /* Couleur d'en-tête de la question */
+}
+
+.btn-secondary {
+    background-color: #5D3520 !important;
+    border-color: #5D3520 !important;
+}
+
+.text-secondary {
+    color: #5D3520 !important;
+}
+
+/* Conteneurs Utilitaires */
+.icon-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.extra-small {
+    font-size: 0.78rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Option de Réponses */
+.option-container {
+    transition: all 0.2s ease-in-out;
+    background-color: #FFF;
+}
+
+.option-container:hover {
+    background-color: #FAF6F4;
+    border-color: #5D3520 !important;
+}
+
+/* Style de l'option cochée */
+.option-container.selected {
+    border-color: #5D3520 !important;
+    border-width: 2px !important;
+    background-color: #FFF;
+}
+
+.option-container.selected input[type="radio"] {
+    background-color: #5D3520;
+    border-color: #5D3520;
+}
+
+/* Alignement ajusté des boutons radio Bootstrap */
+.form-check-input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0;
+}

@@ -1,15 +1,17 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from "@angular/core";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {RendezVousListe} from "./rendez-vous-liste/rendez-vous-liste";
 import {RendezVousDetail} from "./rendez-vous-detail/rendez-vous-detail";
 import {RendezVousFiltres} from "./rendez-vous-filtres/rendez-vous-filtres";
 import {SeanceService} from "../../../core/services/seance.service";
 import {FiltreRendezVous, RendezVous} from "../../../models/rendez-vous.model";
 import {finalize} from "rxjs";
+import {MatIconModule} from "@angular/material/icon";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
   selector: "app-rendez-vous",
-  imports: [MatSnackBarModule, RendezVousListe, RendezVousDetail, RendezVousFiltres],
+  imports: [RendezVousListe, RendezVousDetail, RendezVousFiltres, MatIconModule],
   templateUrl: "./rendez-vous.html",
   styleUrl: "./rendez-vous.css",
 })
@@ -17,7 +19,7 @@ export class RendezVousComponent implements OnInit {
 
   private readonly seanceService = inject(SeanceService);
   private readonly cdr = inject(ChangeDetectorRef);
-  private readonly snackBar = inject(MatSnackBar);
+  private readonly not = inject(NotificationService)
 
   rendezVous: RendezVous[] = [];
 
@@ -32,9 +34,12 @@ export class RendezVousComponent implements OnInit {
     this.chargerRendezVous();
   }
 
+  heure(valeur: string): string {
+    return valeur?.slice(0, 5) ?? '';
+  }
+
   get rendezVousFiltres(): RendezVous[] {
     const aujourdHui = this.obtenirDateLocale();
-
     switch (this.filtreActif) {
       case 'A_VENIR':
         return this.rendezVous.filter(rdv =>
@@ -78,100 +83,66 @@ export class RendezVousComponent implements OnInit {
   }
 
   confirmer(rendezVous: RendezVous): void {
-    if (
-        this.actionEnCours ||
-        rendezVous.statut !== 'RESERVER'
-    ) {
+    if (this.actionEnCours || rendezVous.statut !== 'RESERVER') {
       return;
     }
-
     this.actionEnCours = true;
-
     this.seanceService.confirmer(rendezVous.id).subscribe({
       next: () => {
         this.mettreAJourStatut(
             rendezVous.id,
             'CONFIRMER'
         );
-
         this.actionEnCours = false;
         this.fermerDetails();
-
-        this.afficherMessage(
-            'Rendez-vous confirmé avec succès.'
-        );
+        this.not.succes('Rendez-vous confirmé avec succès.');
       },
       error: error => {
         console.error(error);
         this.actionEnCours = false;
-
-        this.afficherMessage(
-            this.extraireMessageErreur(
-                error,
-                'La confirmation du rendez-vous a échoué.'
-            )
-        );
+        this.not.erreur('La confirmation du rendez-vous a échoué.');
       }
     });
   }
 
   annuler(rendezVous: RendezVous): void {
-    if (
-        this.actionEnCours ||
-        rendezVous.statut === 'ANNULER' ||
-        rendezVous.statut === 'TERMINER'
-    ) {
+    if (this.actionEnCours || rendezVous.statut === 'ANNULER' || rendezVous.statut === 'TERMINER') {
       return;
     }
-
     const confirmation = window.confirm(
         `Voulez-vous annuler le rendez-vous de ` +
-        `${rendezVous.prenomCitoyen} ${rendezVous.nomCitoyen} ?`
-    );
-
+        `${rendezVous.prenomCitoyen} ${rendezVous.nomCitoyen} ?`);
     if (!confirmation) {
       return;
     }
-
     this.actionEnCours = true;
-
     this.seanceService.annuler(rendezVous.id).subscribe({
       next: () => {
-        this.mettreAJourStatut(
-            rendezVous.id,
-            'ANNULER'
-        );
-
+        this.mettreAJourStatut(rendezVous.id, 'ANNULER');
         this.actionEnCours = false;
         this.fermerDetails();
-
-        this.afficherMessage(
-            'Rendez-vous annulé avec succès.'
-        );
+        this.not.succes('Rendez-vous annulé avec succès.');
       },
       error: error => {
         console.error(error);
         this.actionEnCours = false;
-
-        this.afficherMessage(
-            this.extraireMessageErreur(
-                error,
-                'L’annulation du rendez-vous a échoué.'
-            )
-        );
+        this.not.erreur('L’annulation du rendez-vous a échoué.');
       }
     });
   }
 
-  exporter(): void {
-    this.afficherMessage(
-        'La fonctionnalité d’export sera ajoutée plus tard.'
-    );
+   exporter(): void {
+     this.not.info('La fonctionnalité d’export sera ajoutée plus tard.');
+  }
+
+  obtenirInitiales(rdv: RendezVous): string {
+    const prenom = rdv.prenomCitoyen?.trim().charAt(0) ?? '';
+    const nom = rdv.nomCitoyen?.trim().charAt(0) ?? '';
+    return `${prenom}${nom}`.toUpperCase();
   }
 
   private chargerRendezVous(): void {
     this.chargement = true;
-
     this.seanceService.getMesRendezVous()
         .pipe(
             finalize(() => {
@@ -183,29 +154,15 @@ export class RendezVousComponent implements OnInit {
           next: (data: RendezVous[]) => {
             this.rendezVous = data ?? [];
           },
-
           error: error => {
-            console.error(
-                'Erreur lors du chargement des rendez-vous :',
-                error
-            );
-
+            console.error('Erreur lors du chargement des rendez-vous :', error);
             this.rendezVous = [];
-
-            this.afficherMessage(
-                this.extraireMessageErreur(
-                    error,
-                    'Impossible de charger les rendez-vous.'
-                )
-            );
+            this.not.erreur('Impossible de charger les rendez-vous.');
           }
         });
   }
 
-  private mettreAJourStatut(
-      id: number,
-      statut: RendezVous['statut']
-  ): void {
+  private mettreAJourStatut(id: number, statut: RendezVous['statut']): void {
     this.rendezVous = this.rendezVous.map(rdv =>
         rdv.id === id
             ? { ...rdv, statut }
@@ -215,54 +172,10 @@ export class RendezVousComponent implements OnInit {
 
   private obtenirDateLocale(): string {
     const date = new Date();
-
     const annee = date.getFullYear();
-
-    const mois = String(
-        date.getMonth() + 1
-    ).padStart(2, '0');
-
-    const jour = String(
-        date.getDate()
-    ).padStart(2, '0');
-
+    const mois = String(date.getMonth() + 1).padStart(2, '0');
+    const jour = String(date.getDate()).padStart(2, '0');
     return `${annee}-${mois}-${jour}`;
   }
 
-  private afficherMessage(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 3500,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-  }
-
-  private extraireMessageErreur(
-      error: any,
-      messageParDefaut: string
-  ): string {
-    if (
-        typeof error?.error === 'string' &&
-        error.error.trim()
-    ) {
-      return error.error;
-    }
-
-    if (error?.error?.message) {
-      return error.error.message;
-    }
-
-    if (error?.status === 0) {
-      return 'Le serveur est inaccessible.';
-    }
-
-    if (
-        error?.status === 401 ||
-        error?.status === 403
-    ) {
-      return 'Votre session a expiré ou vous n’êtes pas autorisé.';
-    }
-
-    return messageParDefaut;
-  }
 }

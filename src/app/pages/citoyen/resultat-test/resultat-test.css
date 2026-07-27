@@ -1,0 +1,111 @@
+/* --- VARIABLES ET COULEURS ISSUES DE VOTRE IDENTITÉ COMPOSANT --- */
+.text-primary {
+    color: var(--primary) !important; /* #2C3E50 */
+}
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+.bg-primary-subtle {
+    background-color: rgba(44, 62, 80, 0.08) !important;
+}
+
+/* Bouton Retour (Utilisation du Marron Secondary) */
+.btn-return {
+    background-color: var(--beige); /* #D7A790 */
+    color: var(--secondary); /* #5D3520 */
+    font-weight: 600;
+    border: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+.btn-return:hover {
+    filter: brightness(0.9);
+}
+
+/* Bandeau félicitations personnalisé */
+.card-congrats {
+    background: linear-gradient(135deg, #FFF, var(--background));
+    border: 1px solid rgba(215, 167, 144, 0.3);
+    border-radius: 16px;
+}
+
+.text-orange {
+    color: #E67E22 !important;
+}
+.bg-orange-subtle {
+    background-color: rgba(230, 126, 34, 0.08) !important;
+}
+
+.badge-percentage {
+    background-color: #FEF5E7;
+    border: 1px solid #FDEBD0;
+    min-width: 80px;
+    text-align: center;
+}
+
+.badge-auto-eval {
+    background-color: var(--background);
+    color: var(--secondary);
+    border: 1px solid var(--beige);
+}
+
+.min-w-120 {
+    min-width: 120px;
+}
+
+.avatar-user, .icon-test-wrapper {
+    width: 55px;
+    height: 55px;
+}
+
+/* --- STRUCTURE GRAPHIQUE DE LA JAUGE SEMI-CIRCULAIRE --- */
+.gauge-wrapper {
+    width: 260px;
+    height: 130px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.gauge-body {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 24px solid #E5E7E9;
+    border-bottom-color: transparent;
+    border-left-color: #2ECC71; /* Vert - Minime */
+    border-top-color: #F1C40F;  /* Jaune - Légère / Modérée */
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.gauge-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* --- CARTE DROITE AMPOULE DE CONSEIL --- */
+.card-care {
+    background: linear-gradient(180deg, rgba(215, 167, 144, 0.15), #FFF);
+    border: 1px solid rgba(215, 167, 144, 0.2);
+    border-radius: 16px;
+}
+
+.icon-bulb-huge {
+    width: 75px;
+    height: 75px;
+    background-color: #FFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(44, 62, 80, 0.1);
+}
+
+.extra-small {
+    font-size: 0.8rem;
+}

@@ -5,13 +5,7 @@
         <header class="modal-header">
             <div>
                 <h2>
-                     @if(conseilId()){
-                                             Modification d'un conseil
-
-                     }@else {
                                             Formulaire d'Ajout d'un conseil
-
-                     }
                 </h2>
 
                 <p>Renseignez tous les  champs.</p>
@@ -34,7 +28,7 @@
                 <label for="description">Description</label>
                 <textarea name="" id="description" formControlName="description" rows="8"></textarea>
                 @if(form.get("description")?.invalid&&form.get("description")?.touched){
-                   <small class="invalid-feedbacks"> la description est requise</small>
+                   <small class="invalid-feedbacks"> la description est requise et ne doit pas depasser 255 caractères</small>
 
                 }
             </div>
@@ -52,7 +46,7 @@
                         class="save"
                         
                 >
-                {{conseilId()?"modifier":"poster"}}
+                poster
                 </button>
 
             </footer>

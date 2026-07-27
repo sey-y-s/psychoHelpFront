@@ -1,0 +1,115 @@
+<div id="dashboard" class="container">
+    <!-- Section Compteurs (Grid) -->
+    <div id="row-card">
+        <div class="card-rdv">
+            <div class="card-tete">
+                <div class="icon-wrapper user-icon">
+                    <mat-icon>people</mat-icon>
+                </div>
+                <div class="card-numbers">
+                    <h3>{{totalUtilisateur}}</h3>
+                    <p class="card-label">Utilisateurs</p>
+                </div>
+            </div>
+            <a class="card-action">Voir la liste <mat-icon>arrow_forward</mat-icon></a>
+        </div>
+
+        <div class="card-rdv">
+            <div class="card-tete">
+                <div class="icon-wrapper rdv-icon">
+                    <mat-icon>calendar_today</mat-icon>
+                </div>
+                <div class="card-numbers">
+                    <h3>{{totalRendezVous}}</h3>
+                    <p class="card-label">Rendez-Vous</p>
+                </div>
+            </div>
+            <a class="card-action">Observer <mat-icon>arrow_forward</mat-icon></a>
+        </div>
+
+        <div class="card-rdv">
+            <div class="card-tete">
+                <div class="icon-wrapper conseil-icon">
+                    <mat-icon>lightbulb</mat-icon>
+                </div>
+                <div class="card-numbers">
+                    <h3>{{ totalConseil }}</h3>
+                    <p class="card-label">Conseils</p>
+                </div>
+            </div>
+            <a class="card-action">Poster <mat-icon>arrow_forward</mat-icon></a>
+        </div>
+
+        <div class="card-rdv">
+            <div class="card-tete">
+                <div class="icon-wrapper quiz-icon">
+                    <mat-icon>quiz</mat-icon>
+                </div>
+                <div class="card-numbers">
+                    <h3>{{totalTest}}</h3>
+                    <p class="card-label">Quiz</p>
+                </div>
+            </div>
+            <a class="card-action">Disponible <mat-icon>arrow_forward</mat-icon></a>
+        </div>
+    </div>
+
+    <!-- Section Contenu Principal -->
+    <div class="body-row">
+        <!-- Tableau Psychologues -->
+        <div class="tableau">
+            <h6 class="section-title">Psychologues les plus sollicités</h6>
+
+            <div class="list-container">
+                <!-- Répétition de la ligne (Exemple) -->
+                <div class="card-list">
+                    <div class="logo">
+                        <mat-icon>account_circle</mat-icon>
+                    </div>
+                    <div class="contenu">
+                        <h6>Noob Saubot</h6>
+                        <p>Djamananbougou</p>
+                    </div>
+                    <div class="badge-sollicitation">
+                        <mat-icon>trending_up</mat-icon>
+                    </div>
+                </div>
+
+                <div class="card-list">
+                    <div class="logo">
+                        <mat-icon>account_circle</mat-icon>
+                    </div>
+                    <div class="contenu">
+                        <h6>Noob Saubot</h6>
+                        <p>Djamananbougou</p>
+                    </div>
+                    <div class="badge-sollicitation">
+                        <mat-icon>trending_up</mat-icon>
+                    </div>
+                </div>
+
+                <div class="card-list">
+                    <div class="logo">
+                        <mat-icon>account_circle</mat-icon>
+                    </div>
+                    <div class="contenu">
+                        <h6>Noob Saubot</h6>
+                        <p>Djamananbougou</p>
+                    </div>
+                    <div class="badge-sollicitation">
+                        <mat-icon>trending_up</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graphique -->
+        <div class="graph">
+            <h6 class="section-title">Statistiques d'activité</h6>
+            <div class="graph-placeholder">
+                <!-- Votre graphique Canvas ou Chart.js ira ici -->
+                <p>Graphique en attente de données</p>
+            </div>
+        </div>
+    </div>
+</div>

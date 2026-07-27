@@ -1,7 +1,6 @@
 import {ChangeDetectorRef, Component, inject} from "@angular/core";
 
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {DashboardStats} from "./dashboard-stats/dashboard-stats";
 import {ProchainsRendezVous} from "./prochains-rendez-vous/prochains-rendez-vous";
 import {CreneauxDuJour} from "./creneaux-du-jour/creneaux-du-jour";
@@ -10,26 +9,23 @@ import {AuthService} from "../../../core/services/auth.service";
 import {DashboardData} from "../../../models/dashboard.model";
 import {finalize} from "rxjs";
 import {MatIconModule} from "@angular/material/icon";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
   selector: "app-dashboard",
-  imports: [MatIconModule,MatProgressSpinnerModule, MatSnackBarModule, DashboardStats, ProchainsRendezVous, CreneauxDuJour],
+  imports: [MatIconModule,MatProgressSpinnerModule, DashboardStats, ProchainsRendezVous, CreneauxDuJour],
   templateUrl: "./dashboard.html",
   styleUrl: "./dashboard.css",
 })
 export class Dashboard {
 
   private readonly dashboardService = inject(DashboardService);
-
   private readonly authService = inject(AuthService);
-
-  private readonly snackBar = inject(MatSnackBar);
-
   private readonly cdr = inject(ChangeDetectorRef);
-
   readonly currentUser$ = this.authService.currentUser$;
+  private readonly not = inject(NotificationService)
 
-  dashboard: DashboardData | null = null;
+    dashboard: DashboardData | null = null;
 
   chargement = false;
 
@@ -43,7 +39,6 @@ export class Dashboard {
 
   private chargerDashboard(): void {
     this.chargement = true;
-
     this.dashboardService
         .chargerDashboard()
         .pipe(
@@ -56,25 +51,13 @@ export class Dashboard {
           next: data => {
             this.dashboard = data;
           },
-
-          error: error => {
-            console.error(
-                'Erreur de chargement du dashboard :',
-                error
-            );
-
-            this.dashboard = null;
-
-            this.snackBar.open(
-                'Impossible de charger le tableau de bord.',
-                'Fermer',
-                {
-                  duration: 3500,
-                  horizontalPosition: 'right',
-                  verticalPosition: 'top'
-                }
-            );
-          }
+            error: error => {
+                console.error(
+                    'Erreur de chargement du dashboard :', error);
+                this.dashboard = null;
+                this.not.erreur(error?.error?.message || 'Impossible de charger le tableau de bord.'
+                );
+            }
         });
   }
 

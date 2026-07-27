@@ -15,8 +15,9 @@ export class NotificationWebsocketService {
     private utilisateurIdConnecte: number | null = null;
 
     private readonly notificationSubject = new Subject<Notification>();
-
     readonly notification$ = this.notificationSubject.asObservable();
+    private readonly notificationsNonLuesSubject = new BehaviorSubject<number>(0);
+    readonly notificationsNonLues$ = this.notificationsNonLuesSubject.asObservable();
 
     connecter(utilisateurId: number): void {
         if (this.client?.active && this.utilisateurIdConnecte === utilisateurId) {
@@ -40,6 +41,9 @@ export class NotificationWebsocketService {
                             const notification =
                                 JSON.parse(message.body) as Notification;
                             this.notificationSubject.next(notification);
+                            if (!notification.lu) {
+                                this.incrementerNombreNonLues();
+                            }
                         } catch (error) {
                             console.error(
                                 'Notification WebSocket invalide :',
@@ -73,5 +77,21 @@ export class NotificationWebsocketService {
         }
         this.client = null;
         this.utilisateurIdConnecte = null;
+    }
+
+    definirNombreNonLues(nombre: number): void {
+        this.notificationsNonLuesSubject.next(nombre);
+    }
+
+    incrementerNombreNonLues(): void {
+        this.notificationsNonLuesSubject.next(
+            this.notificationsNonLuesSubject.value + 1
+        );
+    }
+
+    decrementerNombreNonLues(): void {
+        this.notificationsNonLuesSubject.next(
+            Math.max(0, this.notificationsNonLuesSubject.value - 1)
+        );
     }
 }

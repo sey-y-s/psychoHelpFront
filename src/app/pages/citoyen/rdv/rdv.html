@@ -7,23 +7,16 @@
         </div>
     </div>
 
-    <div class="filtre">
-        <label for="filtreDate"> Choisir une date : </label>
+    <app-filtre (dateOnChange)="chargerDisponibilites($event)" />
 
-        <input id="filtreDate" type="date" class="filtreDate"
-            (change)="filtrerParDateComplet($event.target.value)" />
-    </div>
-
-    @if(message){
-    <div class="message">{{message}}</div>
-    } @if(!dateSelectionnee){
+    @if(!dateSelectionnee){
 
     <div class="vide">Veuillez choisir une date.</div>
 
-    } @else if(creneauDisponiblePourcitoyenfiltre.length>0){
+    } @else if(creneauDisponiblePourcitoyenfiltre().length>0){
 
     <div class="rdv">
-        @for(creneau of creneauDisponiblePourcitoyenfiltre; track
+        @for(creneau of creneauDisponiblePourcitoyenfiltre(); track
         creneau.creneauId){
 
         <div class="card">

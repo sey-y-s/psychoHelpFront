@@ -5,7 +5,7 @@ import { Utilisateur, LoginRequest, RegisterRequest } from '../../models/utilisa
 import { Citoyen } from '../../models/citoyen.model';
 import { Psychologue } from '../../models/psychologue.model';
 import { Admin } from '../../models/admin.model';
-import { Conseil } from '../../models/conseil.model';
+import { Conseil, ConseilAffiche } from '../../models/conseil.model';
 import { ResultatTestResponse } from '../../models/resultatTest.model';
 import { CitoyenRendezVousResponse } from '../../models/seance.model';
 
@@ -91,9 +91,9 @@ export class AuthService {
 }
 
  // methode pour afficher la liste des conseils
-listerConseilsValides(): Observable<Conseil[]> {
-  return this.http.get<Conseil[]>(
-    `${this.api}/conseils/read`,
+listerConseilsValides(): Observable<ConseilAffiche[]> {
+  return this.http.get<ConseilAffiche[]>(
+    `${this.api}/conseils/read?status=VALIDER`,
     {
       withCredentials: true
     }

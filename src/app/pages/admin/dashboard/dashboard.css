@@ -1,0 +1,216 @@
+:host {
+    display: block;
+    background-color: #fcf9f7;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#row-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.card-rdv {
+    background-color: #ffffff;
+    border: 1px solid #ebdcd5;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    box-shadow: 0 4px 6px -1px rgba(215, 167, 144, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-rdv:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(215, 167, 144, 0.15);
+    border-color: #d7a790;
+}
+
+.card-tete {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #f7ede8;
+    color: #d7a790;
+}
+
+.card-numbers h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c2523;
+    line-height: 1.2;
+}
+
+.card-label {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #7a6e6a;
+    font-weight: 500;
+}
+
+.card-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #d7a790;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.card-action mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+}
+
+.card-rdv:hover .card-action {
+    color: #b57e63;
+}
+
+.card-rdv:hover .card-action mat-icon {
+    transform: translateX(4px);
+}
+
+.body-row {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    width: 100%;
+}
+
+.tableau, .graph {
+    background-color: #ffffff;
+    border: 1px solid #ebdcd5;
+    border-radius: 16px;
+    padding: 24px;
+    width: 50%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(215, 167, 144, 0.05);
+}
+
+.section-title {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c2523;
+}
+
+.list-container {
+    overflow-y: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 4px;
+}
+
+.list-container::-webkit-scrollbar {
+    width: 6px;
+}
+.list-container::-webkit-scrollbar-thumb {
+    background-color: #e5d5ce;
+    border-radius: 10px;
+}
+
+.card-list {
+    background-color: #ffffff;
+    border: 1px solid #f0e6e1;
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-list:hover {
+    background-color: #fffaf7;
+    border-color: #d7a790;
+    transform: translateX(2px);
+}
+
+.card-list .logo mat-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    color: #cbd5e1;
+}
+
+.card-list .contenu {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-list .contenu h6 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c2523;
+}
+
+.card-list .contenu p {
+    margin: 2px 0 0 0;
+    font-size: 12px;
+    color: #948681;
+}
+
+.badge-sollicitation {
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+}
+
+.graph-placeholder {
+    flex-grow: 1;
+    border: 2px dashed #ebdcd5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #948681;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .body-row {
+        flex-direction: column;
+    }
+    .tableau, .graph {
+        width: 100%;
+        height: auto;
+    }
+}

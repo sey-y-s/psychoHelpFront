@@ -164,3 +164,83 @@ Demba & Adama : Dashboard Citoyen :
       Demba : categorie test (tout)
 
       
+
+
+
+
+
+
+
+
+INSERT INTO utilisateurs (id, nom, prenom, mail, telephone, mot_de_passe, role, date_creation) VALUES
+
+(2, 'Maïga', 'Aïssata', 'am@psy.org', '+22366112233', 'pass', 'PSYCHOLOGUE', '2025-01-10'),
+(3, 'Keïta', 'Sékou', 'sk@psy.org', '+22377223344', 'pass', 'PSYCHOLOGUE', '2025-01-12'),
+(4, 'Traoré', 'Fatoumata', 'ft@psy.org', '+22365334455', 'pass', 'PSYCHOLOGUE', '2025-01-15'),
+(5, 'Diarra', 'Oumar', 'od@psy.org', '+22376445566', 'pass', 'PSYCHOLOGUE', '2025-02-01'),
+
+(6, 'Sissoko', 'Aminata', 'as@gmail.com', '+22366556677', 'pass', 'CITOYEN', '2025-02-10'),
+(7, 'Konaté', 'Ibrahima', 'ik@gmail.fr', '+22377667788', 'pass', 'CITOYEN', '2025-02-12'),
+(8, 'Touré', 'Kadiatou', 'kt@gmail.com', '+22365778899', 'pass', 'CITOYEN', '2025-02-15'),
+(9, 'Dembélé', 'Adama', 'ad@gmail.com', '+22376889900', 'pass', 'CITOYEN', '2025-02-20'),
+(10, 'Diallo', 'Mariam', 'md@gmail.com', '+22366990011', 'pass', 'CITOYEN', '2025-03-01');
+
+INSERT INTO specialite (id, nom_specialite, admin_id) VALUES
+(1, 'Gestion du Stress et Anxiété', 1),
+(2, 'Dépression et Troubles de l humeur', 1),
+(3, 'Psychologie du Travail et Burnout', 1),
+(4, 'Thérapie de Couple et Familiale', 1);
+
+INSERT INTO psychologues (id, status, description, diplome_path, cv_path, etat, specialite_id) VALUES
+(2, 'VALIDER', 'Spécialiste de la gestion du stress et des attaques de panique à Bamako.', '/docs/diplomes/maiga.pdf', '/docs/cv/maiga.pdf', 1, 1),
+(3, 'VALIDER', 'Accompagnement des états dépressifs et suivi psychologique individuel.', '/docs/diplomes/keita.pdf', '/docs/cv/keita.pdf', 1, 2),
+(4, 'VALIDER', 'Expertise en prévention du burnout et souffrance au travail.', '/docs/diplomes/traore.pdf', '/docs/cv/traore.pdf', 1, 3),
+(5, 'ENATTENTE', 'Psychologue clinicien spécialisé en thérapie systémique.', '/docs/diplomes/diarra.pdf', '/docs/cv/diarra.pdf', 0, 4);
+
+INSERT INTO citoyens (utilisateur_id) VALUES (6), (7), (8), (9), (10);
+
+INSERT INTO categories_test (id, nom_categorie, description) VALUES
+(1, 'Anxiété & Stress', 'Évaluations centrées sur les troubles anxieux et la perception du stress au quotidien.'),
+(2, 'Troubles de l Humeur', 'Questionnaires permettant de détecter les symptômes dépressifs.');
+
+INSERT INTO tests (id, nom_test, description, etat, categorie_test_id) VALUES
+(1, 'GAD-7 (Generalized Anxiety Disorder)', 'Échelle d anxiété généralisée en 7 questions sur les 2 dernières semaines.', 1, 1),
+(2, 'PHQ-9 (Patient Health Questionnaire)', 'Échelle d évaluation de la sévérité de la dépression.', 1, 2),
+(3, 'PSS-10 (Perceived Stress Scale)', 'Échelle de stress perçu mesurant la perception des situations stressantes.', 1, 1);
+
+INSERT INTO diagnostics (id, score_min, score_max, niveau, message, test_id) VALUES
+(1, 0, 4, 'Anxiété minimale', 'Vos réponses indiquent une anxiété minime ou absente. Continuez à préserver votre bien-être.', 1),
+(2, 5, 9, 'Anxiété légère', 'Vous présentez des signes d anxiété légère. Des exercices de relaxation peuvent vous aider.', 1),
+(3, 10, 14, 'Anxiété modérée', 'Anxiété modérée détectée. Il peut être bénéfique d en discuter avec un professionnel.', 1),
+(4, 15, 21, 'Anxiété sévère', 'Niveau d anxiété élevé. Nous vous conseillons vivement de consulter un psychologue.', 1);
+
+INSERT INTO questiontests (id, question, test_id) VALUES
+(1, 'Vous êtes-vous senti(e) nerveux(se), anxieux(se) ou tendu(e) ?', 1),
+(2, 'Avez-vous été incapable d arrêter de vous inquiéter ou de contrôler vos inquiétudes ?', 1);
+
+INSERT INTO choixmultiples (id, choix, score, question_id) VALUES
+(1, 'Jamais', 0, 1), (2, 'Plusieurs jours', 1, 1), (3, 'Plus de la moitié des jours', 2, 1), (4, 'Presque tous les jours', 3, 1),
+(5, 'Jamais', 0, 2), (6, 'Plusieurs jours', 1, 2), (7, 'Plus de la moitié des jours', 2, 2), (8, 'Presque tous les jours', 3, 2);
+
+INSERT INTO resultats_test (id, score, niveau, description, citoyen_id, test_id) VALUES
+(1, 11, 'Anxiété modérée', 'Résultat indiquant un niveau de stress et d anxiété modéré.', 6, 1),
+(2, 3, 'Anxiété minimale', 'État d anxiété normal et sous contrôle.', 7, 1);
+
+INSERT INTO creneaux (id, jours, heure_debut, heure_fin, statut, psychologue_id) VALUES
+(1, 'Lundi', '09:00:00', '10:00:00', 1, 2),
+(2, 'Lundi', '10:30:00', '11:30:00', 0, 2),
+(3, 'Mardi', '14:00:00', '15:00:00', 1, 3);
+
+INSERT INTO seances (id, date, date_rdv, statut, citoyen_id, creneau_id) VALUES
+(1, '2025-02-15', '2025-02-24', 'CONFIRMER', 6, 2),
+(2, '2025-02-18', '2025-02-26', 'TERMINER', 7, 3);
+
+INSERT INTO conseils (id, titre, description, status, date_publication, auteur, psy_id) VALUES
+(1, '5 techniques pour calmer l anxiété', 'Découvrez la respiration carrée et l ancrage pour apaiser l esprit rapidement.', 'VALIDER', '2025-02-01', 'Dr. Aïssata Maïga', 2),
+(2, 'Comprendre le Burnout au travail', 'Identifier les premiers signes de l épuisement physique et émotionnel.', 'VALIDER', '2025-02-10', 'Dr. Fatoumata Traoré', 4),
+(3, 'Améliorer son sommeil au quotidien', 'Des conseils simples sur la routine du soir pour lutter contre l insomnie.', 'ENATTENTE', '2025-02-20', 'Dr. Sékou Keïta', 3);
+
+INSERT INTO notification (id, titre, message, type, lu, date_creation, utilisateur_id) VALUES
+(1, 'Rappel de consultation', 'Votre séance avec Dr. Maïga est prévue le 24/02/2025 à 10:30.', 'RENDEZ_VOUS', 0, '2025-02-23 08:00:00', 6),
+(2, 'Nouveau conseil publié', 'Un nouvel article sur le sommeil a été soumis pour validation.', 'CONSEIL', 1, '2025-02-18 11:05:00', 1),
+(3, 'Bienvenue sur PsychoHelp', 'Votre compte citoyen a été créé avec succès.', 'COMPTE', 1, '2025-02-10 09:00:00', 6);

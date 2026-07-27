@@ -1,0 +1,60 @@
+
+    <form class="form-card" [formGroup]="categoryForm" (ngSubmit)="onSubmit()" >
+
+        <div class="form-group">
+            <label for="category-name">Nom</label>
+            <input
+                    type="text"
+                    id="category-name"
+                    placeholder="Ex : Donnez le nom de la categorie"
+                    class="form-control"
+                    formControlName="nomCategorie"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="category-desc">Description</label>
+            <textarea
+                    id="category-desc"
+                    placeholder="Faite une description de la catégorie"
+                    class="form-control textarea-control"
+                    rows="6"
+                    formControlName="description"
+            ></textarea>
+        </div>
+
+        <div class="form-group date-group">
+            <label for="category-date">Date d'ajout</label>
+            <input
+                    type="text"
+                    id="category-date"
+                    value="11/07/2026"
+                    readonly
+                    class="form-control date-control"
+                    formControlName="dateAjout"
+            >
+        </div>
+
+        <div class="form-actions">
+            <button type="button" class="btn-cancel" routerLink="/admin/tests">Annuler</button>
+            <button type="submit" class="btn-submit"
+                    [disabled]="categoryForm.invalid"
+            >
+                <i class="fa-solid fa-circle-plus"></i>
+                Ajouter
+            </button>
+        </div>
+    </form>
+
+    <div class="modal-overlay" *ngIf="showSuccessModal">
+        <div class="modal-card">
+            <div class="modal-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3>Succès !</h3>
+            <p>La catégorie a été enregistrée avec succès.</p>
+            <button type="button" class="btn-modal-ok" (click)="fermerModalEtRediriger()">
+                ok
+            </button>
+        </div>
+
