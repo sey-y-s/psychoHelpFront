@@ -190,6 +190,11 @@ export const routes: Routes = [
         data: { title: 'Validation Conseils' }
       },
       {
+        path: 'conseils/:id',
+        loadComponent: () => import('./pages/admin/conseils/show-conseil/admin-show-conseil').then(m => m.AdminShowConseil),
+        data: { title: 'Validation Conseils' }
+      },
+      {
         path: 'tests',
         loadComponent: () => import('./pages/admin/test/test').then(m => m.Test),
         data: { title: 'Liste Test' }

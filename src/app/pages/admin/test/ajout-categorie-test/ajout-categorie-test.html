@@ -44,3 +44,15 @@
         </div>
     </form>
 
+    <div class="modal-overlay" *ngIf="showSuccessModal">
+        <div class="modal-card">
+            <div class="modal-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3>Succès !</h3>
+            <p>La catégorie a été enregistrée avec succès.</p>
+            <button type="button" class="btn-modal-ok" (click)="fermerModalEtRediriger()">
+                ok
+            </button>
+        </div>
+
