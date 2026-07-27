@@ -15,10 +15,6 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/public/logins/logins').then(m => m.Logins)
   },
-  // {
-  //   path: 'register',
-  //   loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
-  // },
   {
     path: 'register/psychologue',
     loadComponent: () => import('./pages/public/register/psychologue/psychologue').then(m => m.Psychologue)
@@ -173,11 +169,6 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('./pages/admin/dashboard/dashboard').then(m => m.Dashboard),
         data: { title: 'Dashboard' }
-      },
-      {
-        path: 'psychologues',
-        loadComponent: () => import('./pages/admin/psys/admin-psy-en-attente').then(m => m.AdminPsyEnAttente),
-        data: { title: 'Validation Psychologues' }
       },
       {
         path: 'psychologues',
