@@ -3,7 +3,6 @@ import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {CreneauService} from "../../../core/services/creneau.service";
 import {Creneau, CreneauRequest, UpdateCreneauRequest} from "../../../models/creneau.model";
@@ -14,7 +13,7 @@ import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
   selector: "app-creneaux",
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatProgressSpinnerModule, CreneauForm, CreneauList],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, CreneauForm, CreneauList],
   templateUrl: "./creneaux.html",
   styleUrl: "./creneaux.css",
 })
@@ -22,7 +21,6 @@ export class Creneaux implements OnInit {
 
   private readonly creneauService = inject(CreneauService);
   private readonly cdr = inject(ChangeDetectorRef);
-  private readonly snackBar = inject(MatSnackBar);
   private readonly not = inject(NotificationService)
 
   creneaux: Creneau[] = [];
@@ -81,22 +79,12 @@ export class Creneaux implements OnInit {
         )
         .subscribe({
           next: () => {
-            this.creneaux = this.creneaux.filter(
-                element => element.id !== creneau.id
-            );
-
-            this.afficherMessage(
-                'Créneau supprimé avec succès.'
-            );
+            this.creneaux = this.creneaux.filter(element => element.id !== creneau.id);
+            this.not.succes('Créneau supprimé avec succès.');
           },
           error: error => {
-            console.error(
-                'Erreur de suppression du créneau :',
-                error
-            );
-            this.afficherMessage(
-                error?.error?.message || 'La suppression a échoué.'
-            );
+            console.error('Erreur de suppression du créneau :', error);
+            this.not.erreur(error?.error?.message || 'La suppression a échoué.');
           }
         });
   }
@@ -117,16 +105,9 @@ export class Creneaux implements OnInit {
           },
 
           error: error => {
-            console.error(
-                'Erreur lors du chargement des créneaux :',
-                error
-            );
-
+            console.error('Erreur lors du chargement des créneaux :', error);
             this.creneaux = [];
-
-            this.afficherMessage(
-                'Impossible de charger les créneaux.'
-            );
+            this.not.erreur('Impossible de charger les créneaux.');
           }
         });
   }
@@ -144,24 +125,20 @@ export class Creneaux implements OnInit {
           next: creneau => {
             this.creneaux = [...this.creneaux, creneau];
             this.fermerFormulaire();
-
-            this.afficherMessage(
-                'Créneau ajouté avec succès.'
-            );
-          },
+            this.not.succes('Créneau ajouté avec succès.');          },
           error: error => {
             console.error('Erreur de création du créneau :', error);
             switch (error.status) {
               case 409:
-                this.afficherMessage(error.error.message);
+                this.not.erreur(error.error.message);
                 break;
 
               case 400:
-                this.afficherMessage(error.error.message);
+                this.not.erreur(error.error.message);
                 break;
 
               default:
-                this.afficherMessage('Une erreur est survenue. Veuillez réessayer.');
+                this.not.info('Une erreur est survenue. Veuillez réessayer.');
             }
           }
         });
@@ -183,28 +160,13 @@ export class Creneaux implements OnInit {
                     ? creneauModifie
                     : creneau
             );
-
             this.fermerFormulaire();
-
-            this.afficherMessage(
-                'Créneau modifié avec succès.'
-            );
+            this.not.succes('Créneau modifié avec succès.');
           },
-
           error: error => {
-            console.error(
-                'Erreur de modification du créneau :',
-                error
-            );
-
-            this.afficherMessage(
-                'La modification a échoué.'
-            );
+            console.error('Erreur de modification du créneau :', error);
+            this.not.erreur('La modification a échoué.');
           }
         });
-  }
-
-  private afficherMessage(message: string): void {
-    this.not.erreur(message);
   }
 }
