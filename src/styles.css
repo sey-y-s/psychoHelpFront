@@ -8,12 +8,11 @@
     --primary:#2C3E50;
     --secondary:#5D3520;
     --beige:#D7A790;
-     --beige-dark: #e8b8a2fb;
+    --beige-dark: #e8b8a2fb;
     --background:#f8f6f4;
     --white:#ffffff;
     --black: #000;
     --clair: #f5eae4;
-    --couleur-fond:#f8f6f4;
 }
 
 
@@ -48,14 +47,14 @@ body {
 
 /* Erreur (Rouge) */
 .snackbar-error {
-  --mat-sys-inverse-surface: #d32f2f;       /* Fond rouge */
-  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
-  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+  --mat-sys-inverse-surface: #d32f2f;
+  --mat-sys-inverse-on-surface: #ffffff;
+  --mat-sys-inverse-primary: #ffffff;
 }
 
 /* Info (Bleu) */
 .snackbar-info {
-  --mat-sys-inverse-surface: #0288d1;       /* Fond bleu */
-  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
-  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+  --mat-sys-inverse-surface: #0288d1;  
+  --mat-sys-inverse-on-surface: #ffffff;
+  --mat-sys-inverse-primary: #ffffff;
 }
