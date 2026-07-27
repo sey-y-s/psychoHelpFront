@@ -14,35 +14,18 @@
 
 
     <div class="cards-grid">
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="anxiete.png" alt="anxiete">
+        @for (category of listCategorie; track category.id) {
+            <div class="card">
+                <h4>{{ category.nomCategorie }}</h4>
+                <div class="">
+                {{category.description}}
+                </div>
+
             </div>
-            <span class="card-title">Anxiété</span>
-        </div>
-
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="depression.png" alt="anxiete" id="depression">
-            </div>
-            <span class="card-title">Dépression</span>
-        </div>
-
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="stress.png" alt="anxiete">
-            </div>
-            <span class="card-title">Stress</span>
-        </div>
-
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="humeur.png" alt="anxiete">
-            </div>
-            <span class="card-title">Humeur</span>
-        </div>
-
-
+        } @empty {
+            <!-- Message optionnel si la liste est vide -->
+            <p>Aucune catégorie disponible pour le moment.</p>
+        }
     </div>
 
     <div class="add-button-container">
