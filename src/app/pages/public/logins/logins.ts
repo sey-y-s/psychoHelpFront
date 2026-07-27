@@ -59,6 +59,7 @@ export class Logins {
     .subscribe({
       next: (res) => {
         this.notif.succes("Vous êtes connecté(e) avec succès.");
+
         // this.auth.sauvegarderUtilisateur(res);
         console.log(res);
         if (res.role == "ADMIN") {
