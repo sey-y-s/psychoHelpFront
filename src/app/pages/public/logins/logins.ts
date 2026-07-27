@@ -28,7 +28,7 @@ import { MatIconModule } from "@angular/material/icon";
   styleUrl: "./logins.css",
 })
 export class Logins {
-  enCours = false;
+  isLoading = false;
   forms: FormGroup;
   motdepassecache = true;
   messageErreur = '';
@@ -49,10 +49,6 @@ export class Logins {
   login() {
 
     if (this.forms.invalid) return;
-<<<<<<< HEAD:src/app/pages/logins/logins.ts
-    this.enCours = true;
-    this.auth.login(this.forms.value).subscribe({
-=======
     this.isLoading = true;
     this.auth.login(this.forms.value)
     .pipe(
@@ -61,7 +57,6 @@ export class Logins {
         })
       )
     .subscribe({
->>>>>>> 647b76932177b2b2a97a7ac84a5e0374047dc43b:src/app/pages/public/logins/logins.ts
       next: (res) => {
         this.notif.succes("Vous êtes connecté(e) avec succès.");
 
@@ -75,17 +70,11 @@ export class Logins {
           this.router.navigate(["/psy"]);
         }
       },
-<<<<<<< HEAD:src/app/pages/logins/logins.ts
-      error: () => {
-        this.enCours = false,
-          this.notif.erreur("Erreur lors de votre connection")
-=======
       error: (err) => {
         this.isLoading = false;
         this.messageErreur = err.error?.message || "Erreur lors de votre connexion";
         this.cdr.detectChanges();
         //this.notif.erreur(this.messageErreur);
->>>>>>> 647b76932177b2b2a97a7ac84a5e0374047dc43b:src/app/pages/public/logins/logins.ts
       }
 
     });

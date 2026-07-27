@@ -2,7 +2,7 @@
 .page-container {
   min-height: 100vh;
   width: 100%;
-  background: radial-gradient(circle, #D7A790 32%, #DBC3B9 55%);
+      background-color:#DBC3B9  ;
   padding: 20px;
   box-sizing: border-box;
    display: flex;
