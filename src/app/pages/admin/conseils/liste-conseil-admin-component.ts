@@ -36,10 +36,13 @@ export class ListeConseilAdminComponent implements OnInit {
       this.listConseils = [...this.tousLesConseils]
     } else if (newfiltre === 'attente'){
       this.listConseils = this.tousLesConseils.filter(c => c.status === "ENATTENTE")
+      console.log(this.listConseils)
     }else if (newfiltre === 'valider'){
       this.listConseils = this.tousLesConseils.filter(c => c.status === "VALIDER")
+      console.log(this.listConseils)
     }else if(newfiltre === 'refuser'){
       this.listConseils = this.tousLesConseils.filter(c => c.status === "REFUSER")
+      console.log(this.listConseils)
     }
 
   }
