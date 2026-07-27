@@ -8,12 +8,15 @@
     --primary:#2C3E50;
     --secondary:#5D3520;
     --beige:#D7A790;
-    --beige-dark: #e8b8a2fb;
+     --beige-dark: #e8b8a2fb;
     --background:#f8f6f4;
     --white:#ffffff;
     --black: #000;
     --clair: #f5eae4;
+    --couleur-fond:#f8f6f4;
 }
+
+
 
 * {
   margin: 0;
@@ -21,6 +24,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary: #2C3E50;
+  --secondary: #5D3520;
+  --beige: #D7A790;
+  --background: #F8F6F4;
+  --white: #fff;
+  --black: #000;
+}
 
 
 body {
