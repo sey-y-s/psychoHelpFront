@@ -10,8 +10,6 @@ export interface seanceInterfaceRequest2 {
   dateRdv: string;
 }
 export interface SeanceInterfaceResponse {
-  citoyenId: number;
-  statut:boolean
   creneauId: number;
   dateRdv: string;
 }

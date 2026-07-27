@@ -1,0 +1,152 @@
+<!-- Barre supérieure du Test -->
+<div class="test-header bg-white border-bottom py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <div class="icon-circle bg-light me-3">
+                <img src="tete1.png" alt="Icône du test" class="img-fluid" style="width: 40px; height: 40px;">
+            </div>
+            <div>
+                <h1 class="h5 mb-0 fw-bold">Passer un test</h1>
+                <p class="text-muted small mb-0">Répondez aux questions honnêtement pour obtenir une évaluation précise.
+                </p>
+            </div>
+        </div>
+        <button class="btn  btn-sm px-3 quitter">X Quitter le test</button>
+    </div>
+</div>
+
+<div class="container my-4">
+    <!-- Encadré Titre du Test sécurisé -->
+    @if (testInfo) {
+    <div class="card p-3 border-light shadow-sm mb-4">
+        <div class="d-flex align-items-start">
+            <div >
+                <img src="tete2.png" alt="Icône du test" class="img-fluid" style="width: 50px; height: 50px;">
+            </div>
+            <div>
+                <h2 class="h5 fw-bold mb-1">{{ testInfo.nom_test }}</h2>
+                <p class="text-muted small mb-0">{{ testInfo.description }}</p>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- Barre de Progression -->
+    <div class="mb-4 progr">
+        <div class="col-auto text-end align-self-end">
+            <span class="text-muted small">Question {{ indexActuel + 1 }} sur {{ totalQuestions }}</span>
+        </div>
+        <div class="col">
+            <span class="fw-bold small d-block mb-1">Progression de test</span>
+            <div class="progress" style="height: 6px;">
+                <div class="progress-bar bg-secondary" role="progressbar"
+                    [style.width.%]="questions.length > 0 ? ((indexActuel + 1) / totalQuestions) * 100 : 0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Corps Principal -->
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <!-- Sécurité cruciale : On attend que l'objet questions soit rempli depuis la BDD -->
+            @if (questions.length > 0 && questionActuelle) {
+            <div class="card border-1 shadow-sm overflow-hidden mb-4">
+                <div class="bg-beige-light  border-bottom question-header" >
+                    <span class="fw-bold  d-block small mb-1 quest">Question {{ indexActuel + 1 }}</span>
+                </div>
+                <h3 class="h6 fw-bold mb-0 lh-base  p-2">
+                        {{ questionActuelle.question }}
+                    </h3>
+                <div class="p-3 bg-white">
+                    @for (option of questionActuelle.choixMultiples; track option.id) {
+                    <label class="option-container d-flex align-items-center p-3 mb-2 border rounded cursor-pointer"
+                        [class.selected]="reponseSelectionnee === option.score">
+                        <input type="radio" [name]="'test-q-' + questionActuelle.id" [value]="option.score"
+                            [(ngModel)]="reponseSelectionnee" class="form-check-input me-3">
+                        <div>
+                            <span class="d-block fw-bold text-dark small">{{ option.choix }}</span>
+                        </div>
+                    </label>
+                    }
+
+                    <!-- Boutons de Navigation -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn-outline-dark px-4 py-2" (click)="precedente()"
+                            [disabled]="indexActuel === 0">
+                            <i class="bi bi-arrow-left me-2"></i> Précédente
+                        </button>
+                        <button class="btn btn-secondary px-4 py-2" (click)="suivante()"
+                            [disabled]="reponseSelectionnee === null">
+                            {{ indexActuel === totalQuestions - 1 ? 'Terminer' : 'Suivante' }}
+                            <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                        <!-- <button class="btn btn-secondary px-4 py-2" routerLink="resultats">resultats</button> -->
+                    </div>
+                </div>
+                <!-- Encadré Conseil Bas -->
+            <div class="card bg-beige-light border-0 p-3 rounded-4 shadow-sm card-conseil">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <img src="perso.png" alt="Icône du conseil" class="img-fluid" style="width: 180px; height: 160px;">
+                    </div>
+                    <div class="col">
+                        <h4 class="h5 fw-bold mb-1">Prenez votre temps</h4>
+                        <p class="text-muted  mb-0 lh-sm">
+                            Il n'y a pas de bonnes ou de mauvaises réponses,<br>Soyez honnête avec vous-même pour une
+                            évaluation précise.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            } @else {
+            <div class="text-center py-4 bg-white rounded border">
+                <div class="spinner-border text-secondary" role="status"></div>
+                <p class="text-muted mt-2 mb-0">Chargement des questions de la base de données...</p>
+            </div>
+            }
+
+            
+        </div>
+
+        <!-- Colonne Droite : Statistiques et Résumé -->
+        <div class="col-lg-4 ">
+            <div class="card p-3  shadow-sm bg-white mb-4 col-border-droite">
+                <h3 class="h6 fw-bold mb-3 border-bottom pb-2">Questions</h3>
+
+                <div class="d-flex justify-content-between align-items-center mb-2 small">
+                    <div class="carre-rep"></div>
+                    <span class="text-muted repondu">Répondu</span>
+                    <span class="fw-bold text-muted">{{ indexActuel }}/{{ totalQuestions }}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-4 small">
+                    <div class="carre-non-rep"></div>
+                    <span class="text-muted  non-repondu">Non répondu</span>
+                    <span class="fw-bold text-muted">{{ totalQuestions - indexActuel }}/{{ totalQuestions }}</span>
+                </div>
+
+                <h3 class="h6 fw-bold mb-2 border-bottom pb-2">Informations</h3>
+
+                <div class="mb-4">
+                    <span class="text-muted  d-block">Test d'auto-évaluation</span>
+                    <span class="fw-bold text-muted small">{{ testInfo?.nom_test || "Chargement..." }}</span>
+                </div>
+                <div class="mb-4">
+                    <span class="text-muted  d-block">Total questions</span>
+                    <span class="fw-bold text-muted small">{{ totalQuestions }}</span>
+                </div>
+                <div class="mb-4">
+                    <span class="text-muted  d-block">Catégorie de test</span>
+                    <span class="fw-bold text-muted small">{{ categorieTest.nomCategorie || 'Général' }}</span>
+                </div>
+
+                <div class="bg-beige-light p-3 border-conseil">
+                    <h4 class="h5 fw-bold mb-2 text-muted-conseil"><i class="bi bi-question-square me-2 text-muted-conseil"></i>Conseil</h4>
+                    <p class="mb-0">Lisez attentivement chaque question et répondez spontanément.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

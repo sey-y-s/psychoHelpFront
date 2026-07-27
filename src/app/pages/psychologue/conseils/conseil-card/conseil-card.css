@@ -35,7 +35,9 @@ td {
 
 /* Voir */
 .actions button:nth-child(1) {
-    background: #e3f2fd;
+    border-radius: 5px ;
+    border-color: white;
+    background-color: white;
 }
 
 .actions button:nth-child(1) mat-icon {
@@ -45,7 +47,10 @@ td {
 
 /* Modifier */
 .actions button:nth-child(2) {
-    background: #fff3e0;
+     border-radius: 5px;
+    border-color: white;
+        background-color: white;
+
 }
 
 .actions button:nth-child(2) mat-icon {
@@ -55,11 +60,13 @@ td {
 
 /* Supprimer */
 .actions button:nth-child(3) {
-    background: #ffebee;
-}
+    border-radius: 5px;
+    border-color: white;
+    background-color: white;
+    }
 
 .actions button:nth-child(3) mat-icon {
-    color: #d32f2f;
+    color: #f77886;
 }
 
 
@@ -71,3 +78,38 @@ td {
 .actions button:hover {
     transform: scale(1.12);
 }                                 
+
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  min-width: 100px;
+}
+
+/* En attente */
+.en-attente {
+  color: #856404;
+  background-color: #fff3cd;
+}
+
+/* Validé */
+.valider {
+  color: #155724;
+  background-color: #d4edda;
+}
+
+/* Refusé */
+.refuser {
+  color: #721c24;
+  background-color: #f8d7da;
+}
+.description {
+    max-width: 150px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

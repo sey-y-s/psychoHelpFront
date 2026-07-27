@@ -94,8 +94,9 @@ export class Notifications implements OnInit {
                         ? notificationModifiee
                         : element
                 );
-          },
+              this.notificationWebsocketService.decrementerNombreNonLues();
 
+          },
           error: error => {
             console.error(error);
 
@@ -126,8 +127,8 @@ export class Notifications implements OnInit {
                   ...notification,
                   lu: true
                 }));
-
-            this.afficherMessage(
+            this.notificationWebsocketService.definirNombreNonLues(0);
+              this.afficherMessage(
                 'Toutes les notifications ont été marquées comme lues.'
             );
           },

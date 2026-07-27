@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, output } from "@angular/core";
+import { Component, effect, inject, input, output, signal } from "@angular/core";
 import {
   FormControl,
   FormGroup,
@@ -22,50 +22,19 @@ export class ConseilForm {
 
   fermerClic = output<boolean>();
   ajoutReussiMisAjourClic = output<void>();
-  conseilId=input.required<number>()
   annuler() {
     this.fermerClic.emit(false);
   }
   form = new FormGroup({
     titre: new FormControl("", { validators: [Validators.required] }),
-    description: new FormControl("", { validators: [Validators.required] }),
+    description: new FormControl("", { validators: [Validators.required,Validators.maxLength(255)] }),
   });
 
- 
-  constructor(){
-            effect(()=>{
-              if(this.conseilId()){
-                    this.conseilService.getConseilById(this.conseilId()).subscribe({
-                         next:(response)=>{
-                            this.form.setValue({
-                                titre:response.titre,
-                                description:response.description
-                            })
-                         }
-                    })   
-              }
-            })
-  }
    soumission() {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       return;
     }
-    if(this.conseilId()){
-        this.conseilService.modifier(this.conseilId(),this.form.value as ConseilInfaceModelForPsyRequest).subscribe(
-          {
-               next: (response) => {
-                      this.ajoutReussiMisAjourClic.emit();
-
-                     console.log(response)
-                },
-                error: (error) => {
-                     console.log(error);
-                }
-          }
-        )
-
-    }else{
       this.conseilService.ajouterConseil(this.form.value as ConseilInfaceModelForPsyRequest)
       .subscribe({
         next: (response) => {
@@ -76,7 +45,7 @@ export class ConseilForm {
           console.log(error);
         },
       });
-    }
+    
     
   }
 }

@@ -9,27 +9,27 @@ export const routes: Routes = [
   // =========================================================================
   {
     path: '',
-    loadComponent: () => import('./pages/accueil/accueil').then(m => m.Accueil)
+    loadComponent: () => import('./pages/public/accueil/accueil').then(m => m.Accueil)
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/logins/logins').then(m => m.Logins)
+    loadComponent: () => import('./pages/public/logins/logins').then(m => m.Logins)
   },
-  {
-    path: 'register',
-    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
-  },
+  // {
+  //   path: 'register',
+  //   loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+  // },
   {
     path: 'register/psychologue',
-    loadComponent: () => import('./pages/register/psychologue/psychologue').then(m => m.Psychologue)
+    loadComponent: () => import('./pages/public/register/psychologue/psychologue').then(m => m.Psychologue)
   },
   {
     path: 'register/citoyen',
-    loadComponent: () => import('./pages/register/citoyen/citoyen').then(m => m.Citoyen)
+    loadComponent: () => import('./pages/public/register/citoyen/citoyen').then(m => m.Citoyen)
   },
   {
     path: 'register/admin',
-    loadComponent: () => import('./pages/register/admin/admin').then(m => m.Admin)
+    loadComponent: () => import('./pages/public/register/admin/admin').then(m => m.Admin)
   },
 
 
@@ -66,7 +66,29 @@ export const routes: Routes = [
       },
       {
         path: 'psychologues',
-        loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent)
+        loadComponent: () => import('./pages/citoyen/psychologues/psychologue-list.component').then(m => m.PsychologueListComponent),
+        data: { title: 'Psychologues' }
+      },
+      {
+        path: 'categories',
+        loadComponent: () => import('./pages/citoyen/categories/categorie-test').then(m => m.CategorieTestComponent),
+        data: { title: 'Categories' }
+      },
+
+      {
+        path: 'categories/:id/tests',
+        loadComponent: () => import('./pages/citoyen/tests/test').then(m => m.TestComponent),
+        data: { title: 'Tests disponibles' }
+      },
+      {
+        path: 'categories/:id/tests/:id',
+        loadComponent: () => import('./pages/citoyen/tests/show-test/tests').then(m => m.Tests),
+        data: { title: 'Test' }
+      },
+      {
+        path: 'categories/:id/tests/:id/resultats',
+        loadComponent: () => import('./pages/citoyen/resultat-test/resultat-test').then(m => m.ResultatTest),
+        data: { title: 'Test' }
       },
       {
         path: 'psychologues/:id',
@@ -143,9 +165,14 @@ export const routes: Routes = [
     data: { role: 'ADMIN' }, // Transmis au roleGuard
     children: [
       {
-        path: '',
-        redirectTo: 'conseils',
+        path: 'dashboard',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/admin/dashboard/dashboard').then(m => m.Dashboard),
+        data: { title: 'Dashboard' }
       },
       {
         path: 'psychologues',
@@ -160,15 +187,21 @@ export const routes: Routes = [
       {
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
-        data: { title: 'Validation Conseils' }
+        data: { title: 'Liste des conseils' }
       }
     ]
+  },
+
+  
+  {
+    path: '404',
+    loadComponent: () => import('./shared/page-not-found/page-not-found').then(m => m.PageNotFound)
   },
 
   // Redirection par défaut si la route n'existe pas
   // TODO : Page 404
   {
     path: '**',
-    redirectTo: 'psy'
+    redirectTo: '404'
   }
 ];
