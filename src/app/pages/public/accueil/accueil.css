@@ -202,7 +202,58 @@ align-self: flex-end;
 background:#c98f73;
     cursor:pointer;
   }
+  
+.container_principal_img {
+    width: 551px;
+    height: 746px;
+    position: relative;
+        overflow: hidden;
 
+}
+
+.container_principal_img img {
+    width: 551px;
+    height: 746px;
+    position: absolute;
+}
+
+.img1 {
+    animation-name:image1 ;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    transition: all;
+    transition-duration: 200ms;
+}
+
+.img2 {
+    animation-name:image2 ;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    transition: all;
+    transition-duration: 200ms;
+}
+
+
+@keyframes image1 {
+    0%, 50% {
+        opacity: 1;
+    }
+
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes image2 {
+    0%, 50% {
+        opacity: 0;
+    }
+
+    51%, 100% {
+        opacity: 1;
+    }
+}
   /* Responsivite au niveau des tablettes */
 @media screen and (max-width: 992px) {
 
