@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
 import { MainLayout } from "./layout/main-layout/main-layout";
+import {CardValidationConseil} from "./pages/admin/conseils/card-validation/card-validation";
+import {AdminShowConseil} from "./pages/admin/conseils/show-conseil/admin-show-conseil";
 
 export const routes: Routes = [
   // =========================================================================
@@ -187,6 +189,11 @@ export const routes: Routes = [
       {
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
+        data: { title: 'Validation Conseils' }
+      },
+      {
+        path: 'conseils/:id',
+        loadComponent: () => import('./pages/admin/conseils/show-conseil/admin-show-conseil').then(m => m.AdminShowConseil),
         data: { title: 'Validation Conseils' }
       },
       {

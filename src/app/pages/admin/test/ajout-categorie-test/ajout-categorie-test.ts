@@ -2,20 +2,23 @@ import { Component, OnInit } from "@angular/core";
 import { CategorieTestService } from "../../../../core/services/categorie-test.service";
 import { CommonModule } from "@angular/common";
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: "app-ajout-categorie-test",
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   standalone: true,
   templateUrl: "./ajout-categorie-test.html",
   styleUrl: "./ajout-categorie-test.css",
 })
 export class AjoutCategorieTest implements OnInit {
   categoryForm!: FormGroup;
+  showSuccessModal = false;
 
   constructor(
       private categorieTestService: CategorieTestService,
       private fb: FormBuilder,
+      private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +48,7 @@ export class AjoutCategorieTest implements OnInit {
       this.categorieTestService.creerCategorie(formData).subscribe({
         next: (response) => {
           console.log('Catégorie enregistrée avec succès !', response);
+          this.showSuccessModal = true;
           this.categoryForm.reset({
             nomCategorie: '',
             description: '',
@@ -57,5 +61,10 @@ export class AjoutCategorieTest implements OnInit {
         }
       });
     }
+  }
+
+  fermerModalEtRediriger(): void {
+    this.showSuccessModal = false;
+    this.router.navigate(['admin/tests/']);
   }
 }
