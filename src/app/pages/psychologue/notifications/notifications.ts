@@ -1,12 +1,13 @@
 import {ChangeDetectorRef, Component, DestroyRef, inject, OnInit} from "@angular/core";
-import {NotificationService} from "../../../core/services/NotificationService";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {FiltreNotification, Notification} from "../../../models/notification.model";
-import {finalize, Subject} from "rxjs";
+import {finalize} from "rxjs";
 import {NotificationListe} from "./notification-liste/notification-liste";
 import {NotificationFiltres} from "./notification-filtres/notification-filtres";
 import {NotificationWebsocketService} from "../../../core/services/notification-websocket.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {NotificationService} from "../../../core/services/notification.service";
+import {NotificationServices} from "../../../core/services/notification-service";
+
 
 @Component({
   selector: "app-notifications",
@@ -16,11 +17,11 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 })
 export class Notifications implements OnInit {
 
-  private  readonly notificationService = inject(NotificationService);
-  private readonly snackBar = inject(MatSnackBar);
+  private  readonly notificationService = inject(NotificationServices);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly not = inject(NotificationService)
 
-  private readonly notificationWebsocketService = inject(NotificationWebsocketService);
+    private readonly notificationWebsocketService = inject(NotificationWebsocketService);
   private readonly destroyRef = inject(DestroyRef)
 
   notifications: Notification[] = [];
@@ -31,7 +32,6 @@ export class Notifications implements OnInit {
 
   ngOnInit(): void {
     this.chargerNotifications();
-
     this.notificationWebsocketService.notification$
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(notification => {
@@ -99,10 +99,7 @@ export class Notifications implements OnInit {
           },
           error: error => {
             console.error(error);
-
-            this.afficherMessage(
-                'Impossible de marquer la notification comme lue.'
-            );
+              this.not.erreur(error?.error?.message || 'Impossible de marquer la notification comme lue.');
           }
         });
   }
@@ -128,16 +125,11 @@ export class Notifications implements OnInit {
                   lu: true
                 }));
             this.notificationWebsocketService.definirNombreNonLues(0);
-              this.afficherMessage(
-                'Toutes les notifications ont été marquées comme lues.'
-            );
+              this.not.succes('Toutes les notifications ont été marquées comme lues.');
           },
           error: error => {
             console.error(error);
-
-            this.afficherMessage(
-                'Impossible de marquer toutes les notifications comme lues.'
-            );
+            this.not.erreur('Impossible de marquer toutes les notifications comme lues.');
           }
         });
   }
@@ -156,23 +148,10 @@ export class Notifications implements OnInit {
             this.notifications = data ?? [];
           },
           error: error => {
-            console.error(
-                'Erreur lors du chargement des notifications :',
-                error
-            );
+            console.error('Erreur lors du chargement des notifications :', error);
             this.notifications = [];
-            this.afficherMessage(
-                'Impossible de charger les notifications.'
-            );
+            this.not.erreur('Impossible de charger les notifications.');
           }
         });
-  }
-
-  private afficherMessage(message: string): void {
-    this.snackBar.open(message, 'Fermer', {
-      duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
   }
 }
