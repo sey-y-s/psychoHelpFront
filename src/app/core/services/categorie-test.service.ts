@@ -30,4 +30,8 @@ export class CategorieTestService {
     getByCategorie(id: number): Observable<categorieTest[]> {
         return this.http.get<categorieTest[]>(`${this.apiUrl}/categories/${id}`, { withCredentials: true });
     }
+
+    creerCategorie(categorie: categorieTest): Observable<categorieTest> {
+        return this.http.post<categorieTest>("http://localhost:8080/api/categories", categorie);
+    }
 }

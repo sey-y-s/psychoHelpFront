@@ -15,12 +15,22 @@
     --clair: #f5eae4;
 }
 
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --primary: #2C3E50;
+  --secondary: #5D3520;
+  --beige: #D7A790;
+  --background: #F8F6F4;
+  --white: #fff;
+  --black: #000;
+}
 
 
 body {
@@ -37,14 +47,14 @@ body {
 
 /* Erreur (Rouge) */
 .snackbar-error {
-  --mat-sys-inverse-surface: #d32f2f;       /* Fond rouge */
-  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
-  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+  --mat-sys-inverse-surface: #d32f2f;
+  --mat-sys-inverse-on-surface: #ffffff;
+  --mat-sys-inverse-primary: #ffffff;
 }
 
 /* Info (Bleu) */
 .snackbar-info {
-  --mat-sys-inverse-surface: #0288d1;       /* Fond bleu */
-  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
-  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+  --mat-sys-inverse-surface: #0288d1;  
+  --mat-sys-inverse-on-surface: #ffffff;
+  --mat-sys-inverse-primary: #ffffff;
 }
