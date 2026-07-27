@@ -6,36 +6,48 @@
   <title>Document</title>
 </head>
 <body>
+
+    
+  <input
+  class="inputRecherche"
+    matInput
+    [(ngModel)]="rechercherText"
+    placeholder="Rechercher un conseil..." />
+
+
+   
 <div class="cards-container">
 
-  @for (element of conseils; track element.id) {
+  @if (filtrageConseil.length > 0) {
 
-    <div class="card">
+    @for (element of filtrageConseil; track element.id ) {
 
-      <h3>{{ element.titre }}</h3>
+      <div class="card">
 
-      <p>
-        <strong>Auteur :</strong> {{ element.auteur }}
-      </p>
+        <h3>{{ element.titre }}</h3>
 
-      <p>
-<strong>Date :</strong> {{ element.datePublication }}
+        <p><strong>Auteur :</strong> {{ element.auteur }}</p>
 
-      </p>
+        <p><strong>Date :</strong> {{ element.datePublication }}</p>
 
-      <p>
-        {{ element.description | slice:0:100 }}...
-      </p>
+        <p>{{ element.description | slice:0:50 }}...</p>
 
-      <button (click)="show(element)">
-        Voir plus
-      </button>
+        <button (click)="show(element)">
+          Voir plus
+        </button>
 
-    </div>
+      </div>
+
+    }
+
+  } @else {
+
+    <h1>Aucun conseil trouvé</h1>
 
   }
 
 </div>
+
   
 </body>
 </html>
