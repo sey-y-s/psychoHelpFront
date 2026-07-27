@@ -32,6 +32,6 @@ export class CategorieTestService {
     }
 
     creerCategorie(categorie: categorieTest): Observable<categorieTest> {
-        return this.http.post<categorieTest>("/api/categories", categorie);
+        return this.http.post<categorieTest>("http://localhost:8080/api/categories", categorie);
     }
 }

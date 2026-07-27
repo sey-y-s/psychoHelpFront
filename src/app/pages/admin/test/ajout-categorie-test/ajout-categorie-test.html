@@ -1,6 +1,5 @@
 
-
-    <form class="form-card" >
+    <form class="form-card" [formGroup]="categoryForm" (ngSubmit)="onSubmit()" >
 
         <div class="form-group">
             <label for="category-name">Nom</label>
@@ -9,6 +8,7 @@
                     id="category-name"
                     placeholder="Ex : Donnez le nom de la categorie"
                     class="form-control"
+                    formControlName="nomCategorie"
             >
         </div>
 
@@ -19,6 +19,7 @@
                     placeholder="Faite une description de la catégorie"
                     class="form-control textarea-control"
                     rows="6"
+                    formControlName="description"
             ></textarea>
         </div>
 
@@ -30,12 +31,13 @@
                     value="11/07/2026"
                     readonly
                     class="form-control date-control"
+                    formControlName="dateAjout"
             >
         </div>
 
         <div class="form-actions">
             <button type="button" class="btn-cancel">Annuler</button>
-            <button type="submit" class="btn-submit">
+            <button type="submit" class="btn-submit" [disabled]="categoryForm.invalid">
                 <i class="fa-solid fa-circle-plus"></i>
                 Ajouter
             </button>
