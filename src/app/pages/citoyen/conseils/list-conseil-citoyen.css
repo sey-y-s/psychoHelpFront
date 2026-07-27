@@ -5,11 +5,10 @@ body{
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   padding: 20px;
+  justify-content: space-around;
 }
 
-/* une carte */
 .card {
   width: 300px;
   background-color: white;
@@ -21,19 +20,44 @@ body{
   flex-direction: column;
 }
 
-/* titre */
+.inputRecherche {
+  width: 90%;
+  padding: 10px;
+  margin:10px 0 0 50px;
+  
+  border: 2px solid #D7A790;
+  border-radius: 10px;
+
+  font-size: 16px;
+  color: #2C3E50;
+
+  background-color: white;
+}
+
+
+
+/* quand on clic dans l'input il change sa couleur et supprime  le contour de la bordure bordure*/
+
+.inputRecherche:focus {
+  border-color: #c98f73;
+  outline: none;
+}
+
+
+
+
 .card h3 {
    color: #D7A790;
   margin-bottom: 10px;
 }
 
-/* texte */
+
 .card p {
   margin: 5px 0;
    color: #2C3E50;
 }
 
-/* bouton */
+
 .card button {
   margin-top: 15px;
   padding: 10px;

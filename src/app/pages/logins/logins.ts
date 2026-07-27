@@ -35,7 +35,7 @@ import { MatIconModule } from "@angular/material/icon";
   styleUrl: "./logins.css",
 })
 export class Logins {
-  isLoading = false;
+  enCours = false;
   forms: FormGroup;
   motdepassecache = true;
 
@@ -55,10 +55,11 @@ export class Logins {
   login() {
 
     if (this.forms.invalid) return;
-    this.isLoading = true;
+    this.enCours = true;
     this.auth.login(this.forms.value).subscribe({
       next: (res) => {
         this.notif.succes("Vous êtes connecté(e) avec succès.");
+
         // this.auth.sauvegarderUtilisateur(res);
         console.log(res);
         if (res.role == "ADMIN") {
@@ -70,7 +71,7 @@ export class Logins {
         }
       },
       error: () => {
-        this.isLoading = false,
+        this.enCours = false,
           this.notif.erreur("Erreur lors de votre connection")
       }
 

@@ -42,7 +42,6 @@
   <section class="container">
 
 
-    <!-- Carte connexion -->
     <section class="card">
 
 
@@ -108,11 +107,12 @@
 
 
 
-        @if(isLoading){
+        @if(enCours){
 
           <mat-progress-bar mode="query">
-            Chargement ..........
           </mat-progress-bar>
+            <p>Chargement ..........</p>
+
 
         }
 
