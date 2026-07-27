@@ -38,7 +38,6 @@ export class AdminShowConseil implements OnInit{
         this.conseil = conseil;
         //this.estValide = conseil.status === "VALIDER";
         this.statutActuel = conseil.status;
-
         this.cdRef.markForCheck();
       },
       error: (err: any) => console.error(err)

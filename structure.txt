@@ -199,7 +199,6 @@ INSERT INTO psychologues (id, status, description, diplome_path, cv_path, etat, 
 
 INSERT INTO citoyens (utilisateur_id) VALUES (6), (7), (8), (9), (10);
 
-
 INSERT INTO categories_test (id, nom_categorie, description) VALUES
 (1, 'Anxiété & Stress', 'Évaluations centrées sur les troubles anxieux et la perception du stress au quotidien.'),
 (2, 'Troubles de l Humeur', 'Questionnaires permettant de détecter les symptômes dépressifs.');
@@ -227,7 +226,6 @@ INSERT INTO resultats_test (id, score, niveau, description, citoyen_id, test_id)
 (1, 11, 'Anxiété modérée', 'Résultat indiquant un niveau de stress et d anxiété modéré.', 6, 1),
 (2, 3, 'Anxiété minimale', 'État d anxiété normal et sous contrôle.', 7, 1);
 
-
 INSERT INTO creneaux (id, jours, heure_debut, heure_fin, statut, psychologue_id) VALUES
 (1, 'Lundi', '09:00:00', '10:00:00', 1, 2),
 (2, 'Lundi', '10:30:00', '11:30:00', 0, 2),
@@ -236,7 +234,6 @@ INSERT INTO creneaux (id, jours, heure_debut, heure_fin, statut, psychologue_id)
 INSERT INTO seances (id, date, date_rdv, statut, citoyen_id, creneau_id) VALUES
 (1, '2025-02-15', '2025-02-24', 'CONFIRMER', 6, 2),
 (2, '2025-02-18', '2025-02-26', 'TERMINER', 7, 3);
-
 
 INSERT INTO conseils (id, titre, description, status, date_publication, auteur, psy_id) VALUES
 (1, '5 techniques pour calmer l anxiété', 'Découvrez la respiration carrée et l ancrage pour apaiser l esprit rapidement.', 'VALIDER', '2025-02-01', 'Dr. Aïssata Maïga', 2),

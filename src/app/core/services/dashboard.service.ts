@@ -2,7 +2,7 @@ import {inject, Injectable} from "@angular/core";
 import {SeanceService} from "./seance.service";
 import {CreneauService} from "./creneau.service";
 import {ConseilService} from "./conseil.service";
-import {NotificationService} from "./NotificationService";
+import {NotificationServices} from "./notification-service";
 import {forkJoin, map, Observable} from "rxjs";
 import {DashboardData} from "../../models/dashboard.model";
 import {RendezVous} from "../../models/rendez-vous.model";
@@ -15,7 +15,7 @@ export class DashboardService {
     private readonly seanceService = inject(SeanceService);
     private readonly creneauService = inject(CreneauService);
     private readonly conseilService = inject(ConseilService);
-    private readonly notificationService = inject(NotificationService);
+    private readonly notificationService = inject(NotificationServices);
 
     chargerDashboard(): Observable<DashboardData> {
         return forkJoin({
