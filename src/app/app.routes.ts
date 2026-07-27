@@ -187,12 +187,27 @@ export const routes: Routes = [
       {
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
-        data: { title: 'Liste des conseils' }
+        data: { title: 'Validation Conseils' }
+      },
+      {
+        path: 'conseils/:id',
+        loadComponent: () => import('./pages/admin/conseils/show-conseil/admin-show-conseil').then(m => m.AdminShowConseil),
+        data: { title: 'Validation Conseils' }
+      },
+      {
+        path: 'tests',
+        loadComponent: () => import('./pages/admin/test/test').then(m => m.Test),
+        data: { title: 'Liste Test' }
+      },
+      {
+        path: 'tests/ajout',
+        loadComponent: () => import('./pages/admin/test/ajout-categorie-test/ajout-categorie-test').then(m => m.AjoutCategorieTest),
+        data: { title: 'Ajout de catégories de tests' }
       }
     ]
   },
 
-  
+
   {
     path: '404',
     loadComponent: () => import('./shared/page-not-found/page-not-found').then(m => m.PageNotFound)
