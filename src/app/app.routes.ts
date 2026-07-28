@@ -198,6 +198,11 @@ export const routes: Routes = [
         path: 'tests/ajout',
         loadComponent: () => import('./pages/admin/test/ajout-categorie-test/ajout-categorie-test').then(m => m.AjoutCategorieTest),
         data: { title: 'Ajout de catégories de tests' }
+      },
+      {
+        path: 'questions',
+        loadComponent: () => import('./pages/admin/question/question').then(m => m.Question),
+        data: { title: 'Liste des questions' }
       }
     ]
   },
