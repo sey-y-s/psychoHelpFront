@@ -546,7 +546,7 @@ tbody tr:hover {
   to { opacity: 1; }
 }
 
-.modal {
+.psy-modal {
   background: white;
   border-radius: 20px;
   max-width: 750px;
@@ -862,7 +862,7 @@ tbody tr:hover {
     justify-content: center;
   }
 
-  .modal {
+  .psy-modal {
     max-width: 100%;
     width: 98%;
     max-height: 95vh;
