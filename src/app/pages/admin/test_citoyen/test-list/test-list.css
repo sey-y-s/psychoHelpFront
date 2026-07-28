@@ -1,0 +1,118 @@
+.header-list{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    gap:20px;
+}
+
+/* Recherche */
+.search-box{
+    flex:1;
+    display:flex;
+    align-items:center;
+    border:2px solid #d7a58b;
+    border-radius:12px;
+    padding:10px 15px;
+    background:#fff;
+}
+
+.search-box mat-icon{
+    color:#8b5a3c;
+    margin-right:10px;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:transparent;
+}
+
+/* Bouton */
+.btn-ajouter{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#8b5a3c;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px 20px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-ajouter:hover{
+    background:#6f442d;
+}
+
+.btn-ajouter mat-icon{
+    font-size:20px;
+}
+
+.table-container{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#d9a58b ;
+}
+
+th{
+    color:white;
+    text-align:left;
+    padding:18px;
+    font-weight:bold;
+}
+
+td{
+    padding:18px;
+    border-bottom:1px solid #eee;
+}
+
+.nom-test{
+    font-weight:bold;
+}
+
+.badge{
+    background:#f4e7df;
+    color:#6b3b25;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.etat{
+    background:#c8f3da;
+    color:#1d7c4b;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.actions{
+    text-align:center;
+}
+
+.actions button{
+    background:#f2c3a9;
+    color:white;
+    border-radius:8px;
+    border: none;
+}
+
+.actions button:hover{
+    background:#e4b294;
+}

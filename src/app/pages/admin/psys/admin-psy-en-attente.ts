@@ -4,6 +4,10 @@ import { FormsModule } from "@angular/forms";
 import { PsychologueAdminService } from "../../../core/services/psychologue-admin.service";
 import { Psychologue } from "../../../models/psyForAdmin.model";
 import { MatIconModule } from "@angular/material/icon";
+import {NotificationService} from "../../../core/services/notification.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmationDialog} from "../../../shared/dialogs/confirmation-dialog/confirmation-dialog";
+import {RefusDialog} from "../../../shared/dialogs/refus-dialog/refus-dialog";
 
 @Component({
   selector: "app-admin-psy-en-attente",
@@ -17,14 +21,18 @@ export class AdminPsyEnAttente {
   psysListe: Psychologue[] = [];
   psychologuesFiltres: Psychologue[] = [];
   chargement = false;
-  
+
+  filtreActif: 'TOUS' | 'ENATTENTE' | 'VALIDER' | 'REFUSER' = 'ENATTENTE';
   // Modal
   modalOuvert = false;
   psychologueSelectionne: Psychologue | null = null;
 
   constructor(
     private psychologueAdminService: PsychologueAdminService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private notificationService: NotificationService,
+    private dialog: MatDialog
+
   ) {}
 
   ngOnInit(): void {
@@ -40,17 +48,13 @@ export class AdminPsyEnAttente {
       next: (psy: Psychologue[]) => {
         this.psysListe = psy;
         // Filtrer uniquement ceux en attente
-        this.psysEnAttente = psy.filter(c => c.status == 'ENATTENTE');
-        this.psychologuesFiltres = [...this.psysEnAttente];
+        this.psysEnAttente = psy.filter(c => c.status === 'ENATTENTE');
+        this.changerFiltre(this.filtreActif);
         this.chargement = false;
         this.cdr.detectChanges();
-        
-        console.log("Total psychologues:", this.psysListe.length);
-        console.log("En attente:", this.psysEnAttente.length);
-        console.log("Validés:", this.psysListe.length - this.psysEnAttente.length);
       },
       error: (err) => {
-        console.error('❌ Erreur:', err);
+        console.error('Erreur:', err);
         this.chargement = false;
       }
     });
@@ -76,42 +80,92 @@ export class AdminPsyEnAttente {
   /**
    * VALIDER UN PSYCHOLOGUE
    */
-  validerPsychologue(id: number): void {
-    if (confirm('✅ Valider ce psychologue ?')) {
-      this.chargement = true;
-      this.psychologueAdminService.valider(id).subscribe({
-        next: () => {
-          alert('✅ Psychologue validé avec succès !');
-          this.psyEnAttenteTest();
-        },
-        error: (err) => {
-          console.error('Erreur validation:', err);
-          alert('❌ Erreur lors de la validation');
-          this.chargement = false;
+  validerPsychologue(id:number):void{
+    const dialogRef=this.dialog.open(
+        ConfirmationDialog,
+        {
+          width:'420px',
+          data:{
+            titre:'Validation',
+            message:'Voulez-vous vraiment valider ce psychologue ?',
+            bouton:'Valider'
+          }
         }
-      });
+    );
+    dialogRef.afterClosed().subscribe(result=>{
+      if(!result){
+        return;
+      }
+      this.chargement=true;
+      this.psychologueAdminService
+          .valider(id)
+          .subscribe({
+            next:()=>{
+              this.notificationService.succes(
+                  "Psychologue validé avec succès."
+              );
+              this.psyEnAttenteTest();
+            },
+            error:()=>{
+              this.notificationService.erreur(
+                  "Erreur lors de la validation."
+              );
+              this.chargement=false;
+            }
+          });
+    });
+
+  }
+
+  changerFiltre(filtre: 'TOUS' | 'ENATTENTE' | 'VALIDER' | 'REFUSER') {
+    this.filtreActif = filtre;
+
+    switch (filtre) {
+      case 'TOUS':
+        this.psychologuesFiltres = [...this.psysListe];
+        break;
+
+      case 'ENATTENTE':
+        this.psychologuesFiltres = this.psysListe.filter(p => p.status === 'ENATTENTE');
+        break;
+
+      case 'VALIDER':
+        this.psychologuesFiltres = this.psysListe.filter(p => p.status === 'VALIDER');
+        break;
+
+      case 'REFUSER':
+        this.psychologuesFiltres = this.psysListe.filter(p => p.status === 'REFUSER');
+        break;
     }
   }
 
   /**
    * REFUSER UN PSYCHOLOGUE
    */
-  refuserPsychologue(id: number): void {
-    const motif = prompt('❌ Motif du refus :');
-    if (motif !== null) {
-      this.chargement = true;
-      this.psychologueAdminService.annuler(id).subscribe({
-        next: () => {
-          alert('❌ Psychologue refusé');
-          this.psyEnAttenteTest();
-        },
-        error: (err) => {
-          console.error('Erreur refus:', err);
-          alert('❌ Erreur lors du refus');
-          this.chargement = false;
-        }
-      });
-    }
+  refuserPsychologue(id:number):void{
+    const dialogRef=this.dialog.open(RefusDialog);
+    dialogRef.afterClosed().subscribe(motif=>{
+      if(!motif){
+        return;
+      }
+      this.chargement=true;
+      this.psychologueAdminService
+          .annuler(id,motif)
+          .subscribe({
+            next:()=>{
+              this.notificationService.info(
+                  "Le psychologue a été refusé."
+              );
+              this.psyEnAttenteTest();
+            },
+            error:()=>{
+              this.notificationService.erreur(
+                  "Erreur lors du refus."
+              );
+              this.chargement=false;
+            }
+          });
+    });
   }
 
   /**
