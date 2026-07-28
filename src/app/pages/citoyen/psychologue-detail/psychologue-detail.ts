@@ -46,7 +46,7 @@ export class PsychologueDetail implements OnInit {
         if (res && res.id !== undefined && res.id !== null) {
           this.psychologue = res;
           this.urlImage = "https://api.dicebear.com/10.x/initials/svg?seed="
-       + this.psychologue?.prenom  + " "+ this.psychologue?.nom;
+       + this.psychologue?.prenom  + " "+ this.psychologue?.nom +"&backgroundColor=cccccc&";
 
        this.cdr.detectChanges(); 
         } else {
