@@ -27,35 +27,43 @@
     </thead>
 
     <tbody>
-      @for(test of filtrageTest; track test.id) {
-      <tr>
+      @for (test of filtrageTest; track test.id) {
 
+        <tr>
 
-        <td class="nom-test">
-          {{ test.nom_test }}
-        </td>
+          <td class="nom-test">
+            {{ test.nom_test }}
+          </td>
 
-        <td>
-          <span class="badge">
-            {{ test.description }}
-          </span>
-        </td>
+          <td>
+            <span class="badge">
+              {{ test.description }}
+            </span>
+          </td>
 
-        <td>
-          <span class="etat">
-            {{ test.etat }}
-          </span>
-        </td>
+          <td>
+            @if (test.etat == true) {
+              <span class="etat">
+                Active
+              </span>
+            } @else {
+              
+                <span class="etatI">
+                Inactive
+              </span>
+            }
+          </td>
 
-        <td class="actions">
+          <td class="actions">
 
-          <button mat-icon-button (click)="modifier(test)">
-            <mat-icon>edit</mat-icon>
-          </button>
+            <button mat-icon-button (click)="modifier(test)">
+              <mat-icon>edit</mat-icon>
+            </button>
 
-        </td>
+          </td>
 
-      </tr>
+        </tr>
+
       }
     </tbody>
   </table>

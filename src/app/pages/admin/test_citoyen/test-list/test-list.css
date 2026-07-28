@@ -101,6 +101,13 @@ td{
     border-radius:20px;
     font-size:14px;
 }
+.etatI{
+    background:rgb(212, 148, 148);
+    color:white;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:14px;
+}
 
 .actions{
     text-align:center;

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angula
 import { ActivatedRoute, Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { TestCitoyenService } from "../../../../core/services/test-citoyen.service";
+import { NotificationService } from "../../../../core/services/notification.service";
 
 
 @Component({
@@ -21,7 +22,8 @@ export class TestAdd {
     private fb: FormBuilder,
     private testService: TestCitoyenService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notif:NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +51,7 @@ export class TestAdd {
       .subscribe({
         next: (data) => {
           console.log("Test ajouté :", data);
+                          this.notif.succes("Test est ajouté avec succes");
 
           this.router.navigate([
             "/admin/tests",

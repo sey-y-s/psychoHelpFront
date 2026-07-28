@@ -5,6 +5,7 @@ import { TestCitoyenService } from "../../../../core/services/test-citoyen.servi
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import {  ChangeDetectorRef } from "@angular/core";
+import { NotificationService } from "../../../../core/services/notification.service";
 
 
 @Component({
@@ -26,6 +27,7 @@ categorieId!: number;
     private testService: TestCitoyenService,
     private router: Router,
         private cdRef: ChangeDetectorRef,
+        private notif:NotificationService
 
   ) {}
 
@@ -57,6 +59,7 @@ categorieId!: number;
       next: (data) => {
         console.log("Test modifié :", data);
                 this.cdRef.detectChanges();
+                this.notif.succes("Test modifié avec succes");
 
 this.router.navigate([
   "/admin/tests",
@@ -66,6 +69,7 @@ console.log("verif"+this.categorieId)  },
 
       error: (err) => {
         console.log(err);
+        this.notif.erreur("Erreur lors de le modification du test")
       },
     });
   }
