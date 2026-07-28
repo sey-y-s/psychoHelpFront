@@ -1,7 +1,3 @@
-/* ============================================================ */
-/* ====== CONTENEUR PRINCIPAL ====== */
-/* ============================================================ */
-
 .container {
   padding: 24px;
   max-width: 1400px;
@@ -10,10 +6,6 @@
   background: var(--clair);
   min-height: 100vh;
 }
-
-/* ============================================================ */
-/* ====== EN-TÊTE ====== */
-/* ============================================================ */
 
 .header {
   display: flex;
@@ -73,17 +65,16 @@
   box-shadow: 0 4px 12px rgba(26, 35, 50, 0.3);
 }
 
-/* ============================================================ */
-/* ====== STATISTIQUES ====== */
-/* ============================================================ */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+.filters-section{
+  margin:25px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
 }
 
+<<<<<<< HEAD
 .stat-card {
   background: white;
   padding: 20px 24px;
@@ -111,61 +102,95 @@
 
 .stat-card.validated {
   border-left-color: #D7A790;
+=======
+.filter-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:18px;
+  font-weight:600;
+  color:#444;
 }
 
-.stat-icon {
-  font-size: 32px;
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f3f4f6;
+.filter-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
-.stat-card.total .stat-icon {
-  background: #eff6ff;
+.filter-btn{
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 18px;
+
+  border-radius:30px;
+  border:2px solid transparent;
+
+  background:#fff;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+  font-weight:600;
 }
 
-.stat-card.pending .stat-icon {
-  background: #fef3c7;
+.filter-btn:hover{
+  transform:translateY(-2px);
 }
 
-.stat-card.validated .stat-icon {
-  background: #d1fae5;
+.count{
+
+  padding:2px 8px;
+
+  border-radius:15px;
+
+  background:#f2f2f2;
+
+  font-size:12px;
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 }
 
-.stat-info {
-  display: flex;
-  flex-direction: column;
+.filter-btn.all{
+  border-color:#3b82f6;
+  color:#3b82f6;
 }
 
-.stat-number {
-  font-size: 30px;
-  font-weight: 700;
-  color: #1a2332;
+.filter-btn.pending{
+  border-color:#f59e0b;
+  color:#f59e0b;
 }
 
-.stat-label {
-  font-size: 14px;
-  color: #6b7280;
-  font-weight: 500;
+.filter-btn.success{
+  border-color:#10b981;
+  color:#10b981;
 }
 
-/* ============================================================ */
-/* ====== RECHERCHE ====== */
-/* ============================================================ */
-
-.search-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 16px;
-  flex-wrap: wrap;
+.filter-btn.danger{
+  border-color:#ef4444;
+  color:#ef4444;
 }
 
+.filter-btn.active{
+  color:white;
+}
+
+.filter-btn.all.active{
+  background:#3b82f6;
+}
+
+.filter-btn.pending.active{
+  background:#f59e0b;
+}
+
+.filter-btn.success.active{
+  background:#10b981;
+}
+
+<<<<<<< HEAD
 .search-box {
   flex: 1;
   min-width: 280px;
@@ -175,14 +200,18 @@
   display: flex;
   align-items: center;
   padding: 0 16px;
+=======
+.filter-btn.danger.active{
+  background:#ef4444;
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 }
 
-.search-icon {
-  font-size: 18px;
-  color: #9ca3af;
-  margin-right: 10px;
+.filter-btn.active .count{
+  background:rgba(255,255,255,.25);
+  color:white;
 }
 
+<<<<<<< HEAD
 .search-input {
   flex: 1;
   padding: 12px 8px;
@@ -231,6 +260,8 @@
 /* ====== TABLEAU ====== */
 /* ============================================================ */
 
+=======
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 .table-container {
   background: white;
   border-radius: 16px;
@@ -276,11 +307,14 @@ tbody td:nth-last-child(2) {
   width: 15%;
 }
 
-tbody td:last-child {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 8px;
+thead th:last-child,
+tbody td:last-child{
+  width:160px;
+  text-align:center;
+}
+
+tbody td:last-child{
+  display:table-cell;
 }
 
 thead th {
@@ -306,9 +340,6 @@ tbody tr:hover {
   background: #f8f9fc;
 }
 
-/* ============================================================ */
-/* ====== AVATAR ====== */
-/* ============================================================ */
 
 .avatar {
   width: 46px;
@@ -323,10 +354,6 @@ tbody tr:hover {
   text-transform: uppercase;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-
-/* ============================================================ */
-/* ====== NOM COMPLET ====== */
-/* ============================================================ */
 
 .nom-complet {
   display: flex;
@@ -344,12 +371,16 @@ tbody tr:hover {
   color: #6b7280;
 }
 
+<<<<<<< HEAD
 /* ============================================================ */
 /* ====== LIENS ====== */
 /* ============================================================ */
 
 .email-link,
 .phone-link {
+=======
+.email-link, .phone-link {
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
   color: #1a2332;
   text-decoration: none;
   font-size: 14px;
@@ -361,10 +392,6 @@ tbody tr:hover {
   color: #3b82f6;
   text-decoration: underline;
 }
-
-/* ============================================================ */
-/* ====== BADGES ====== */
-/* ============================================================ */
 
 .specialite-badge {
   display: inline-block;
@@ -404,29 +431,34 @@ tbody tr:hover {
   color: #991b1b;
 }
 
-/* ============================================================ */
-/* ====== ACTIONS ====== */
-/* ============================================================ */
-
-.actions {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+.actions{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:nowrap;
+  min-width:140px;
 }
 
-.btn-action {
-  padding: 4px;
-  margin: 6px 0;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  white-space: nowrap;
+.btn-action{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.btn-action mat-icon{
+
+  font-size:22px;
+  width:22px;
+  height:22px;
+
 }
 
 .btn-action:hover {
@@ -460,10 +492,6 @@ tbody tr:hover {
 .btn-refuser:hover {
   background: #dc2626;
 }
-
-/* ============================================================ */
-/* ====== LOADING ====== */
-/* ============================================================ */
 
 .loading {
   display: flex;
@@ -499,10 +527,6 @@ tbody tr:hover {
   margin: 0;
 }
 
-/* ============================================================ */
-/* ====== MESSAGE VIDE ====== */
-/* ============================================================ */
-
 .empty {
   text-align: center !important;
   padding: 60px 20px !important;
@@ -529,10 +553,6 @@ tbody tr:hover {
   font-size: 15px;
 }
 
-/* ============================================================ */
-/* ====== MODAL ====== */
-/* ============================================================ */
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -558,7 +578,7 @@ tbody tr:hover {
   }
 }
 
-.modal {
+.psy-modal {
   background: white;
   border-radius: 20px;
   max-width: 750px;
@@ -795,10 +815,6 @@ tbody tr:hover {
   box-shadow: 0 4px 12px rgba(26, 35, 50, 0.3);
 }
 
-/* ============================================================ */
-/* ====== RESPONSIVE ====== */
-/* ============================================================ */
-
 @media (max-width: 1024px) {
   .container {
     padding: 20px;
@@ -815,6 +831,28 @@ tbody tr:hover {
 }
 
 @media (max-width: 768px) {
+  .filters-section{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .filter-title{
+    justify-content: center;
+  }
+
+  .filter-buttons{
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .filter-btn{
+    flex: 1 1 45%;
+    justify-content: center;
+    min-width: 150px;
+  }
+
   .container {
     padding: 16px;
   }
@@ -875,7 +913,7 @@ tbody tr:hover {
     justify-content: center;
   }
 
-  .modal {
+  .psy-modal {
     max-width: 100%;
     width: 98%;
     max-height: 95vh;
@@ -925,9 +963,31 @@ tbody tr:hover {
     width: 100%;
     text-align: center;
   }
+
+  .actions{
+
+    justify-content:center;
+    gap:6px;
+
+  }
+
+  .btn-action{
+
+    width:36px;
+    height:36px;
+
+  }
 }
 
 @media (max-width: 480px) {
+  .filter-buttons{
+    flex-direction: column;
+  }
+
+  .filter-btn{
+    width: 100%;
+    min-width: unset;
+  }
   .container {
     padding: 12px;
   }

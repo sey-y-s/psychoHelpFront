@@ -39,10 +39,12 @@ export class PsychologueAdminService {
   /**
    * Annuler/Refuser un psychologue
    */
-  annuler(id: number): Observable<Psychologue> {
+  annuler(id: number, motif: string): Observable<Psychologue> {
     return this.http.put<Psychologue>(
       `${this.api}/admins/psychologues/${id}/annuler`,
-      {}
+      {
+        motif,
+      }
     );
   }
 }

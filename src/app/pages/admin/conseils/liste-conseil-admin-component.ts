@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {Conseil} from "../../../models/conseil.model";
 import {CardValidationConseil} from "./card-validation/card-validation";
 import { RouterModule } from "@angular/router";
+import {NotificationService} from "../../../core/services/notification.service";
 @Component({
   selector: "app-liste-conseil-admin-component",
   standalone: true,
@@ -19,7 +20,11 @@ export class ListeConseilAdminComponent implements OnInit {
   tousLesConseils: Conseil[] = [];
   listConseils: Conseil[] = [];
 
-  constructor(private conseilAdminService: ConseilAdminService, private cdRef: ChangeDetectorRef) {
+  constructor(
+      private conseilAdminService: ConseilAdminService,
+      private cdRef: ChangeDetectorRef,
+      private notifService : NotificationService
+      ) {
   }
  /* private conseilAdminService: ConseilAdminService,
   private cdRef: ChangeDetectorRef
@@ -29,6 +34,7 @@ export class ListeConseilAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.chargerConseils()
+    //this.notifService.succes("test")
   }
   changerFiltre(newfiltre: string): void {
     this.filtreActif = newfiltre;
@@ -36,10 +42,13 @@ export class ListeConseilAdminComponent implements OnInit {
       this.listConseils = [...this.tousLesConseils]
     } else if (newfiltre === 'attente'){
       this.listConseils = this.tousLesConseils.filter(c => c.status === "ENATTENTE")
+      console.log(this.listConseils)
     }else if (newfiltre === 'valider'){
       this.listConseils = this.tousLesConseils.filter(c => c.status === "VALIDER")
+      console.log(this.listConseils)
     }else if(newfiltre === 'refuser'){
       this.listConseils = this.tousLesConseils.filter(c => c.status === "REFUSER")
+      console.log(this.listConseils)
     }
 
   }

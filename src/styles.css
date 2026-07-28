@@ -1,9 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Thème Material */
-/* TODO: Personnaliser les couleurs */
-/* TODO: Définir la typographie */
-
 :root{
     --primary:#2C3E50;
     --secondary:#5D3520;
@@ -22,7 +18,6 @@
 }
 
 
-
 body {
   font-family: Roboto, sans-serif, Arial, Helvetica;
   background: #f5f7fa;
@@ -37,14 +32,14 @@ body {
 
 /* Erreur (Rouge) */
 .snackbar-error {
-  --mat-sys-inverse-surface: #d32f2f;       /* Fond rouge */
-  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
-  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+  --mat-sys-inverse-surface: #d32f2f;
+  --mat-sys-inverse-on-surface: #ffffff;
+  --mat-sys-inverse-primary: #ffffff;
 }
 
 /* Info (Bleu) */
 .snackbar-info {
-  --mat-sys-inverse-surface: #0288d1;       /* Fond bleu */
-  --mat-sys-inverse-on-surface: #ffffff;   /* Texte blanc */
-  --mat-sys-inverse-primary: #ffffff;      /* Bouton "Fermer" */
+  --mat-sys-inverse-surface: #0288d1;  
+  --mat-sys-inverse-on-surface: #ffffff;
+  --mat-sys-inverse-primary: #ffffff;
 }

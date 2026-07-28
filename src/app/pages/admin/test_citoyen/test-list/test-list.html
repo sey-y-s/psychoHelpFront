@@ -1,0 +1,63 @@
+<div class="header-list">
+
+  <div class="search-box">
+    <mat-icon>search</mat-icon>
+    <input
+      type="text"
+      placeholder="Rechercher un test..."
+      [(ngModel)]="motChercher">
+  </div>
+
+  <button class="btn-ajouter" (click)="ajouter()">
+    <mat-icon>add</mat-icon>
+    Ajouter un test
+  </button>
+
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom du test</th>
+        <th>Description</th>
+        <th>État</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for(test of filtrageTest; track test.id) {
+      <tr>
+
+
+        <td class="nom-test">
+          {{ test.nom_test }}
+        </td>
+
+        <td>
+          <span class="badge">
+            {{ test.description }}
+          </span>
+        </td>
+
+        <td>
+          <span class="etat">
+            {{ test.etat }}
+          </span>
+        </td>
+
+        <td class="actions">
+          <button  mat-icon-button title="Visualiser"      [routerLink]="['/admin/tests', test.id, 'questions']">
+                    <mat-icon class="view-icon">visibility</mat-icon>
+          </button>
+          <button mat-icon-button title="Modifier"  (click)="modifier(test)" >
+                    <mat-icon class="edit-icon">edit</mat-icon>
+          </button>
+        </td>
+
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -8,7 +8,7 @@ import {Notification} from "../../models/notification.model";
 @Injectable({
     providedIn: 'root'
 })
-export class NotificationService {
+export class NotificationServices {
 
     private readonly http = inject(HttpClient);
     private readonly apiUrl = `${environments.apiUrl}/notifications`;

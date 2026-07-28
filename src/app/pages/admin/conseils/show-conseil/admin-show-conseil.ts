@@ -2,6 +2,7 @@ import {Component, ChangeDetectorRef, OnInit} from "@angular/core";
 import {Conseil} from "../../../../models/conseil.model";
 import {ConseilAdminService} from "../../../../core/services/conseil-admin.service";
 import { ActivatedRoute } from "@angular/router";
+import {NotificationService} from "../../../../core/services/notification.service";
 
 
 @Component({
@@ -19,7 +20,9 @@ export class AdminShowConseil implements OnInit{
   constructor(
       private conseilAdminService: ConseilAdminService,
       private cdRef: ChangeDetectorRef,
-      private route: ActivatedRoute) {
+      private route: ActivatedRoute,
+      private notifService : NotificationService
+      ) {
   }
 
   ngOnInit(): void {
@@ -38,7 +41,6 @@ export class AdminShowConseil implements OnInit{
         this.conseil = conseil;
         //this.estValide = conseil.status === "VALIDER";
         this.statutActuel = conseil.status;
-
         this.cdRef.markForCheck();
       },
       error: (err: any) => console.error(err)
@@ -54,6 +56,7 @@ export class AdminShowConseil implements OnInit{
       next: () => {
         console.log(`Conseil mis à jour sur le serveur : ${statut}`);
         //this.chargerConseils();
+        this.notifService.succes("Conseil Valider avec success")
       },
       error: (err: any) => {
         console.error("Erreur lors de la validation :", err);
@@ -72,6 +75,7 @@ export class AdminShowConseil implements OnInit{
       next: () => {
         console.log(`Conseil mis à jour sur le serveur : ${statut}`);
         //this.chargerConseils();
+        this.notifService.erreur("Le status du conseil a bein été modifier aucun utilisateur ne peux voir ce conseil maintenant")
       },
       error: (err: any) => {
         console.error("Erreur lors de la validation :", err);
