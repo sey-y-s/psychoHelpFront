@@ -1,51 +1,54 @@
-<div class="container mt-5" id="conteneur">
-    <div class="d-flex justify-content-center mb-4">
-        <div class="zone-illustration">
-            <div class="fond-ovale"></div>
-            <img src="main-serrer.png" class="icone-mains" alt="icone">
-        </div>
+<div class="conseil-container">
+    <div class="illustration-wrapper">
+        <div class="fond-ovale"></div>
+        <img src="main-serrer.png" class="icone-mains" alt="Illustration">
     </div>
 
     @if (conseil) {
-    <div id="contenu">
-        <h2>{{ conseil.titre }}</h2>
+        <div class="conseil-content">
+            <h2 class="conseil-title">{{ conseil.titre }}</h2>
 
-            <div id="description">
+            <div class="conseil-body">
                 <p>{{ conseil.description }}</p>
             </div>
-            <div class="align-items-end " id="auteur">
+
+            <div class="conseil-meta-author">
                 <p>Auteur : <strong>{{ conseil.auteur }}</strong></p>
             </div>
-            <div class="d-flex justify-content-between" id="ligne">
-                <p>Date : {{ conseil.datePublication }}</p>
-                <p>Psychologue : {{ conseil.psyNom }}</p>
+
+            <div class="conseil-footer-info">
+                <p><span class="meta-label">Date :</span> {{ conseil.datePublication }}</p>
+                <p><span class="meta-label">Psychologue :</span> {{ conseil.psyNom }}</p>
             </div>
 
-            <div class="d-flex justify-content-center my-4">
-            <div class="custom-switch"
-                 [class.bg-attente]="statutActuel === 'ENATTENTE'"
-                 [class.bg-valide]="statutActuel === 'VALIDER'"
-                 [class.bg-non-valide]="statutActuel === 'REFUSER'"
-                 (click)="toggleStatut()">
+            <div class="action-zone">
+                <div class="custom-switch"
+                     [ngClass]="{
+                        'status-attente': statutActuel === 'ENATTENTE',
+                        'status-valide': statutActuel === 'VALIDER',
+                        'status-refuse': statutActuel === 'REFUSER'
+                     }"
+                     (click)="toggleStatut()">
 
-                <div class="pastille-blanche"
-                     [class.glisse-droite]="statutActuel === 'VALIDER'"
-                     [class.glisse-gauche]="statutActuel === 'REFUSER'"
-                     [class.pastille-centre]="statutActuel === 'ENATTENTE'">
-
-                   <span>
-                        @if (statutActuel === 'ENATTENTE') { en attente }
-                        @if (statutActuel === 'VALIDER') { validé }
-                        @if (statutActuel === 'REFUSER') { refusé }
-                    </span>
-
+                    <div class="slider-pill"
+                         [ngClass]="{
+                            'slide-right': statutActuel === 'VALIDER',
+                            'slide-left': statutActuel === 'REFUSER',
+                            'slide-center': statutActuel === 'ENATTENTE'
+                         }">
+                        <span class="status-text">
+                            @if (statutActuel === 'ENATTENTE') { En attente }
+                            @if (statutActuel === 'VALIDER') { Validé }
+                            @if (statutActuel === 'REFUSER') { Refusé }
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     } @else {
-        <div class="text-center">
-            <p>Chargement du conseil...</p>
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Chargement du conseil clinique...</p>
         </div>
     }
 </div>
