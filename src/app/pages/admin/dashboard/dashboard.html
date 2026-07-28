@@ -1,5 +1,4 @@
 <div id="dashboard" class="container">
-    <!-- Section Compteurs (Grid) -->
     <div id="row-card">
         <div class="card-rdv">
             <div class="card-tete">
@@ -11,7 +10,7 @@
                     <p class="card-label">Utilisateurs</p>
                 </div>
             </div>
-            <a class="card-action">Voir la liste <mat-icon>arrow_forward</mat-icon></a>
+            <a class="card-action">Actif <mat-icon>arrow_forward</mat-icon></a>
         </div>
 
         <div class="card-rdv">
@@ -54,52 +53,33 @@
         </div>
     </div>
 
-    <!-- Section Contenu Principal -->
     <div class="body-row">
-        <!-- Tableau Psychologues -->
         <div class="tableau">
-            <h6 class="section-title">Psychologues les plus sollicités</h6>
+            <h6 class="section-title">Psychologues recents</h6>
 
             <div class="list-container">
-                <!-- Répétition de la ligne (Exemple) -->
-                <div class="card-list">
-                    <div class="logo">
-                        <mat-icon>account_circle</mat-icon>
-                    </div>
-                    <div class="contenu">
-                        <h6>Noob Saubot</h6>
-                        <p>Djamananbougou</p>
-                    </div>
-                    <div class="badge-sollicitation">
-                        <mat-icon>trending_up</mat-icon>
-                    </div>
-                </div>
 
-                <div class="card-list">
-                    <div class="logo">
-                        <mat-icon>account_circle</mat-icon>
+                @for (user of utilisateurs; track user.nom) {
+                    <a routerLink="/admin/psychologues"  id="card-utilisateur">
+                        <div class="card-list">
+                            <div class="logo">
+                                <mat-icon>account_circle</mat-icon>
+                            </div>
+                            <div class="contenu">
+                                <h6>{{ user.nom }}</h6>
+                                <p>{{ user.telephone }}</p>
+                            </div>
+                            <div class="badge-sollicitation">
+                                <mat-icon>trending_up</mat-icon>
+                            </div>
+                        </div>
+                    </a>
+                } @empty {
+                    <div class="empty-state">
+                        <p>Aucun psychologue disponible pour le moment.</p>
                     </div>
-                    <div class="contenu">
-                        <h6>Noob Saubot</h6>
-                        <p>Djamananbougou</p>
-                    </div>
-                    <div class="badge-sollicitation">
-                        <mat-icon>trending_up</mat-icon>
-                    </div>
-                </div>
+                }
 
-                <div class="card-list">
-                    <div class="logo">
-                        <mat-icon>account_circle</mat-icon>
-                    </div>
-                    <div class="contenu">
-                        <h6>Noob Saubot</h6>
-                        <p>Djamananbougou</p>
-                    </div>
-                    <div class="badge-sollicitation">
-                        <mat-icon>trending_up</mat-icon>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -107,7 +87,6 @@
         <div class="graph">
             <h6 class="section-title">Statistiques d'activité</h6>
             <div class="graph-placeholder">
-                <!-- Votre graphique Canvas ou Chart.js ira ici -->
                 <p>Graphique en attente de données</p>
             </div>
         </div>

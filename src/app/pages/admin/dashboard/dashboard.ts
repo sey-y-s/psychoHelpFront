@@ -5,12 +5,14 @@ import {AdminDashboardService} from "../../../core/services/admin.dashboard.serv
 import {DashboardStats, User} from "../../../models/admin.dashboard.model";
 import {takeUntil} from "rxjs";
 import {Utilisateur} from "../../../models/utilisateur.model";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: "app-dashboard",
-    imports: [
-        MatIcon
-    ],
+  imports: [
+    MatIcon,
+    RouterLink
+  ],
   standalone: true,
   templateUrl: "./dashboard.html",
   styleUrl: "./dashboard.css",
@@ -37,12 +39,11 @@ export class Dashboard implements OnInit {
         this.totalRendezVous = data.TotalRdv;
         this.totalUtilisateur = data.TotalUtilisateur;
         this.totalConseil = data.TotalConseil;
-
-
+        this.utilisateurs = data.utilisateursRecent
 
         this.cdRef.detectChanges();
-        //console.log(data.utilisateursRecent)
-        console.log(data)
+        console.log(data.utilisateursRecent)
+        //console.log(data)
       },
       error(err){
         console.error("Erreur lors de la récupération du dashboard :", err);
