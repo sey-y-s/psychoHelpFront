@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {Conseil} from "../../../models/conseil.model";
 import {CardValidationConseil} from "./card-validation/card-validation";
 import { RouterModule } from "@angular/router";
+import {NotificationService} from "../../../core/services/notification.service";
 @Component({
   selector: "app-liste-conseil-admin-component",
   standalone: true,
@@ -19,7 +20,11 @@ export class ListeConseilAdminComponent implements OnInit {
   tousLesConseils: Conseil[] = [];
   listConseils: Conseil[] = [];
 
-  constructor(private conseilAdminService: ConseilAdminService, private cdRef: ChangeDetectorRef) {
+  constructor(
+      private conseilAdminService: ConseilAdminService,
+      private cdRef: ChangeDetectorRef,
+      private notifService : NotificationService
+      ) {
   }
  /* private conseilAdminService: ConseilAdminService,
   private cdRef: ChangeDetectorRef
@@ -29,6 +34,7 @@ export class ListeConseilAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.chargerConseils()
+    //this.notifService.succes("test")
   }
   changerFiltre(newfiltre: string): void {
     this.filtreActif = newfiltre;

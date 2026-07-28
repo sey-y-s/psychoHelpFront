@@ -27,8 +27,14 @@ export class Notification implements OnInit {
   chargerNotifications(): void {
     this.notificationService.getNotifications().subscribe({
       next: (data) => {
-        this.notifications = data
-        console.log(data)
+        this.notifications = data.filter(notif => notif.type !== "RENDEZ_VOUS")
+        //noob_saybot = this.notifications
+        this.notifications.sort(
+            (a, b) => {
+              return (a.lu ? 1 : 0) - (b.lu ? 1 : 0);
+            }
+        )
+        console.log(this.notifications)
         this.cdRef.detectChanges();
       },
       error: (err) => console.error('Erreur lors du chargement des notifications', err)
