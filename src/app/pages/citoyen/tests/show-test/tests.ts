@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../../../../core/services/test.service';
-import { TestEvaluation, Question, OptionChoix } from '../../../../models/test.model';
 import { TestPartageService } from '../../../../core/services/tests-partage-service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-test',
@@ -20,6 +20,9 @@ export class Tests implements OnInit {
   totalQuestions = 0;
   testTermine = false;
   scoreTotal = 0;
+
+  //AJOUT : Injection moderne de l'AuthService pour récupérer l'utilisateur connecté
+  private readonly authService = inject(AuthService);
 
   // Tableau pour stocker la réponse de l'utilisateur (clé: id de la question, valeur: score de 0 à 3)
   reponsesUtilisateur: { [key: number]: number } = {};
@@ -108,20 +111,67 @@ export class Tests implements OnInit {
   }
 
 
-  calculerScoreFinal() {
+   calculerScoreFinal() {
     this.scoreTotal = 0;
+    
+    // Créez un tableau pour stocker les IDs des choix sélectionnés en BDD
+    const choixIdsSelectionnes: number[] = [];
+
     this.questions.forEach(q => {
-      // On additionne directement le score stocké pour chaque question
       this.scoreTotal += this.reponsesUtilisateur[q.id] || 0;
+
+      // On retrouve le choix sélectionné pour cette question pour extraire son vrai ID de base de données
+      const scoreChoisi = this.reponsesUtilisateur[q.id];
+      if (scoreChoisi !== undefined && q.choixMultiples) {
+        const choixTrouve = q.choixMultiples.find((opt: any) => opt.score === scoreChoisi);
+        if (choixTrouve && choixTrouve.id) {
+          choixIdsSelectionnes.push(choixTrouve.id); // On ajoute l'ID du choix (ex: 1, 2, 3)
+        }
+      }
     });
-     // Sauvegarde du score calculé dans la boîte mémoire
-    this.testPartageService.setScore(this.scoreTotal)
 
-    //Redirection automatique vers la page de résultats
-    this.router.navigate(['resultats'], { relativeTo: this.route });
+    // Écoute de l'utilisateur connecté
+    this.authService.currentUser$.subscribe({
+      next: (user: any) => {
+        const citoyenId = user && user.id ? user.id : 1;
+        const testId = Number(this.route.snapshot.paramMap.get('id')) || 1;
 
-    console.log("Test terminé ! Score obtenu :", this.scoreTotal);
+    
+        const requestDTO = {
+          citoyenId: citoyenId,
+          testId: testId,
+          score: this.scoreTotal,
+          choixIds: choixIdsSelectionnes 
+        };
+        
+        console.log("Envoi du DTO complet avec choixIds au serveur :", requestDTO);
+
+        this.testService.enregistrerResultat(requestDTO).subscribe({
+          next: (responseDTO) => {
+            console.log("Enregistrement BDD réussi ! DTO reçu :", responseDTO);
+            this.testPartageService.setResultatComplet(responseDTO);
+
+            this.router.navigate(['resultats'], { 
+              relativeTo: this.route, 
+              queryParams: { id: testId } 
+            });
+          },
+          error: (err) => console.error("Échec lors de la sauvegarde en BDD :", err)
+        });
+      },
+      error: (err) => console.error("Impossible de lire l'utilisateur connecté :", err)
+    });
+
+    //  Sauvegarde du score calculé dans la boîte mémoire
+    // this.testPartageService.setScore(this.scoreTotal)
+
+    // //Redirection automatique vers la page de résultats
+    // this.router.navigate(['resultats'], { relativeTo: this.route });
+
+    // console.log("Test terminé ! Score obtenu :", this.scoreTotal);
 
   }
+
+
 
 }

@@ -79,7 +79,10 @@
         <div class="col-md-3 mb-4">
             <div class="psych-card shadow-sm">
                 <div class="image-container">
-                    <img src="https://placehold.co/300x200?text=Psychologue" alt="psychologue">
+                    <img [src]="getAvatar(p?.prenom, p?.nom)" [alt]="p?.prenom + ' ' + p?.nom">
+
+
+
                     <span class="availability">
                         Disponible
                     </span>

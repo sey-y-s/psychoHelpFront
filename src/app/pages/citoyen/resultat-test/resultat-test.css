@@ -109,3 +109,29 @@
 .extra-small {
     font-size: 0.8rem;
 }
+
+
+/* Couleur Orange personnalisée pour la puce et le texte actif */
+.text-orange {
+    color: #E67E22 !important;
+}
+
+.text-orange-end {
+    color: #E67E22 !important;
+    font-weight: 700;
+}
+
+/* Fond de surbrillance doux pour la ligne sélectionnée */
+.bg-orange-subtle {
+    background-color: #FDF2E9 !important; /* Un beige/orange très clair et chaleureux */
+}
+
+/* Supprime d'éventuelles coupures CSS forcées */
+.legend-list span {
+    white-space: normal !important; /* Autorise le texte à aller à la ligne */
+    text-overflow: clip !important;
+    overflow: visible !important;
+}
+
+
+

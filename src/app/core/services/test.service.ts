@@ -18,6 +18,8 @@ export class TestService {
 
     private api = 'http://localhost:8080/api/tests';
 
+    private apiResultats = 'http://localhost:8080/api/resultats/calculer'; 
+
     // Récupère un test spécifique (ex: GAD-7) avec toutes ses questions associées
     obtenirTestParId(id: number): Observable<TestEvaluation> {
       return this.http.get<TestEvaluation>(`${this.api}/${id}`);
@@ -26,6 +28,15 @@ export class TestService {
     obtenirCategorieParIdTest(id: number): Observable<any> {
       return this.http.get<any>(`http://localhost:8080/api/categories/du_test/${id}`);
     }
+
+    //Envoie le score et les infos au backend pour enregistrement
+  enregistrerResultat(requestDTO: { citoyenId: number; testId: number; score: number }): Observable<any> {
+    return this.http.post<any>(this.apiResultats, requestDTO);
+  }
+
+   obtenirDiagnosticsParTestId(testId: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/diagnostics/test/${testId}`);
+  }
 
 
     private readonly apiUrl = `${environments.apiUrl}/tests`;
