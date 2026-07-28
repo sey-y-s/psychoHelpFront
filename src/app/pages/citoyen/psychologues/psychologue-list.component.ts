@@ -6,6 +6,12 @@ import { CommonModule } from '@angular/common';
 import { Specialite } from '../../../models/specialite.model';
 import { RouterLink } from "@angular/router";
 
+
+
+import { createAvatar } from '@dicebear/core';
+import { initials } from '@dicebear/collection';
+
+
 @Component({
   selector: 'app-psychologue-list',
   imports: [CommonModule, FormsModule, RouterLink],
@@ -93,5 +99,19 @@ export class PsychologueListComponent implements OnInit {
     this.recherche.set('');
     this.specialiteSelectionnee.set('');
   }
+
+
+  // Nouvelle méthode pour générer l'avatar avec l'épaisseur 100
+  getAvatar(prenom: string | undefined, nom: string | undefined): string {
+    const avatar = createAvatar(initials, {
+      seed: `${nom ?? ''} ${prenom ?? ''}`.trim() || 'Psychologue',
+      backgroundColor: ['cccccc'],
+      fontWeight: 100,
+      textColor: ['00000033'],
+      fontSize: 35
+    });
+    return avatar.toDataUri();
+  }
+
 
 }
