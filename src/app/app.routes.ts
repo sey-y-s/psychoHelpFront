@@ -276,6 +276,17 @@ export const routes: Routes = [
         data: { title: "Ajouter un test" },
       },
       {
+        path: 'tests/ajout',
+        loadComponent: () => import('./pages/admin/test/ajout-categorie-test/ajout-categorie-test').then(m => m.AjoutCategorieTest),
+        data: { title: 'Ajout de catégories de tests' }
+      },
+      {
+        path: 'notifications',
+        loadComponent: () => import('./pages/admin/notification/notification').then(m => m.Notification),
+        data: { title: 'Notifications' }
+      },
+    ]
+  },
           path: "tests/modifier/:id",
         loadComponent: () =>
           import("./pages/admin/test_citoyen/test-edit/test-edit").then(
