@@ -15,7 +15,7 @@
   background: white;
   padding: 20px 28px;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   flex-wrap: wrap;
   gap: 16px;
 }
@@ -74,6 +74,35 @@
   gap:15px;
 }
 
+<<<<<<< HEAD
+.stat-card {
+  background: white;
+  padding: 20px 24px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s;
+  border-left: 5px solid;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+.stat-card.total {
+  border-left-color: #D7A790;
+}
+
+.stat-card.pending {
+  border-left-color: #D7A790;
+}
+
+.stat-card.validated {
+  border-left-color: #D7A790;
+=======
 .filter-title{
   display:flex;
   align-items:center;
@@ -122,6 +151,7 @@
   background:#f2f2f2;
 
   font-size:12px;
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 }
 
 .filter-btn.all{
@@ -160,8 +190,20 @@
   background:#10b981;
 }
 
+<<<<<<< HEAD
+.search-box {
+  flex: 1;
+  min-width: 280px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+=======
 .filter-btn.danger.active{
   background:#ef4444;
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 }
 
 .filter-btn.active .count{
@@ -169,10 +211,61 @@
   color:white;
 }
 
+<<<<<<< HEAD
+.search-input {
+  flex: 1;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  background: transparent;
+  outline: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-clear {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.search-clear:hover {
+  background: #f3f4f6;
+  color: #1a2332;
+}
+
+.total-elements {
+  font-size: 14px;
+  color: #6b7280;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  white-space: nowrap;
+}
+
+.total-elements strong {
+  color: #1a2332;
+}
+
+/* ============================================================ */
+/* ====== TABLEAU ====== */
+/* ============================================================ */
+
+=======
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 .table-container {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   position: relative;
   min-height: 400px;
@@ -259,7 +352,7 @@ tbody tr:hover {
   font-weight: 700;
   font-size: 17px;
   text-transform: uppercase;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .nom-complet {
@@ -278,14 +371,24 @@ tbody tr:hover {
   color: #6b7280;
 }
 
+<<<<<<< HEAD
+/* ============================================================ */
+/* ====== LIENS ====== */
+/* ============================================================ */
+
+.email-link,
+.phone-link {
+=======
 .email-link, .phone-link {
+>>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
   color: #1a2332;
   text-decoration: none;
   font-size: 14px;
   transition: color 0.2s;
 }
 
-.email-link:hover, .phone-link:hover {
+.email-link:hover,
+.phone-link:hover {
   color: #3b82f6;
   text-decoration: underline;
 }
@@ -360,7 +463,7 @@ tbody tr:hover {
 
 .btn-action:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-details {
@@ -409,8 +512,13 @@ tbody tr:hover {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading p {
@@ -461,8 +569,13 @@ tbody tr:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .psy-modal {
@@ -481,6 +594,7 @@ tbody tr:hover {
     transform: translateY(40px) scale(0.95);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
@@ -515,7 +629,7 @@ tbody tr:hover {
   font-weight: 700;
   font-size: 22px;
   text-transform: uppercase;
-  border: 3px solid rgba(255,255,255,0.3);
+  border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
 .modal-header h2 {
@@ -526,13 +640,13 @@ tbody tr:hover {
 }
 
 .modal-role {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   font-weight: 500;
 }
 
 .modal-close {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
   font-size: 28px;
@@ -543,7 +657,7 @@ tbody tr:hover {
 }
 
 .modal-close:hover {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   transform: rotate(90deg);
 }
 
@@ -705,12 +819,12 @@ tbody tr:hover {
   .container {
     padding: 20px;
   }
-  
+
   .stats {
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
-  
+
   .stat-number {
     font-size: 26px;
   }
