@@ -1,11 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TestCitoyen } from "../../../../core/services/test-citoyen.service";
+import { TestCitoyenService } from "../../../../core/services/test-citoyen.service";
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
+import {  ChangeDetectorRef } from "@angular/core";
+
 
 @Component({
   selector: "app-test-edit",
-  imports: [],
+    standalone: true,
+
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: "./test-edit.html",
   styleUrl: "./test-edit.css",
 })
@@ -13,18 +19,24 @@ export class TestEdit {
   testForm!: FormGroup;
 
   id!: number;
-
+categorieId!: number;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private testService: TestCitoyen,
+    private testService: TestCitoyenService,
     private router: Router,
+        private cdRef: ChangeDetectorRef,
+
   ) {}
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get("id"));
+  this.categorieId = Number(
+    this.route.snapshot.queryParamMap.get("categorieId")
+  );
+  console.log("Categorie reçue :", this.categorieId);
 
-    // créer le formulaire
+
     this.testForm = this.fb.group({
       nom_test: ["", Validators.required],
 
@@ -35,6 +47,8 @@ export class TestEdit {
 
     this.testService.getTestById(this.id).subscribe((data) => {
       this.testForm.patchValue(data);
+          console.log("Données reçues :", data);
+
     });
   }
 
@@ -42,13 +56,23 @@ export class TestEdit {
     this.testService.updateTest(this.id, this.testForm.value).subscribe({
       next: (data) => {
         console.log("Test modifié :", data);
+                this.cdRef.detectChanges();
 
-        this.router.navigate(["/tests"]);
-      },
+this.router.navigate([
+  "/admin/tests",
+  this.categorieId
+]);  
+console.log("verif"+this.categorieId)  },
 
       error: (err) => {
         console.log(err);
       },
     });
+  }
+  redirectList(){
+    this.router.navigate([
+  "/admin/tests",
+  this.categorieId
+]);  
   }
 }

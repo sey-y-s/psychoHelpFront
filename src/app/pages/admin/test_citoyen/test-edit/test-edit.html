@@ -12,6 +12,11 @@
 
     <option [ngValue]="false">Inactif</option>
   </select>
+ <div class="actions">
+    <button type="submit">Modifier</button>
 
-  <button type="submit">Modifier</button>
+    <button type="button" (click)="redirectList()">
+      Annuler
+    </button>
+  </div>
 </form>

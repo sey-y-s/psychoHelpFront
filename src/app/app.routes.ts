@@ -258,31 +258,32 @@ export const routes: Routes = [
           ),
         data: { title: "Ajout de catégories de tests" },
       },
-      {
-        path: "tests/:categorieId",
-        loadComponent: () =>
-          import("./pages/admin/test/test").then((m) => m.Test),
-        data: { title: "Liste des tests" },
-      },
+    {
+  path: "tests/:categorieId",
+  loadComponent: () =>
+    import("./pages/admin/test_citoyen/test-list/test-list").then(
+      (m) => m.TestList
+    ),
+  data: { title: "Liste des tests" },
+},
 
       {
         path: "tests/ajout/:categorieId",
         loadComponent: () =>
-          import("./pages/admin/test-citoyen/test-add/test-add").then(
-            (m) => m.AjoutTest,
+          import("./pages/admin/test_citoyen/test-add/test-add").then(
+            (m) => m.TestAdd,
           ),
         data: { title: "Ajouter un test" },
       },
-
       {
-        // Modification d'un test
-        path: "tests/modifier/:id",
+          path: "tests/modifier/:id",
         loadComponent: () =>
-          import("./pages/admin/test/modifier-test/modifier-test").then(
-            (m) => m.ModifierTest,
+          import("./pages/admin/test_citoyen/test-edit/test-edit").then(
+            (m) => m.TestEdit,
           ),
         data: { title: "Modifier un test" },
       },
+
     ],
   },
 

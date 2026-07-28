@@ -1,56 +1,62 @@
 <div class="header-list">
-  <h2>Liste des tests</h2>
 
-  <button mat-raised-button color="primary" (click)="ajouter()">
+  <div class="search-box">
+    <mat-icon>search</mat-icon>
+    <input
+      type="text"
+      placeholder="Rechercher un test..."
+      [(ngModel)]="motChercher">
+  </div>
+
+  <button class="btn-ajouter" (click)="ajouter()">
     <mat-icon>add</mat-icon>
     Ajouter un test
   </button>
+
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nom test</th>
-      <th>Description</th>
-      <th>État</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom du test</th>
+        <th>Description</th>
+        <th>État</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    @for(test of testCitoyen; track test.id) {
+    <tbody>
+      @for(test of filtrageTest; track test.id) {
+      <tr>
 
-    <tr>
-      <td>{{ test.id }}</td>
 
-      <td>{{ test.nom_test }}</td>
+        <td class="nom-test">
+          {{ test.nom_test }}
+        </td>
 
-      <td class="description">{{ test.description }}</td>
+        <td>
+          <span class="badge">
+            {{ test.description }}
+          </span>
+        </td>
 
-      <td>{{test.etat}}</td>
+        <td>
+          <span class="etat">
+            {{ test.etat }}
+          </span>
+        </td>
 
-      <td class="actions">
-        <button
-          mat-icon-button
-          title="Visualiser"
-          (click)="visualiser(test.id)"
-        >
-          <mat-icon class="view-icon">visibility</mat-icon>
-        </button>
-        <button mat-icon-button title="Modifier" (click)="modifier(test)">
-          <mat-icon class="edit-icon">edit</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          title="Supprimer"
-          (click)="supprimerTest(test.id)"
-        >
-          <mat-icon class="delete-icon">delete</mat-icon>
-        </button>
-      </td>
-    </tr>
+        <td class="actions">
 
-    }
-  </tbody>
-</table>
+          <button mat-icon-button (click)="modifier(test)">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+        </td>
+
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
