@@ -99,12 +99,12 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/citoyen/rdv/rdv').then(m => m.Rdv)
       },
       {
-        path:"conseils" ,
+        path: "conseils",
         loadComponent: () => import('./pages/citoyen/conseils/list-conseil-citoyen').then(m => m.ListConseilCitoyen),
         data: { title: 'Conseils' }
       },
       {
-        path:"conseils/:id",
+        path: "conseils/:id",
         loadComponent: () => import('./pages/citoyen/conseils/show-conseil/show-conseil').then(m => m.ShowConseil),
         data: { title: 'Conseils' }
       }
@@ -165,7 +165,7 @@ export const routes: Routes = [
     data: { role: 'ADMIN' }, // Transmis au roleGuard
     children: [
       {
-        path: 'dashboard',
+        path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
       },
@@ -192,7 +192,7 @@ export const routes: Routes = [
     ]
   },
 
-  
+
   {
     path: '404',
     loadComponent: () => import('./shared/page-not-found/page-not-found').then(m => m.PageNotFound)
