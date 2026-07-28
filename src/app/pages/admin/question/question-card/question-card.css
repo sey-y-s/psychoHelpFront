@@ -24,7 +24,6 @@ td {
     font-size: 12px;
 }
 
-
 .actions {
     display: flex;
     align-items: center;
@@ -63,7 +62,6 @@ td {
     height: 18px;
     font-size: 18px;
 }
-                         
 
 .status {
   display: inline-block;
@@ -92,6 +90,12 @@ td {
 .refuser {
   color: #721c24;
   background-color: #f8d7da;
+}
+.description {
+    max-width: 150px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .description {
     max-width: 150px; 

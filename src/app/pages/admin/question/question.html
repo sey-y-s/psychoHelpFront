@@ -1,0 +1,52 @@
+<div class="page-conseils">
+
+    <div class="page-header">
+        <div>
+            <h1>Questions</h1>
+            <p>Gestion des Questions publiées</p>
+        </div>
+
+        <button class="add-button" (click)="ouverFermer()">
+            Ajouter une question
+        </button>
+    </div>
+    <app-barre-recherche (chercherOnClick)="chargerQuestion($event)"/>
+    <div class="table-container">
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th> Test</th>
+                    <th colspan="5" style="text-align: center;">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if(questionListe().length>0){
+                 @for (question of questionListe(); track question.id) {
+                    <app-question-card [question]="question" (editOnclic)="modifier($event)" 
+                    (deleteOnclic)="supprimerConseil($event)" />
+                }
+                }@else {
+                <tr><td colspan="7" style="align-content: center; background-color: rgb(245, 60, 60);">Aucun resultat trouvé!</td></tr>
+
+                }
+                
+
+            </tbody>
+
+        </table>
+        
+    </div>
+
+</div>
+@if (formulaireVisible) {
+    <app-question-form (fermerClic)="annuler($event)" 
+    (ajoutReussiMisAjourClic)="AjoutEffectuer()" />
+}
+
+@if (formulaireVisibleforEdit) {
+    <app-question-form-edit [questionEdit]="questionRecup()!" (editReussiOclik)="fermerApreEdit($event)" (fermereModalEditOnclik)="fermerApreannulerEdit($event)" />
+}
+

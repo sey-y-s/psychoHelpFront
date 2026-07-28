@@ -188,6 +188,11 @@ export const routes: Routes = [
         path: 'conseils',
         loadComponent: () => import('./pages/admin/conseils/liste-conseil-admin-component').then(m => m.ListeConseilAdminComponent),
         data: { title: 'Liste des conseils' }
+      },
+      {
+        path: 'questions',
+        loadComponent: () => import('./pages/admin/question/question').then(m => m.Question),
+        data: { title: 'Liste des questions' }
       }
     ]
   },
