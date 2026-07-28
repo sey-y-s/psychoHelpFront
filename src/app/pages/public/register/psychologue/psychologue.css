@@ -310,6 +310,17 @@ font-family: 'Poppins', sans-serif ;
 
 }
 
+.erreur{
+    margin-top:5px;
+    margin-left:12px;
+}
+
+.erreur small{
+    color:#d32f2f;
+    font-size:12px;
+    font-weight:500;
+}
+
 /* Pour les très petits téléphones */
 @media screen and (max-width:480px){
 
