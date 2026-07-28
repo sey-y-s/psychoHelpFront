@@ -1,9 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Thème Material */
-/* TODO: Personnaliser les couleurs */
-/* TODO: Définir la typographie */
-
 :root{
     --primary:#2C3E50;
     --secondary:#5D3520;
@@ -15,21 +11,10 @@
     --clair: #f5eae4;
 }
 
-
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-:root {
-  --primary: #2C3E50;
-  --secondary: #5D3520;
-  --beige: #D7A790;
-  --background: #F8F6F4;
-  --white: #fff;
-  --black: #000;
 }
 
 

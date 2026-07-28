@@ -1,53 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+<main>
+  <div class="titre">
+      <h2 class="page-title fw-bold">
+        Conseils
+      </h2>
+      <p class="breadcrumb-text">
+        Blog de conseils
+      </p>
+  </div>
 
-    
-  <input
-  class="inputRecherche"
-    matInput
-    [(ngModel)]="rechercherText"
-    placeholder="Rechercher un conseil..." />
+  <input class="inputRecherche" matInput [(ngModel)]="rechercherText" placeholder="Rechercher un conseil..." />
 
+  <div class="cards-container">
 
-   
-<div class="cards-container">
-
-  @if (filtrageConseil.length > 0) {
+    @if (filtrageConseil.length > 0) {
 
     @for (element of filtrageConseil; track element.id ) {
 
-      <div class="card">
+    <div class="card">
 
-        <h3>{{ element.titre }}</h3>
+      <h3>{{ element.titre }}</h3>
 
-        <p><strong>Auteur :</strong> {{ element.auteur }}</p>
+      <p><strong>Auteur :</strong> {{ element.auteur ? element.auteur : element.psyNom }}</p>
 
-        <p><strong>Date :</strong> {{ element.datePublication }}</p>
+      <p><strong>Date :</strong> {{ element.datePublication | date: 'EEEE, d MMMM yyyy' : '' : 'fr-FR' }}</p>
 
-        <p>{{ element.description | slice:0:50 }}...</p>
+      <p>{{ element.description | slice:0:50 }}...</p>
 
-        <button (click)="show(element)">
-          Voir plus
-        </button>
+      <button (click)="show(element)">
+        Voir plus
+      </button>
 
-      </div>
+    </div>
 
     }
 
-  } @else {
+    } @else {
 
     <h1>Aucun conseil trouvé</h1>
 
-  }
+    }
 
-</div>
-
-  
-</body>
-</html>
+  </div>
+</main>
