@@ -7,6 +7,7 @@ import { BarreRecherche } from "./barre-recherche/barre-recherche";
 import { QuestionCard } from "./question-card/question-card";
 import { QuestionForm } from "./question-form/question-form";
 import { QuestionFormEdit } from "./question-form-edit/question-form-edit";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-question",
@@ -23,11 +24,15 @@ export class Question {
     formulaireVisibleforEdit=false
     questionRecup=signal<questionResponseInterfaceModif|null>(null)
     messageSnackBar=inject(NotificationService)
+    public routerActivate=inject(ActivatedRoute)
+    public test_id:number
     constructor(){
-           this.chargerQuestion("")
+           this.test_id=+this.routerActivate.snapshot.paramMap.get('test_id')!
+           console.log(this.test_id)
+           this.chargerQuestion(this.test_id,"")
     }
-    chargerQuestion(question:string){
-              this.questionService.getAllQuestion().subscribe(
+    chargerQuestion(test_id:number,question:string){
+              this.questionService.getAllQuestion(test_id).subscribe(
             {
                  next:(response)=>{
                     if(question===""){
@@ -55,8 +60,8 @@ export class Question {
     //cett fonction met à jour la lsite des conseils et ferme le modal
     AjoutEffectuer(){
       this.formulaireVisible=false
-      this.chargerQuestion("")
       this.messageSnackBar.succes("conseil posté avec succes!")
+      this.chargerQuestion(this.test_id,"")
     }
     //debut de la modification
     modifier(id:number){
@@ -71,7 +76,8 @@ export class Question {
              }
              ,
               complete:()=>{
-                   this.chargerQuestion("")
+                         this.chargerQuestion(this.test_id,"")
+
               }
         }
       )
@@ -87,7 +93,8 @@ export class Question {
                 console.log(error)
               },
               complete:()=>{
-                   this.chargerQuestion("")
+                        this.chargerQuestion(this.test_id,"")
+
                    this.messageSnackBar.succes("suppression effectuée avec avec succes!")
               }
           })
@@ -96,7 +103,8 @@ export class Question {
     //fermer le madal de modification apres l'edit
     fermerApreEdit(b:boolean){
        this.formulaireVisibleforEdit=b
-       this.chargerQuestion("")
+             this.chargerQuestion(this.test_id,"")
+
        this.messageSnackBar.succes("modification effectuée avec succes!")
 
     }

@@ -10,8 +10,10 @@ export class QuestionService {
  private readonly http = inject(HttpClient);
 
   private readonly apiUrl = `${environments.apiUrl}/questions`;
-   public getAllQuestion(){
-    return this.http.get<questionResponseInterface[]>(`${this.apiUrl}`,{withCredentials:true})
+    private readonly apiUrle2 = `${environments.apiUrl}/tests`;
+
+   public getAllQuestion(test_id:number){
+    return this.http.get<questionResponseInterface[]>(`${this.apiUrle2}/${test_id}/questions`,{withCredentials:true})
   }
 
   public ajouterQuestion(question:questionRequestInterface){

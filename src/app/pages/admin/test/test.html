@@ -1,39 +1,32 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PsychoHelp - Catégorie de tests</title>
+  </head>
+  <body>
+    <main class="main-content">
+      <h1 class="page-title">Catégorie de tests</h1>
 
-</head>
-<body>
-
-<main class="main-content">
-    <h1 class="page-title">Catégorie de tests</h1>
-
-
-    <div class="cards-grid">
+      <div class="cards-grid">
         @for (category of listCategorie; track category.id) {
-            <div class="card">
-                <h4>{{ category.nomCategorie }}</h4>
-                <div class="">
-                {{category.description}}
-                </div>
 
-            </div>
+        <div class="card" (click)="voirTests(category.id)">
+          <h4>{{ category.nomCategorie }}</h4>
+          <div class="">{{category.description}}</div>
+        </div>
         } @empty {
-            <!-- Message optionnel si la liste est vide -->
-            <p>Aucune catégorie disponible pour le moment.</p>
+        <!-- Message optionnel si la liste est vide -->
+        <p>Aucune catégorie disponible pour le moment.</p>
         }
-    </div>
+      </div>
 
-    <div class="add-button-container">
+      <div class="add-button-container">
         <button class="btn-add" routerLink="/admin/tests/ajout">
-            <i class="fa-solid fa-circle-plus"></i> Ajouter
+          <i class="fa-solid fa-circle-plus"></i> Ajouter
         </button>
-    </div>
-</main>
-
-</body>
+      </div>
+    </main>
+  </body>
 </html>

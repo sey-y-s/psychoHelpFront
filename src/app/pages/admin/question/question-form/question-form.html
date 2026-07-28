@@ -24,13 +24,10 @@
 
                 }
             </div>
+           
             <div class="form-group">
                 <label for="test">Test</label>
-                <select name="" id="test" formControlName="test_id">
-                       @for (test of test(); track test.id) {
-                          <option [value]="test.id">{{test.nom_test}}</option>
-                       }
-                </select>
+                <input type="number" formControlName="test_id"    >
                 @if(form.get("test_id")?.invalid&&form.get("test_id")?.touched){
                    <small class="invalid-feedbacks"> Test  est requis!</small>
 

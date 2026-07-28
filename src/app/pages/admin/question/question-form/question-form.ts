@@ -1,4 +1,4 @@
-import { Component, inject, output, signal } from "@angular/core";
+import { Component, effect, inject, input, output, signal } from "@angular/core";
 import { QuestionService } from "../../../../core/services/question.service";
 import { Router } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -17,6 +17,7 @@ export class QuestionForm {
   router = inject(Router);
   testService=inject(TestService)
   test=signal<Test[]>([])
+  test_id=input<number>()
 
   fermerClic = output<boolean>();
   ajoutReussiMisAjourClic = output<void>();
@@ -36,17 +37,29 @@ export class QuestionForm {
       this.questionService.ajouterQuestion(this.form.value as questionRequestInterface)
       .subscribe({
         next: (response) => {
+          this.form.patchValue({
+          test_id:this.test_id()
+        })
           //met à jour la liste des conseils
           this.ajoutReussiMisAjourClic.emit();
         },
         error: (error) => {
           console.log(error);
         },
+        complete:()=>{
+        
+    
+        }
       });
     
     
   }
   constructor(){
+    effect(()=>{
+        this.form.patchValue({
+          test_id:this.test_id()
+        })
+    })
        this.testService.getTests().subscribe({
             next:(response)=>{
               this.test.set(response)

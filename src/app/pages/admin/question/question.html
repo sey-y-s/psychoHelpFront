@@ -10,7 +10,7 @@
             Ajouter une question
         </button>
     </div>
-    <app-barre-recherche (chercherOnClick)="chargerQuestion($event)"/>
+    <app-barre-recherche (chercherOnClick)="chargerQuestion(test_id,$event)"/>
     <div class="table-container">
         <table class="table">
 
@@ -42,7 +42,7 @@
 
 </div>
 @if (formulaireVisible) {
-    <app-question-form (fermerClic)="annuler($event)" 
+    <app-question-form (fermerClic)="annuler($event)" [test_id]="test_id"
     (ajoutReussiMisAjourClic)="AjoutEffectuer()" />
 }
 
