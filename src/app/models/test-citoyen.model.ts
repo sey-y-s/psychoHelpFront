@@ -1,6 +1,6 @@
 export interface TestCitoyen {
-    
-     nom_test: String;
-     description:String;
-     etat:boolean ;
+  id?: number;
+  nom_test: string;
+  description: string;
+  etat: boolean;
 }

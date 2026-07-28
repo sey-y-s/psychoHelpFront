@@ -1,1 +1,43 @@
-<p>test-add works!</p>
+<div class="container">
+  <h2>Ajouter un test</h2>
+
+  <form [formGroup]="testForm" (ngSubmit)="ajouterTest()">
+    <div class="form-group">
+      <label>Nom du test</label>
+
+      <input
+        type="text"
+        formControlName="nom_test"
+        placeholder="Entrer le nom du test"
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description</label>
+
+      <textarea
+        rows="5"
+        formControlName="description"
+        placeholder="Entrer la description du test"
+      >
+      </textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Etat</label>
+
+      <select formControlName="etat">
+        <option [ngValue]="true">Actif</option>
+
+        <option [ngValue]="false">Inactif</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button type="submit">Ajouter</button>
+
+      <button type="button" routerLink="/tests">Annuler</button>
+    </div>
+  </form>
+</div>
