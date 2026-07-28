@@ -27,57 +27,44 @@ td {
 
 .actions {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+    justify-content: center; 
+    align-items: center;     
+    gap: 20px;   
 }
 
-
-/* Voir */
-.actions button:nth-child(1) {
-    border-radius: 5px ;
-    border-color: white;
-    background-color: white;
-}
-
-.actions button:nth-child(1) mat-icon {
-    color: #1976d2;
-}
-
-
-/* Modifier */
-.actions button:nth-child(2) {
-     border-radius: 5px;
-    border-color: white;
-        background-color: white;
-
-}
-
-.actions button:nth-child(2) mat-icon {
-    color: #f57c00;
-}
-
-
-/* Supprimer */
-.actions button:nth-child(3) {
-    border-radius: 5px;
-    border-color: white;
-    background-color: white;
-    }
-
-.actions button:nth-child(3) mat-icon {
-    color: #f77886;
-}
-
-
-/* Effet hover */
 .actions button {
-    transition: .2s ease;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid #ded7d3;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #514a46;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .actions button:hover {
-    transform: scale(1.12);
-}                                 
+    background: #f6f2f0;
+}
+
+.actions button:last-child {
+    border-color: #f1d3cf;
+    color: #dc463d;
+}
+
+.actions button:last-child:hover {
+    background: #fff2f0;
+}
+
+.actions mat-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+}
+                         
 
 .status {
   display: inline-block;

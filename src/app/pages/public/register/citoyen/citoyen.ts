@@ -7,6 +7,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from "@angular/router";
+import { NotificationService } from "../../../../core/services/notification.service";
 
 @Component({
   selector: "app-citoyen",
@@ -32,8 +33,8 @@ export class Citoyen {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router : Router
-      
+    private router : Router,
+    private notif : NotificationService
     
   ) {
 
@@ -75,9 +76,10 @@ export class Citoyen {
         next: (reponse) => {
 
           console.log(reponse);
-          alert("Inscription réussie !");
+          this.notif.succes("Inscription réussie !");
 
           this.formulaire.reset();
+          //this.router.navigate(['/me']);
 
         },
 
@@ -98,7 +100,7 @@ export class Citoyen {
     }
 
     // Affichage du message propre à l'utilisateur
-    alert(messageErreur);
+    this.notif.erreur(messageErreur);
   
   }
 

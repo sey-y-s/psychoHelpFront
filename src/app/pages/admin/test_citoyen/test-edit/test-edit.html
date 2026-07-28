@@ -1,0 +1,22 @@
+<form [formGroup]="testForm" (ngSubmit)="modifierTest()">
+  <label>Nom du test</label>
+  <input type="text" formControlName="nom_test" />
+
+  <label>Description</label>
+  <textarea formControlName="description"> </textarea>
+
+  <label>Etat</label>
+
+  <select formControlName="etat">
+    <option [ngValue]="true">Actif</option>
+
+    <option [ngValue]="false">Inactif</option>
+  </select>
+ <div class="actions">
+    <button type="submit">Modifier</button>
+
+    <button type="button" (click)="redirectList()">
+      Annuler
+    </button>
+  </div>
+</form>

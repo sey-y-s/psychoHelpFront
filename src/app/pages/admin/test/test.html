@@ -1,56 +1,32 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PsychoHelp - Catégorie de tests</title>
+  </head>
+  <body>
+    <main class="main-content">
+      <h1 class="page-title">Catégorie de tests</h1>
 
-</head>
-<body>
+      <div class="cards-grid">
+        @for (category of listCategorie; track category.id) {
 
-<main class="main-content">
-    <h1 class="page-title">Catégorie de tests</h1>
-
-
-    <div class="cards-grid">
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="anxiete.png" alt="anxiete">
-            </div>
-            <span class="card-title">Anxiété</span>
+        <div class="card" (click)="voirTests(category.id)">
+          <h4>{{ category.nomCategorie }}</h4>
+          <div class="">{{category.description}}</div>
         </div>
+        } @empty {
+        <!-- Message optionnel si la liste est vide -->
+        <p>Aucune catégorie disponible pour le moment.</p>
+        }
+      </div>
 
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="depression.png" alt="anxiete" id="depression">
-            </div>
-            <span class="card-title">Dépression</span>
-        </div>
-
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="stress.png" alt="anxiete">
-            </div>
-            <span class="card-title">Stress</span>
-        </div>
-
-        <div class="card">
-            <div class="card-image-placeholder">
-                <img src="humeur.png" alt="anxiete">
-            </div>
-            <span class="card-title">Humeur</span>
-        </div>
-
-
-    </div>
-
-    <div class="add-button-container">
+      <div class="add-button-container">
         <button class="btn-add" routerLink="/admin/tests/ajout">
-            <i class="fa-solid fa-circle-plus"></i> Ajouter
+          <i class="fa-solid fa-circle-plus"></i> Ajouter
         </button>
-    </div>
-</main>
-
-</body>
+      </div>
+    </main>
+  </body>
 </html>
