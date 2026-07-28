@@ -102,17 +102,45 @@ td{
     font-size:14px;
 }
 
-.actions{
-    text-align:center;
+.actions {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    gap: 20px;   
+}
+.actions button {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid #ded7d3;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #514a46;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.actions button{
-    background:#f2c3a9;
-    color:white;
-    border-radius:8px;
-    border: none;
+.actions button:hover {
+    background: #f6f2f0;
 }
 
-.actions button:hover{
-    background:#e4b294;
+.actions button:last-child {
+    border-color: #f1d3cf;
+    color: #dc463d;
 }
+
+.actions button:last-child:hover {
+    background: #fff2f0;
+}
+
+.actions mat-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+}
+    
+
+
+

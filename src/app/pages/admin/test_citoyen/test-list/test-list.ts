@@ -4,7 +4,7 @@ import { Test } from "../../../../models/tests";
 import { Citoyen } from "../../../public/register/citoyen/citoyen";
 import { OnInit, ChangeDetectorRef } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
-import { RouterModule, Router, ActivatedRoute } from "@angular/router";
+import { RouterModule, Router, ActivatedRoute, RouterLink } from "@angular/router";
 import { TestCitoyen } from "../../../../models/test-citoyen.model";
 import { TestCitoyenService } from "../../../../core/services/test-citoyen.service";
 import { FormsModule } from '@angular/forms';
@@ -15,9 +15,10 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
 
   imports: [
-  CommonModule,
-  MatIconModule,
-  FormsModule
+    CommonModule,
+    MatIconModule,
+    FormsModule,
+    RouterLink
 ],
   templateUrl: "./test-list.html",
   styleUrl: "./test-list.css",
