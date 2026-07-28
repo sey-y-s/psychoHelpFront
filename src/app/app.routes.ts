@@ -34,6 +34,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import("./pages/public/register/admin/admin").then((m) => m.Admin),
   },
+  {
+    path: "404",
+    loadComponent: () =>
+      import("./shared/page-not-found/page-not-found").then((m) => m.PageNotFound),
+  },
 
   // =========================================================================
   // ESPACE CITOYEN
@@ -210,7 +215,7 @@ export const routes: Routes = [
     data: { role: "ADMIN" }, // Transmis au roleGuard
     children: [
       {
-        path: "dashboard",
+        path: "",
         redirectTo: "dashboard",
         pathMatch: "full",
       },
@@ -258,14 +263,14 @@ export const routes: Routes = [
           ),
         data: { title: "Ajout de catégories de tests" },
       },
-    {
-  path: "tests/:categorieId",
-  loadComponent: () =>
-    import("./pages/admin/test_citoyen/test-list/test-list").then(
-      (m) => m.TestList
-    ),
-  data: { title: "Liste des tests" },
-},
+      {
+        path: "tests/:categorieId",
+        loadComponent: () =>
+          import("./pages/admin/test_citoyen/test-list/test-list").then(
+            (m) => m.TestList
+          ),
+        data: { title: "Liste des tests" },
+      },
 
       {
         path: "tests/ajout/:categorieId",
@@ -281,33 +286,19 @@ export const routes: Routes = [
         data: { title: 'Ajout de catégories de tests' }
       },
       {
+        path: 'tests/modifier/:id',
+        loadComponent: () => import('./pages/admin/test_citoyen/test-edit/test-edit').then(m => m.TestEdit),
+        data: { title: 'Modifier un test' }
+      },
+      {
         path: 'notifications',
         loadComponent: () => import('./pages/admin/notification/notification').then(m => m.Notification),
         data: { title: 'Notifications' }
       },
     ]
   },
-          path: "tests/modifier/:id",
-        loadComponent: () =>
-          import("./pages/admin/test_citoyen/test-edit/test-edit").then(
-            (m) => m.TestEdit,
-          ),
-        data: { title: "Modifier un test" },
-      },
-
-    ],
-  },
-
-  {
-    path: "404",
-    loadComponent: () =>
-      import("./shared/page-not-found/page-not-found").then(
-        (m) => m.PageNotFound,
-      ),
-  },
 
   // Redirection par défaut si la route n'existe pas
-  // TODO : Page 404
   {
     path: "**",
     redirectTo: "404",
