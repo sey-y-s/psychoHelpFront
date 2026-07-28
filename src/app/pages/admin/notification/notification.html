@@ -1,0 +1,27 @@
+<div class="notification-container">
+    <div class="header">
+        <h2>Mes Notifications ({{ nombreNonLues }} non lues)</h2>
+        <button *ngIf="nombreNonLues > 0" (click)="marquerToutesCommeLues()">Tout marquer comme lu</button>
+    </div>
+
+    <div *ngIf="notifications.length === 0" class="empty-state">
+        Aucune notification pour le moment.
+    </div>
+
+    <ul class="notification-list">
+        <li *ngFor="let notif of notifications"
+            [class.non-lue]="!notif.lu"
+            (click)="!notif.lu && lireNotification(notif.id)">
+
+            <div class="notif-header">
+                <span class="badge" [ngClass]="notif.type.toLowerCase()">{{ notif.type }}</span>
+                <span class="date">{{ notif.dateCreation | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+
+            <h3>{{ notif.titre }}</h3>
+            <p>{{ notif.message }}</p>
+
+            <span *ngIf="!notif.lu" class="indicator-new">● Nouveau</span>
+        </li>
+    </ul>
+</div>
