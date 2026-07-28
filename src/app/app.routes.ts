@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
 import { MainLayout } from "./layout/main-layout/main-layout";
+import {Notification} from "./pages/admin/notification/notification";
 
 export const routes: Routes = [
   // =========================================================================
@@ -203,7 +204,12 @@ export const routes: Routes = [
         path: 'tests/ajout',
         loadComponent: () => import('./pages/admin/test/ajout-categorie-test/ajout-categorie-test').then(m => m.AjoutCategorieTest),
         data: { title: 'Ajout de catégories de tests' }
-      }
+      },
+      {
+        path: 'notifications',
+        loadComponent: () => import('./pages/admin/notification/notification').then(m => m.Notification),
+        data: { title: 'Notifications' }
+      },
     ]
   },
 
