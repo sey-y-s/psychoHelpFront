@@ -122,9 +122,11 @@
 
             <!-- Statut -->
             <td>
-              <span class="status-badge" [class.status-en-attente]="!psy.status" [class.status-valide]="psy.status">
-                {{ psy.status ? 'Validé' : 'En attente' }}
-              </span>
+              <span class="status-badge"
+                      [class.status-en-attente]="psy.status === 'ENATTENTE'"
+                      [class.status-valide]="psy.status === 'VALIDER'">
+                      {{ psy.status === 'VALIDER' ? 'Validé' : 'En attente' }}
+               </span>
             </td>
 
             <!-- Actions -->
@@ -195,7 +197,7 @@
 <!-- ====== MODAL DÉTAILS DU PSYCHOLOGUE ====== -->
 <!-- ============================================================ -->
 <div class="modal-overlay" *ngIf="modalOuvert" (click)="fermerModal()">
-  <div class="modal" (click)="$event.stopPropagation()">
+  <div class="psy-modal" (click)="$event.stopPropagation()">
     
     <!-- En-tête du modal -->
     <div class="modal-header">

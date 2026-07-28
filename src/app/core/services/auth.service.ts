@@ -63,11 +63,10 @@ export class AuthService {
 }
 
    // Methode pour l'inscription du Psychologue
-    inscrirePsychologue(psychologue: Psychologue): Observable<any> {
-
+  inscrirePsychologue(formData: FormData): Observable<any> {
     return this.http.post(
-      `${this.api}/psychologues`,
-      psychologue
+        `${this.api}/psychologues`,
+        formData
     );
 
   }
