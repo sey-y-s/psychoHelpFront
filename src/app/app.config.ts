@@ -8,7 +8,7 @@ import { sessionInterceptor } from './core/interceptors/session.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(),
+    // provideHttpClient(),
     provideHttpClient(withInterceptors([erreurInterceptor, sessionInterceptor]))
   ]
 };
