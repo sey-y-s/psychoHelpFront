@@ -131,17 +131,6 @@ export const routes: Routes = [
       },
       {
         path: "conseils",
-<<<<<<< HEAD
-        loadComponent: () => import('./pages/citoyen/conseils/list-conseil-citoyen').then(m => m.ListConseilCitoyen),
-        data: { title: 'Conseils' }
-      },
-      {
-        path: "conseils/:id",
-        loadComponent: () => import('./pages/citoyen/conseils/show-conseil/show-conseil').then(m => m.ShowConseil),
-        data: { title: 'Conseils' }
-      }
-    ]
-=======
         loadComponent: () =>
           import("./pages/citoyen/conseils/list-conseil-citoyen").then(
             (m) => m.ListConseilCitoyen,
@@ -157,7 +146,6 @@ export const routes: Routes = [
         data: { title: "Conseils" },
       },
     ],
->>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
   },
 
   // =========================================================================
@@ -227,15 +215,9 @@ export const routes: Routes = [
     data: { role: "ADMIN" }, // Transmis au roleGuard
     children: [
       {
-<<<<<<< HEAD
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-=======
         path: "",
         redirectTo: "dashboard",
         pathMatch: "full",
->>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
       },
       {
         path: "dashboard",
@@ -324,15 +306,6 @@ export const routes: Routes = [
     ]
   },
 
-<<<<<<< HEAD
-
-  {
-    path: '404',
-    loadComponent: () => import('./shared/page-not-found/page-not-found').then(m => m.PageNotFound)
-  },
-
-=======
->>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
   // Redirection par défaut si la route n'existe pas
   {
     path: "**",
