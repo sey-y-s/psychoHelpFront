@@ -239,6 +239,8 @@ INSERT INTO creneaux (id, jours, heure_debut, heure_fin, statut, psychologue_id)
 (2, 'Lundi', '10:30:00', '11:30:00', 0, 2),
 (3, 'Mardi', '14:00:00', '15:00:00', 1, 3);
 
+
+
 INSERT INTO seances (id, date, date_rdv, statut, citoyen_id, creneau_id) VALUES
 (1, '2025-02-15', '2025-02-24', 'CONFIRMER', 6, 2),
 (2, '2025-02-18', '2025-02-26', 'TERMINER', 7, 3);
