@@ -62,7 +62,7 @@ export class AdminShowConseil implements OnInit {
     if (id === undefined) return;
     this.conseilAdminService.rejeter(id).subscribe({
       next: () => {
-        this.notifService.erreur("Le conseil a été refusé et masqué pour les utilisateurs.");
+        this.notifService.info("Le conseil a été refusé et masqué pour les utilisateurs.");
       },
       error: (err: any) => {
         console.error("Erreur lors du rejet :", err);

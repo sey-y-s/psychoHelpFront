@@ -22,7 +22,7 @@ export class AdminPsyEnAttente {
   psychologuesFiltres: Psychologue[] = [];
   chargement = false;
 
-  filtreActif: 'TOUS' | 'ENATTENTE' | 'VALIDER' | 'REFUSER' = 'ENATTENTE';
+  filtreActif: 'TOUS' | 'ENATTENTE' | 'VALIDER' | 'REFUSER' = 'TOUS';
   // Modal
   modalOuvert = false;
   psychologueSelectionne: Psychologue | null = null;
