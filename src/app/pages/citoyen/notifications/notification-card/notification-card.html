@@ -1,0 +1,19 @@
+<article class="notification-card"
+         [class.non-lue]="!notification.lu"
+         (click)="ouvrir.emit(notification)">
+    <div class="notification-icon"
+         [class]="classeType">
+        <mat-icon>{{ icone }}</mat-icon>
+    </div>
+    <div class="notification-content">
+        <strong>{{ notification.titre }}</strong>
+        <p>{{ notification.message }}</p>
+    </div>
+
+    <div class="notification-meta">
+        <span>{{notification.dateCreation| date:'dd/MM/yyyy HH:mm' }}</span>
+        @if (!notification.lu) {
+            <span class="unread-dot" title="Non lue"></span>
+        }
+    </div>
+</article>
