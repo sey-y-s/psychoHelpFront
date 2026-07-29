@@ -1,0 +1,45 @@
+<div class="container">
+
+  <h2>Détail de l'administrateur</h2>
+
+  <div class="detail-card">
+
+    <div class="detail-item">
+      <strong>Nom :</strong>
+      <span>{{ admin.nom }}</span>
+    </div>
+
+    <div class="detail-item">
+      <strong>Prénom :</strong>
+      <span>{{ admin.prenom }}</span>
+    </div>
+
+    <div class="detail-item">
+      <strong>Email :</strong>
+      <span>{{ admin.mail }}</span>
+    </div>
+
+    <div class="detail-item">
+      <strong>Téléphone :</strong>
+      <span>{{ admin.telephone }}</span>
+    </div>
+
+    <div class="detail-item">
+      <strong>Mot de passe :</strong>
+{{ admin.mot_de_passe }}    </div>
+
+    <div class="detail-item">
+      <strong>Rôle :</strong>
+      <span>{{ admin.role }}</span>
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+    <button type="button" (click)="redirectList()">
+      Retour
+    </button>
+  </div>
+
+</div>

@@ -74,35 +74,6 @@
   gap:15px;
 }
 
-<<<<<<< HEAD
-.stat-card {
-  background: white;
-  padding: 20px 24px;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: all 0.3s;
-  border-left: 5px solid;
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
-}
-
-.stat-card.total {
-  border-left-color: #D7A790;
-}
-
-.stat-card.pending {
-  border-left-color: #D7A790;
-}
-
-.stat-card.validated {
-  border-left-color: #D7A790;
-=======
 .filter-title{
   display:flex;
   align-items:center;
@@ -151,7 +122,6 @@
   background:#f2f2f2;
 
   font-size:12px;
->>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 }
 
 .filter-btn.all{
@@ -190,20 +160,8 @@
   background:#10b981;
 }
 
-<<<<<<< HEAD
-.search-box {
-  flex: 1;
-  min-width: 280px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-=======
 .filter-btn.danger.active{
   background:#ef4444;
->>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 }
 
 .filter-btn.active .count{
@@ -211,57 +169,6 @@
   color:white;
 }
 
-<<<<<<< HEAD
-.search-input {
-  flex: 1;
-  padding: 12px 8px;
-  border: none;
-  border-radius: 12px;
-  font-size: 14px;
-  background: transparent;
-  outline: none;
-}
-
-.search-input:focus {
-  outline: none;
-}
-
-.search-clear {
-  background: none;
-  border: none;
-  color: #9ca3af;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 50%;
-  transition: all 0.2s;
-}
-
-.search-clear:hover {
-  background: #f3f4f6;
-  color: #1a2332;
-}
-
-.total-elements {
-  font-size: 14px;
-  color: #6b7280;
-  background: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  white-space: nowrap;
-}
-
-.total-elements strong {
-  color: #1a2332;
-}
-
-/* ============================================================ */
-/* ====== TABLEAU ====== */
-/* ============================================================ */
-
-=======
->>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
 .table-container {
   background: white;
   border-radius: 16px;
@@ -371,16 +278,7 @@ tbody tr:hover {
   color: #6b7280;
 }
 
-<<<<<<< HEAD
-/* ============================================================ */
-/* ====== LIENS ====== */
-/* ============================================================ */
-
-.email-link,
-.phone-link {
-=======
 .email-link, .phone-link {
->>>>>>> 040ace5585857b7b76cf70316a986304522f2dd0
   color: #1a2332;
   text-decoration: none;
   font-size: 14px;
