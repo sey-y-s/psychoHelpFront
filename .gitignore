@@ -34,5 +34,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 *~
-src/app/layout/citoyen/
 
