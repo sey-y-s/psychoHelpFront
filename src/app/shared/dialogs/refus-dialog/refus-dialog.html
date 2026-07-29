@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>
+    Refuser le psychologue
+</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>
+            Motif du refus
+        </mat-label>
+        <textarea
+                matInput
+                rows="5"
+                [(ngModel)]="motif"
+                placeholder="Expliquez pourquoi cette inscription est refusée...">
+        </textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="annuler()">
+        Annuler
+    </button>
+    <button mat-raised-button color="warn" [disabled]="!motif.trim()" (click)="confirmer()">
+        Refuser
+    </button>
+
+</mat-dialog-actions>

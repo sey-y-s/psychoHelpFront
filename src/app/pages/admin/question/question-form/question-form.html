@@ -1,0 +1,60 @@
+<div class="modal-overlay" >
+
+    <section class="modale" >
+
+        <header class="modal-header">
+            <div>
+                <h2>
+                     Formulaire d'Ajout d'une question
+                </h2>
+
+                <p>Renseignez tous les  champs.</p>
+            </div>
+
+            
+        </header>
+
+        <form [formGroup]="form" (ngSubmit)="soumission()" >
+
+            <div class="form-group">
+                <label for="jour">Question</label>
+                <input type="text" formControlName="question" >
+                @if(form.get("question")?.invalid&&form.get("question")?.touched){
+                   <small class="invalid-feedbacks"> question est requise!</small>
+
+                }
+            </div>
+           
+            <div class="form-group">
+                <label for="test">Test</label>
+                <input type="number" formControlName="test_id"    >
+                @if(form.get("test_id")?.invalid&&form.get("test_id")?.touched){
+                   <small class="invalid-feedbacks"> Test  est requis!</small>
+
+                }
+               
+            </div>
+            <footer class="form-actions">
+
+                <button  (click)="annuler()"
+                        type="button"
+                        class="cancel"
+                >
+                    Annuler
+                </button>
+
+                <button
+                        type="submit"
+                        class="save"
+                        
+                >
+                Ajouter
+                </button>
+
+            </footer>
+
+        </form>
+
+    </section>
+
+</div>

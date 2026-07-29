@@ -1,11 +1,10 @@
 <section class="dashboard-panel">
     <header>
         <h2>Prochains rendez-vous</h2>
-        <a routerLink="/psychologue/rendez-vous">
+        <a routerLink="/psy/rendez-vous">
             Voir tout
         </a>
     </header>
-
     @if (rendezVous.length > 0) {
         <div class="rdv-list">
             @for (rdv of rendezVous; track rdv.id) {
@@ -32,8 +31,7 @@
             Aucun rendez-vous à venir.
         </div>
     }
-
-    <a class="panel-footer" routerLink="/psychologue/rendez-vous">
+    <a class="panel-footer" routerLink="/psy/rendez-vous">
         Voir tous mes rendez-vous
     </a>
 </section>

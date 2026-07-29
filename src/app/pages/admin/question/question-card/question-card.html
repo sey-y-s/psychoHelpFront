@@ -1,0 +1,17 @@
+<tr>
+       <td class="description">
+                  {{ question().question }}
+        </td>    
+        <td class="description">
+                  {{ question().nom_test }}
+        </td>       
+        
+        <td class="actions">
+                <button mat-icon-button title="Modifier"  (click)="modifier(question().id)" >
+                    <mat-icon class="edit-icon">edit</mat-icon>
+                </button>
+                <button mat-icon-button title="Supprimer" (click)="supprimerQuestion(question().id)">
+                    <mat-icon class="delete-icon">delete</mat-icon>
+                </button>
+        </td>
+</tr>

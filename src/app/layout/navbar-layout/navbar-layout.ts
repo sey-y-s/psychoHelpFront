@@ -4,7 +4,7 @@ import {ActivatedRouteSnapshot, NavigationEnd, PRIMARY_OUTLET, Router} from "@an
 import {filter} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {AsyncPipe} from "@angular/common";
-import {NotificationService} from "../../core/services/NotificationService";
+import {NotificationServices} from "../../core/services/notification-service";
 import {NotificationWebsocketService} from "../../core/services/notification-websocket.service";
 
 @Component({
@@ -19,7 +19,7 @@ export class NavbarLayout implements OnInit{
   private readonly changeDetectorRef = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
 
-  private readonly notificationService = inject(NotificationService);
+  private readonly notificationService = inject(NotificationServices);
   private readonly notificationWebsocketService = inject(NotificationWebsocketService);
   readonly nombreNotificationsNonLues$ = this.notificationWebsocketService.notificationsNonLues$;
 

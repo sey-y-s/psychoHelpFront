@@ -97,7 +97,7 @@ body{
 }
 
 .psy-card{
-    background-color:var(--primary);
+    background-color: color-mix(in srgb, var(--primary) 95%, transparent);
     color:var(--white);
     border-radius:20px;
     padding:20px;
