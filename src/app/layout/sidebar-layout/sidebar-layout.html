@@ -78,10 +78,16 @@
             <span>Tests</span>
         </a>
 
-        <!-- <a class="menu-item">
-            <mat-icon>notifications</mat-icon>
-            <span>Notifications</span>
-        </a> -->
+            <a class="menu-item" routerLink="/me/notifications" routerLinkActive="active">
+                <mat-icon>notifications</mat-icon>
+                <span>Notifications
+                    @if (nombreNotificationsNonLues$ | async; as nb) {
+                        @if (nb > 0) {
+                            <span class="dot"><b><sup>*</sup></b> ({{ nb > 99 ? '99+' : nb }})</span>
+                        }
+                    }
+            </span>
+            </a>
 
         }
 
@@ -92,7 +98,7 @@
             <span>Dashboard</span>
         </a>
 
-        <a class="menu-item">
+        <a class="menu-item" routerLink="/admin/admins" routerLinkActive="active">
             <mat-icon>people</mat-icon>
             <span>Admins</span>
         </a>

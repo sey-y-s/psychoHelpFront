@@ -27,19 +27,19 @@
     </thead>
 
     <tbody>
-      @for(test of filtrageTest; track test.id) {
-      <tr>
+      @for (test of filtrageTest; track test.id) {
 
+        <tr>
 
-        <td class="nom-test">
-          {{ test.nom_test }}
-        </td>
+          <td class="nom-test">
+            {{ test.nom_test }}
+          </td>
 
-        <td>
-          <span class="badge">
-            {{ test.description }}
-          </span>
-        </td>
+          <td>
+            <span class="badge">
+              {{ test.description }}
+            </span>
+          </td>
 
         <td>
           
@@ -59,7 +59,6 @@
           </button>
         </td>
 
-      </tr>
       }
     </tbody>
   </table>
