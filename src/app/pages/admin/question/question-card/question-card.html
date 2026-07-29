@@ -1,17 +1,56 @@
 <tr>
-       <td class="description">
-                  {{ question().question }}
-        </td>    
-        <td class="description">
-                  {{ question().nom_test }}
-        </td>       
-        
-        <td class="actions">
-                <button mat-icon-button title="Modifier"  (click)="modifier(question().id)" >
-                    <mat-icon class="edit-icon">edit</mat-icon>
-                </button>
-                <button mat-icon-button title="Supprimer" (click)="supprimerQuestion(question().id)">
-                    <mat-icon class="delete-icon">delete</mat-icon>
-                </button>
-        </td>
+    <td class="description">
+        {{ question().question }}
+    </td>
+    <td class="description">
+        {{ question().nom_test }}
+    </td>
+    <td class="actions">
+        <button mat-icon-button title="Voir les choix" (click)="toggleChoix()">
+            <mat-icon class="view-icon">list</mat-icon>
+        </button>
+
+        <button mat-icon-button title="Modifier" (click)="modifier(question().id)">
+            <mat-icon class="edit-icon">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button title="Supprimer" (click)="supprimerQuestion(question().id)">
+            <mat-icon class="delete-icon">delete</mat-icon>
+        </button>
+    </td>
 </tr>
+
+<!-- Ligne pour les choix -->
+@if (afficherChoix) {
+    <tr class="choix-row">
+        <td colspan="3">
+            <div class="choix-container">
+                <div class="choix-header">
+                    <span class="choix-title">📝 Choix de la question</span>
+                </div>
+
+                <!-- Correction ici : utilisation de (question().choix?.length ?? 0) > 0 -->
+                @if ((question().choix?.length ?? 0) > 0) {
+                    <div class="choix-grid">
+                        @for (choix of question().choix; track $index; let i = $index) {
+                            <div class="choix-item" [class.correct]="choix.estCorrect">
+                                <span class="choix-lettre">{{ getLettre(i) }}</span>
+                                <span class="choix-texte">{{ choix.texte }}</span>
+                                @if (choix.estCorrect) {
+                                    <span class="badge-correct">✅</span>
+                                }
+                                @if (choix.score) {
+                                    <span class="choix-score">{{ choix.score }} pts</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                } @else {
+                    <div class="no-choix">
+                        <p>Aucun choix pour cette question</p>
+                    </div>
+                }
+            </div>
+        </td>
+    </tr>
+}
