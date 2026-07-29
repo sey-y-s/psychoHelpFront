@@ -72,6 +72,15 @@ export const routes: Routes = [
           ),
         data: { title: "Mes rendez-vous" },
       },
+
+      {
+        path: "notifications",
+        loadComponent: () =>
+            import("./pages/citoyen/notifications/notifications").then(
+                (m) => m.Notifications,
+            ),
+        data: { title: "Notifications" },
+      },
       {
         path: "rendez-vous/:id",
         loadComponent: () =>
