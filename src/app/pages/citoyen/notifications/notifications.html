@@ -1,0 +1,14 @@
+<section class="notifications-page">
+    <app-notification-filtre
+            [filtreActif]="filtreActif"
+            [traitement]="traitement"
+            [possedeNotificationsNonLues]="
+      notifications.some(notification => !notification.lu)"
+            (filtreChange)="changerFiltre($event)"
+            (toutMarquerLu)="toutMarquerCommeLu()"/>
+
+    <app-notification-listes
+            [notifications]="notificationsFiltrees"
+            [chargement]="chargement"
+            (notificationCliquee)="marquerCommeLue($event)"/>
+</section>
