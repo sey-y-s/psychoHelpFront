@@ -48,11 +48,12 @@
         </td>
 
         <td class="actions">
-
-          <button mat-icon-button (click)="modifier(test)">
-            <mat-icon>edit</mat-icon>
+          <button  mat-icon-button title="Visualiser"      [routerLink]="['/admin/tests', test.id, 'questions']">
+                    <mat-icon class="view-icon">visibility</mat-icon>
           </button>
-
+          <button mat-icon-button title="Modifier"  (click)="modifier(test)" >
+                    <mat-icon class="edit-icon">edit</mat-icon>
+          </button>
         </td>
 
       </tr>

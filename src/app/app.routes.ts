@@ -263,13 +263,21 @@ export const routes: Routes = [
           ),
         data: { title: "Ajout de catégories de tests" },
       },
+      
       {
         path: "tests/:categorieId",
         loadComponent: () =>
-          import("./pages/admin/test_citoyen/test-list/test-list").then(
-            (m) => m.TestList
-          ),
-        data: { title: "Liste des tests" },
+        import("./pages/admin/test_citoyen/test-list/test-list").then(
+        (m) => m.TestList
+        ),
+       data: { title: "Liste des tests" },
+      },
+
+      
+      {
+        path: 'tests/:test_id/questions',
+        loadComponent: () => import('./pages/admin/question/question').then(m => m.Question),
+        data: { title: 'Liste des questions' }
       },
 
       {
