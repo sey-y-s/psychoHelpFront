@@ -11,6 +11,12 @@
 
       <div class="cards-grid">
         @for (category of listCategorie; track category.id) {
+            <div class="card">
+                <div class="">
+<!--                {{category.description}}-->
+                    <img src="anxiete.png" alt="">
+                </div>
+                <h6>{{ category.nomCategorie }}</h6>
 
         <div class="card" (click)="voirTests(category.id)">
           <h4>{{ category.nomCategorie }}</h4>
