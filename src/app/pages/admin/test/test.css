@@ -90,9 +90,8 @@ body {
 .btn-add {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background-color: #D5A286; /* Couleur saumon/marron du bouton */
-    color: #333333;
+    background-color: var(--beige);
+    color: #fff;
     border: none;
     padding: 12px 32px;
     border-radius: 12px;
@@ -103,5 +102,5 @@ body {
 }
 
 .btn-add:hover {
-    background-color: #C29175;
+    background-color: var(--secondary);
 }

@@ -1,0 +1,76 @@
+/* Conteneur du formulaire */
+.container {
+  width: 450px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Titre */
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Groupe de champs */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Champs de saisie */
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Lorsque l'utilisateur clique dans un champ */
+input:focus {
+  outline: none;
+  border: 2px solid #d9a58b;
+}
+
+/* Zone des boutons */
+.actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Boutons */
+button {
+  padding: 10px 20px;
+  margin: 0 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Bouton Modifier */
+button[type="submit"] {
+  background-color: #d9a58b;
+  color: white;
+}
+
+/* Bouton Annuler */
+button[type="button"] {
+  background-color: #cccccc;
+  color: black;
+}
+
+/* Effet au passage de la souris */
+button:hover {
+  opacity: 0.9;
+}

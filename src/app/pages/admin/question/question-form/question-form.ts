@@ -118,6 +118,7 @@ export class QuestionForm {
         alert('Erreur lors de l\'ajout');
       }
     });
+    
   }
 
   annuler() {
@@ -137,6 +138,8 @@ export class QuestionForm {
     this.testService.getTests().subscribe({
       next: (response) => {
         this.test.set(response);
+        console.log("noob saybot");
+        
       },
       error: (error) => {
         console.log(error);

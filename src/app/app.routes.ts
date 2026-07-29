@@ -303,6 +303,37 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/admin/notification/notification').then(m => m.Notification),
         data: { title: 'Notifications' }
       },
+{
+  path: "admins",
+  loadComponent: () =>
+    import("./pages/admin/crudAdmin/admin-list/admin-list")
+      .then((m) => m.AdminList),
+  data: { title: "Liste des administrateurs" },
+},
+
+{
+  path: "admins/ajouter",
+  loadComponent: () =>
+    import("./pages/admin/admin-add/admin-add")
+      .then((m) => m.AdminAdd),
+  data: { title: "Ajouter un administrateur" },
+},
+
+{
+  path: "admins/modifier/:id",
+  loadComponent: () =>
+    import("./pages/admin/crudAdmin/admin-edit/admin-edit")
+      .then((m) => m.AdminEdit),
+  data: { title: "Modifier un administrateur" },
+},
+
+{
+  path: "admins/:id",
+  loadComponent: () =>
+    import("./pages/admin/crudAdmin/admin-detail/admin-detail")
+      .then((m) => m.AdminDetail),
+  data: { title: "Détail administrateur" },
+},
     ]
   },
 
