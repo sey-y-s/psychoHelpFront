@@ -2,7 +2,7 @@ import { Component, effect, inject, input, output, signal } from "@angular/core"
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { QuestionService } from "../../../../core/services/question.service";
-import { questionResponseInterfaceModif, questionRequestInterface, choixRequestInterface } from "../../../../models/question.model";
+import { questionResponseInterfaceModif, questionRequestInterface, choixRequestInterface, choixResponseInterface } from "../../../../models/question.model";
 import { TestService } from "../../../../core/services/test.service";
 import { Test } from "../../../../models/tests";
 
@@ -24,8 +24,7 @@ export class QuestionFormEdit {
   typeQuestion: 'CHOIX_UNIQUE' | 'CHOIX_MULTIPLE' | 'TEXTE' = 'CHOIX_UNIQUE';
 
   choixForm = new FormGroup({
-    texte: new FormControl("", [Validators.required, Validators.minLength(1)]),
-    estCorrect: new FormControl(false),
+    choix: new FormControl("", [Validators.required, Validators.minLength(1)]),
     score: new FormControl(0, [Validators.min(0), Validators.max(10)])
   });
 
@@ -41,13 +40,12 @@ export class QuestionFormEdit {
     }
 
     const nouveauChoix: choixRequestInterface = {
-      texte: this.choixForm.value.texte!,
-      estCorrect: this.choixForm.value.estCorrect || false,
+      choix: this.choixForm.value.choix!,
       score: this.choixForm.value.score || 0
     };
 
     const existe = this.choixList.some(c => 
-      c.texte.toLowerCase() === nouveauChoix.texte.toLowerCase()
+      c.choix.toLowerCase() === nouveauChoix.choix.toLowerCase()
     );
 
     if (existe) {
@@ -56,7 +54,7 @@ export class QuestionFormEdit {
     }
 
     this.choixList.push(nouveauChoix);
-    this.choixForm.reset({ estCorrect: false, score: 0 });
+    this.choixForm.reset({ score: 0 });
   }
 
   supprimerChoix(index: number): void {
@@ -68,8 +66,7 @@ export class QuestionFormEdit {
   modifierChoix(index: number): void {
     const choix = this.choixList[index];
     this.choixForm.patchValue({
-      texte: choix.texte,
-      estCorrect: choix.estCorrect,
+      choix: choix.choix,
       score: choix.score || 0
     });
     this.choixList.splice(index, 1);
@@ -93,8 +90,7 @@ export class QuestionFormEdit {
     this.questionService.getChoixByQuestion(questionId).subscribe({
       next: (choix) => {
         this.choixList = choix.map(c => ({
-          texte: c.texte,
-          estCorrect: c.estCorrect,
+          choix: c.choix,
           score: c.score
         }));
       },
@@ -115,15 +111,42 @@ export class QuestionFormEdit {
       return;
     }
 
-    const questionData: questionRequestInterface = {
-      test_id: this.form.value.test_id!,
+    const questionId = this.questionEdit().id;
+
+    // 1. Modifier la question
+    const questionData = {
       question: this.form.value.question!,
-      choix: this.typeQuestion !== 'TEXTE' ? this.choixList : []
+      test_id: this.form.value.test_id!
     };
 
-    this.questionService.modifierQuestion(this.questionEdit().id, questionData).subscribe({
+    this.questionService.modifierQuestion(questionId, questionData).subscribe({
       next: (response) => {
-        this.editReussiOclik.emit(false);
+        // 2. Supprimer les anciens choix
+        this.questionService.supprimerTousChoix(questionId).then(() => {
+          // 3. Ajouter les nouveaux choix
+          if (this.choixList.length > 0) {
+            let completed = 0;
+            this.choixList.forEach(choix => {
+              this.questionService.ajouterChoix(questionId, choix).subscribe({
+                next: () => {
+                  completed++;
+                  if (completed === this.choixList.length) {
+                    this.editReussiOclik.emit(false);
+                  }
+                },
+                error: (err) => {
+                  console.error('Erreur ajout choix:', err);
+                  alert('Erreur lors de l\'ajout des choix');
+                }
+              });
+            });
+          } else {
+            this.editReussiOclik.emit(false);
+          }
+        }).catch((err) => {
+          console.error('Erreur suppression anciens choix:', err);
+          alert('Erreur lors de la suppression des anciens choix');
+        });
       },
       error: (error) => {
         console.log(error);
@@ -152,9 +175,9 @@ export class QuestionFormEdit {
     effect(() => {
       const question = this.questionEdit();
       if (question) {
-        this.form.setValue({
+        this.form.patchValue({
           question: question.question,
-          test_id: question.test_id,
+          test_id: question.test_id ?? null,
           type_question: "CHOIX_UNIQUE"
         });
         this.chargerChoixExistants(question.id);

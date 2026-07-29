@@ -29,16 +29,13 @@
                     <span class="choix-title">📝 Choix de la question</span>
                 </div>
 
-                <!-- Correction ici : utilisation de (question().choix?.length ?? 0) > 0 -->
+                <!-- Correction : utilisation de ?. et ?? pour gérer undefined -->
                 @if ((question().choix?.length ?? 0) > 0) {
                     <div class="choix-grid">
                         @for (choix of question().choix; track $index; let i = $index) {
-                            <div class="choix-item" [class.correct]="choix.estCorrect">
+                            <div class="choix-item">
                                 <span class="choix-lettre">{{ getLettre(i) }}</span>
-                                <span class="choix-texte">{{ choix.texte }}</span>
-                                @if (choix.estCorrect) {
-                                    <span class="badge-correct">✅</span>
-                                }
+                                <span class="choix-texte">{{ choix.choix }}</span>
                                 @if (choix.score) {
                                     <span class="choix-score">{{ choix.score }} pts</span>
                                 }

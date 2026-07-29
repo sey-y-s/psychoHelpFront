@@ -27,8 +27,7 @@ export class QuestionForm {
   typeQuestion: 'CHOIX_UNIQUE' | 'CHOIX_MULTIPLE' | 'TEXTE' = 'CHOIX_UNIQUE';
 
   choixForm = new FormGroup({
-    texte: new FormControl("", [Validators.required, Validators.minLength(1)]),
-    estCorrect: new FormControl(false),
+    choix: new FormControl("", [Validators.required, Validators.minLength(1)]),
     score: new FormControl(0, [Validators.min(0), Validators.max(10)])
   });
 
@@ -44,13 +43,12 @@ export class QuestionForm {
     }
 
     const nouveauChoix: choixRequestInterface = {
-      texte: this.choixForm.value.texte!,
-      estCorrect: this.choixForm.value.estCorrect || false,
+      choix: this.choixForm.value.choix!,
       score: this.choixForm.value.score || 0
     };
 
     const existe = this.choixList.some(c => 
-      c.texte.toLowerCase() === nouveauChoix.texte.toLowerCase()
+      c.choix.toLowerCase() === nouveauChoix.choix.toLowerCase()
     );
 
     if (existe) {
@@ -59,7 +57,7 @@ export class QuestionForm {
     }
 
     this.choixList.push(nouveauChoix);
-    this.choixForm.reset({ estCorrect: false, score: 0 });
+    this.choixForm.reset({ score: 0 });
   }
 
   supprimerChoix(index: number): void {
@@ -71,8 +69,7 @@ export class QuestionForm {
   modifierChoix(index: number): void {
     const choix = this.choixList[index];
     this.choixForm.patchValue({
-      texte: choix.texte,
-      estCorrect: choix.estCorrect,
+      choix: choix.choix,
       score: choix.score || 0
     });
     this.choixList.splice(index, 1);
@@ -103,22 +100,41 @@ export class QuestionForm {
       return;
     }
 
-    const questionData: questionRequestInterface = {
-      test_id: this.form.value.test_id!,
+    // 1. Créer la question
+    const questionData = {
       question: this.form.value.question!,
-      choix: this.typeQuestion !== 'TEXTE' ? this.choixList : []
+      test_id: this.form.value.test_id!
     };
 
     this.questionService.ajouterQuestion(questionData).subscribe({
       next: (response) => {
-        this.ajoutReussiMisAjourClic.emit();
+        const questionId = response.id;
+        // 2. Ajouter les choix
+        if (this.choixList.length > 0) {
+          let completed = 0;
+          this.choixList.forEach(choix => {
+            this.questionService.ajouterChoix(questionId, choix).subscribe({
+              next: () => {
+                completed++;
+                if (completed === this.choixList.length) {
+                  this.ajoutReussiMisAjourClic.emit();
+                }
+              },
+              error: (err) => {
+                console.error('Erreur ajout choix:', err);
+                alert('Erreur lors de l\'ajout des choix');
+              }
+            });
+          });
+        } else {
+          this.ajoutReussiMisAjourClic.emit();
+        }
       },
       error: (error) => {
-        console.log(error);
-        alert('Erreur lors de l\'ajout');
+        console.log('Erreur ajout question:', error);
+        alert('Erreur lors de l\'ajout de la question');
       }
     });
-    
   }
 
   annuler() {
@@ -130,16 +146,17 @@ export class QuestionForm {
 
   constructor() {
     effect(() => {
-      this.form.patchValue({
-        test_id: this.test_id()
-      });
+      const id = this.test_id();
+      if (id) {
+        this.form.patchValue({
+          test_id: id
+        });
+      }
     });
 
     this.testService.getTests().subscribe({
       next: (response) => {
         this.test.set(response);
-        console.log("noob saybot");
-        
       },
       error: (error) => {
         console.log(error);

@@ -27,22 +27,16 @@ export interface questionResponseInterfaceModif {
 // ============================================================
 
 export interface choixRequestInterface {
-    texte: string;
-    estCorrect: boolean;
-    score?: number;
+    choix: string;
+    score: number;
+    estCorrect?: boolean;
 }
 
 export interface choixResponseInterface {
     id: number;
-    texte: string;
-    estCorrect: boolean;
+    choix: string;
     score: number;
-    questionId: number;
-}
-
-export interface choixModifRequestInterface {
-    id?: number;
-    texte: string;
-    estCorrect: boolean;
-    score?: number;
+    question: string;
+    questionId?: number;
+    estCorrect?: boolean;
 }

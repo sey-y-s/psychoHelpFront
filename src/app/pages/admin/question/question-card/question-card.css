@@ -116,11 +116,6 @@ td {
     border-left: 3px solid #d0c8c4;
 }
 
-.choix-item.correct {
-    border-left-color: #27ae60;
-    background: #eafaf1;
-}
-
 .choix-lettre {
     width: 24px;
     height: 24px;
@@ -146,10 +141,6 @@ td {
     background: #f0f0f0;
     padding: 2px 10px;
     border-radius: 12px;
-}
-
-.badge-correct {
-    font-size: 16px;
 }
 
 .no-choix {
