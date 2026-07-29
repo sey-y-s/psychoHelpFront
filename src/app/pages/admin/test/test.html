@@ -1,38 +1,37 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PsychoHelp - Catégorie de tests</title>
-  </head>
-  <body>
-    <main class="main-content">
-      <h1 class="page-title">Catégorie de tests</h1>
 
-      <div class="cards-grid">
-        @for (category of listCategorie; track category.id) {
-            <div class="card">
-                <div class="">
-<!--                {{category.description}}-->
-                    <img src="anxiete.png" alt="">
-                </div>
-                <h6>{{ category.nomCategorie }}</h6>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PsychoHelp - Catégorie de tests</title>
+</head>
 
-        <div class="card" (click)="voirTests(category.id)">
-          <h4>{{ category.nomCategorie }}</h4>
-          <div class="">{{category.description}}</div>
+<body>
+  <main class="main-content">
+    <h1 class="page-title">Catégorie de tests</h1>
+
+    <div class="cards-grid">
+      @for (category of listCategorie; track category.id) {
+      <div class="card" routerLink="{{category.id}}">
+        <div class="">
+          <!--{{category.description}}-->
+          <img src="anxiete.png" alt="">
         </div>
-        } @empty {
+        <h6>{{ category.nomCategorie }}</h6>
+      </div>
+      } @empty {
         <!-- Message optionnel si la liste est vide -->
         <p>Aucune catégorie disponible pour le moment.</p>
         }
-      </div>
 
       <div class="add-button-container">
         <button class="btn-add" routerLink="/admin/tests/ajout">
           <i class="fa-solid fa-circle-plus"></i> Ajouter
         </button>
       </div>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
+
 </html>
