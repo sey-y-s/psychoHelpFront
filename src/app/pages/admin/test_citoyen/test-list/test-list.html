@@ -42,9 +42,12 @@
         </td>
 
         <td>
-          <span class="etat">
-            {{ test.etat }}
-          </span>
+          
+          <span class="status-badge"
+                [class.status-true]="test.etat"
+                [class.status-false]="!test.etat">
+                {{ test.etat ? 'Actif' : 'Inactif' }}
+            </span>
         </td>
 
         <td class="actions">
