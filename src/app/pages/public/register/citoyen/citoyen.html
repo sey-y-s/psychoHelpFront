@@ -18,6 +18,13 @@
         <input type="email" placeholder="Adresse email" class="input-arrondi" formControlName="mail">
         <mat-icon class="icone-champ">email</mat-icon>
       </div>
+        <small *ngIf="mail?.touched && mail?.errors?.['required']">
+            L'adresse email est obligatoire.
+        </small>
+
+        <small *ngIf="mail?.touched && mail?.errors?.['email']">
+            Veuillez respecter le format email : kadidiatou.odk26@gmail.com
+        </small>
 
       <!-- Mot de passe -->
       <div class="champ-groupe">
@@ -26,20 +33,60 @@
           {{ cacheMotDePasse ? 'visibility_off' : 'visibility' }}
         </mat-icon>
       </div>
-      <small class="indication">Votre mot de passe doit contenir au moins 8 caracteres</small>
+        <small *ngIf="motDePasse?.touched && motDePasse?.errors?.['required']">
+            Le mot de passe est obligatoire.
+        </small>
+        <small *ngIf="motDePasse?.touched && motDePasse?.errors?.['minlength']">
+            Le mot de passe doit contenir au moins 8 caractères.
+        </small>
 
       <!-- Prénom et Nom côte à côte -->
-      <div class="ligne-double">
-        <div class="champ-groupe">
-          <input type="text" placeholder="Prenom" class="input-arrondi"  formControlName="prenom">
-          <mat-icon class="icone-champ">person</mat-icon>
-        </div>
+        <div class="ligne-double">
+            <div>
+                <div class="champ-groupe">
+                    <input type="text"
+                           placeholder="Prénom"
+                            class="input-arrondi"
+                            formControlName="prenom">
+                    <mat-icon class="icone-champ">person</mat-icon>
+                </div>
+                <small *ngIf="prenom?.touched && prenom?.errors?.['required']">
+                    Le prénom est un champ obligatoire. Veuillez le renseigner.
+                </small>
+                <small *ngIf="prenom?.touched && prenom?.errors?.['pattern']">
+                    Le prénom ne doit contenir que des lettres.
+                </small>
+                <small *ngIf="prenom?.touched && prenom?.errors?.['minlength']">
+                    Minimum 2 caractères.
+                </small>
+                <small *ngIf="prenom?.touched && prenom?.errors?.['maxlength']">
+                    Maximum 50 caractères.
+                </small>
+            </div>
 
-        <div class="champ-groupe">
-          <input type="text" placeholder="Nom" class="input-arrondi"  formControlName="nom">
-          <mat-icon class="icone-champ">person</mat-icon>
+            <div>
+                <div class="champ-groupe">
+                    <input type="text"
+                            placeholder="Nom"
+                            class="input-arrondi"
+                            formControlName="nom">
+                    <mat-icon class="icone-champ">person</mat-icon>
+                </div>
+                <small *ngIf="nom?.touched && nom?.errors?.['required']">
+                    Le nom est un champ obligatoire. Veuillez le renseigner.
+                </small>
+                <small *ngIf="nom?.touched && nom?.errors?.['pattern']">
+                    Le nom ne doit contenir que des lettres.
+                </small>
+                <small *ngIf="nom?.touched && nom?.errors?.['minlength']">
+                    Minimum 2 caractères.
+                </small>
+                <small *ngIf="nom?.touched && nom?.errors?.['maxlength']">
+                    Maximum 50 caractères.
+                </small>
+            </div>
+
         </div>
-      </div>
 
       <!-- Téléphone avec drapeau -->
       <div class="champ-groupe champ-telephone">
@@ -47,6 +94,12 @@
         <input type="tel" placeholder="Telephone" class="input-arrondi avec-drapeau"  formControlName="telephone">
         <mat-icon class="icone-champ">phone</mat-icon>
       </div>
+        <small *ngIf="telephone?.touched && telephone?.errors?.['required']">
+            Le numéro de téléphone est obligatoire.
+        </small>
+        <small *ngIf="telephone?.touched && telephone?.errors?.['pattern']">
+            Votre numéro de téléphone portable doit commencer par 6, 5 ou 7.
+        </small>
 
       <div class="message-erreur" *ngIf="messageErreur">
         {{ messageErreur }}

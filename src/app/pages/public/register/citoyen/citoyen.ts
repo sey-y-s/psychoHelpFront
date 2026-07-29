@@ -39,36 +39,45 @@ export class Citoyen {
   ) {
 
     this.formulaire = this.fb.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      mail: ['', [Validators.required, Validators.email]],
-      motDePasse: ['', [Validators.required, Validators.minLength(8)]],
-      telephone: ['', Validators.required]
+      nom: ['', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(50),
+        Validators.pattern(/^[A-Za-zÀ-ÿ\s'-]+$/)
+      ]],
+
+      prenom: ['', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(50),
+        Validators.pattern(/^[A-Za-zÀ-ÿ\s'-]+$/)
+      ]],
+
+      mail: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+
+      motDePasse: ['', [
+        Validators.required,
+        Validators.minLength(8)
+      ]],
+
+      telephone: ['', [
+        Validators.required,
+        Validators.pattern(/^0[67][0-9]{8}$/)
+      ]]
     });
 
   }
  // Methode pour inscription 
   inscrire() {
-    
-    console.log("Le bouton fonctionne");
-    console.log("Valeurs actuelles :", this.formulaire.value);
-  console.log("Formulaire valide ?", this.formulaire.valid);
-
-  if (this.formulaire.invalid) {
-
-    console.warn("Formulaire invalide ! Erreurs :", this.formulaire.errors);
-    // On affiche l'état de chaque champ
-    Object.keys(this.formulaire.controls).forEach(key => {
-      const control = this.formulaire.get(key);
-      if (control?.invalid) {
-        console.log(`Le champ '${key}' est invalide :`, control.errors);
-      }
-    });
-    
-    this.messageErreur = 'Veuillez remplir tous les champs obligatoires.';
-    return;
-  }
-
+    if (this.formulaire.invalid) {
+      this.formulaire.markAllAsTouched();
+      this.messageErreur =
+          'Veuillez remplir correctement tous les champs obligatoires.';
+      return;
+    }
   this.authService
       .inscrireCitoyen(this.formulaire.value)
       .subscribe({
@@ -110,5 +119,25 @@ export class Citoyen {
 retour(): void {
   this.router.navigate(['/login']);
 }
+
+  get nom() {
+    return this.formulaire.get('nom');
+  }
+
+  get prenom() {
+    return this.formulaire.get('prenom');
+  }
+
+  get mail() {
+    return this.formulaire.get('mail');
+  }
+
+  get motDePasse() {
+    return this.formulaire.get('motDePasse');
+  }
+
+  get telephone() {
+    return this.formulaire.get('telephone');
+  }
 
 }
