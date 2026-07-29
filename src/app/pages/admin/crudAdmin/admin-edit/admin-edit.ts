@@ -6,25 +6,24 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import {  ChangeDetectorRef } from "@angular/core";
 import { NotificationService } from "../../../../core/services/notification.service";
-
+import { AdminDashboardService } from "../../../../core/services/admin.dashboard.service";
 
 @Component({
-  selector: "app-test-edit",
-    standalone: true,
+  selector: "app-admin-edit",
+   standalone: true,
 
   imports: [CommonModule,ReactiveFormsModule],
-  templateUrl: "./test-edit.html",
-  styleUrl: "./test-edit.css",
+  templateUrl: "./admin-edit.html",
+  styleUrl: "./admin-edit.css",
 })
-export class TestEdit {
-  testForm!: FormGroup;
+export class AdminEdit {
+  adminForm!: FormGroup;
 
   id!: number;
-categorieId!: number;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private testService: TestCitoyenService,
+    private adminService: AdminDashboardService,
     private router: Router,
         private cdRef: ChangeDetectorRef,
         private notif:NotificationService
@@ -33,51 +32,46 @@ categorieId!: number;
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get("id"));
-  this.categorieId = Number(
-    this.route.snapshot.queryParamMap.get("categorieId")
-  );
-  console.log("Categorie reçue :", this.categorieId);
 
 
-    this.testForm = this.fb.group({
-      nom_test: ["", Validators.required],
 
-      description: ["", Validators.required],
+  this.adminForm = this.fb.group({
+  nom: [''],
+  prenom: [''],
+  mail: [''],
+  telephone: [''],
+  mot_de_passe: ['']
+});
 
-      etat: [true],
-    });
-
-    this.testService.getTestById(this.id).subscribe((data) => {
-      this.testForm.patchValue(data);
+    this.adminService.AdminById(this.id).subscribe((data) => {
+      this.adminForm.patchValue(data);
           console.log("Données reçues :", data);
 
     });
   }
 
-  modifierTest() {
-    this.testService.updateTest(this.id, this.testForm.value).subscribe({
+  modifierAdmin() {
+    this.adminService.updateTest(this.id, this.adminForm.value).subscribe({
       next: (data) => {
         console.log("Test modifié :", data);
                 this.cdRef.detectChanges();
                 this.notif.succes("Test modifié avec succes");
 
 this.router.navigate([
-  "/admin/tests",
+  "/admin/admins",
   
-  this.categorieId
 ]);  
-console.log("verif"+this.categorieId)  },
+  },
 
       error: (err) => {
         console.log(err);
-        this.notif.erreur("Erreur lors de le modification du test")
+        this.notif.erreur("Erreur lors de le modification de l'admin")
       },
     });
   }
   redirectList(){
     this.router.navigate([
-  "/admin/tests",
-  this.categorieId
+  "/admin/admins",
 ]);  
   }
 }
