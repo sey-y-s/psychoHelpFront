@@ -10,5 +10,5 @@ export interface DashboardStats{
     TotalUtilisateur:number;
     TotalConseil:number;
     TotalTest:number;
-    Utilisateurs:User[]
+    utilisateursRecent:User[]
 }

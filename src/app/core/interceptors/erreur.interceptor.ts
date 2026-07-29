@@ -15,9 +15,11 @@ export const erreurInterceptor: HttpInterceptorFn = (req, next) => {
         //notif.erreur('Session expirée, veuillez vous reconnecter');
       } else if (erreur.status === 403) {
         notif.erreur('Accès non autorisé');
+      } else if (erreur.status === 500) {
+        notif.erreur('Erreur serveur');
       } else {
-        const message = erreur.error?.message || erreur.message || 'Erreur serveur';
-        notif.erreur(message);
+        // const message = erreur.error?.message || erreur.message || 'Erreur serveur';
+        // notif.erreur(message);
       }
       return throwError(() => erreur);
     })

@@ -109,6 +109,24 @@ td{
     font-size:14px;
 }
 
+.status-badge {
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-false {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-true {
+  background: #d1fae5;
+  color: #065f46;
+}
+
 .actions {
     display: flex;
     justify-content: center; 

@@ -314,7 +314,7 @@ export const routes: Routes = [
 {
   path: "admins/ajouter",
   loadComponent: () =>
-    import("./pages/admin/crudAdmin/admin-add/admin-add")
+    import("./pages/admin/admin-add/admin-add")
       .then((m) => m.AdminAdd),
   data: { title: "Ajouter un administrateur" },
 },

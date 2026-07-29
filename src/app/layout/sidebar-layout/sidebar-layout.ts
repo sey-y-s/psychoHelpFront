@@ -3,6 +3,8 @@ import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
 import {AuthService} from "../../core/services/auth.service";
 import {AsyncPipe} from "@angular/common";
+import {NotificationServices} from "../../core/services/notification-service";
+import {NotificationWebsocketService} from "../../core/services/notification-websocket.service";
 
 @Component({
   selector: "app-sidebar-layout",
@@ -17,8 +19,18 @@ export class SidebarLayout {
 
   readonly currentUser$ = this.authService.currentUser$;
   readonly sessionLoading$ = this.authService.sessionLoading$;
+  
+  private readonly notificationService = inject(NotificationServices);
+  private readonly notificationWebsocketService = inject(NotificationWebsocketService);
+  readonly nombreNotificationsNonLues$ = this.notificationWebsocketService.notificationsNonLues$;
 
   deconnexionEnCours = false;
+
+  ngOnInit(): void {
+    this.notificationService.compterNonLues().subscribe(nombre => {
+      this.notificationWebsocketService.definirNombreNonLues(nombre);
+    });
+  }
 
   logout(): void {
     if (this.deconnexionEnCours) {

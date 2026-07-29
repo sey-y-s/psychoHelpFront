@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
-import { AdminDashboardService } from "../../../../core/services/admin.dashboard.service";
-import { NotificationService } from "../../../../core/services/notification.service";
+import { AdminDashboardService } from "../../../core/services/admin.dashboard.service";
+import { NotificationService } from "../../../core/services/notification.service";
 
 
 @Component({

@@ -41,18 +41,14 @@
             </span>
           </td>
 
-          <td>
-            @if (test.etat == true) {
-              <span class="etat">
-                Active
-              </span>
-            } @else {
-              
-                <span class="etatI">
-                Inactive
-              </span>
-            }
-          </td>
+        <td>
+          
+          <span class="status-badge"
+                [class.status-true]="test.etat"
+                [class.status-false]="!test.etat">
+                {{ test.etat ? 'Actif' : 'Inactif' }}
+            </span>
+        </td>
 
         <td class="actions">
           <button  mat-icon-button title="Visualiser"      [routerLink]="['/admin/tests', test.id, 'questions']">
