@@ -57,10 +57,10 @@ export class Question {
     annuler(val:boolean){
       this.formulaireVisible=val
     }
-    //cett fonction met à jour la lsite des conseils et ferme le modal
+    //cett fonction met à jour la lsite des questions et ferme le modal
     AjoutEffectuer(){
       this.formulaireVisible=false
-      this.messageSnackBar.succes("conseil posté avec succes!")
+      this.messageSnackBar.succes("question postée avec succes!")
       this.chargerQuestion(this.test_id,"")
     }
     //debut de la modification
