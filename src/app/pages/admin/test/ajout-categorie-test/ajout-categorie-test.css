@@ -100,13 +100,13 @@
 }
 
 .btn-submit {
-    background-color: #d1a18c;
-    color: #000000;
+    background-color: var(--beige);
+    color: #fff;
     border: none;
 }
 
 .btn-submit:hover {
-    background-color: #c2907a;
+    background-color: var(--secondary);
 }
 
 .btn-submit i {

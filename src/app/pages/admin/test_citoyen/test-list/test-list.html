@@ -27,24 +27,27 @@
     </thead>
 
     <tbody>
-      @for(test of filtrageTest; track test.id) {
-      <tr>
+      @for (test of filtrageTest; track test.id) {
 
+        <tr>
 
-        <td class="nom-test">
-          {{ test.nom_test }}
-        </td>
+          <td class="nom-test">
+            {{ test.nom_test }}
+          </td>
+
+          <td>
+            <span class="badge">
+              {{ test.description }}
+            </span>
+          </td>
 
         <td>
-          <span class="badge">
-            {{ test.description }}
-          </span>
-        </td>
-
-        <td>
-          <span class="etat">
-            {{ test.etat }}
-          </span>
+          
+          <span class="status-badge"
+                [class.status-true]="test.etat"
+                [class.status-false]="!test.etat">
+                {{ test.etat ? 'Actif' : 'Inactif' }}
+            </span>
         </td>
 
         <td class="actions">
@@ -56,7 +59,6 @@
           </button>
         </td>
 
-      </tr>
       }
     </tbody>
   </table>

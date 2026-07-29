@@ -1,0 +1,67 @@
+<div class="header-list">
+
+  <div class="search-box">
+    <mat-icon>search</mat-icon>
+    <input
+      type="text"
+      placeholder="Rechercher un test..."
+      [(ngModel)]="motChercher">
+  </div>
+
+  <button class="btn-ajouter" (click)="ajouter()">
+    <mat-icon>add</mat-icon>
+      Ajouter un administrateur
+
+  </button>
+
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom </th>
+        <th>Prenom</th>
+        <th>Email</th>
+        <th>Télephone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+   <tbody>
+
+  @if (filtrageAdmin.length === 0) {
+    <tr>
+      <td colspan="5" class="aucun-resultat">
+        Aucun administrateur trouvé.
+      </td>
+    </tr>
+  } @else {
+
+    @for (admin of filtrageAdmin; track admin.id) {
+      <tr>
+        <td>{{ admin.nom }}</td>
+        <td>{{ admin.prenom }}</td>
+        <td>{{ admin.mail }}</td>
+        <td>{{ admin.telephone }}</td>
+        <td class="actions">
+          <button
+            mat-icon-button
+            [routerLink]="['/admin/admins', admin.id]">
+            <mat-icon>visibility</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            (click)="modifier(admin)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </tr>
+    }
+
+  }
+
+</tbody>
+  </table>
+</div>

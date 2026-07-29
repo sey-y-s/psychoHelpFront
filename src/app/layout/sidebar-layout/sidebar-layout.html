@@ -34,7 +34,13 @@
 
         <a class="menu-item" routerLink="/psy/notifications" routerLinkActive="active">
             <mat-icon>notifications</mat-icon>
-            <span>Notifications</span>
+            <span>Notifications
+                @if (nombreNotificationsNonLues$ | async; as nb) {
+                    @if (nb > 0) {
+                        <span class="dot"><b><sup>*</sup></b> ({{ nb > 99 ? '99+' : nb }})</span>
+                    }
+                }
+            </span>
         </a>
 
         <a class="menu-item" routerLink="/psy/conseils" routerLinkActive="active">
@@ -86,9 +92,9 @@
             <span>Dashboard</span>
         </a>
 
-        <a class="menu-item">
+        <a class="menu-item" routerLink="/admin/admins" routerLinkActive="active">
             <mat-icon>people</mat-icon>
-            <span>Citoyens</span>
+            <span>Admins</span>
         </a>
 
         <a class="menu-item" routerLink="/admin/psychologues" routerLinkActive="active">
@@ -107,7 +113,13 @@
 
         <a class="menu-item" routerLink="/admin/notifications" routerLinkActive="active">
             <mat-icon>notifications</mat-icon>
-            <span>Notifications</span>
+            <span>Notifications
+                @if (nombreNotificationsNonLues$ | async; as nb) {
+                    @if (nb > 0) {
+                        <span class="dot"><b><sup>*</sup></b> ({{ nb > 99 ? '99+' : nb }})</span>
+                    }
+                }
+            </span>
         </a>
         }
     </nav>

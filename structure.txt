@@ -209,142 +209,19 @@ INSERT INTO psychologues (id, status, description, diplome_path, cv_path, etat, 
 -- =========================================================================
 INSERT INTO citoyens (utilisateur_id) VALUES (6), (7), (8), (9), (10);
 
--- =========================================================================
--- 5. CATEGORIES DE TESTS
--- =========================================================================
-INSERT INTO categories_test (id, nom_categorie, description) VALUES
-(1, 'Anxiété & Stress', 'Évaluations centrées sur les troubles anxieux et la perception du stress au quotidien.'),
-(2, 'Troubles de l Humeur', 'Questionnaires permettant de détecter les symptômes dépressifs.');
 
--- =========================================================================
--- 6. TESTS CLINIQUES DE REFERENCE INTERNATIONALE
--- =========================================================================
-INSERT INTO tests (id, nom_test, description, etat, categorie_test_id) VALUES
-(1, 'GAD-7 (Generalized Anxiety Disorder)', 'Échelle d anxiété généralisée en 7 questions sur les 2 dernières semaines.', 1, 1),
-(2, 'PHQ-9 (Patient Health Questionnaire)', 'Échelle d évaluation de la sévérité de la dépression en 9 questions.', 1, 2),
-(3, 'PSS-10 (Perceived Stress Scale)', 'Échelle de stress perçu mesurant la perception des situations stressantes au cours du dernier mois.', 1, 1);
 
--- =========================================================================
--- 7. DIAGNOSTICS / SEuILS DES TESTS
--- =========================================================================
--- Diagnostics GAD-7 (Test 1) : Min: 0, Max: 21
-INSERT INTO diagnostics (id, score_min, score_max, niveau, message, test_id) VALUES
-(1, 0, 4, 'Anxiété minimale', 'Vos réponses indiquent une anxiété minime ou absente. Continuez à préserver votre bien-être.', 1),
-(2, 5, 9, 'Anxiété légère', 'Vous présentez des signes d anxiété légère. Des exercices de relaxation peuvent vous aider.', 1),
-(3, 10, 14, 'Anxiété modérée', 'Anxiété modérée détectée. Il peut être bénéfique d en discuter avec un professionnel.', 1),
-(4, 15, 21, 'Anxiété sévère', 'Niveau d anxiété élevé. Nous vous conseillons vivement de consulter un psychologue.', 1);
 
--- Diagnostics PHQ-9 (Test 2) : Min: 0, Max: 27
-INSERT INTO diagnostics (id, score_min, score_max, niveau, message, test_id) VALUES
-(5, 0, 4, 'Dépression minimale', 'Aucun signe dépressif significatif détecté.', 2),
-(6, 5, 9, 'Dépression légère', 'Présence de symptômes dépressifs légers. Une surveillance de l humeur est conseillée.', 2),
-(7, 10, 14, 'Dépression modérée', 'Symptômes dépressifs modérés. Un accompagnement psychologique est fortement recommandé.', 2),
-(8, 15, 19, 'Dépression modérément sévère', 'Signes dépressifs importants nécessitant une consultation médicale ou psychologique.', 2),
-(9, 20, 27, 'Dépression sévère', 'Dépression sévère identifiée. Une prise en charge spécialisée urgente est conseillée.', 2);
 
--- Diagnostics PSS-10 (Test 3) : Min: 0, Max: 40
-INSERT INTO diagnostics (id, score_min, score_max, niveau, message, test_id) VALUES
-(10, 0, 13, 'Stress faible', 'Votre niveau de stress perçu est faible et bien maîtrisé.', 3),
-(11, 14, 26, 'Stress modéré', 'Vous ressentez un niveau de stress modéré face aux exigences du quotidien.', 3),
-(12, 27, 40, 'Stress élevé', 'Votre niveau de stress perçu est très élevé. Prenez du temps pour vous reposer et consulter.', 3);
 
--- =========================================================================
--- 8. QUESTIONS DES TESTS
--- =========================================================================
--- Questions GAD-7 (Test 1 - Questions 1 à 7)
-INSERT INTO questiontests (id, question, test_id) VALUES
-(1, 'Vous êtes-vous senti(e) nerveux(se), anxieux(se) ou tendu(e) ?', 1),
-(2, 'Avez-vous été incapable d arrêter de vous inquiéter ou de contrôler vos inquiétudes ?', 1),
-(3, 'Vous êtes-vous trop inquiété(e) à propos de différentes choses ?', 1), avez-vous eu du mal à vous détendre ?', 1), -- Note: format corrigé ci-dessous
-(4, 'Avez-vous eu du mal à vous détendre ?', 1),
-(5, 'Avez-vous été tellement agité(e) qu il était difficile de tenir en place ?', 1),
-(6, 'Êtes-vous devenu(e) facilement irritable ou agacé(e) ?', 1),
-(7, 'Avez-vous eu peur qu un événement terrible se produise ?', 1);
 
--- Suppression et insertion propre pour éviter l'erreur de syntaxe de la ligne 4 ci-dessus
-DELETE FROM questiontests WHERE id BETWEEN 1 AND 7;
-INSERT INTO questiontests (id, question, test_id) VALUES
-(1, 'Vous êtes-vous senti(e) nerveux(se), anxieux(se) ou tendu(e) ?', 1),
-(2, 'Avez-vous été incapable d arrêter de vous inquiéter ou de contrôler vos inquiétudes ?', 1),
-(3, 'Vous êtes-vous trop inquiété(e) à propos de différentes choses ?', 1),
-(4, 'Avez-vous eu du mal à vous détendre ?', 1),
-(5, 'Avez-vous été tellement agité(e) qu il était difficile de tenir en place ?', 1),
-(6, 'Êtes-vous devenu(e) facilement irritable ou agacé(e) ?', 1),
-(7, 'Avez-vous eu peur qu un événement terrible se produise ?', 1),
 
--- Questions PHQ-9 (Test 2 - Questions 8 à 16)
-(8, 'Peu d intérêt ou de plaisir à faire les choses ?', 2),
-(9, 'Se sentir triste, déprimé(e) ou désespéré(e) ?', 2),
-(10, 'Difficultés à s endormir, à rester endormi(e) ou sommeil excessif ?', 2),
-(11, 'Se sentir fatigué(e) ou manquer d énergie ?', 2),
-(12, 'Manque d appétit ou envie de trop manger ?', 2),
-(13, 'Avoir une mauvaise image de soi (se sentir Nul/Nulle, ou avoir l impression d avoir échoué) ?', 2),
-(14, 'Difficultés à se concentrer sur certaines activités (lire le journal, regarder la TV) ?', 2),
-(15, 'Se déplacer ou parler si lentement que les autres l ont remarqué ? Ou au contraire, être agité(e) ?', 2),
-(16, 'Avoir des pensées selon lesquelles vous seriez mieux mort(e) ou pensées d auto-mutilation ?', 2),
 
--- Questions PSS-10 (Test 3 - Questions 17 à 26)
-(17, 'Combien de fois avez-vous été upset (contrarié) par quelque chose d inattendu ?', 3),
-(18, 'Combien de fois avez-vous eu le sentiment de ne pas pouvoir contrôler les choses importantes de votre vie ?', 3),
-(19, 'Combien de fois vous êtes-vous senti(e) nerveux(se) et stressé(e) ?', 3),
-(20, 'Combien de fois avez-vous réussi à gérer les contrariétés agaçantes de la vie ?', 3),
-(21, 'Combien de fois avez-vous senti que vous faisiez face aux changements importants ?', 3),
-(22, 'Combien de fois avez-vous eu confiance en votre capacité à gérer vos problèmes personnels ?', 3),
-(23, 'Combien de fois avez-vous eu le sentiment que tout allait bien ?', 3),
-(24, 'Combien de fois avez-vous constaté que vous ne pouviez pas surmonter toutes les choses à faire ?', 3),
-(25, 'Combien de fois avez-vous réussi à contrôler l irritation dans votre vie ?', 3),
-(26, 'Combien de fois avez-vous senti que les difficultés s accumulaient au point de ne pas pouvoir les surmonter ?', 3);
 
--- =========================================================================
--- 9. CHOIX MULTIPLES (Barème standard de 0 à 3)
--- =========================================================================
--- Pour les questions GAD-7 (1-7) et PHQ-9 (8-16) : Échelle de 0 à 3
-INSERT INTO choixmultiples (id, choix, score, question_id) VALUES
--- Q1
-(1, 'Jamais', 0, 1), (2, 'Plusieurs jours', 1, 1), (3, 'Plus de la moitié des jours', 2, 1), (4, 'Presque tous les jours', 3, 1),
--- Q2
-(5, 'Jamais', 0, 2), (6, 'Plusieurs jours', 1, 2), (7, 'Plus de la moitié des jours', 2, 2), (8, 'Presque tous les jours', 3, 2),
--- Q3
-(9, 'Jamais', 0, 3), (10, 'Plusieurs jours', 1, 3), (11, 'Plus de la moitié des jours', 2, 3), (12, 'Presque tous les jours', 3, 3),
--- Q4
-(13, 'Jamais', 0, 4), (14, 'Plusieurs jours', 1, 4), (15, 'Plus de la moitié des jours', 2, 4), (16, 'Presque tous les jours', 3, 4),
--- Q5
-(17, 'Jamais', 0, 5), (18, 'Plusieurs jours', 1, 5), (19, 'Plus de la moitié des jours', 2, 5), (20, 'Presque tous les jours', 3, 5),
--- Q6
-(21, 'Jamais', 0, 6), (22, 'Plusieurs jours', 1, 6), (23, 'Plus de la moitié des jours', 2, 6), (24, 'Presque tous les jours', 3, 6),
--- Q7
-(25, 'Jamais', 0, 7), (26, 'Plusieurs jours', 1, 7), (27, 'Plus de la moitié des jours', 2, 7), (28, 'Presque tous les jours', 3, 7),
--- Q8 (PHQ-9)
-(29, 'Jamais', 0, 8), (30, 'Plusieurs jours', 1, 8), (31, 'Plus de la moitié des jours', 2, 8), (32, 'Presque tous les jours', 3, 8),
--- Q9
-(33, 'Jamais', 0, 9), (34, 'Plusieurs jours', 1, 9), (35, 'Plus de la moitié des jours', 2, 9), (36, 'Presque tous les jours', 3, 9),
--- Q10
-(37, 'Jamais', 0, 10), (38, 'Plusieurs jours', 1, 10), (39, 'Plus de la moitié des jours', 2, 10), (40, 'Presque tous les jours', 3, 10),
--- Q11
-(41, 'Jamais', 0, 11), (42, 'Plusieurs jours', 1, 11), (43, 'Plus de la moitié des jours', 2, 11), (44, 'Presque tous les jours', 3, 11),
--- Q12
-(45, 'Jamais', 0, 12), (46, 'Plusieurs jours', 1, 12), (47, 'Plus de la moitié des jours', 2, 12), (48, 'Presque tous les jours', 3, 12),
--- Q13
-(49, 'Jamais', 0, 13), (50, 'Plusieurs jours', 1, 13), (51, 'Plus de la moitié des jours', 2, 13), (52, 'Presque tous les jours', 3, 13),
--- Q14
-(53, 'Jamais', 0, 14), (54, 'Plusieurs jours', 1, 14), (55, 'Plus de la moitié des jours', 2, 14), (56, 'Presque tous les jours', 3, 14),
--- Q15
-(57, 'Jamais', 0, 15), (58, 'Plusieurs jours', 1, 15), (59, 'Plus de la moitié des jours', 2, 15), (60, 'Presque tous les jours', 3, 15),
--- Q16
-(61, 'Jamais', 0, 16), (62, 'Plusieurs jours', 1, 16), (63, 'Plus de la moitié des jours', 2, 16), (64, 'Presque tous les jours', 3, 16);
 
--- Pour les questions PSS-10 (17 à 26) : Échelle de Likert (0 à 4)
-INSERT INTO choixmultiples (id, choix, score, question_id) VALUES
-(65, 'Jamais', 0, 17), (66, 'Presque jamais', 1, 17), (67, 'Parfois', 2, 17), (68, 'Assez souvent', 3, 17), (69, 'Très souvent', 4, 17),
-(70, 'Jamais', 0, 18), (71, 'Presque jamais', 1, 18), (72, 'Parfois', 2, 18), (73, 'Assez souvent', 3, 18), (74, 'Très souvent', 4, 18),
-(75, 'Jamais', 0, 19), (76, 'Presque jamais', 1, 19), (77, 'Parfois', 2, 19), (78, 'Assez souvent', 3, 19), (79, 'Très souvent', 4, 19),
-(80, 'Jamais', 0, 20), (81, 'Presque jamais', 1, 20), (82, 'Parfois', 2, 20), (83, 'Assez souvent', 3, 20), (84, 'Très souvent', 4, 20),
-(85, 'Jamais', 0, 21), (86, 'Presque jamais', 1, 21), (87, 'Parfois', 2, 21), (88, 'Assez souvent', 3, 21), (89, 'Très souvent', 4, 21),
-(90, 'Jamais', 0, 22), (91, 'Presque jamais', 1, 22), (92, 'Parfois', 2, 22), (93, 'Assez souvent', 3, 22), (94, 'Très souvent', 4, 22),
-(95, 'Jamais', 0, 23), (96, 'Presque jamais', 1, 23), (97, 'Parfois', 2, 23), (98, 'Assez souvent', 3, 23), (99, 'Très souvent', 4, 23),
-(100, 'Jamais', 0, 24), (101, 'Presque jamais', 1, 24), (102, 'Parfois', 2, 24), (103, 'Assez souvent', 3, 24), (104, 'Très souvent', 4, 24),
-(105, 'Jamais', 0, 25), (106, 'Presque jamais', 1, 25), (107, 'Parfois', 2, 25), (108, 'Assez souvent', 3, 25), (109, 'Très souvent', 4, 25),
-(110, 'Jamais', 0, 26), (111, 'Presque jamais', 1, 26), (112, 'Parfois', 2, 26), (113, 'Assez souvent', 3, 26), (114, 'Très souvent', 4, 26);
+
+
+
 
 -- =========================================================================
 -- 10. RESULTATS DE TESTS
