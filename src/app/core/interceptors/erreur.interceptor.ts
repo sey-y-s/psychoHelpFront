@@ -12,7 +12,6 @@ export const erreurInterceptor: HttpInterceptorFn = (req, next) => {
     catchError(erreur => {
       if (erreur.status === 401) {    // Session expirée ou non connecté
         router.navigate(['/login']);
-        //notif.erreur('Session expirée, veuillez vous reconnecter');
       } else if (erreur.status === 403) {
         notif.erreur('Accès non autorisé');
       } else if (erreur.status === 500) {
