@@ -75,12 +75,10 @@
             Validators.minLength(8)
           ]
         ],
-        telephone: ['',
-          [
-            Validators.required,
-            Validators.pattern(/^0[67][0-9]{8}$/)
-          ]
-        ],
+        telephone: ['', [
+          Validators.required,
+          Validators.pattern(/^[0-9]{8}$/)
+        ]],
         description: ['',
           [
             Validators.maxLength(500)

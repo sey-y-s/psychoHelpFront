@@ -98,7 +98,7 @@
             Le numéro de téléphone est obligatoire.
         </small>
         <small *ngIf="telephone?.touched && telephone?.errors?.['pattern']">
-            Votre numéro de téléphone portable doit commencer par 6, 5 ou 7.
+            Le numéro de téléphone doit contenir exactement 8 chiffres.
         </small>
 
       <div class="message-erreur" *ngIf="messageErreur">

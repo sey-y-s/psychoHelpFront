@@ -65,7 +65,7 @@ export class Citoyen {
 
       telephone: ['', [
         Validators.required,
-        Validators.pattern(/^0[67][0-9]{8}$/)
+        Validators.pattern(/^[0-9]{8}$/)
       ]]
     });
 
