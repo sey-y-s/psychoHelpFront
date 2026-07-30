@@ -64,11 +64,13 @@ export class QuestionService {
     // ============================================================
 
     public getChoixByQuestion(questionId: number) {
-        return this.http.get<choixResponseInterface[]>(
-            `${this.apiChoixUrl}`,
-            { withCredentials: true }
-        );
-    }
+    const params = new URLSearchParams();
+    params.set('question_id', questionId.toString());
+    return this.http.get<choixResponseInterface[]>(
+        `${this.apiChoixUrl}?${params.toString()}`,
+        { withCredentials: true }
+    );
+}
 
     public ajouterChoix(questionId: number, choix: choixRequestInterface) {
         const params = new URLSearchParams();

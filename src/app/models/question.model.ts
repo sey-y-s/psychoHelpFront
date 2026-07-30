@@ -37,6 +37,6 @@ export interface choixResponseInterface {
     choix: string;
     score: number;
     question: string;
-    questionId?: number;
+    questionId: number;   // ← AJOUT
     estCorrect?: boolean;
 }
