@@ -7,7 +7,7 @@
     </header>
     @if (creneaux.length > 0) {
         <div class="creneaux-list">
-            @for (creneau of creneaux; track creneau.id) {
+            @for (creneau of creneauxAffiches; track creneau.id) {
                 <article class="creneau-item">
                     <strong>{{ heure(creneau.heureDebut) }}-{{ heure(creneau.heureFin) }}</strong>
                     <span

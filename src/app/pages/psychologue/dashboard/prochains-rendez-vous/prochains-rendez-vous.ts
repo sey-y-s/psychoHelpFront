@@ -13,6 +13,10 @@ export class ProchainsRendezVous {
   @Input()
   rendezVous: RendezVous[] = [];
 
+  get rendezVousAffiches(): RendezVous[] {
+    return this.rendezVous.slice(0, 3);
+  }
+
   initiales(rdv: RendezVous): string {
     return (
         `${rdv.prenomCitoyen?.charAt(0) ?? ''}` +

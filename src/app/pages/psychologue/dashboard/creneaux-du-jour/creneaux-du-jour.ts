@@ -13,6 +13,10 @@ export class CreneauxDuJour {
   @Input()
   creneaux: Creneau[] = [];
 
+  get creneauxAffiches(): Creneau[] {
+    return this.creneaux.slice(0, 4);
+  }
+
   heure(heure: string): string {
     return heure.substring(0, 5);
   }

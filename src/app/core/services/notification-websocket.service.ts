@@ -69,6 +69,7 @@ export class NotificationWebsocketService {
         });
         this.client.activate();
     }
+
     deconnecter(): void {
         this.abonnement?.unsubscribe();
         this.abonnement = null;
