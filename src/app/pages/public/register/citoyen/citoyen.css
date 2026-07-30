@@ -108,6 +108,27 @@ font-family: 'Poppins', sans-serif ;
   border-radius: 3px;
 }
 
+.input-arrondi.ng-invalid.ng-touched {
+    border-color: #d32f2f;
+}
+
+.input-arrondi.ng-invalid.ng-touched + .icone-champ {
+    color: #d32f2f;
+}
+
+.mon-formulaire small {
+    display: block;
+    min-height: 18px;
+    margin: -10px 0 14px;
+    color: #d32f2f;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.ligne-double > div {
+    flex: 1;
+    min-width: 0;
+}
 
 /* Pour mettre deux champs sur la même ligne */
 .ligne-double {

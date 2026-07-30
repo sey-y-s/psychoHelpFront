@@ -1,54 +1,126 @@
-<div class="modal-overlay" >
+<div class="modal-overlay">
 
-    <section class="modale" >
+    <section class="modale">
 
         <header class="modal-header">
             <div>
-                <h2>
-                                             Modification d'une question
-                </h2>
-
-                <p>Renseignez tous les  champs.</p>
+                <h2>Modification d'une question</h2>
+                <p>Renseignez tous les champs.</p>
             </div>
-
-            
         </header>
 
-        <form [formGroup]="form" (ngSubmit)="soumission()" >
+        <form [formGroup]="form" (ngSubmit)="soumission()">
 
             <div class="form-group">
-                <label for="jour">Titre</label>
-                <input type="text" formControlName="question"  >
-                @if(form.get("question")?.invalid&&form.get("question")?.touched){
-                   <small class="invalid-feedbacks"> titre est requis</small>
-
+                <label for="question">Question</label>
+                <input type="text" id="question" formControlName="question" placeholder="Saisissez votre question...">
+                @if(form.get("question")?.invalid && form.get("question")?.touched){
+                    <small class="invalid-feedbacks">La question est requise !</small>
                 }
             </div>
+
             <div class="form-group">
-                 <label for="test">Test</label>
-                <select name="" id="test" formControlName="test_id">
-                       @for (test of test(); track test.id) {
-                          <option [value]="test.id">{{test.nom_test}}</option>
-                       }
+                <label for="type_question">Type de question</label>
+                <select id="type_question" formControlName="type_question" (change)="changerType($event)">
+                    <option value="CHOIX_UNIQUE">Choix unique</option>
+                    <option value="CHOIX_MULTIPLE">Choix multiple</option>
+                    <option value="TEXTE">Réponse libre (texte)</option>
                 </select>
             </div>
-            <footer class="form-actions">
 
-                <button  (click)="annuler()"
-                        type="button"
-                        class="cancel"
-                >
+            <div class="form-group">
+                <label for="test">Test</label>
+                <select id="test" formControlName="test_id">
+                    @for (test of test(); track test.id) {
+                        <option [value]="test.id">{{ test.nom_test }}</option>
+                    }
+                </select>
+            </div>
+
+            @if (typeQuestion !== 'TEXTE') {
+                <div class="choix-section">
+
+                    <div class="choix-header">
+                        <label>Choix possibles</label>
+                        <span class="choix-count">{{ choixList.length }} choix</span>
+                    </div>
+
+                    <div class="choix-add" [formGroup]="choixForm">
+                        <input
+                            type="text"
+                            formControlName="choix"
+                            placeholder="Texte du choix..."
+                            (keyup.enter)="ajouterChoix()"
+                        />
+                        <div class="choix-options">
+                            <input
+                                type="number"
+                                formControlName="score"
+                                placeholder="Score"
+                                min="0"
+                                max="10"
+                            />
+                            <button
+                                type="button"
+                                class="btn-ajouter-choix"
+                                [disabled]="choixForm.invalid"
+                                (click)="ajouterChoix()"
+                            >
+                                ➕ Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    @if (choixList.length > 0) {
+                        <div class="choix-list">
+                            @for (choix of choixList; track $index; let i = $index) {
+                                <div class="choix-item">
+                                    <span class="choix-index">{{ i + 1 }}.</span>
+                                    <span class="choix-texte">{{ choix.choix }}</span>
+                                    @if (choix.score) {
+                                        <span class="choix-score">({{ choix.score }} pts)</span>
+                                    }
+                                    <div class="choix-actions">
+                                        <button type="button" class="btn-modifier" (click)="modifierChoix(i)">
+                                            ✏️
+                                        </button>
+                                        <button type="button" class="btn-supprimer" (click)="supprimerChoix(i)">
+                                            ❌
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @if (choixList.length > 0) {
+                        <button type="button" class="btn-vider" (click)="viderChoix()">
+                            🗑️ Vider tous les choix
+                        </button>
+                    }
+
+                    @if (choixList.length === 0) {
+                        <div class="no-choix">
+                            <p>Aucun choix ajouté. Ajoutez au moins 2 choix.</p>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (typeQuestion === 'TEXTE') {
+                <div class="info-texte">
+                    <p>📝 Les questions de type "Réponse libre" n'ont pas de choix prédéfinis.</p>
+                    <p>L'utilisateur pourra saisir une réponse libre.</p>
+                </div>
+            }
+
+            <footer class="form-actions">
+                <button type="button" class="cancel" (click)="annuler()">
                     Annuler
                 </button>
-
-                <button
-                        type="submit"
-                        class="save"
-                        
-                >
-                modifier
+                <button type="submit" class="save">
+                    Modifier
                 </button>
-
             </footer>
 
         </form>

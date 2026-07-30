@@ -78,7 +78,7 @@
         telephone: ['',
           [
             Validators.required,
-            Validators.pattern(/^[0-9]{8,15}$/)
+            Validators.pattern(/^0[67][0-9]{8}$/)
           ]
         ],
         description: ['',
@@ -112,7 +112,9 @@
           this.cvManquant ||
           this.diplomeManquant
       ) {
-        this.messageErreur = 'Veuillez remplir tous les champs obligatoires.';
+        this.formulaire.markAllAsTouched();
+        this.messageErreur =
+            'Veuillez remplir correctement tous les champs obligatoires.';
         return;
       }
       console.log("Le bouton fonctionne");
