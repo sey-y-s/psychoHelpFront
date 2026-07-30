@@ -57,24 +57,23 @@
 
 
         <p class="text">
-          Indiquez votre adresse email et mot de passe.
+            Indiquez votre numéro de téléphone ou votre adresse email, ainsi que votre mot de passe.
         </p>
 
 
 
         <form [formGroup]="forms" (ngSubmit)="login()">
 
+            <div class="input-group">
+                <mat-icon class="email">
+                    person
+                </mat-icon>
 
-          <div class="input-group">
-
-            <mat-icon class="email">
-              email
-            </mat-icon>
-
-            <input id="inputEmail" type="email" placeholder="Adresse email" formControlName="email">
-          
-          </div>
-
+                <input id="inputIdentifiant"
+                       type="text"
+                       placeholder="Numéro de téléphone ou adresse email"
+                       formControlName="identifiant">
+            </div>
 
 
           <div class="input-group">
@@ -90,12 +89,12 @@
               formControlName="motDePasse">
           </div>
 
-
-          @if (messageErreur) {
-          <div class="message-erreur">
-            {{ messageErreur }}
-          </div>
-          }
+            @if (erreurConnexion) {
+                <small class="champ-erreur">
+                    <mat-icon>error_outline</mat-icon>
+                    {{ messageErreur }}
+                </small>
+            }
 
           <button type="submit" class="btn-login">
             Se connecter
