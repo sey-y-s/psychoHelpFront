@@ -7,6 +7,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { AuthService } from "../../../../core/services/auth.service";
 import { Router } from "@angular/router";
+import { NotificationService } from "../../../../core/services/notification.service";
 
 @Component({
   selector: "app-admin",
@@ -34,7 +35,8 @@ export class Admin {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router : Router
+    private router : Router,
+    private notif:NotificationService
   ) {
 
     this.formulaire = this.fb.group({
@@ -75,9 +77,9 @@ export class Admin {
         next: (reponse) => {
 
           console.log(reponse);
-          alert("Inscription réussie !");
-
+this.notif.succes("Admin ajouté avec succes");
           this.formulaire.reset();
+          this.router.navigate([  "/admin/admins"]);
 
         },
 
@@ -106,7 +108,7 @@ export class Admin {
 
 }
 retour(): void {
-  this.router.navigate(['/psychologue/dashboard']);
+  this.router.navigate(['/admin/dashboard']);
 }
 
 
