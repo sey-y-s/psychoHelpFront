@@ -12,11 +12,11 @@
     <h1 class="page-title">Catégorie de tests</h1>
 
     <div class="cards-grid">
-      @for (category of listCategorie; track category.id) {
+      @for (category of listCategorie; track category.id; let i = $index) {
       <div class="card" routerLink="{{category.id}}">
-        <div class="">
+        <div class="card-image-container">
           <!--{{category.description}}-->
-          <img src="anxiete.png" alt="">
+          <img  [src]="(i + 1) + '.png'" [alt]="category.nomCategorie">
         </div>
         <h6>{{ category.nomCategorie }}</h6>
       </div>
