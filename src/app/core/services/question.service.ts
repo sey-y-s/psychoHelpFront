@@ -65,7 +65,7 @@ export class QuestionService {
 
     public getChoixByQuestion(questionId: number) {
         return this.http.get<choixResponseInterface[]>(
-            `${this.apiChoixUrl}`,
+            `${this.apiChoixUrl}/${questionId}`,
             { withCredentials: true }
         );
     }
