@@ -1,0 +1,34 @@
+@if (profile) {
+    <div class="profile-card">
+
+        <div class="profile-header-center">
+            <div class="avatar-container">
+                {{ profile.prenom.charAt(0) }}{{ profile.nom.charAt(0) }}
+            </div>
+
+            <div class="profile-meta">
+                <h2>{{ profile.prenom }} {{ profile.nom }}</h2>
+                <span class="role-tag" [class.admin]="profile.role === 'ADMIN'">
+        {{ profile.role }}
+      </span>
+                <p class="profile-uid">ID: #{{ profile.id }}</p>
+            </div>
+        </div>
+
+        <div class="profile-details-grid">
+            <div class="detail-box">
+                <span class="detail-label">Adresse e-mail</span>
+                <div class="detail-value">{{ profile.mail }}</div>
+            </div>
+
+            <div class="detail-box">
+                <span class="detail-label">Numéro de téléphone</span>
+                <div class="detail-value">{{ profile.telephone || 'Non renseigné' }}</div>
+            </div>
+        </div>
+    </div>
+} @else {
+    <div class="loading-placeholder">
+        <p>Chargement des informations professionnelles...</p>
+    </div>
+}
