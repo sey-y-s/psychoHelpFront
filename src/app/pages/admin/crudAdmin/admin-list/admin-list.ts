@@ -44,7 +44,7 @@ export class AdminList {
     }
     ajouter() {
   this.router.navigate([
-    "/admin/admins/ajouter",
+    "/register/admin",
   ]);
 }
 

@@ -162,18 +162,21 @@ font-family: 'Poppins', sans-serif ;
 }
 .illustration2 {
   text-align: center;
+    transform: translateY(-40px);
+
 }
 .illustration3 {
   text-align: center;
 }
 
 .illustration2 img {
-  max-width: 300px;
+  max-width: 400px;
   width: 100%;
 }
 .illustration3 img {
   max-width: 150px;
   width: 100%;
+  
 }
 .message-erreur{
     width: 100%;
