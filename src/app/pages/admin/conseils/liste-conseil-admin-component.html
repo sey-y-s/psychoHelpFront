@@ -8,11 +8,11 @@
                     (click)="changerFiltre('attente')">En attente</button>
             <button id="btn-valider"
                     class="btn-filter" [class.active]="filtreActif==='valider'"
-                    (click)="changerFiltre('valider')">Valider </button>
+                    (click)="changerFiltre('valider')">Validés</button>
             <button  class="btn btn-outline-secondary btn-filter"
                      [class.active]="filtreActif==='refuser'"
                      [class.active]="filtreActif==='refuser'"
-                     (click)="changerFiltre('refuser')">Refuser</button>
+                     (click)="changerFiltre('refuser')">Refusés</button>
             <button id="btn-tous" class="btn-filter"
                     [class.active]="filtreActif==='tous'"
                     (click)="changerFiltre('tous')">Tous les conseils</button>
