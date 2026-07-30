@@ -176,15 +176,15 @@ Demba & Adama : Dashboard Citoyen :
 -- 1. UTILISATEURS (Administrateurs, Psychologues et Citoyens)
 -- =========================================================================
 INSERT INTO utilisateurs (id, nom, prenom, mail, telephone, mot_de_passe, role, date_creation) VALUES
-(2, 'Maïga', 'Aïssata', 'am@psy.org', '+22366112233', 'pass', 'PSYCHOLOGUE', '2025-01-10'),
-(3, 'Keïta', 'Sékou', 'sk@psy.org', '+22377223344', 'pass', 'PSYCHOLOGUE', '2025-01-12'),
-(4, 'Traoré', 'Fatoumata', 'ft@psy.org', '+22365334455', 'pass', 'PSYCHOLOGUE', '2025-01-15'),
-(5, 'Diarra', 'Oumar', 'od@psy.org', '+22376445566', 'pass', 'PSYCHOLOGUE', '2025-02-01'),
-(6, 'Sissoko', 'Aminata', 'as@gmail.com', '+22366556677', 'pass', 'CITOYEN', '2025-02-10'),
-(7, 'Konaté', 'Ibrahima', 'ik@gmail.fr', '+22377667788', 'pass', 'CITOYEN', '2025-02-12'),
-(8, 'Touré', 'Kadiatou', 'kt@gmail.com', '+22365778899', 'pass', 'CITOYEN', '2025-02-15'),
-(9, 'Dembélé', 'Adama', 'ad@gmail.com', '+22376889900', 'pass', 'CITOYEN', '2025-02-20'),
-(10, 'Diallo', 'Mariam', 'md@gmail.com', '+22366990011', 'pass', 'CITOYEN', '2025-03-01');
+(2, 'Maïga', 'Aïssata', 'am@psy.org', '+22366112233', 'pass1234', 'PSYCHOLOGUE', '2025-01-10'),
+(3, 'Keïta', 'Sékou', 'sk@psy.org', '+22377223344', 'pass1234', 'PSYCHOLOGUE', '2025-01-12'),
+(4, 'Traoré', 'Fatoumata', 'ft@psy.org', '+22365334455', 'pass1234', 'PSYCHOLOGUE', '2025-01-15'),
+(5, 'Diarra', 'Oumar', 'od@psy.org', '+22376445566', 'pass1234', 'PSYCHOLOGUE', '2025-02-01'),
+(6, 'Sissoko', 'Aminata', 'as@gmail.com', '+22366556677', 'pass1234', 'CITOYEN', '2025-02-10'),
+(7, 'Konaté', 'Ibrahima', 'ik@gmail.fr', '+22377667788', 'pass1234', 'CITOYEN', '2025-02-12'),
+(8, 'Touré', 'Kadiatou', 'kt@gmail.com', '+22365778899', 'pass1234', 'CITOYEN', '2025-02-15'),
+(9, 'Dembélé', 'Adama', 'ad@gmail.com', '+22376889900', 'pass1234', 'CITOYEN', '2025-02-20'),
+(10, 'Diallo', 'Mariam', 'md@gmail.com', '+22366990011', 'pass1234', 'CITOYEN', '2025-03-01');
 
 -- =========================================================================
 -- 2. SPECIALITES
@@ -234,10 +234,48 @@ INSERT INTO resultats_test (id, score, niveau, description, citoyen_id, test_id)
 -- =========================================================================
 -- 11. CRENEAUX & SEANCES
 -- =========================================================================
+-- Créneaux pour le psychologue 2 (Spécialiste Anxiété / Stress, id = 2)
 INSERT INTO creneaux (id, jours, heure_debut, heure_fin, statut, psychologue_id) VALUES
 (1, 'Lundi', '09:00:00', '10:00:00', 1, 2),
 (2, 'Lundi', '10:30:00', '11:30:00', 0, 2),
-(3, 'Mardi', '14:00:00', '15:00:00', 1, 3);
+(3, 'Lundi', '14:00:00', '15:00:00', 1, 2),
+(4, 'Mardi', '09:00:00', '10:00:00', 1, 2),
+(5, 'Mardi', '10:30:00', '11:30:00', 1, 2),
+(6, 'Mardi', '15:00:00', '16:00:00', 0, 2),
+(7, 'Mercredi', '09:00:00', '10:00:00', 1, 2),
+(8, 'Mercredi', '11:00:00', '12:00:00', 1, 2),
+(9, 'Jeudi', '14:00:00', '15:00:00', 0, 2),
+(10, 'Jeudi', '15:30:00', '16:30:00', 1, 2),
+(11, 'Vendredi', '09:00:00', '10:00:00', 1, 2),
+(12, 'Vendredi', '10:30:00', '11:30:00', 1, 2);
+
+-- Créneaux pour le psychologue 3 (Accompagnement Dépression, id = 3)
+INSERT INTO creneaux (id, jours, heure_debut, heure_fin, statut, psychologue_id) VALUES
+(13, 'Lundi', '11:00:00', '12:00:00', 1, 3),
+(14, 'Lundi', '15:00:00', '16:00:00', 1, 3),
+(15, 'Mardi', '14:00:00', '15:00:00', 1, 3),
+(16, 'Mardi', '16:00:00', '17:00:00', 0, 3),
+(17, 'Mercredi', '08:30:00', '09:30:00', 1, 3),
+(18, 'Mercredi', '10:00:00', '11:00:00', 1, 3),
+(19, 'Jeudi', '09:00:00', '10:00:00', 0, 3),
+(20, 'Jeudi', '10:30:00', '11:30:00', 1, 3),
+(21, 'Jeudi', '14:00:00', '15:00:00', 1, 3),
+(22, 'Vendredi', '14:00:00', '15:00:00', 1, 3),
+(23, 'Vendredi', '15:30:00', '16:30:00', 0, 3);
+
+-- Créneaux pour le psychologue 4 (Burnout et souffrance au travail, id = 4)
+INSERT INTO creneaux (id, jours, heure_debut, heure_fin, statut, psychologue_id) VALUES
+(24, 'Lundi', '08:00:00', '09:00:00', 1, 4),
+(25, 'Lundi', '16:00:00', '17:00:00', 1, 4),
+(26, 'Mardi', '08:30:00', '09:30:00', 1, 4),
+(27, 'Mardi', '10:00:00', '11:00:00', 0, 4),
+(28, 'Mercredi', '14:00:00', '15:00:00', 1, 4),
+(29, 'Mercredi', '15:30:00', '16:30:00', 1, 4),
+(30, 'Jeudi', '08:00:00', '09:00:00', 1, 4),
+(31, 'Jeudi', '11:00:00', '12:00:00', 0, 4),
+(32, 'Vendredi', '08:00:00', '09:00:00', 1, 4),
+(33, 'Vendredi', '11:00:00', '12:00:00', 1, 4),
+(34, 'Vendredi', '16:00:00', '17:00:00', 1, 4);
 
 
 

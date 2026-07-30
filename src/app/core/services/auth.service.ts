@@ -34,9 +34,7 @@ export class AuthService {
 
   private verifierSession(): void {
     // Avec les sessions, le cookie est envoyé automatiquement
-    this.http.get<Utilisateur>(`${this.api}/utilisateurs/session`,  {
-      withCredentials: true
-    })
+    this.http.get<Utilisateur>(`${this.api}/utilisateurs/session`)
         .pipe(
             finalize(() => {
               this.sessionLoadingSubject.next(false);
@@ -82,20 +80,14 @@ export class AuthService {
   //Pour Afficher les psychologue valider
   listerPsychologuesValides(): Observable<any[]> {
   return this.http.get<any[]>(
-    `${this.api}/psychologues/valide`,
-    {
-      withCredentials: true
-    }
+    `${this.api}/psychologues/valide`
   );
 }
 
  // methode pour afficher la liste des conseils
 listerConseilsValides(): Observable<ConseilAffiche[]> {
   return this.http.get<ConseilAffiche[]>(
-    `${this.api}/conseils/read?status=VALIDER`,
-    {
-      withCredentials: true
-    }
+    `${this.api}/conseils/read?status=VALIDER`
   );
 }
 
@@ -110,10 +102,7 @@ listerConseilsValides(): Observable<ConseilAffiche[]> {
 obtenirMesRendezVous(): Observable<CitoyenRendezVousResponse[]> {
 
   return this.http.get<CitoyenRendezVousResponse[]>(
-    `${this.api}/seances/mes-rdv-citoyen`,
-    {
-      withCredentials: true
-    }
+    `${this.api}/seances/mes-rdv-citoyen`
   );
 
 }

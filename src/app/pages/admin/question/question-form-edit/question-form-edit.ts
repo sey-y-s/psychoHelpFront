@@ -88,17 +88,17 @@ export class QuestionFormEdit {
 
   chargerChoixExistants(questionId: number): void {
     this.questionService.getChoixByQuestion(questionId).subscribe({
-      next: (choix) => {
-        this.choixList = choix.map(c => ({
-          choix: c.choix,
-          score: c.score
-        }));
-      },
-      error: (error) => {
-        console.log('Erreur chargement des choix:', error);
-      }
+        next: (choix) => {
+            this.choixList = choix.map(c => ({
+                choix: c.choix,
+                score: c.score
+            }));
+        },
+        error: (error) => {
+            console.log('Erreur chargement des choix:', error);
+        }
     });
-  }
+}
 
   soumission() {
     this.form.markAllAsTouched();

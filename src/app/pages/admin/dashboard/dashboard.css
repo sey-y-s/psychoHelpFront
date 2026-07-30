@@ -1,7 +1,6 @@
 :host {
     display: block;
-    background-color: #fcf9f7;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--clair);
 }
 
 .container {
