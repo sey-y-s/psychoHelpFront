@@ -1,76 +1,118 @@
-/* Conteneur du formulaire */
-.container {
-  width: 450px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-/* Titre */
-h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+body{
+    background:#f4f5f7;
 }
 
-/* Groupe de champs */
-.form-group {
-  margin-bottom: 15px;
+.page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:30px;
 }
 
-/* Labels */
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+.container{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* Champs de saisie */
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #bbb;
-  border-radius: 5px;
-  box-sizing: border-box;
+.container h2{
+    text-align:center;
+    color:#2C3E50;
+    margin-bottom:10px;
 }
 
-/* Lorsque l'utilisateur clique dans un champ */
-input:focus {
-  outline: none;
-  border: 2px solid #d9a58b;
+.sous-titre{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+    font-size:14px;
 }
 
-/* Zone des boutons */
-.actions {
-  margin-top: 20px;
-  text-align: center;
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
 }
 
-/* Boutons */
-button {
-  padding: 10px 20px;
-  margin: 0 8px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
+.form-group label{
+    margin-bottom:6px;
+    color:#2C3E50;
+    font-weight:500;
 }
 
-/* Bouton Modifier */
-button[type="submit"] {
-  background-color: #d9a58b;
-  color: white;
+.form-group input{
+    height:45px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    padding:0 15px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
 }
 
-/* Bouton Annuler */
-button[type="button"] {
-  background-color: #cccccc;
-  color: black;
+.form-group input:focus{
+    border-color:#D8A58A;
 }
 
-/* Effet au passage de la souris */
-button:hover {
-  opacity: 0.9;
+.actions{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+}
+
+.actions button{
+    width:48%;
+    height:45px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.btn-modifier{
+    background:#D8A58A;
+    color:white;
+}
+
+.btn-modifier:hover{
+    background:#c78d73;
+}
+
+.btn-annuler{
+    background:#e6e6e6;
+    color:#333;
+}
+
+.btn-annuler:hover{
+    background:#d4d4d4;
+}
+
+@media(max-width:600px){
+
+    .container{
+        padding:25px;
+    }
+
+    .actions{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .actions button{
+        width:100%;
+    }
+
 }

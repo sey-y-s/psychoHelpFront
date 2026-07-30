@@ -49,7 +49,6 @@
     background: #553526;
 }
 
-
 /* ===================== */
 /* TABLEAU */
 /* ===================== */
@@ -63,7 +62,6 @@
     overflow: hidden;
 }
 
-
 /* Header */
 .table thead th {
     background: #f1e2dc;
@@ -73,25 +71,21 @@
     text-align: left;
 }
 
-
 /* Largeur des colonnes */
 .table th:nth-child(1),
 .table td:nth-child(1) {
     width: 25%;
 }
 
-
 .table th:nth-child(2),
 .table td:nth-child(2) {
     width: 20%;
 }
 
-
 .table th:nth-child(3),
 .table td:nth-child(3) {
     width: 30%;
 }
-
 
 /* Action */
 .table th:last-child,
@@ -100,14 +94,12 @@
     text-align: center;
 }
 
-
 /* Corps */
 .table tbody td {
     padding: 18px 20px;
     color: #333;
     border-bottom: 1px solid #eee;
 }
-
 
 .table tbody tr:hover {
     background: #faf6f3;

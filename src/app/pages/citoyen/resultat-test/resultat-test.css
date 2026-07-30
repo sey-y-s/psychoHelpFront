@@ -9,10 +9,9 @@
     background-color: rgba(44, 62, 80, 0.08) !important;
 }
 
-/* Bouton Retour (Utilisation du Marron Secondary) */
 .btn-return {
-    background-color: var(--beige); /* #D7A790 */
-    color: var(--secondary); /* #5D3520 */
+    background-color: var(--beige-dark);
+    color: var(--secondary);
     font-weight: 600;
     border: none;
     font-size: 14px;

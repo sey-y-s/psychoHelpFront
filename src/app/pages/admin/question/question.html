@@ -10,43 +10,58 @@
             Ajouter une question
         </button>
     </div>
+
     <app-barre-recherche (chercherOnClick)="chargerQuestion(test_id,$event)"/>
+
     <div class="table-container">
         <table class="table">
 
             <thead>
                 <tr>
                     <th>Question</th>
-                    <th> Test</th>
+                    <th>Test</th>
                     <th colspan="5" style="text-align: center;">Action</th>
                 </tr>
             </thead>
 
             <tbody>
-                @if(questionListe().length>0){
-                 @for (question of questionListe(); track question.id) {
-                    <app-question-card [question]="question" (editOnclic)="modifier($event)" 
-                    (deleteOnclic)="supprimerConseil($event)" />
+                @if(questionListe().length > 0) {
+                    @for (question of questionListe(); track question.id) {
+                        <app-question-card
+                            [question]="question"
+                            (editOnclic)="modifier($event)"
+                            (deleteOnclic)="supprimerQuestion($event)"
+                            
+                        />
+                    }
+                } @else {
+                    <tr>
+                        <td colspan="7" style="align-content: center; background-color: rgb(245, 60, 60); color: white; text-align: center;">
+                            Aucun résultat trouvé!
+                        </td>
+                    </tr>
                 }
-                }@else {
-                <tr><td colspan="7" style="align-content: center; background-color: rgb(245, 60, 60);">Aucun resultat trouvé!</td></tr>
-
-                }
-                
-
             </tbody>
 
         </table>
-        
     </div>
 
 </div>
+
+<!-- FORMULAIRE AJOUT -->
 @if (formulaireVisible) {
-    <app-question-form (fermerClic)="annuler($event)" [test_id]="test_id"
-    (ajoutReussiMisAjourClic)="AjoutEffectuer()" />
+    <app-question-form
+        (fermerClic)="annuler($event)"
+        [test_id]="test_id"
+        (ajoutReussiMisAjourClic)="AjoutEffectuer()"
+    />
 }
 
+<!-- FORMULAIRE ÉDITION -->
 @if (formulaireVisibleforEdit) {
-    <app-question-form-edit [questionEdit]="questionRecup()!" (editReussiOclik)="fermerApreEdit($event)" (fermereModalEditOnclik)="fermerApreannulerEdit($event)" />
+    <app-question-form-edit
+        [questionEdit]="questionRecup()!"
+        (editReussiOclik)="fermerApreEdit($event)"
+        (fermereModalEditOnclik)="fermerApreannulerEdit($event)"
+    />
 }
-

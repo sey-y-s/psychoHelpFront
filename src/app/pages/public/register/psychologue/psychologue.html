@@ -136,9 +136,8 @@
             Le numéro de téléphone est obligatoire.
         </small>
 
-        <small style="color:#d32f2f;font-size:12px"
-               *ngIf="telephone?.touched && telephone?.errors?.['pattern']">
-            Le numéro doit contenir uniquement des chiffres (8 à 15).
+        <small *ngIf="telephone?.touched && telephone?.errors?.['pattern']">
+            Le numéro de téléphone doit contenir exactement 8 chiffres.
         </small>
 
 
@@ -233,7 +232,13 @@
 
       <!-- Description -->
       <div class="champ-groupe">
-        <input type="text" placeholder="Description" class="input-arrondi" formControlName="description">
+        <textarea
+                placeholder="Description"
+                class="input-arrondi description-textarea"
+                formControlName="description"
+                rows="5"
+                maxlength="500">
+         </textarea>
         <mat-icon class="icone-champ">description</mat-icon>
       </div>
         <small style="color:#d32f2f;font-size:12px"

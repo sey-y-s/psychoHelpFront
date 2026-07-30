@@ -16,19 +16,11 @@ td {
     color: #444;
 }
 
-
-.status {
-    padding: 5px 10px;
-    border-radius: 15px;
-    background: #e8f5e9;
-    font-size: 12px;
-}
-
 .actions {
     display: flex;
-    justify-content: center; 
-    align-items: center;     
-    gap: 20px;   
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
 
 .actions button {
@@ -49,9 +41,20 @@ td {
     background: #f6f2f0;
 }
 
+.actions button .view-icon {
+    color: #3498db;
+}
+
+.actions button .edit-icon {
+    color: #f39c12;
+}
+
+.actions button .delete-icon {
+    color: #dc463d;
+}
+
 .actions button:last-child {
     border-color: #f1d3cf;
-    color: #dc463d;
 }
 
 .actions button:last-child:hover {
@@ -64,43 +67,93 @@ td {
     font-size: 18px;
 }
 
-.status {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-align: center;
-  min-width: 100px;
-}
-
-/* En attente */
-.en-attente {
-  color: #856404;
-  background-color: #fff3cd;
-}
-
-/* Validé */
-.valider {
-  color: #155724;
-  background-color: #d4edda;
-}
-
-/* Refusé */
-.refuser {
-  color: #721c24;
-  background-color: #f8d7da;
-}
 .description {
-    max-width: 150px; 
+    max-width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.description {
-    max-width: 150px; 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+/* ============================================================ */
+/* CHOIX (affichage dans la table) */
+/* ============================================================ */
+
+.choix-row {
+    background: #faf6f3;
+}
+
+.choix-row td {
+    padding: 0 15px 15px 15px;
+}
+
+.choix-container {
+    padding: 16px 20px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e0d6d0;
+}
+
+.choix-title {
+    font-weight: 600;
+    color: #6c4634;
+    font-size: 14px;
+}
+
+.choix-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.choix-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: #f8f6f5;
+    border-radius: 6px;
+    border-left: 3px solid #d0c8c4;
+}
+
+.choix-lettre {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #6c4634;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.choix-texte {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.choix-score {
+    font-size: 12px;
+    color: #888;
+    background: #f0f0f0;
+    padding: 2px 10px;
+    border-radius: 12px;
+}
+
+.no-choix {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
+
+.no-choix p {
+    margin: 0;
+}
+.choix-loading {
+    font-size: 13px;
+    color: #6c4634;
+    margin-left: 12px;
 }
