@@ -32,6 +32,7 @@ export class Logins {
   forms: FormGroup;
   motdepassecache = true;
   messageErreur = '';
+  erreurConnexion = false;
 
   constructor(
     private auth: AuthService,
@@ -41,13 +42,13 @@ export class Logins {
     private cdr: ChangeDetectorRef
   ) {
     this.forms = this.fb.group({
-      email: ["", [Validators.required, Validators.email]],
+      identifiant: ["", Validators.required],
       motDePasse: ["", Validators.required],
     });
   }
 
   login() {
-
+    this.erreurConnexion = false;
     if (this.forms.invalid) return;
     this.isLoading = true;
     this.auth.login(this.forms.value)
@@ -58,6 +59,7 @@ export class Logins {
       )
     .subscribe({
       next: (res) => {
+        this.erreurConnexion = false;
         this.notif.succes("Vous êtes connecté(e) avec succès.");
 
         // this.auth.sauvegarderUtilisateur(res);
@@ -72,9 +74,10 @@ export class Logins {
       },
       error: (err) => {
         this.isLoading = false;
-        this.messageErreur = err.error?.message || "Erreur lors de votre connexion";
+        this.erreurConnexion = true;
+        this.messageErreur =
+            err.error?.message || "Erreur lors de votre connexion.";
         this.cdr.detectChanges();
-        //this.notif.erreur(this.messageErreur);
       }
 
     });

@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
 import {NotificationResponseDTO} from "../../../models/notification.admin.model";
 import {NotificationService} from "../../../core/services/notification.service.admin";
 import { DatePipe, CommonModule} from '@angular/common';
+import { NotificationWebsocketService } from "../../../core/services/notification-websocket.service";
 
 @Component({
   selector: "app-notification",
@@ -17,6 +18,7 @@ export class Notification implements OnInit {
   constructor(
       private notificationService: NotificationService,
       private cdRef: ChangeDetectorRef,
+      private notifWS: NotificationWebsocketService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +57,7 @@ export class Notification implements OnInit {
         if (notif && !notif.lu) {
           notif.lu = true;
           this.nombreNonLues--;
+          this.notifWS.decrementerNombreNonLues();
         }
       },
       error: (err) => console.error('Erreur lors du marquage comme lu', err)
@@ -66,6 +69,7 @@ export class Notification implements OnInit {
       next: () => {
         this.notifications.forEach(n => n.lu = true);
         this.nombreNonLues = 0;
+        this.notifWS.definirNombreNonLues(0);
       },
       error: (err) => console.error('Erreur lors du marquage global', err)
     });
