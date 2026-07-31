@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { authGuard } from "./core/guards/auth.guard";
 import { roleGuard } from "./core/guards/role.guard";
 import { MainLayout } from "./layout/main-layout/main-layout";
+import {Profile} from "./pages/admin/profile/profile";
 
 export const routes: Routes = [
   // =========================================================================
@@ -311,6 +312,11 @@ export const routes: Routes = [
         path: 'notifications',
         loadComponent: () => import('./pages/admin/notification/notification').then(m => m.Notification),
         data: { title: 'Notifications' }
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./pages/admin/profile/profile').then(m => m.Profile),
+        data: { title: 'Profile' }
       },
 {
   path: "admins",
