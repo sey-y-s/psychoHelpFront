@@ -1,51 +1,136 @@
-<a   routerLink="/"></a>
 <section class="page-creneaux">
     <div class="page-header">
         <div>
             <h1>Prendre un rendez-vous</h1>
-            <p>Choisissez une date pour voir les créneaux disponibles.</p>
+            <p>
+                Choisissez une date pour voir les créneaux disponibles.
+            </p>
         </div>
     </div>
 
-    <app-filtre (dateOnChange)="chargerDisponibilites($event)" />
+    <app-filtre 
+        (dateOnChange)="chargerDisponibilites($event)">
+    </app-filtre>
 
-    @if(!dateSelectionnee){
+    <div class="date-selectionnee">
 
-    <div class="vide">Veuillez choisir une date.</div>
+        <h2>
+            Disponibilités du :
+            {{ dateSelectionnee() | date:'fullDate':'':'fr' }}
+        </h2>
 
-    } @else if(creneauDisponiblePourcitoyenfiltre().length>0){
+        @if(creneauDisponiblePourcitoyenfiltre().length > 0){
 
-    <div class="rdv">
-        @for(creneau of creneauDisponiblePourcitoyenfiltre(); track
-        creneau.creneauId){
-
-        <div class="card">
-            <p>
-                <strong>Jour :</strong>
-                {{creneau.jours}}
+            <p class="nombre-creneaux">
+                {{ creneauDisponiblePourcitoyenfiltre().length }}
+                créneau(x) disponible(s)
             </p>
-
-            <p>
-                <strong>Date :</strong>
-                {{creneau.date}}
-            </p>
-
-            <p>
-                <strong>Heure :</strong>
-                {{creneau.heureDebut}} - {{creneau.heureFin}}
-            </p>
-
-            <button type="button" (click)="onSubmit2(creneau)">
-                Prendre ce rendez-vous
-            </button>
-        </div>
 
         }
+
     </div>
+    @if(creneauDisponiblePourcitoyenfiltre().length > 0){
 
-    } @else{
+        <div class="rdv">
 
-    <div class="vide">Aucun créneau disponible pour cette date.</div>
+
+            @for(creneau of creneauDisponiblePourcitoyenfiltre();
+                 track creneau.creneauId){
+
+
+                <div class="card-creneau">
+
+
+                    <div class="info">
+
+                        <div class="ligne">
+                            <span class="icon">
+                                📅
+                            </span>
+
+                            <strong>
+                                {{ creneau.jours }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="ligne">
+
+                            <span class="icon">
+                                🗓️
+                            </span>
+
+                            <span>
+                                {{ creneau.date | date:'fullDate':'':'fr' }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="ligne">
+
+                            <span class="icon">
+                                🕘
+                            </span>
+
+                            <span>
+                                {{ creneau.heureDebut }}
+                                -
+                                {{ creneau.heureFin }}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <button
+                        type="button"
+                        class="btn-reserver"
+                        (click)="onSubmit2(creneau)">
+
+                        Prendre ce rendez-vous
+
+                    </button>
+
+
+                </div>
+
+
+            }
+
+
+        </div>
+
 
     }
+    @else {
+
+
+        <div class="vide">
+
+            <div class="emoji">
+                   <mat-icon class="empty-icon">
+                        event_busy
+                    </mat-icon>
+            </div>
+
+            <h3>
+                Aucun créneau disponible
+            </h3>
+
+            <p>
+                Essayez une autre date pour trouver un rendez-vous.
+            </p>
+
+
+        </div>
+
+
+    }
+
+
 </section>
