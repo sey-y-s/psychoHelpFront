@@ -14,7 +14,16 @@ export class CreneauxDuJour {
   creneaux: Creneau[] = [];
 
   get creneauxAffiches(): Creneau[] {
-    return this.creneaux.slice(0, 4);
+    const maintenant = new Date();
+    const heureActuelleEnMinutes = maintenant.getHours() * 60 + maintenant.getMinutes();
+    return this.creneaux
+        .filter((creneau) => this.enMinutes(creneau.heureFin) > heureActuelleEnMinutes)
+        .slice(0, 4);
+  }
+
+  private enMinutes(heure: string): number {
+    const [heures, minutes] = heure.substring(0, 5).split(':').map(Number);
+    return heures * 60 + minutes;
   }
 
   heure(heure: string): string {

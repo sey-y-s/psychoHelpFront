@@ -24,7 +24,7 @@
 }
 
 .dashboard-panel header a {
-    color: #4d35d2;
+    color: #07163a;
     text-decoration: none;
     font-size: 13px;
 }
@@ -67,11 +67,10 @@
 
 .panel-footer {
     min-height: 35px;
-    margin-top: auto;
-    padding-top: 13px;
+    margin-top: 13px;
     border-radius: 7px;
     background: #eceaff;
-    color: #5639df;
+    color: #07163a;
     display: flex;
     align-items: center;
     justify-content: center;
