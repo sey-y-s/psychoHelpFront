@@ -4,9 +4,12 @@
 
 .dashboard-panel {
     min-height: 315px;
+    height: 100%;
     padding: 16px;
     border-radius: 11px;
     background: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 .dashboard-panel header {
@@ -21,7 +24,7 @@
 }
 
 .dashboard-panel header a {
-    color: #4d35d2;
+    color: #07163a;
     text-decoration: none;
     font-size: 13px;
 }
@@ -31,6 +34,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    flex: 1;
+    overflow: hidden;
 }
 
 .rdv-item {
@@ -90,16 +95,16 @@
     padding: 3px 9px;
     border-radius: 12px;
     background: #dfe3ff;
-    color: #4330d8;
+    color: #07163a;
     font-size: 9px;
 }
 
 .panel-footer {
     min-height: 35px;
-    margin-top: 13px;
+    margin-top: auto;
     border-radius: 7px;
     background: #eceaff;
-    color: #5639df;
+    color: #07163a;
     display: flex;
     align-items: center;
     justify-content: center;

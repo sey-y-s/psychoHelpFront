@@ -7,14 +7,14 @@
     </header>
     @if (rendezVous.length > 0) {
         <div class="rdv-list">
-            @for (rdv of rendezVous; track rdv.id) {
+            @for (rdv of rendezVousAffiches; track rdv.id) {
                 <article class="rdv-item">
                     <div class="patient">
                         <div class="patient-avatar">
                             {{ initiales(rdv) }}
                         </div>
 
-                        <div><strong>{{ rdv.prenomCitoyen }}{{ rdv.nomCitoyen }}</strong>
+                        <div><strong>{{ rdv.prenomCitoyen }} {{ rdv.nomCitoyen }}</strong>
                             <span>Séance individuelle</span>
                         </div>
                     </div>
