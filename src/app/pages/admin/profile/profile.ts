@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from "@angular/core";
 import {ProfileService} from "../../../core/services/profile";
 import {ProfileModel} from "../../../models/profile.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "app-profile",
@@ -10,7 +11,7 @@ import {ProfileModel} from "../../../models/profile.model";
 })
 export class Profile implements OnInit {
   private profileService = inject(ProfileService);
-  constructor(private cdRef: ChangeDetectorRef) {
+  constructor(private cdRef: ChangeDetectorRef, private router: Router) {
   }
   profile! : ProfileModel
 
@@ -27,5 +28,12 @@ export class Profile implements OnInit {
         console.log(this.profile);
       }
     })
+  }
+
+  edit(adminId: number) {
+    this.router.navigate([
+      "/admin/profile/modifier",
+      adminId
+    ]);
   }
 }

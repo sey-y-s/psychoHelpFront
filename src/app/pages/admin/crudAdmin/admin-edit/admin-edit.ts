@@ -4,15 +4,15 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TestCitoyenService } from "../../../../core/services/test-citoyen.service";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
-import {  ChangeDetectorRef } from "@angular/core";
+import { ChangeDetectorRef } from "@angular/core";
 import { NotificationService } from "../../../../core/services/notification.service";
 import { AdminDashboardService } from "../../../../core/services/admin.dashboard.service";
 
 @Component({
   selector: "app-admin-edit",
-   standalone: true,
+  standalone: true,
 
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: "./admin-edit.html",
   styleUrl: "./admin-edit.css",
 })
@@ -25,53 +25,54 @@ export class AdminEdit {
     private route: ActivatedRoute,
     private adminService: AdminDashboardService,
     private router: Router,
-        private cdRef: ChangeDetectorRef,
-        private notif:NotificationService
+    private cdRef: ChangeDetectorRef,
+    private notif: NotificationService
 
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get("id"));
 
 
 
-  this.adminForm = this.fb.group({
-  nom: [''],
-  prenom: [''],
-  mail: [''],
-  telephone: [''],
-  mot_de_passe: ['']
-});
+    this.adminForm = this.fb.group({
+      nom: [''],
+      prenom: [''],
+      mail: [''],
+      telephone: [''],
+      motDePasse: ['']
+    });
 
     this.adminService.AdminById(this.id).subscribe((data) => {
       this.adminForm.patchValue(data);
-          console.log("Données reçues :", data);
+      console.log("Données reçues :", data);
 
     });
   }
 
   modifierAdmin() {
+    console.log("test : ", this.adminForm.value)
     this.adminService.updateTest(this.id, this.adminForm.value).subscribe({
       next: (data) => {
         console.log("Test modifié :", data);
-                this.cdRef.detectChanges();
-                this.notif.succes("Test modifié avec succes");
+        this.cdRef.detectChanges();
+        this.notif.succes("Infos de compte modifiées avec succès");
 
-this.router.navigate([
-  "/admin/admins",
-  
-]);  
-  },
+        this.router.navigate([
+          "/admin/profile",
+
+        ]);
+      },
 
       error: (err) => {
         console.log(err);
-        this.notif.erreur("Erreur lors de le modification de l'admin")
+        this.notif.erreur("Erreur lors de la modification de l'admin")
       },
     });
   }
-  redirectList(){
+  redirectList() {
     this.router.navigate([
-  "/admin/admins",
-]);  
+      "/admin/profile",
+    ]);
   }
 }

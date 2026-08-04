@@ -10,8 +10,6 @@ import {ProfileModel} from "../../models/profile.model";
 export class ProfileService {
     private readonly http = inject(HttpClient);
 
-    private readonly apiUrl = "http://localhost:8080/api";
-
     getProfile(): Observable<ProfileModel>{
         console.log(`${this.http}/utilisateurs/session`)
         return this.http.get<ProfileModel>(`http://localhost:8080/api/utilisateurs/session`)

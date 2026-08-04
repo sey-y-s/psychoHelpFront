@@ -78,14 +78,6 @@ export class QuestionFormEdit {
     }
   }
 
-  changerType(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    this.typeQuestion = select.value as 'CHOIX_UNIQUE' | 'CHOIX_MULTIPLE' | 'TEXTE';
-    if (this.typeQuestion === 'TEXTE') {
-      this.choixList = [];
-    }
-  }
-
   chargerChoixExistants(questionId: number): void {
     this.questionService.getChoixByQuestion(questionId).subscribe({
         next: (choix) => {
@@ -106,7 +98,7 @@ export class QuestionFormEdit {
       return;
     }
 
-    if (this.typeQuestion !== 'TEXTE' && this.choixList.length < 2) {
+    if (this.choixList.length < 2) {
       alert('Ajoutez au moins 2 choix pour cette question');
       return;
     }
@@ -177,8 +169,7 @@ export class QuestionFormEdit {
       if (question) {
         this.form.patchValue({
           question: question.question,
-          test_id: question.test_id ?? null,
-          type_question: "CHOIX_UNIQUE"
+          test_id: question.test_id ?? null
         });
         this.chargerChoixExistants(question.id);
       }

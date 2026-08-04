@@ -21,7 +21,7 @@ import { MatIconModule } from "@angular/material/icon";
 @Component({
   selector: "app-rdv",
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, Filtre,DatePipe,MatIconModule],
+  imports: [ReactiveFormsModule, Filtre,DatePipe,MatIconModule],
   templateUrl: "./rdv.html",
   styleUrl: "./rdv.css",
 })

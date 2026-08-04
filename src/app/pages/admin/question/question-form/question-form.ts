@@ -24,7 +24,6 @@ export class QuestionForm {
   ajoutReussiMisAjourClic = output<void>();
 
   choixList: choixRequestInterface[] = [];
-  typeQuestion: 'CHOIX_UNIQUE' | 'CHOIX_MULTIPLE' | 'TEXTE' = 'CHOIX_UNIQUE';
 
   choixForm = new FormGroup({
     choix: new FormControl("", [Validators.required, Validators.minLength(1)]),
@@ -81,21 +80,13 @@ export class QuestionForm {
     }
   }
 
-  changerType(event: Event): void {
-    const select = event.target as HTMLSelectElement;
-    this.typeQuestion = select.value as 'CHOIX_UNIQUE' | 'CHOIX_MULTIPLE' | 'TEXTE';
-    if (this.typeQuestion === 'TEXTE') {
-      this.choixList = [];
-    }
-  }
-
   soumission() {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       return;
     }
 
-    if (this.typeQuestion !== 'TEXTE' && this.choixList.length < 2) {
+    if (this.choixList.length < 2) {
       alert('Ajoutez au moins 2 choix pour cette question');
       return;
     }

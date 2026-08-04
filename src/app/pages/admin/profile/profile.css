@@ -113,6 +113,28 @@
     transition: background-color 0.2s ease;
 }
 
+.editButton {
+    margin-top: 2rem;
+    background-color: var(--marron);
+    padding: 12px 20px;
+    border-radius: 12px;
+    width: 50%;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.editButton:hover {
+    background-color: var(--secondary);
+}
+
+.editButton button {
+    border: 0;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: 400;
+    color: #F5F5F5;
+}
+
 .detail-value:hover {
     background-color: #F5F5F5;
 }

@@ -12,23 +12,6 @@
         <form [formGroup]="form" (ngSubmit)="soumission()">
 
             <div class="form-group">
-                <label for="question">Question</label>
-                <input type="text" id="question" formControlName="question" placeholder="Saisissez votre question...">
-                @if(form.get("question")?.invalid && form.get("question")?.touched){
-                    <small class="invalid-feedbacks">La question est requise !</small>
-                }
-            </div>
-
-            <div class="form-group">
-                <label for="type_question">Type de question</label>
-                <select id="type_question" formControlName="type_question" (change)="changerType($event)">
-                    <option value="CHOIX_UNIQUE">Choix unique</option>
-                    <option value="CHOIX_MULTIPLE">Choix multiple</option>
-                    <option value="TEXTE">Réponse libre (texte)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="test">Test</label>
                 <select id="test" formControlName="test_id">
                     @for (test of test(); track test.id) {
@@ -36,6 +19,15 @@
                     }
                 </select>
             </div>
+            
+            <div class="form-group">
+                <label for="question">Question</label>
+                <input type="text" id="question" formControlName="question" placeholder="Saisissez votre question...">
+                @if(form.get("question")?.invalid && form.get("question")?.touched){
+                    <small class="invalid-feedbacks">La question est requise !</small>
+                }
+            </div>
+
 
             @if (typeQuestion !== 'TEXTE') {
                 <div class="choix-section">
@@ -66,7 +58,7 @@
                                 [disabled]="choixForm.invalid"
                                 (click)="ajouterChoix()"
                             >
-                                ➕ Ajouter
+                                Ajouter
                             </button>
                         </div>
                     </div>

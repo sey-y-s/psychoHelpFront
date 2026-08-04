@@ -20,16 +20,6 @@
                 }
             </div>
 
-            <!-- Type de question -->
-            <div class="form-group">
-                <label for="type_question">Type de question</label>
-                <select id="type_question" formControlName="type_question" (change)="changerType($event)">
-                    <option value="CHOIX_UNIQUE">Choix unique</option>
-                    <option value="CHOIX_MULTIPLE">Choix multiple</option>
-                    <option value="TEXTE">Réponse libre (texte)</option>
-                </select>
-            </div>
-
             <!-- Test -->
             <div class="form-group">
                 <label for="test">Test</label>
@@ -44,83 +34,74 @@
                 }
             </div>
 
-            <!-- SECTION CHOIX -->
-            @if (typeQuestion !== 'TEXTE') {
-                <div class="choix-section">
+            <div class="choix-section">
 
-                    <div class="choix-header">
-                        <label>Choix possibles</label>
-                        <span class="choix-count">{{ choixList.length }} choix</span>
-                    </div>
+                <div class="choix-header">
+                    <label>Choix possibles</label>
+                    <span class="choix-count">{{ choixList.length }} choix</span>
+                </div>
 
-                    <div class="choix-add" [formGroup]="choixForm">
+                <div class="choix-add" [formGroup]="choixForm">
+                    <input
+                        type="text"
+                        formControlName="choix"
+                        placeholder="Texte du choix..."
+                        (keyup.enter)="ajouterChoix()"
+                    />
+                    <div class="choix-options">
                         <input
-                            type="text"
-                            formControlName="choix"
-                            placeholder="Texte du choix..."
-                            (keyup.enter)="ajouterChoix()"
+                            type="number"
+                            formControlName="score"
+                            placeholder="Score"
+                            min="0"
+                            max="10"
                         />
-                        <div class="choix-options">
-                            <input
-                                type="number"
-                                formControlName="score"
-                                placeholder="Score"
-                                min="0"
-                                max="10"
-                            />
-                            <button
-                                type="button"
-                                class="btn-ajouter-choix"
-                                [disabled]="choixForm.invalid"
-                                (click)="ajouterChoix()"
-                            >
-                                ➕ Ajouter
-                            </button>
-                        </div>
-                    </div>
-
-                    @if (choixList.length > 0) {
-                        <div class="choix-list">
-                            @for (choix of choixList; track $index; let i = $index) {
-                                <div class="choix-item">
-                                    <span class="choix-index">{{ i + 1 }}.</span>
-                                    <span class="choix-texte">{{ choix.choix }}</span>
-                                    @if (choix.score) {
-                                        <span class="choix-score">({{ choix.score }} pts)</span>
-                                    }
-                                    <div class="choix-actions">
-                                        <button type="button" class="btn-modifier" (click)="modifierChoix(i)">
-                                            ✏️
-                                        </button>
-                                        <button type="button" class="btn-supprimer" (click)="supprimerChoix(i)">
-                                            ❌
-                                        </button>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-
-                    @if (choixList.length > 0) {
-                        <button type="button" class="btn-vider" (click)="viderChoix()">
-                            🗑️ Vider tous les choix
+                        <button
+                            type="button"
+                            class="btn-ajouter-choix"
+                            [disabled]="choixForm.invalid"
+                            (click)="ajouterChoix()"
+                        >
+                            Ajouter
                         </button>
-                    }
-
-                    @if (choixList.length === 0) {
-                        <div class="no-choix">
-                            <p>Aucun choix ajouté. Ajoutez au moins 2 choix.</p>
-                        </div>
-                    }
+                    </div>
                 </div>
-            }
 
-            @if (typeQuestion === 'TEXTE') {
-                <div class="info-texte">
-                    <p>📝 Les questions de type "Réponse libre" n'ont pas de choix prédéfinis.</p>
-                    <p>L'utilisateur pourra saisir une réponse libre.</p>
-                </div>
-            }
+                @if (choixList.length > 0) {
+                    <div class="choix-list">
+                        @for (choix of choixList; track $index; let i = $index) {
+                            <div class="choix-item">
+                                <span class="choix-index">{{ i + 1 }}.</span>
+                                <span class="choix-texte">{{ choix.choix }}</span>
+                                @if (choix.score) {
+                                    <span class="choix-score">({{ choix.score }} pts)</span>
+                                }
+                                <div class="choix-actions">
+                                    <button type="button" class="btn-modifier" (click)="modifierChoix(i)">
+                                        ✏️
+                                    </button>
+                                    <button type="button" class="btn-supprimer" (click)="supprimerChoix(i)">
+                                        ❌
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                @if (choixList.length > 0) {
+                    <button type="button" class="btn-vider" (click)="viderChoix()">
+                        🗑️ Vider tous les choix
+                    </button>
+                }
+
+                @if (choixList.length === 0) {
+                    <div class="no-choix">
+                        <p>Aucun choix ajouté. Ajoutez au moins 2 choix.</p>
+                    </div>
+                }
+            </div>
+            
 
             <footer class="form-actions">
                 <button type="button" class="cancel" (click)="annuler()">

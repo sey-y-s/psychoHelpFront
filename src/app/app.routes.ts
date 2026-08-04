@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { authGuard } from "./core/guards/auth.guard";
 import { roleGuard } from "./core/guards/role.guard";
 import { MainLayout } from "./layout/main-layout/main-layout";
-import {Profile} from "./pages/admin/profile/profile";
+import { Profile } from "./pages/admin/profile/profile";
 
 export const routes: Routes = [
   // =========================================================================
@@ -77,9 +77,9 @@ export const routes: Routes = [
       {
         path: "notifications",
         loadComponent: () =>
-            import("./pages/citoyen/notifications/notifications").then(
-                (m) => m.Notifications,
-            ),
+          import("./pages/citoyen/notifications/notifications").then(
+            (m) => m.Notifications,
+          ),
         data: { title: "Notifications" },
       },
       {
@@ -273,17 +273,17 @@ export const routes: Routes = [
           ),
         data: { title: "Ajout de catégories de tests" },
       },
-      
+
       {
         path: "tests/:categorieId",
         loadComponent: () =>
-        import("./pages/admin/test_citoyen/test-list/test-list").then(
-        (m) => m.TestList
-        ),
-       data: { title: "Liste des tests" },
+          import("./pages/admin/test_citoyen/test-list/test-list").then(
+            (m) => m.TestList
+          ),
+        data: { title: "Liste des tests" },
       },
 
-      
+
       {
         path: 'tests/:test_id/questions',
         loadComponent: () => import('./pages/admin/question/question').then(m => m.Question),
@@ -318,37 +318,37 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/admin/profile/profile').then(m => m.Profile),
         data: { title: 'Profile' }
       },
-{
-  path: "admins",
-  loadComponent: () =>
-    import("./pages/admin/crudAdmin/admin-list/admin-list")
-      .then((m) => m.AdminList),
-  data: { title: "Liste des administrateurs" },
-},
+      
+      {
+        path: "profile/modifier/:id",
+        loadComponent: () =>
+          import("./pages/admin/crudAdmin/admin-edit/admin-edit")
+            .then((m) => m.AdminEdit),
+        data: { title: "Modifier un administrateur" },
+      },
+      {
+        path: "admins",
+        loadComponent: () =>
+          import("./pages/admin/crudAdmin/admin-list/admin-list")
+            .then((m) => m.AdminList),
+        data: { title: "Liste des administrateurs" },
+      },
 
-{
-  path: "admins/ajouter",
-  loadComponent: () =>
-    import("./pages/admin/admin-add/admin-add")
-      .then((m) => m.AdminAdd),
-  data: { title: "Ajouter un administrateur" },
-},
+      {
+        path: "admins/ajouter",
+        loadComponent: () =>
+          import("./pages/admin/admin-add/admin-add")
+            .then((m) => m.AdminAdd),
+        data: { title: "Ajouter un administrateur" },
+      },
 
-{
-  path: "admins/modifier/:id",
-  loadComponent: () =>
-    import("./pages/admin/crudAdmin/admin-edit/admin-edit")
-      .then((m) => m.AdminEdit),
-  data: { title: "Modifier un administrateur" },
-},
-
-{
-  path: "admins/:id",
-  loadComponent: () =>
-    import("./pages/admin/crudAdmin/admin-detail/admin-detail")
-      .then((m) => m.AdminDetail),
-  data: { title: "Détail administrateur" },
-},
+      {
+        path: "admins/:id",
+        loadComponent: () =>
+          import("./pages/admin/crudAdmin/admin-detail/admin-detail")
+            .then((m) => m.AdminDetail),
+        data: { title: "Détail administrateur" },
+      },
     ]
   },
 
