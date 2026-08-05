@@ -22,4 +22,10 @@
 #btn-tous {
     width: 12vw;
 }
-
+#list-conseil{
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
