@@ -12,6 +12,6 @@ registerLocaleData(localeFr, 'fr');
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([erreurInterceptor, sessionInterceptor]))
+    provideHttpClient(withInterceptors([erreurInterceptor,sessionInterceptor]))
   ]
 };
