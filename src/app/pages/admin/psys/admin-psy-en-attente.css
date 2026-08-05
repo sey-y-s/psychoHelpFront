@@ -125,23 +125,23 @@
 }
 
 .filter-btn.all{
-  border-color:#3b82f6;
-  color:#3b82f6;
+  border-color: var(--marron);
+  color: var(--marron);
 }
 
 .filter-btn.pending{
-  border-color:#f59e0b;
-  color:#f59e0b;
+  border-color: var(--marron);
+  color: var(--marron);
 }
 
 .filter-btn.success{
-  border-color:#10b981;
-  color:#10b981;
+  border-color: var(--marron);
+  color: var(--marron);
 }
 
 .filter-btn.danger{
-  border-color:#ef4444;
-  color:#ef4444;
+  border-color: var(--marron);
+  color: var(--marron);
 }
 
 .filter-btn.active{
@@ -149,19 +149,27 @@
 }
 
 .filter-btn.all.active{
-  background:#3b82f6;
+  /* color:#3b82f6; */
+  border: 0;
+  background-color: var(--marron);
 }
 
 .filter-btn.pending.active{
-  background:#f59e0b;
+  /* color:#f59e0b; */
+  border: 0;
+  background-color: var(--marron);
 }
 
 .filter-btn.success.active{
-  background:#10b981;
+  /* color:#10b981; */
+  border: 0;
+  background-color: var(--marron);
 }
 
 .filter-btn.danger.active{
-  background:#ef4444;
+  /* color:#ef4444; */
+  border: 0;
+  background-color: var(--marron);
 }
 
 .filter-btn.active .count{

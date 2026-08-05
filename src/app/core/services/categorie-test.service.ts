@@ -23,12 +23,12 @@ export class CategorieTestService {
     private readonly apiUrl = `${environments.apiUrl}/categories`;
 
     getCategories(): Observable<categorieTest[]> {
-        return this.http.get<categorieTest[]>(`${this.apiUrl}`, { withCredentials: true });
+        return this.http.get<categorieTest[]>(`${this.apiUrl}`);
     }
 
 
     getByCategorie(id: number): Observable<categorieTest[]> {
-        return this.http.get<categorieTest[]>(`${this.apiUrl}/categories/${id}`, { withCredentials: true });
+        return this.http.get<categorieTest[]>(`${this.apiUrl}/categories/${id}`);
     }
 
     creerCategorie(categorie: categorieTest): Observable<categorieTest> {

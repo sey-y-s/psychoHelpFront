@@ -6,19 +6,17 @@ import { map } from 'rxjs/operators';
 import { PsychologueListeDto } from '../../models/psychologue-liste.model';
 import { Specialite } from '../../models/specialite.model';
 import { environments } from '../../../environments/environments.development';
-import { TestEvaluation } from '../../models/test.model';
 
 
 @Injectable({ providedIn: 'root' })
 export class PsychologueService {
-  // TODO: Remplacer par l'URL réelle
   private readonly apiUrl = `${environments.apiUrl}`
   private api = 'http://localhost:8080/api/psychologues';
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<PsychologueListeDto[]> {
-    return this.http.get<PsychologueListeDto[]>(`${this.apiUrl}/psychologues`, { withCredentials: true }
+    return this.http.get<PsychologueListeDto[]>(`${this.apiUrl}/psychologues`
     ).pipe(
       map((psychologues: PsychologueListeDto[]) =>
         psychologues.filter(p => p.status === 'VALIDER')
@@ -41,22 +39,22 @@ export class PsychologueService {
 
 
   getById(id: number): Observable<PsychologueListeDto> {
-    return this.http.get<PsychologueListeDto>(`${this.apiUrl}/psychologues/${id}`, { withCredentials: true });
+    return this.http.get<PsychologueListeDto>(`${this.apiUrl}/psychologues/${id}`);
   }
 
 
   create(data: any): Observable<any> {
-    return this.http.post<any>(this.api, data, { withCredentials: true });
+    return this.http.post<any>(this.api, data);
   }
 
 
   update(id: number, data: any): Observable<PsychologueListeDto> {
-    return this.http.patch<PsychologueListeDto>(`${this.api}/${id}`, data, { withCredentials: true });
+    return this.http.patch<PsychologueListeDto>(`${this.api}/${id}`, data);
   }
 
 
   delete(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.api}/${id}`, { withCredentials: true });
+    return this.http.delete<any>(`${this.api}/${id}`);
   }
 
   trouverParId(id: number): Observable<Psychologue> {

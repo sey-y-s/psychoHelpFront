@@ -109,15 +109,12 @@ obtenirMesRendezVous(): Observable<CitoyenRendezVousResponse[]> {
 annulerRendezVous(id: number): Observable<any> {
   return this.http.put(
     `${this.api}/seances/${id}/annuler`,
-    {},
-    {
-      withCredentials: true
-    }
+    {}
   );
 }
 
   login(data: LoginRequest): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(`${this.api}/utilisateurs/login`, data, { withCredentials: true }).pipe(
+    return this.http.post<Utilisateur>(`${this.api}/utilisateurs/login`, data).pipe(
       tap(utilisateur => this.currentUserSubject.next(utilisateur))
     );
   }
@@ -127,7 +124,7 @@ annulerRendezVous(id: number): Observable<any> {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.api}/utilisateurs/logout`, {}, { withCredentials: true }).pipe(
+    return this.http.post(`${this.api}/utilisateurs/logout`, {}).pipe(
       tap(() => this.currentUserSubject.next(null))
     );
   }

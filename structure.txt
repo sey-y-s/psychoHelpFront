@@ -300,3 +300,22 @@ INSERT INTO notification (id, titre, message, type, lu, date_creation, utilisate
 (1, 'Rappel de consultation', 'Votre séance avec Dr. Maïga est prévue le 24/02/2025 à 10:30.', 'RENDEZ_VOUS', 0, '2025-02-23 08:00:00', 6),
 (2, 'Nouveau conseil publié', 'Un nouvel article sur le sommeil a été soumis pour validation.', 'CONSEIL', 1, '2025-02-18 11:05:00', 1),
 (3, 'Bienvenue sur PsychoHelp', 'Votre compte citoyen a été créé avec succès.', 'COMPTE', 1, '2025-02-10 09:00:00', 6);
+
+
+
+
+
+L'art de lâcher prise face au stress chronique
+Le stress chronique s'installe insidieusement dans notre quotidien et ronge notre énergie vitale. Pour y remédier, il est primordial d'apprendre à identifier ce qui relève de notre contrôle et ce qui n'en relève pas. Cet article explore des exercices pratiques de pleine conscience, l'écriture cathartique et la restructuration cognitive pour transformer le cercle vicieux des ruminations mentales en un espace de calme intérieur et de sérénité durable.
+
+Surmonter la peur du regard des autres
+La peur du jugement d'autrui paralyse souvent nos ambitions et altère profondément notre estime personnelle. Ce guide complet décortique les mécanismes psychologiques de l'anxiété sociale et propose une méthode graduelle d'exposition. À travers des techniques issues des thérapies comportementales et cognitives (TCC), apprenez à valider vos propres choix, à vous affirmer avec bienveillance et à cultiver une auto-compassion inconditionnelle.
+
+Construire une routine matinale anti-déprime
+La façon dont nous débutons notre journée influence directement notre neurochimie et notre humeur pour les heures à venir. Oubliez le réflexe immédiat de consulter les écrans et les réseaux sociaux dès le réveil. Découvrez comment structurer une matinée équilibrée associant hydratation, exposition à la lumière naturelle, mouvement corporel conscient et intention positive pour stimuler naturellement la dopamine et l enthousiasme.
+
+Les bienfaits thérapeutiques de la marche en nature
+Également connue sous le nom de sylvothérapie ou de bains de forêt (Shinrin-yoku), la marche en milieu naturel possède des vertus mesurables sur la santé mentale. En réduisant drastiquement les niveaux de cortisol, en abaissant la tension artérielle et en favorisant la clarté mentale, le contact régulier avec la verdure offre un répit salutaire au système nerveux sursollicité par l environnement urbain.
+
+Apprivoiser ses émotions au lieu de les refouler
+Refouler ses émotions négatives telles que la colère, la tristesse ou la peur ne fait que les amplifier à long terme dans l'ombre de l'inconscient. Cet article met en lumière l'intelligence émotionnelle et l'importance d'accueillir chaque ressenti comme un signal d'alerte utile. Des outils concrets comme la roue des émotions et la communication non violente (CNV) vous aideront à exprimer vos besoins profonds avec justesse.

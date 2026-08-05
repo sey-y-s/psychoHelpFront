@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environments } from '../../../environments/environments.development';
 import { 
-    questionRequestInterface, 
     questionResponseInterface, 
     questionResponseInterfaceModif,
     choixRequestInterface,
@@ -24,38 +23,35 @@ export class QuestionService {
 
     public getAllQuestion(test_id: number) {
         return this.http.get<questionResponseInterface[]>(
-            `${this.apiTestsUrl}/${test_id}/questions`,
-            { withCredentials: true }
+            `${this.apiTestsUrl}/${test_id}/questions`
         );
     }
 
     public getQuestion(id: number) {
         return this.http.get<questionResponseInterfaceModif>(
-            `${this.apiUrl}/moussa/${id}`,
-            { withCredentials: true }
+            `${this.apiUrl}/moussa/${id}`
+            
         );
     }
 
     public ajouterQuestion(question: any) {
         return this.http.post<questionResponseInterface>(
             `${this.apiUrl}/moussa`,
-            question,
-            { withCredentials: true }
+            question
+            
         );
     }
 
     public modifierQuestion(id: number, question: any) {
         return this.http.put<questionResponseInterface>(
             `${this.apiUrl}/moussa/${id}`,
-            question,
-            { withCredentials: true }
+            question
         );
     }
 
     public delete(id: number) {
         return this.http.delete<string>(
-            `${this.apiUrl}/${id}`,
-            { withCredentials: true }
+            `${this.apiUrl}/${id}`
         );
     }
 
@@ -68,7 +64,7 @@ export class QuestionService {
     params.set('question_id', questionId.toString());
     return this.http.get<choixResponseInterface[]>(
         `${this.apiChoixUrl}?${params.toString()}`,
-        { withCredentials: true }
+        
     );
 }
 
@@ -78,7 +74,7 @@ export class QuestionService {
         return this.http.post<choixResponseInterface>(
             `${this.apiChoixUrl}?${params.toString()}`,
             choix,
-            { withCredentials: true }
+            
         );
     }
 
@@ -86,14 +82,14 @@ export class QuestionService {
         return this.http.put<choixResponseInterface>(
             `${this.apiChoixUrl}/${choixId}`,
             choix,
-            { withCredentials: true }
+            
         );
     }
 
     public supprimerChoix(choixId: number) {
         return this.http.delete<string>(
             `${this.apiChoixUrl}/${choixId}`,
-            { withCredentials: true }
+            
         );
     }
 

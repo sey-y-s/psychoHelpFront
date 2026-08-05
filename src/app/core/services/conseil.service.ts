@@ -12,28 +12,19 @@ export class ConseilService {
   private readonly apiUrl = `${environments.apiUrl}/conseils`;
 
   getMesConseils() {
-    return this.http.get<ConseilInfaceModelForPsy[]>(`${this.apiUrl}/mes-conseils`,
-        {
-          withCredentials: true
-        }
+    return this.http.get<ConseilInfaceModelForPsy[]>(`${this.apiUrl}/mes-conseils`
     );
   }
   public ajouterConseil(conseil:ConseilInfaceModelForPsyRequest){
-     return this.http.post<ConseilInfaceModelForPsy>(`${this.apiUrl}/post`,conseil,{
-       withCredentials:true
-     })
+     return this.http.post<ConseilInfaceModelForPsy>(`${this.apiUrl}/post`,conseil)
   }
   public getConseilById(id:number){
     return this.http.get<ConseilInfaceModelForPsy>(`${this.apiUrl}/${id}`)
   }
   public modifier(id:number,conseil:ConseilInfaceModelForPsyRequest){
-      return this.http.put<ConseilInfaceModelForPsy>(`${this.apiUrl}/update/${id}`,conseil,{
-        withCredentials:true
-      })
+      return this.http.put<ConseilInfaceModelForPsy>(`${this.apiUrl}/update/${id}`,conseil)
   }
   public suprrimer(id:number){
-     return this.http.delete<string>(`${this.apiUrl}/delete/${id}`,{
-      withCredentials:true
-     })
+     return this.http.delete<string>(`${this.apiUrl}/delete/${id}`)
   }
 }

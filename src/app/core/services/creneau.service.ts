@@ -12,41 +12,29 @@ export class CreneauService {
   private readonly apiUrl = `${environments.apiUrl}/creneaux`;
 
   getMesCreneaux(): Observable<Creneau[]>{
-    return this.http.get<Creneau[]>(`${this.apiUrl}/mes-creneaux`, {
-      withCredentials: true
-    });
+    return this.http.get<Creneau[]>(`${this.apiUrl}/mes-creneaux`);
   }
 
   getById(id: number):Observable<Creneau> {
-    return this.http.get<Creneau>(`${this.apiUrl}/${id}`, {
-      withCredentials: true
-    })
+    return this.http.get<Creneau>(`${this.apiUrl}/${id}`)
   }
 
   creer(creneau: CreneauRequest): Observable<Creneau> {
-    return this.http.post<Creneau>(`${this.apiUrl}`, creneau, {
-      withCredentials:true
-    })
+    return this.http.post<Creneau>(`${this.apiUrl}`, creneau)
   }
   listerDesCreneaux(): Observable<CreneauInterfaceResponse[]> {
-    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
     return this.http.get<CreneauInterfaceResponse[]>(`${this.api}`);
   }
   listerDesCreneauxDisponiblePourCitoyen(psyid:number): Observable<CreneauInterfaceResponse2[]> {
-    // TODO: Filtrer par psychologue connecté (l'API doit gérer)
-    return this.http.get<CreneauInterfaceResponse2[]>(`${environments.apiUrl}/creneaux/${psyid}/disponiblePourCitoyen`, {withCredentials:true});
+    return this.http.get<CreneauInterfaceResponse2[]>(`${environments.apiUrl}/creneaux/${psyid}/disponiblePourCitoyen`);
   }
 
   modifier(id: number, creneau: CreneauRequest): Observable<Creneau>{
-    return this.http.put<Creneau>(`${this.apiUrl}/${id}`,creneau, {
-      withCredentials:true
-    })
+    return this.http.put<Creneau>(`${this.apiUrl}/${id}`, creneau)
   }
 
   supprimer(id: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
-      withCredentials: true
-    })
+    return this.http.delete<void>(`${this.apiUrl}/${id}`)
   }
 
 }
