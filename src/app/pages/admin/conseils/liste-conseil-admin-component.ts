@@ -57,13 +57,13 @@ export class ListeConseilAdminComponent implements OnInit {
     this.isLoading = true;
     this.conseilAdminService.listTousConseils().subscribe({
       next: (donnees: Conseil[]) => {
-        this.tousLesConseils = donnees;
+        this.tousLesConseils = donnees.sort((a, b) => b.id - a.id);
         this.changerFiltre(this.filtreActif);
         //this.listConseils = donnees;
         //this.cdRef.detectChanges();
         this.isLoading = false;
         this.cdRef.markForCheck();
-        console.log("Données reçues du serveur :", this.listConseils);
+        console.log("Données reçues du serveur :", this.tousLesConseils);
       },
       error: (err) => {
         console.error("Erreur lors de la récupération des conseils :", err);
