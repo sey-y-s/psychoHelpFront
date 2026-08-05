@@ -22,6 +22,16 @@
 body {
   font-family: Roboto, sans-serif, Arial, Helvetica;
   background: #f5f7fa;
+
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+
 }
 
 /* Succès (Vert) */
